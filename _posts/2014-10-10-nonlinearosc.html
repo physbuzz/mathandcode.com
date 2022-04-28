@@ -1,0 +1,34 @@
+---
+layout: post
+title: Nonlinear Resonance
+date:   2014-10-10 00:00:01 -0800
+permalink: /nonlinearosc/
+---
+
+
+ 
+<p>This program demonstrates the properties of nonlinear resonance
+in the following equation, following an excerpt from Landau and Lifshitz's Mechanics. 
+At the moment it is not very sophisticated
+nor interactive. See pages 87 to 93 of Landau and Lifshitz Mechanics 
+for a detailed explanation. The differential equation is that of a 
+damped, driven anharmonic oscillator with fourth order/higher terms dropped.
+One finds interesting facts about what resonant frequencies can be chosen.
+The simulation needs more work done before it can be interacted with
+in real time, though it should be straightforward to more accurately
+plot the steady state magnitude (Fig. 32 L &amp; L) and plot the 
+oscillator movement without so many dumb/time consuming calculations.</p>
+$$\ddot{x}+2\lambda \dot{x}+\omega_0^2 x=\frac{f}{m} \cos(\gamma t)
+- \alpha x^2 - \beta x^3 $$
+ <canvas id="mycanvas"></canvas>
+ 
+
+ 
+ <script src="{{site.baseurl}}/src/processing-1.3.6.min.js"></script> 
+ <script src="{{site.baseurl}}/src/nonlinearosc.js"></script> 
+ <script type="application/javascript">
+  
+var canvas = document.getElementById("mycanvas");
+var processingInstance = new Processing(canvas, sketchProc);
+ </script>
+ 

@@ -1,0 +1,35 @@
+---
+layout: post
+title: Keplerian Orbits
+date:   2014-10-09 00:00:01 -0800
+permalink: /kepler/
+---
+
+<p>Click to focus on the app, then click again to add a particle, and click again to set its velocity.</p>
+
+ <canvas id="mycanvas" style="width:400px; height:400px; margin-left:auto;margin-right:auto;"></canvas>
+ 
+
+ 
+ <script src="{{site.baseurl}}/src/processing-1.3.6.min.js"></script> 
+ <script src="{{site.baseurl}}/src/kepler.js"></script> 
+ <script type="application/javascript">
+  
+var canvas = document.getElementById("mycanvas");
+var processingInstance = new Processing(canvas, sketchProc);
+ </script>
+ 
+<p>
+$$p=\frac{M^2}{k}$$
+$$e=\sqrt{1+\frac{2 E M^2}{k^2}}$$
+$$r(\varphi)=\frac{p}{1+e\cos(\varphi-\varphi_0)}$$
+$$\dot{\varphi}=\frac{M}{r^2}$$
+$$\varphi_0=\varphi-\mbox{ArcTanFull}\left(\frac{\dot{r} p}{M e} ,(\frac{p}{r}-1)\frac{1}{e}\right)$$
+</p>
+
+
+for a unit mass particle at angle $\phi$ with respect to some reference axis,
+ angular momentum $M$, distance $r$ from the center, orbital energy $E$, 
+where $p$ and $e$ are the parameter and eccentricity of the ellipse, and the particle
+is in a potential $-k/r$
+ 

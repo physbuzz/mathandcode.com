@@ -1,0 +1,9 @@
+_site
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+vendor
+_run 
+_tmp
+_websitetodo.txt
+_*

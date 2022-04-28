@@ -1,0 +1,87 @@
+
+body {
+  background-color:#FFF;
+  background-repeat:repeat-x;
+  background-image: url(../img/homepage-background.png);
+  background-position:top;
+  color:#eee;
+  font-size:16px;
+}
+
+#pageheader {
+  margin-top: 50px ;
+  margin-left: auto ;
+  margin-right: auto ;
+  margin-bottom:0px;
+  padding: 2em 2em;
+  max-width:800px;
+  line-height:1.6em;
+  background:rgba(255,255,255,1.0);
+  border-top:5px solid #660000;
+  color:#000;
+}
+#pagefooter {
+  margin-top: 0px ;
+  margin-bottom:50px;
+  margin-left: auto ;
+  margin-right: auto ;
+  padding: 0.5em 2em;
+  max-width:800px;
+  line-height:1.6em;
+  background:rgba(255,255,255,1.0);
+  border-top:5px solid #660000;
+  color:#000;
+}
+
+#content {
+  margin-top: 0px ;
+  margin-bottom: 0px;
+  margin-left: auto ;
+  margin-right: auto ;
+  padding: 0em 2em;
+  max-width: 800px;
+  line-height: 1.6em;
+  background:rgba(255,255,255,1.0);
+  color:#000;
+}
+
+#content a:hover { color:#FF4136; }
+/*#content a { color:#8e71ff; text-decoration: none; }*/
+#content a { color:#107896; text-decoration: none; }
+
+header {
+}
+header h1 {
+  font-size:20pt;
+  color:#000;
+  font-weight:lighter;
+  margin:0;
+  padding:0;
+
+}
+header a{
+  text-decoration: none;
+
+}
+header a .logo{
+  transition: color 0.2s ease-out;
+
+}
+header a:hover .logo{
+  color:#cc0000;
+
+}
+.logo {
+	/* text-align:right;*/
+	margin-bottom:0.5em;
+}
+.logo-com {
+  background: linear-gradient(to right, #cc0000, #990000);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: lighter;
+  margin-top: 0;
+  position: relative;
+  display:inline-block;
+}

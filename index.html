@@ -1,0 +1,63 @@
+---
+# Feel free to add content and custom Front Matter to this file.
+# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
+
+layout: indexlayout
+---
+
+<div class="sublogo">
+  My name is David. I'm a physics PhD student. You can visit my <a href="#">LinkedIn</a>, <a href="#">Twitter</a>, <a href="#">GitHub</a>, and <a href="#">Youtube</a> for other content. You can also visit an <a href="/archive/">archive of my old website</a>.
+</div>
+
+<div class="pure-g">
+<!--
+  <div class="pure-u-1 pure-u-md-1-2">
+    <h2>Tools</h2>
+    <ul>
+      <li><a href="#">Undergraduate Physics Quizzes</a></li>
+      <li><a href="#">Physics GRE exam quiz</a></li>
+    </ul>
+  </div>
+  <div class="pure-u-1 pure-u-md-1-2">
+    <h2>Quantum Physics Notes</h2>
+    <ul>
+      <li><a href="#">Simulating 2D quantum systems in mathematica</a></li>
+      <li><a href="#">The quantum particle on a 1D ring</a></li>
+      <li><a href="#">Deriving Fourier identities from quantum mechanics</a></li>
+      <li><a href="#">Inference in quantum mechanics</a></li>
+    </ul>
+  </div>
+</div>
+<div class="pure-g">
+  <div class="pure-u-1 pure-u-md-1-2">
+    <h2>Classical Physics Notes</h2>
+    <ul>
+      <li><a href="#">Billiard ball physics</a></li>
+      <li><a href="#">Dynamics in special relativity</a></li>
+      <li><a href="#">Life on a relativistic merry-go-round</a></li>
+      <li><a href="#">Some notes on Feynman-Wheeler electrodynamics</a></li>
+      <li><a href="#">The many faces of a Schwarzschild black hole</a></li>
+    </ul>
+  </div>
+  <div class="pure-u-1 pure-u-md-1-2">
+    <h2>Legacy website stuff (2010 - 2017)</h2>
+    <ul>
+      <li><a href="#">Billiard ball physics</a></li>
+      <li><a href="#">Dynamics in special relativity</a></li>
+      <li><a href="#">Life on a relativistic merry-go-round</a></li>
+      <li><a href="#">Some notes on Feynman-Wheeler electrodynamics</a></li>
+      <li><a href="#">The many faces of a Schwarzschild black hole</a></li>
+    </ul>
+  </div>
+-->
+  <div class="pure-u-1 pure-u-md-1-1">
+    <h2>All posts by date</h2>
+    <ul>
+    {% for post in site.posts %}
+      <li>
+        {{ post.date | date: "%B %-d, %Y" }}&mdash;<a href="{{ post.url }}">{{ post.title }}</a>
+      </li>
+    {% endfor %}
+    </ul>
+  </div>
+</div> <!-- pure-g -->

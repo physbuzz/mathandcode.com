@@ -1,0 +1,26 @@
+---
+layout: post
+title:  "Massive Gear and Piston"
+date:   2014-10-03 00:00:01 -0800
+permalink: /gear/
+---
+
+ <canvas id="mycanvas"></canvas>
+ <script src="{{site.baseurl}}/src/processing-1.3.6.min.js"></script> 
+ <script src="{{site.baseurl}}/src/gear.js"></script> 
+ <script type="application/javascript">
+  
+var canvas = document.getElementById("mycanvas");
+var processingInstance = new Processing(canvas, sketchProc);
+ </script>
+ 
+\begin{aligned}
+2L&amp; = 2 g m \left(\sqrt{\ell^2-r^2 \cos ^2(\varphi)}+
+r \sin (\varphi)\right)+I \dot{\varphi}^2\\
+&amp; + m r^2 (\dot{\varphi})^2 \cos^2(\varphi) \left(\frac{r \sin (\varphi)}{\sqrt{\ell^2-r^2 \cos ^2(\varphi)}}+1\right)^2
+\end{aligned}
+
+<p>(\(r\) is the radius from the gear center to the connector. \(\ell\) is the length of the rod connecting the piston and gear. \(g\), \(m\), \(I\) are the gravitational acceleration, piston mass, and gear moment of inertia respectively. \(\varphi\) is the angle between the horizontal axis and gear location in the positive sense.)</p>
+<p>The equations of motion are integrated numerically with the Euler's method. So don't expect much in terms of accuracy.</p>
+ 
+<p>2022 TODO: plug this into Mathematica to come up with a symplectic method to integrate this. See if I can come up with a solver to automatically sort out more complex linkages than this.</p>

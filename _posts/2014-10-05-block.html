@@ -1,0 +1,23 @@
+---
+layout: fullpage
+title:  "Bullet impacting a Block (fullpage)"
+date:   2014-10-05 00:00:01 -0800
+permalink: /block/
+---
+
+ <canvas id="mycanvas"></canvas>
+ 
+ <script src="{{site.baseurl}}/src/processing-1.3.6.min.js"></script> 
+ <script src="{{site.baseurl}}/src/block.js"></script> 
+ <script type="application/javascript">
+  
+var canvas = document.getElementById("mycanvas");
+var processingInstance = new Processing(canvas, sketchProc);
+ </script>
+
+
+ <p style="color:black;">This is badly in need of some TLC!
+This program was written in about 2013 in response to
+Veritasium's <a href="http://www.youtube.com/watch?v=vWVZ6APXM4w">"Bullet Block" video</a>.
+2022 TODO: write up a bit about it, fix the full page thing, and include the Mathematica
+source code.</p>

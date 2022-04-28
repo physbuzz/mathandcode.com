@@ -1,0 +1,24 @@
+---
+layout: fullpage
+title:  "3-Body Gravity (fullpage)"
+date:   2014-10-08 00:00:01 -0800
+permalink: /gravity/
+---
+
+
+    
+ <canvas id="mycanvas"></canvas>
+ 
+
+ 
+ <script src="{{site.baseurl}}/src/processing-1.3.6.min.js"></script> 
+ <script src="{{site.baseurl}}/src/gravity.js"></script> 
+ <script type="application/javascript">
+  
+var canvas = document.getElementById("mycanvas");
+var processingInstance = new Processing(canvas, sketchProc);
+ </script>
+ 
+ 
+ <p style="color:black;">Chaos of the 3-body problem. The 
+ mouse controls the initial velocity of one particle. 2022 TODO: make a way better integrator!</p>
