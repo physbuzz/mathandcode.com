@@ -5,12 +5,14 @@ layout: default
 
 <style type="text/css" media="screen">
   .container {
-    margin: 10px auto;
+    margin-left: auto;
+    margin-right:auto;
     max-width: 600px;
     text-align: center;
   }
   h1 {
-    margin: 30px 0;
+    margin: 0;
+    padding:30px 0;
     font-size: 4em;
     line-height: 1;
     letter-spacing: -1px;
@@ -22,4 +24,19 @@ layout: default
 
   <p><strong>Page not found :(</strong></p>
   <p>The requested page could not be found.</p>
+  <p id="suggestion"></p>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function(event){
+    let path=document.location.pathname;
+    let elem=document.getElementById("suggestion");
+    if(path.startsWith("/archive")) {
+      let url=document.location.href;
+      elem.innerHTML="Archived page could not be found at <a href=\""+url+"\">"+url+"</a>";
+    } else {
+      let url="{{site.url}}{{site.baseurl}}/archive"+path;
+      elem.innerHTML="Page could not be found. Try the archived directory: <a href=\""+url+"\">"+url+"</a>";
+    }
+  });
+  </script>
 </div>
