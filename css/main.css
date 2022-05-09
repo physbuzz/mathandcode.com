@@ -20,6 +20,13 @@ body {
   border-top:5px solid #660000;
   color:#000;
 }
+
+.sublogo p {
+  margin:0;
+
+}
+
+
 #pagefooter {
   margin-top: 0px ;
   margin-bottom:50px;
