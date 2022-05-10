@@ -3,7 +3,7 @@ layout: post
 title:  "Simulation of How to Build an Electron Gun"
 date:   2015-09-04 12:00:00
 tags: Physics Technical 
-permalink: egun
+permalink: /egun/
 ---
 
 The following post provides a basic electron gun simulation and
