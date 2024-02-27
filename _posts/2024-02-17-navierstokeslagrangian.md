@@ -5,6 +5,7 @@ date:   2024-02-17 12:00:00
 comments: true
 ---
 
+
 Directory
 ===
 
@@ -31,7 +32,7 @@ In this article, I derive the Navier-Stokes equations from the equations of smoo
 
 I start with the SPH Lagrangian $L_{SPH}(\dot{r},r)$, use this to derive a Lagrangian for compressible fluid dynamics $\mathcal{L}_{NS}(\dot{r}^\kappa,\frac{\partial r^\kappa}{\partial a^\nu},a)$ where $\vec{r}(\vec{a})$ is the dynamical field, and then show that this gives the Navier-Stokes equations with zero viscosity (and mass per unit volume $\mu$):
 
-$$\mu \frac{\partial v}{\partial t}+\mu (v\cdot \nabla)v=-\frac{1}{\rho}\nabla p$$
+$$\frac{\partial v}{\partial t}+(v\cdot \nabla)v=-\frac{1}{\rho}\nabla p$$
 
 Doing this derivation has several benefits and cool features:
 1. We see exactly where approximations are made. In a standard description of SPH we have a smoothing function $W(r,h)$, and in order to get to the final Navier-Stokes lagrangian we have to drop terms proportional to $h$, $h^2$, and so on. If we calculated these error terms, they could inspire us to find correction terms for our SPH scheme.
@@ -74,7 +75,7 @@ $$\frac{d}{dt}\frac{\partial \mathcal{L}}{\partial \dot{r}^\kappa}+\frac{\partia
 
 Where I use the Einstein repeated index summation convention. If you plug (2.1) into the Euler-Lagrange equations (2.2), you get a kind-of-ghastly equation in terms of the field $r(a,t)$. It takes a bit of care, but you can hide the coordinates $a$ by writing things in terms of the velocity $v(r,t)$ and the pressure and density. Doing so gives the Navier-Stokes equations with zero viscosity:
 
-$$\mu \frac{\partial v}{\partial t}+\mu (v\cdot \nabla)v=-\frac{1}{\rho}\nabla p$$
+$$\frac{\partial v}{\partial t}+(v\cdot \nabla)v=-\frac{1}{\rho}\nabla p$$
 
 where the density is defined as $\rho=\mu(a)\big\| \frac{\partial r}{\partial a}\big\|^{-1}$ and the pressure is defined as $p=\rho^2 U'(\rho)$.
 
@@ -152,22 +153,22 @@ Getting to the equations of motion is a bit of a chore. I'll start with the exam
 
 As a warmup, let's find the equations of motion for the Lagrangian found in 3.1. We can interpret it as a bunch of noninteracting parcels of fluid in an external potential.
 
-$$\mathcal{L}(\dot{r}^\kappa,\frac{\partial r^\kappa}{\partial a^\nu},r^\kappa)=\frac{1}{2}\mu \dot{r}^2-V(r)$$
+$$\mathcal{L}(\dot{r}^\kappa,\frac{\partial r^\kappa}{\partial a^\nu},r^\kappa)=\frac{1}{2}\mu \dot{r}^2-\mu V(r)$$
 
 Note that $\dot{r}^2$ is shorthand for $\dot{r}^\kappa \dot{r}_\kappa$. This doesn't depend at all on the Jacobian matrix, so the Euler-Lagrange equations are quite simple:
 
 $$\begin{align*}0&=\frac{d}{dt}\frac{\partial\mathcal{L}}{\partial \dot{r}^\kappa}-\frac{\partial\mathcal{L}}{\partial r^\kappa}\\
-&=\mu\ddot{r}_\kappa +\frac{\partial}{\partial r^\kappa}V
+&=\ddot{r}_\kappa +\frac{\partial}{\partial r^\kappa}V
 
 \end{align*}$$
 
 This still uses $a$ as the independent variable, but we can cast this into a different form using the material derivative. I show in the appendix A.1 that if we write this equation in terms of the velocity vector $v^\kappa(r,t)=\dot{r}^\kappa(a(r),t)$ with $r$ treated as the independent variable, then the above equation gives:
 
-$$0=\mu \dot{v}^\kappa+\mu v^\gamma \frac{\partial v^{\kappa}}{\partial r^\gamma}+\frac{\partial V}{\partial r^\kappa}$$
+$$0=\dot{v}^\kappa+v^\gamma \frac{\partial v^{\kappa}}{\partial r^\gamma}+\frac{\partial V}{\partial r^\kappa}$$
 
 Or in vector notation:
 
-$$\mu \frac{\partial v}{\partial t}+\mu (v\cdot \nabla)v=-\nabla V(r)$$
+$$\frac{\partial v}{\partial t}+(v\cdot \nabla)v=-\nabla V(r)$$
 
 So that's great, the lefthand side is the convective part of the Navier-Stokes equation, and the righthand side is the "body force" part. All that's left is to do the pressure part in the full Lagrangian.
 
@@ -338,3 +339,8 @@ Maybe you'll believe me that we could evaluate the whole series of integrals, an
 $$\sum_{n=0}^\infty \int d^d b b^{\alpha_1}\cdots b^{\alpha_n} T_{\alpha_1\cdots\alpha_n} W_{gauss}(r^\kappa_{,\nu}b^\nu)$$
 
 which can be evaluated exactly using Wick's theorem / Isserlis' theorem. This isn't just writing horrible expressions for the sake of it, you do integrals like this all the time in quantum field theory! We evaluated the $O(1)$ integral. But other integrals would give us corrections which are of order $h^2$. This might be a fun side project: start with an SPH system and simulate it, and then carefully consider whether your system is reproducing the results of the Navier-Stokes equations, or if it's describing a different continuum theory which includes some term $O(h^2)$. 
+
+
+# Corrections
+
+Correction 02/26/2024: fixed some stray $\mu$'s where they shouldn't be.
