@@ -136,7 +136,7 @@ with, in two-dimensions:
 
 $${\bf T}(x)=\begin{bmatrix} T^{xx} & T^{xy} \\ T^{xy} & T^{yy} \end{bmatrix}$$
 
-When we discretize this equation, we again evaluate $T^{xx}$ at the centers of the lattice edges in the $x$ direction. But $T^{xy}$ will connect cells diagonally, so in fact we should evaluate it at the center of the faces of the lattice: $T^{xy} _ {i,j}=T^{xy}(x _ {ij}+\Delta x/2,y _ {ij}+\Delta x/2)$. Our integration scheme is then...
+When we discretize this equation, we again evaluate $T^{xx}$ at the centers of the lattice edges in the $x$ direction. But there's a twist for $T^{xy}$: it describes springs connecting diagonals of the lattice. In the following equation, $T^{xy}$ is evaluated not at the vertices or the edges of the lattice, but in the center of the faces of the lattice: $T^{xy} _ {i,j}=T^{xy}(x _ {ij}+\Delta x/2,y _ {ij}+\Delta x/2)$. Let's pull the equation out of thin air, and then prove it. I show in the appendix how I got this expression from a variational approach.
 
 $$\begin{align*}
 m_{ij}\ddot{\phi}_{ij}&=T^{xx}_{i,j}(\phi_{i+1,j}-\phi_{ij}) +T^{xx}_{i-1,j}
@@ -174,7 +174,7 @@ philast=phi
 phi=phinew
 ```
 
-And just as before, it's worthwhile to prove that what I did works:
+To prove that this expression works, we show that it is equal to $\nabla\cdot({\bf T} \nabla \phi)+O(\Delta x^2)$.
 
 ``` mathematica
 (*my approximation for Div[T . grad[phi]]*)
@@ -193,6 +193,8 @@ zero. So our approximation is correct to order dx^2.*)
 tmat={ { txx[x,y],txy[x,y]},{txy[x,y],tyy[x,y]}};
 Simplify[Normal[Series[approximation,{dx,0,1}]]-
     Div[tmat.Grad[phi[x,y],{x,y}],{x,y}]]
+
+(* Out[] := 0 *)
 ```
 
 
