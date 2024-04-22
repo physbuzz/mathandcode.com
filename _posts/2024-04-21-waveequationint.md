@@ -14,18 +14,18 @@ The TLDR is that you can get a very generic integrator which works great for opt
 ``` python
 phinew=[[0 for i in range(rows)] for j in range(cols)]
 for i in range(1,rows-1):
-	for j in range(1,cols-1):
-		phinew[i][j]=2*phi[i][j]-philast[i][j]+ \
-		(dt**2)*(
-			 txx[i][j]  *(phi[i+1][j]-phi[i][j])
-			+txx[i-1][j]*(phi[i-1][j]-phi[i][j])
-			+tyy[i][j]  *(phi[i][j+1]-phi[i][j])
-			+tyy[i][j-1]*(phi[i][j-1]-phi[i][j])
-			+0.5*txy[i][j]    *(phi[i+1][j+1]-phi[i][j])
-			+0.5*txy[i-1][j-1]*(phi[i-1][j-1]-phi[i][j])
-			-0.5*txy[i-1][j]  *(phi[i-1][j+1]-phi[i][j])
-			-0.5*txy[i][j-1]  *(phi[i+1][j-1]-phi[i][j])
-			)/mass[i][j]
+    for j in range(1,cols-1):
+        phinew[i][j]=2*phi[i][j]-philast[i][j]+ \
+        (dt**2)*(
+             txx[i][j]  *(phi[i+1][j]-phi[i][j])
+            +txx[i-1][j]*(phi[i-1][j]-phi[i][j])
+            +tyy[i][j]  *(phi[i][j+1]-phi[i][j])
+            +tyy[i][j-1]*(phi[i][j-1]-phi[i][j])
+            +0.5*txy[i][j]    *(phi[i+1][j+1]-phi[i][j])
+            +0.5*txy[i-1][j-1]*(phi[i-1][j-1]-phi[i][j])
+            -0.5*txy[i-1][j]  *(phi[i-1][j+1]-phi[i][j])
+            -0.5*txy[i][j-1]  *(phi[i+1][j-1]-phi[i][j])
+            )/mass[i][j]
 philast=phi
 phi=phinew
 ```
@@ -53,12 +53,12 @@ You might implement this in Python pseudocode by storing 2D arrays `phi` and `ph
 ``` python
 phinew=[[0 for i in range(rows)] for j in range(cols)]
 for i in range(1,rows-1):
-	for j in range(1,cols-1):
-		phinew[i][j]=2*phi[i][j]-philast[i][j]+ \
-		(dt**2)*((phi[i+1][j]-phi[i][j])
-			+(phi[i-1][j]-phi[i][j])
-			+(phi[i][j+1]-phi[i][j])
-			+(phi[i][j-1]-phi[i][j]))/mass[i][j]
+    for j in range(1,cols-1):
+        phinew[i][j]=2*phi[i][j]-philast[i][j]+ \
+        (dt**2)*((phi[i+1][j]-phi[i][j])
+            +(phi[i-1][j]-phi[i][j])
+            +(phi[i][j+1]-phi[i][j])
+            +(phi[i][j-1]-phi[i][j]))/mass[i][j]
 philast=phi
 phi=phinew
 ```
@@ -94,14 +94,14 @@ Now our integration pseudo-code looks like:
 ``` python
 phinew=[[0 for i in range(rows)] for j in range(cols)]
 for i in range(1,rows-1):
-	for j in range(1,cols-1):
-		phinew[i][j]=2*phi[i][j]-philast[i][j]+ \
-		(dt**2)*(
-			 tx[i][j]  *(phi[i+1][j]-phi[i][j])
-			+tx[i-1][j]*(phi[i-1][j]-phi[i][j])
-			+ty[i][j]  *(phi[i][j+1]-phi[i][j])
-			+ty[i][j-1]*(phi[i][j-1]-phi[i][j])
-			)/mass[i][j]
+    for j in range(1,cols-1):
+        phinew[i][j]=2*phi[i][j]-philast[i][j]+ \
+        (dt**2)*(
+             tx[i][j]  *(phi[i+1][j]-phi[i][j])
+            +tx[i-1][j]*(phi[i-1][j]-phi[i][j])
+            +ty[i][j]  *(phi[i][j+1]-phi[i][j])
+            +ty[i][j-1]*(phi[i][j-1]-phi[i][j])
+            )/mass[i][j]
 philast=phi
 phi=phinew
 ```
@@ -136,7 +136,7 @@ with, in two-dimensions:
 
 $${\bf T}(x)=\begin{bmatrix} T^{xx} & T^{xy} \\ T^{xy} & T^{yy} \end{bmatrix}$$
 
-When we discretize this equation, we again evaluate $T^{xx}$ at the centers of the lattice edges in the $x$ direction. But $T^{xy}$ will connect cells diagonally, so in fact we should evaluate it at the center of the faces of the lattice: $T^{xy}_{i,j}=T^{xy}(x_{ij}+\Delta x/2,y_{ij}+\Delta x/2)$. Our integration scheme is then...
+When we discretize this equation, we again evaluate $T^{xx}$ at the centers of the lattice edges in the $x$ direction. But $T^{xy}$ will connect cells diagonally, so in fact we should evaluate it at the center of the faces of the lattice: $T^{xy} _ {i,j}=T^{xy}(x _ {ij}+\Delta x/2,y _ {ij}+\Delta x/2)$. Our integration scheme is then...
 
 $$\begin{align*}
 m_{ij}\ddot{\phi}_{ij}&=T^{xx}_{i,j}(\phi_{i+1,j}-\phi_{ij}) +T^{xx}_{i-1,j}
@@ -158,18 +158,18 @@ Our integration scheme is...
 ``` python
 phinew=[[0 for i in range(rows)] for j in range(cols)]
 for i in range(1,rows-1):
-	for j in range(1,cols-1):
-		phinew[i][j]=2*phi[i][j]-philast[i][j]+ \
-		(dt**2)*(
-			 txx[i][j]  *(phi[i+1][j]-phi[i][j])
-			+txx[i-1][j]*(phi[i-1][j]-phi[i][j])
-			+tyy[i][j]  *(phi[i][j+1]-phi[i][j])
-			+tyy[i][j-1]*(phi[i][j-1]-phi[i][j])
-			+0.5*txy[i][j]    *(phi[i+1][j+1]-phi[i][j])
-			+0.5*txy[i-1][j-1]*(phi[i-1][j-1]-phi[i][j])
-			-0.5*txy[i-1][j]  *(phi[i-1][j+1]-phi[i][j])
-			-0.5*txy[i][j-1]  *(phi[i+1][j-1]-phi[i][j])
-			)/mass[i][j]
+    for j in range(1,cols-1):
+        phinew[i][j]=2*phi[i][j]-philast[i][j]+ \
+        (dt**2)*(
+             txx[i][j]  *(phi[i+1][j]-phi[i][j])
+            +txx[i-1][j]*(phi[i-1][j]-phi[i][j])
+            +tyy[i][j]  *(phi[i][j+1]-phi[i][j])
+            +tyy[i][j-1]*(phi[i][j-1]-phi[i][j])
+            +0.5*txy[i][j]    *(phi[i+1][j+1]-phi[i][j])
+            +0.5*txy[i-1][j-1]*(phi[i-1][j-1]-phi[i][j])
+            -0.5*txy[i-1][j]  *(phi[i-1][j+1]-phi[i][j])
+            -0.5*txy[i][j-1]  *(phi[i+1][j-1]-phi[i][j])
+            )/mass[i][j]
 philast=phi
 phi=phinew
 ```
@@ -199,7 +199,7 @@ Simplify[Normal[Series[approximation,{dx,0,1}]]-
 ## A simulator for waves around a nonrotating black hole
 To simulate the wave equation around a black hole... we don't need anything else! We're done! We just need to initialize the masses and tensions correctly. I'll need a good amount of relativistic jargon to define everything correctly.
 
-The key here is the metric $g_{\mu\nu}$, which is a four by four matrix. For a static (=nonrotating) spacetime, we take $g_{\mu\nu}$ to be independent of time, and we require that $g_{00}$ is nonzero but $g_{0i}=0$ and $g_{i0}=0$ ($1\leq i \leq 3$):
+The key here is the metric $g_{\mu\nu}$, which is a four by four matrix. For a static (=nonrotating) spacetime, we take $g_{\mu\nu}$ to be independent of time, and we require that $g_{00}$ is nonzero but $g_{0a}=0$ and $g_{a0}=0$ ($1\leq a \leq 3$):
 
 $$[g_{\mu\nu}]=\begin{bmatrix} 
 g_{00} & 0 & 0 & 0\\
@@ -208,9 +208,9 @@ g_{00} & 0 & 0 & 0\\
 0 & g_{13} & g_{13} & g_{33}
 \end{bmatrix}$$
 
-We then define $g$ to be the square root of this matrix (it's a negative number, so we'll see $\sqrt{-g}$ in the equations). And finally, $g^{\mu\nu}$ with the indices in the upper slow is the inverse of the matrix $g_{\mu\nu}$. In particular, I'll write:
+We then define $g$ to be the square root of the determinant of this matrix (the determinant is negative, so we'll see $\sqrt{-g}$ in the equations). We also define $g^{\mu\nu}$ to be the inverse of the matrix $g_{\mu\nu}$. In particular:
 
-$$[g^{ij}] = \begin{bmatrix}g_{11} & g_{12} & g_{13}\\
+$$[g^{ab}] = \begin{bmatrix}g_{11} & g_{12} & g_{13}\\
 g_{12} & g_{22} & g_{13}\\
 g_{13} & g_{13} & g_{33}
 \end{bmatrix}^{-1}$$
@@ -219,7 +219,7 @@ With all of these definitions, we can take...
 
 $$\mu(x)=(\sqrt{-g} )g^{00}$$
 
-$${\bf T}=-\sqrt{-g} [g^{ij}]$$
+$${\bf T}=-\sqrt{-g} [g^{ab}]$$
 
 And then we just simulate equation 3, and that's our wave equation in arbitrary static spacetimes!
 
@@ -229,14 +229,14 @@ For a Schwarzschild black hole in $(t,x,y,z)$ coordinates, $\sqrt{-g}=1$ so we d
 
 $$\mu(x)=g^{00}=1/(1-r_s/r)$$
 
-$${\bf T}=-[g^{ij}] = {\bf 1}-\frac{r_s}{r^3} \begin{bmatrix}x^2 &x y& x z \\
+$${\bf T}=-[g^{ab}] = {\bf 1}-\frac{r_s}{r^3} \begin{bmatrix}x^2 &x y& x z \\
 x y&y^2& y z \\
 x z & y z& z^2 
 \end{bmatrix}$$
 
 That's it! Those are the ingredients which go into simulating waves around a black hole. We see that as we approach the event horizon, the "mass density" goes to infinity while the "tension" goes to zero, and this is how we interpret the weird behavior of the waves approaching the event horizon of a black hole.
 
-I added absorbing boundary conditions at the black hole boundary to produce this image:
+I added absorbing boundary conditions at the black hole boundary to produce this image. It's tempting to say that absorbing boundary conditions are cheating a bit, but it's quite fair: waves become smushed together close to the horizon, and eventually their wavelength is much less than $\Delta x$. So we're forced to choose how to regulate those waves.
 
 ![](/img/posts/blackhole-preview.gif)
 
@@ -254,9 +254,9 @@ Like always, it was using a Lagrangian / variational calculus and throwing every
 
 The action for a scalar field in a static spacetime background is 
 
-$$S=\int d^D x\frac{1}{2}\sqrt{-g}\left( g^{00}\dot{\phi}^2+g^{ij}\partial_i\phi \partial_j \phi\right)=\int dx^0 L$$
+$$S=\int d^D x\frac{1}{2}\sqrt{-g}\left( g^{00}\dot{\phi}^2+g^{ab}\partial_a\phi \partial_b \phi\right)=\int dx^0 L$$
 
-with $D=d+1$ the number of spatial dimensions plus one for time. Let's find $L$ numerically by dividing space up into a grid but leaving time continuous. The best we can do for the $\dot{\phi}$ term is $\sum_{ij}\frac{1}{2}\Delta x^d \sqrt{-g} g^{00}\dot{\phi}_{ij}^2$. 
+with $D=d+1$ the number of spatial dimensions plus one for time. Let's find $L$ numerically by dividing space up into a grid but leaving time continuous. A good-enough approximation for the kinetic term is $\sum_{ij}\frac{1}{2}\Delta x^d \sqrt{-g} g^{00}\dot{\phi}_{ij}^2$. 
 
 For the spatial derivatives term, let's just work it out for 2D. Consider the square consisting of four field values $\phi_{i,j}$, $\phi_{i+1,j}$, $\phi_{i+1,j+1}$, $\phi_{i,j+1}$. One approximation for the integral of the action over space is...
 
@@ -266,7 +266,15 @@ $$\sum_{ij}\Delta x^d\sqrt{-g}  \begin{bmatrix}\frac{\phi_{i+1,j}-\phi_{i,j}}{\D
 
 That is, across each square face on the lattice, we assume the gradient is constant and equal to $(\phi_{i+1,j}-\phi_{i,j},\phi_{i,j+1}-\phi_{i,j})/\Delta x$.
 
-That's OK, but it biases the bottom left corner of each square face. We could equally well use the estimate $(\phi_{i+1,j}-\phi_{i,j},\phi_{i+1,j+1}-\phi_{i+1,j})/\Delta x$ for the field gradient (biasing the bottom right corner). If we don't want to bias any corner, we might as well average over all four possible biases! 
+That's OK, but it biases the bottom left corner of each square face. We could equally well use the estimate $(\phi_{i+1,j}-\phi_{i,j},\phi_{i+1,j+1}-\phi_{i+1,j})/\Delta x$ for the field gradient (biasing the bottom right corner). If we don't want to bias any corner, we might as well average over all four possible biases!  
+
+Okay, so the approach is to do all of that, sum over the four approximations and all lattice points to get a discrete approximation of $L$, and then plug it into the Euler-Lagrange equations:
+
+$$\frac{d}{dt}\frac{\partial L}{\partial\dot{\phi}_{ij}}=\frac{\partial L}{\partial \phi_{ij}}$$
+
+and then observe that the righthand side of this equation is just the eight Hooke's law spring forces as described above! 
+
+Here is the mathematica code to do exactly that. Note that we don't *need* to do all of this if we've already seen the previous two Mathematica code snippets in this article, which prove that my approximations are good discrete approximations for the spatial derivative terms. This is just the way I thought about those approximations to derive them.
 
 ``` mathematica
 nx=5;
@@ -321,6 +329,8 @@ then (Gxx[3,2]+Gxx[3,3])/2 is the best approximation for Gxx evaluated right
 at the link connecting phi[3,3] to phi[4,3].*)
 ```
 
-So that method is what I'm using as the "ground truth" for integration in arbitrary lattices and arbitrary dimension. 
+So this is the method that I'm using for the "ground truth", which could be conveniently and flexibly adapted to integration on arbitrary lattices, arbitrary dimension, and to include other forces.
+
+**Fun Idea:** I think that the equation describing Chladni pattern waves on a thin steel plate is $\mu\ddot{\phi}=D(\nabla^2)^2\phi$. So, what's the relativistically invariant version of that equation? Once you figure that out it begs the question, what do Chladni patterns around a black hole look like?
 
 
