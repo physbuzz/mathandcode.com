@@ -336,3 +336,201 @@ So this is the method that I'm using for the "ground truth", which could be conv
 **Fun Idea:** I think that the equation describing Chladni pattern waves on a thin steel plate is $\mu\ddot{\phi}=D(\nabla^2)^2\phi$. So, what's the relativistically invariant version of that equation? Once you figure that out it begs the question, what do Chladni patterns around a black hole look like?
 
 
+# Bonus: Rotating black hole EOM
+*Warning:* I haven't implemented this in real code / a real simulation.
+
+Note that Dempsey 2017 works through a rotating black hole, so there's probably some discussion of the numerical algorithms there. The essential form of the equations is identical to water waves near a vortex (eg a bathtub drain).
+
+I wrote a bunch of ugly Mathematica code to generate the LaTeX output, and I got the following equation of motion:
+
+$$
+\begin{align*}
+0&=\Delta x^2 G^{tt}_{i,j} \ddot{\phi}_{i,j}\\
+& +G^{xx}_{i-1,j}(\phi_{i-1,j}-\phi_{i,j}) +G^{xx}_{i,j}(\phi_{i+1,j}-\phi_{i,j}) \\
+&+G^{yy}_{i,j-1}(\phi_{i,j-1}-\phi_{i,j}) + G^{yy}_{i,j}(\phi_{i,j+1}-\phi_{i,j})\\
+&+\frac{1}{2}G^{xy}_{i,j} (\phi_{i+1,j+1}-\phi_{i,j})+\frac{1}{2}G^{xy}_{i-1,j-1}(\phi_{i-1,j-1}-\phi_{i,j})  \\
+& -\frac{1}{2}G^{xy}_{i,j-1} (\phi_{i+1,j-1}-\phi_{i,j})-\frac{1}{2}G^{xy}_{i-1,j} (\phi_{i-1,j+1}-\phi_{i,j})\\
+& -\Delta x G^{tx}_{i-1,j}\dot{\phi}_{i-1,j} +\Delta x G^{tx}_{i,j}\dot{\phi}_{i+1,j} \\
+&-\Delta x G^{ty}_{i,j-1}\dot{\phi}_{i,j-1} +\Delta x G^{ty}_{i,j}\dot{\phi}_{i,j+1} 
+\end{align*}$$
+
+In my convention, $G$ is a 3 by 3 matrix corresponding to $\sqrt{-g} g^{\mu\nu}$. It is not allowed to vary over time. $G^{tt}$ is evaluated at the vertices of the lattice, $G^{xx}$, $G^{yy}$, $G^{tx}$, and $G^{ty}$ are evaluated at the centers of the edges of the lattice, and $G^{xy}$ is evaluated at the centers of the faces. So, to get a Kerr black hole you would have to carefully copy the formulas for $g_{\mu\nu}$, find $\sqrt{-g}$, and invert $g_{\mu\nu}$ to get $g^{\mu\nu}$.
+
+Note that in the (+ - -) metric convention, we expect $G^{xx}$ and $G^{yy}$ to be negative. So really these correspond to $-T^{xx}$ and $-T^{yy}$. 
+
+To turn the equations of motion into a numerical algorithm, we have two options. In a scientific algorithm, we want a centered-time approach. This is time-reversible, so it tends to give us simple and reliable guarantees of stability. Then $\dot{\phi}_{i-1,j}$ would be written as `(phinew[i-1][j]-phiold[i-1][j])/(2*dt)`. But that's a problem because it gives us an *implicit* equation for phinew. So we'd have to add a linear solver or some relaxation scheme and the complexity of our solver goes way up.
+
+A simple explicit way to do this would be to approximate $\dot{\phi}_{i-1,j}$ as `(phi[i-1][j]-phiold[i-1][j])/dt`. This looks OK, but it actually breaks the time reversibility of our integrator, so we won't have the simple ideas of stability like before! But okay, let's update our python pseudocode with this explicit hopefully-not-too-unstable equation:
+
+``` python
+phinew=[[0 for i in range(rows)] for j in range(cols)]
+for i in range(1,rows-1):
+    for j in range(1,cols-1):
+        phinew[i][j]=2*phi[i][j]-philast[i][j]+ \
+        (dt**2)*(
+            -Gxx[i][j]  *(phi[i+1][j]-phi[i][j])
+            -Gxx[i-1][j]*(phi[i-1][j]-phi[i][j])
+            -Gyy[i][j]  *(phi[i][j+1]-phi[i][j])
+            -Gyy[i][j-1]*(phi[i][j-1]-phi[i][j])
+            -0.5*Gxy[i][j]    *(phi[i+1][j+1]-phi[i][j])
+            -0.5*Gxy[i-1][j-1]*(phi[i-1][j-1]-phi[i][j])
+            +0.5*Gxy[i-1][j]  *(phi[i-1][j+1]-phi[i][j])
+            +0.5*Gxy[i][j-1]  *(phi[i+1][j-1]-phi[i][j])
+            +(dx/dt)*(
+               Gtx[i-1][j]*(phi[i-1][j]-philast[i-1][j])
+              -Gtx[i][j]*(phi[i+1][j]-philast[i+1][j])
+              +Gty[i][j-1]*(phi[i][j-1]-philast[i][j-1])
+              -Gty[i][j]*(phi[i][j+1]-philast[i][j+1])
+              )
+            )/(Gtt[i][j]*(dx**2))
+philast=phi
+phi=phinew
+```
+
+
+Here's the action and equations of motion using Mathematica, but including the time components. (Remember: my Mathematica variable `Gab[i,j]` is a matrix equal to $\sqrt{-g} g^{\mu\nu}$ evaluated at the center of the ith,jth cell. That is, it's evaluated at the center of the square with corners (i,j), (i+1,j), (i,j+1), and (i+1,j+1).)
+
+``` mathematica
+nx=5;
+ny=5;
+G[i_,j_]={ {Gtt[i,j],Gtx[i,j],Gty[i,j]},{Gtx[i,j],Gxx[i,j],Gxy[i,j]},{Gty[i,j],Gxy[i,j],Gyy[i,j]}};
+(*kinetic[i_,j_]=G00[i,j] dx dy Derivative[0,0,1][phi][i,j,t]^2;*)
+(* |_ *)
+mygrad[1,i_,j_]={phidot[i,j],(phi[i+1,j]-phi[i,j])/dx,(phi[i,j+1]-phi[i,j])/dy};
+(* |- *)
+mygrad[2,i_,j_]={phidot[i,j+1],(phi[i+1,j+1]-phi[i,j+1])/dx,(phi[i,j+1]-phi[i,j])/dy};
+(* -| *)
+mygrad[3,i_,j_]={phidot[i+1,j+1],(phi[i+1,j+1]-phi[i,j+1])/dx,(phi[i+1,j+1]-phi[i+1,j])/dy};
+(* _| *)
+mygrad[4,i_,j_]={phidot[i+1,j],(phi[i+1,j]-phi[i,j])/dx,(phi[i+1,j+1]-phi[i+1,j])/dy};
+potential[i_,j_]=Sum[mygrad[k,i,j].G[i,j].mygrad[k,i,j],{k,1,4}]dx dy/4;
+
+action=Sum[potential[i,j],{i,1,nx-1},{j,1,ny-1}];
+(* Action in new variables phi[i,j,t] instead of phi[i,j]. This helps it play nicely with the symbolic differentiation that we do. *)
+actionnew=action/.{phi[i_,j_]:>phi[i,j,t],phidot[i_,j_]:>Derivative[0,0,1][phi][i,j,t]};
+
+(*  Okay, these are the correct equations of motion, but they are really hard to wrangle into the correct form. *)
+weirdeqs=FullSimplify[(D[D[actionnew,Derivative[0,0,1][phi][3,3,t]],t]-D[actionnew,phi[3,3,t]]/.dy->dx)/.ReleaseHold[Flatten[Table[If[a==0&&b==0,Hold[Sequence[]],phi[3+a,3+b,t]->phi[3,3,t]+dphi[a,b,t]],{a,-1,1},{b,-1,1}]]]];
+
+(* instead of using replacement rules, I found that allowing FullSimplify to do the replacements worked best! *)
+simplification=FullSimplify[weirdeqs/2,Assumptions->{Gxx[2,2]+Gxx[2,3]==2Gxxedge[2,3],Gxx[3,2]+Gxx[3,3]==2Gxxedge[3,3],
+Gyy[2,2]+Gyy[3,2]==2Gyyedge[3,2],Gyy[2,3]+Gyy[3,3]==2Gyyedge[3,3],
+Gtx[2,2]+Gtx[2,3]==2 Gtxedge[2,3],Gtx[3,2]+Gtx[3,3]==2 Gtxedge[3,3],
+Gty[2,2]+Gty[3,2]==2Gtyedge[3,2],Gty[2,3]+Gty[3,3]==2Gtyedge[3,3],
+(Gtt[2,2]+Gtt[2,3]+Gtt[3,2]+Gtt[3,3]) ==4 Gttvertex[3,3]}]//Expand;
+
+(* Okay, that's it, now let's convert it to TeX form. We need a bunch of string replacement rules to get a good expression. *)
+texstring1=ToString[TeXForm[simplification/.{dphi[i_,j_,t]:>dphi[i,j],Derivative[0,0,1][phi][i_,j_,t]:>dtphi[i,j],Derivative[0,0,2][phi][i_,j_,t]:>ddtphi[i,j]}]];
+(* turn "(3,3)" into "_{i,j}". *)
+subscriptSub=Flatten[Table["("<>ToString[a]<>","<>ToString[b]<>")"->"_{"<>If[a==2,"i-1",If[a==3,"i","i+1"]]<>","<>If[b==2,"j-1",If[b==3,"j","j+1"]]<>"}",{a,2,4},{b,2,4}]];
+namesSub={"\\text{Gttvertex}"->"G^{tt}","\\text{Gxxedge}"->"G^{xx}","\\text{Gyyedge}"->"G^{yy}","\\text{Gtxedge}"->"G^{tx}","\\text{Gtyedge}"->"G^{ty}","\\text{Gxy}"->"G^{xy}","\\text{dx}"->"\Delta x","\\text{dtphi}"->"\\dot{\\phi}","\\text{ddtphi}"->"\\ddot{\\phi}"};
+dphiSub=Flatten[Table["\\text{dphi}("<>ToString[a]<>","<>ToString[b]<>")"->"(\\phi_{"<>If[a==-1,"i-1",If[a==0,"i","i+1"]]<>","<>If[b==-1,"j-1",If[b==0,"j","j+1"]]<>"}-\\phi_{i,j})",{a,-1,1},{b,-1,1}]];
+texstring2=StringReplace[texstring1,Join[subscriptSub,namesSub,dphiSub]]
+
+(*
+Out[] := "\\Delta x^2 \\ddot{\\phi}_{i,j} G^{tt}_{i,j}+(\\phi_{i-1,j}-\\phi_{i,j}) G^{xx}_{i-1,j}+(\\phi_{i+1,j}-\\phi_{i,j}) 
+G^{xx}_{i,j}+\\frac{1}{2} (\\phi_{i-1,j-1}-\\phi_{i,j}) G^{xy}_{i-1,j-1}-\\frac{1}{2} (\\phi_{i-1,j+1}-\\phi_{i,j}) 
+G^{xy}_{i-1,j}-\\frac{1}{2} (\\phi_{i+1,j-1}-\\phi_{i,j}) G^{xy}_{i,j-1}+\\frac{1}{2} (\\phi_{i+1,j+1}-\\phi_{i,j}) 
+G^{xy}_{i,j}+(\\phi_{i,j-1}-\\phi_{i,j}) G^{yy}_{i,j-1}+(\\phi_{i,j+1}-\\phi_{i,j}) G^{yy}_{i,j}-\\Delta x \\dot{\\phi}_{i-1,j} 
+G^{tx}_{i-1,j}+\\Delta x \\dot{\\phi}_{i+1,j} G^{tx}_{i,j}-\\Delta x \\dot{\\phi}_{i,j-1} G^{ty}_{i,j-1}+\\Delta x 
+\\dot{\\phi}_{i,j+1} G^{ty}_{i,j}"
+ *)
+```
+
+# Bonus bonus: explicitly finding G for the Kerr metric
+Note: this is NOT double and triple checked! This is just the work I plan on using when I revisit this in the future.
+
+Mathematica code gets us almost all the way there:
+
+``` mathematica
+coordsSphere={t,r,theta,psi};
+sigma=r^2+a^2 Cos[theta]^2;
+delta=r^2-rs r + a^2;
+(* Kerr metric copied from Wikipedia *)
+metricLowerSphere=-{ {-(1-rs r/sigma),0,0,-rs r a Sin[theta]^2/sigma},
+{0,sigma/delta,0,0},{0,0,sigma,0},{-rs r a Sin[theta]^2/sigma,0,0,
+(r^2+a^2+rs r a^2/sigma Sin[theta]^2)Sin[theta]^2}};
+(* Inverse transformation of spherical coordinates. Note that it would be much faster (CPU-time wise) to do this with the correct application of the Jacobian, this is really just a brute force way but it's correct. *)
+coordinateSub={r->Sqrt[x^2+y^2+z^2],theta->ArcTan[z/Sqrt[x^2+y^2+z^2],Sqrt[x^2+y^2]/Sqrt[x^2+y^2+z^2]],psi->ArcTan[x/Sqrt[x^2+y^2],y/Sqrt[x^2+y^2]]};
+assume={a>0,rs>0,Sqrt[x^2+y^2+z^2]>rs,Element[x,Reals],Element[y,Reals],Element[z,Reals]};
+(* Write the metric in terms of Dx. This works because eg. Dt[sqrt[x^2+y^2+z^2]] gives the correct expansion in terms of Dt[x], Dt[y], Dt[z]. *)
+metricBasicallyDt=FullSimplify[Sum[metricLowerSphere[[i,j]]Dt[coordsSphere[[i]]]Dt[coordsSphere[[j]]],{i,1,4},{j,1,4}]/.coordinateSub,Assumptions->assume];
+
+(* Now we get the new metric in Matrix form. 
+We collect the coefficients into an upper triangular matrix. CoefficientArrays will return an upper triangular matrix, so we symmetrize to get the actual metric. *)
+coordsE={t,x,y,z};
+gmatLower=Normal[CoefficientArrays[metricBasicallyDt,Dt[coordsE]][[3]]];
+gmatLower=Simplify[(gmatLower+Transpose[gmatLower])/2];
+(* Sqrt[-Det[g]] *)
+sqrtmetricdet=FullSimplify[Sqrt[-Det[gmatLower]],Assumptions->assume];
+(* Simplify to get the matrix relevant for a wave equation, "Big G" in my article *)
+bigGupper=FullSimplify[sqrtmetricdet Inverse[gmatLower],Assumptions->assume];
+(* Okay... now simplifying as far as Mathematica will take us. It really does not like to simplify some terms, but let's just do whatever it misses by hand. *)
+gupperFinal=FullSimplify[FullSimplify[bigGupper,Assumptions->{x^2+y^2+z^2==r2,r>0,Element[x,Reals],Element[y,Reals],Element[z,Reals],Element[r,Reals]}]/.{r2->r^2},Assumptions->{r>0,r>rs,Element[x,Reals],Element[y,Reals],Element[z,Reals],Element[r,Reals]}]
+
+
+(* Out[] := { {(r^3+a^2 (r+rs))/(r (a^2+r (r-rs)))+(a^2 z^2)/r^4,-((a rs y)/(a^2 r+r^3-r^2 rs)),(a rs x)/(a^2 r+r^3-r^2 rs),0},{-((a rs y)/(a^2 r+r^3-r^2 rs)),(a^4 (-r^2+y^2+z^2)+a^2 r (-2 (r-rs) (r-y) (r+y)+(r-2 rs) z^2)-r^2 (r-rs) (r^3-r^2 rs+rs (y^2+z^2)))/(r^4 (a^2+r (r-rs))),-(((a^4+2 a^2 r (r-rs)+r^2 rs (-r+rs)) x y)/(r^4 (a^2+r (r-rs)))),((-a^2+r rs) x z)/r^4},{(a rs x)/(a^2 r+r^3-r^2 rs),-(((a^4+2 a^2 r (r-rs)+r^2 rs (-r+rs)) x y)/(r^4 (a^2+r (r-rs)))),(-r^6+r^5 rs-a^4 y^2+2 a^2 r rs y^2+r^3 rs y^2-r^2 (rs^2 y^2+a^2 (2 y^2+z^2)))/(r^4 (a^2+r (r-rs))),((-a^2+r rs) y z)/r^4},{0,((-a^2+r rs) x z)/r^4,((-a^2+r rs) y z)/r^4,-1+((-a^2+r rs) z^2)/r^4}} *)
+
+(* Let's make this into C code for a 2D simulation plane *)
+gupper2D=FullSimplify[gupperFinal/.z->0];
+cExpression[func_]:=StringReplace[ToString[CForm[func]],"Power"->"std::pow"];
+cFunction[name_,i_,j_]:="float "<>name<>"(float x, float y, float rs, float a) {\n    float r=std::sqrt(x*x+y*y);\n    return ("<>cExpression[gupper2D[[i,j]]]<>");\n}\n";
+StringRiffle[{cFunction["GttFunc",1,1],
+cFunction["GtxFunc",1,2],
+cFunction["GtyFunc",1,3],
+cFunction["GxxFunc",2,2],
+cFunction["GxyFunc",2,3],
+cFunction["GyyFunc",3,3]},""]
+
+```
+
+Okay, the metric that we get is the following (for the xy plane, $z=0$, and the black hole is spinning about the $z$ axis). It's not fully simplified (for example, we can use properties like $r^2=x^2+y^2$ to get $G^{xx}$ in the same form as $G^{yy}$), but I'm going to leave this here for now.
+$$\sqrt{-g}g^{\mu\nu}=
+\begin{bmatrix}
+ \frac{a^2 (r+\text{rs})+r^3}{r \left(a^2+r (r-\text{rs})\right)} &
+   -\frac{a \text{rs} y}{a^2 r+r^3-r^2 \text{rs}} & \frac{a \text{rs}
+   x}{a^2 r+r^3-r^2 \text{rs}} \\
+ -\frac{a \text{rs} y}{a^2 r+r^3-r^2 \text{rs}} & \frac{r
+   \text{rs}-a^2}{r^2}+\frac{y^2 \left(a^4+2 a^2 r (r-\text{rs})+r^2
+   \text{rs} (\text{rs}-r)\right)}{r^4 \left(a^2+r
+   (r-\text{rs})\right)}-1 & -\frac{x y \left(a^4+2 a^2 r
+   (r-\text{rs})+r^2 \text{rs} (\text{rs}-r)\right)}{r^4 \left(a^2+r
+   (r-\text{rs})\right)} \\
+ \frac{a \text{rs} x}{a^2 r+r^3-r^2 \text{rs}} & -\frac{x y
+   \left(a^4+2 a^2 r (r-\text{rs})+r^2 \text{rs}
+   (\text{rs}-r)\right)}{r^4 \left(a^2+r (r-\text{rs})\right)} &
+   -\frac{a^4 y^2+r (r-\text{rs}) \left(y^2 \left(2 a^2-r
+   \text{rs}\right)+r^4\right)}{r^4 \left(a^2+r (r-\text{rs})\right)}
+   \\
+\end{bmatrix}
+$$
+
+If we want to plug it into some C code, here are the functions we'd use. 
+
+``` cpp
+float GttFunc(float x, float y, float rs, float a) {
+    float r=std::sqrt(x*x+y*y);
+    return ((std::pow(r,3) + std::pow(a,2)*(r + rs))/(r*(std::pow(a,2) + r*(r - rs))));
+}
+float GtxFunc(float x, float y, float rs, float a) {
+    float r=std::sqrt(x*x+y*y);
+    return (-((a*rs*y)/(std::pow(a,2)*r + std::pow(r,3) - std::pow(r,2)*rs)));
+}
+float GtyFunc(float x, float y, float rs, float a) {
+    float r=std::sqrt(x*x+y*y);
+    return ((a*rs*x)/(std::pow(a,2)*r + std::pow(r,3) - std::pow(r,2)*rs));
+}
+float GxxFunc(float x, float y, float rs, float a) {
+    float r=std::sqrt(x*x+y*y);
+    return (-1 + (-std::pow(a,2) + r*rs)/std::pow(r,2) + ((std::pow(a,4) + 2*std::pow(a,2)*r*(r - rs) + std::pow(r,2)*rs*(-r + rs))*std::pow(y,2))/(std::pow(r,4)*(std::pow(a,2) + r*(r - rs))));
+}
+float GxyFunc(float x, float y, float rs, float a) {
+    float r=std::sqrt(x*x+y*y);
+    return (-(((std::pow(a,4) + 2*std::pow(a,2)*r*(r - rs) + std::pow(r,2)*rs*(-r + rs))*x*y)/(std::pow(r,4)*(std::pow(a,2) + r*(r - rs)))));
+}
+float GyyFunc(float x, float y, float rs, float a) {
+    float r=std::sqrt(x*x+y*y);
+    return (-((std::pow(a,4)*std::pow(y,2) + r*(r - rs)*(std::pow(r,4) + (2*std::pow(a,2) - r*rs)*std::pow(y,2)))/(std::pow(r,4)*(std::pow(a,2) + r*(r - rs)))));
+}
+```
+
