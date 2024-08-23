@@ -3,7 +3,7 @@ layout: page
 title: New Kind of Science Reading Group
 ---
 
-These are the meeting notes and associated notebooks for a reading group on A New Kind of Science. Our goals in this reading group are to read (or re-read) STephen Wolfram's A New Kind of Science, and also to collect the code snippets and ideas of all reading group attendees. At the end, we want to end up with curated notebooks containing all of our interesting ideas and all of our clever code snippets.
+These are the meeting notes and associated notebooks for a reading group on A New Kind of Science. Our goals in this reading group are to read (or re-read) Stephen Wolfram's A New Kind of Science, and also to collect the code snippets and ideas of all reading group attendees. At the end, we want to end up with curated notebooks containing all of our interesting ideas, questions, and code snippets 
 
 We have meetings every Sunday at 9:00am PST / 10:00am CDMX.
 
