@@ -63,7 +63,14 @@ const links=[
     "notebook-dl":"streaming-10-23-2024.nb",
     "notebook-web":"https://www.wolframcloud.com/obj/dmoore101/Published/streaming-10-23-2024.nb",
     "notebook-pdf":"streaming-10-23-2024.pdf",
-    "topics":"Worked on some fluid dynamics C++ code. Very very slowly coding the SPH smoothing functions."}
+    "topics":"Worked on some fluid dynamics C++ code. Very very slowly coding the SPH smoothing functions."},
+{"date":"10-25-2024",
+    "media-dir":"media/10-25-2024", "show-media":true,
+    "recording":"https://youtu.be/-UG-3koKA1U",
+    "notebook-dl":"streaming-10-25-2024.nb",
+    "notebook-web":"https://www.wolframcloud.com/obj/dmoore101/Published/stream-10-25-2024.nb",
+    "notebook-pdf":"streaming-10-25-2024.pdf",
+    "topics":"Kept going with the fluid dynamics. Got positioning and image drawing working in arbitrary dimension, and did a first pass at implementing annealing."}
 ];
 function generateLinksList(links) {
     const ul=document.getElementById('twitch-ul');
