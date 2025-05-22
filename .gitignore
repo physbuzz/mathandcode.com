@@ -6,3 +6,4 @@ vendor
 _run 
 archive
 .unison*
+.bundle
