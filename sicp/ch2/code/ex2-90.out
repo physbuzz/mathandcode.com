@@ -1,0 +1,13 @@
+done
+done
+done
+done
+done
+done
+done
+dense-dense (x^3+x^2+x+1)+(x-1) = (polynomial dense-poly x 1 1 2 0)
+dense-dense (x^3+x^2+x+1)*(x-1) = (polynomial dense-poly x 1 0 0 0 -1)
+sparse-sparse (x^3+x^2+x+1)+(x-1) = (polynomial sparse-poly x (3 1) (2 1) (1 2))
+sparse-sparse (x^3+x^2+x+1)*(x-1) = (polynomial sparse-poly x (4 1) (0 -1))
+dense-sparse (x^3+x^2+x+1)+(x-1) = (polynomial sparse-poly x (3 1) (2 1) (1 2))
+sparse-dense (x^3+x^2+x+1)*(x-1) = (polynomial sparse-poly x (4 1) (0 -1))

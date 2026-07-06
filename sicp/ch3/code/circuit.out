@@ -1,0 +1,10 @@
+
+sum 0  New-value = 0
+carry 0  New-value = 0ok
+done
+
+sum 8  New-value = 1done
+done
+
+carry 11  New-value = 1
+sum 16  New-value = 0done

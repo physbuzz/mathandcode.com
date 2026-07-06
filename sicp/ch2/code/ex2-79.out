@@ -1,0 +1,16 @@
+done
+done
+done
+done
+done
+
+Testing for 2.79
+(equ? (make-complex-from-real-imag 3 4)
+      (make-complex-from-real-imag 3 4))
+#t
+(equ? (make-rational 3 4)
+      (make-rational 6 8))
+#t
+(equ? (make-rational 3 4)
+      (add (make-rational 3 4) (make-rational 6 8)))
+#f

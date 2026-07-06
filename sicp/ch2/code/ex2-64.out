@@ -1,0 +1,6 @@
+
+Error (exit code 1):
+src/ch2/code/ex2-64.rkt:31:23: make-tree: unbound identifier
+  in: make-tree
+  location...:
+   src/ch2/code/ex2-64.rkt:31:23

@@ -1,0 +1,12 @@
+done
+done
+done
+done
+done
+
+Testing for 2.80
+(=zero? (make-complex-from-real-imag 3 4))
+#f
+(=zero? (sub (make-complex-from-real-imag 3 4) 
+             (make-complex-from-real-imag 3 4)))
+#t

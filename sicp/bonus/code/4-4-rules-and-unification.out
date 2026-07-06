@@ -1,0 +1,13 @@
+ok
+
+(+ (f 4) (* 5 4))
+(+ (f 4) (* 5 4))
+unified frame: (((? y) . 4) ((? x) f (? y)))
+instantiated pattern 1: (+ (f 4) (* 5 4))
+instantiated pattern 2: (+ (f 4) (* 5 4))
+
+
+(((? y) . 4) ((? x) f (? y)))
+(((? x) . 4) ((? y) f (? x)))
+(((? y) ? z) ((? x) ? z))
+done

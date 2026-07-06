@@ -1,0 +1,11 @@
+#<procedure:...ch3/code/ex3-34.rkt:120:2>
+#<procedure:...ch3/code/ex3-34.rkt:120:2>
+#<procedure:...ch3/code/ex3-34.rkt:84:2>
+Probe: b = 100
+Probe: a = 10
+done
+Probe: b = ?
+Probe: a = ?
+done
+Probe: b = 100
+done

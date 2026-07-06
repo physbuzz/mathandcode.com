@@ -1,0 +1,5 @@
+example-3-5-3.rkt:85:9: module: identifier already defined
+  at: stream-map
+  in: (define-values (stream-map) (r5rs:lambda (proc . argstreams) (if (⟨??⟩ (car argstreams)) the-empty-stream (⟨??⟩ (apply proc (map ⟨??⟩ argstreams)) (apply stream-map (cons proc (map ⟨??⟩ argstreams)))))))
+  location...:
+   example-3-5-3.rkt:85:9

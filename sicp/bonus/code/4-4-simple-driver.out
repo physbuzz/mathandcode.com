@@ -1,0 +1,15 @@
+ok
+
+Query (supervisor ?x (Bitdiddle Ben)):
+(supervisor (Tweakit Lem E) (Bitdiddle Ben))
+(supervisor (Fect Cy D) (Bitdiddle Ben))
+(supervisor (Hacker Alyssa P) (Bitdiddle Ben))
+
+Query (job ?name (accounting . ?type)):
+(job (Cratchet Robert) (accounting scrivener))
+(job (Scrooge Eben) (accounting chief accountant))
+
+Query (address ?name (Slumerville . ?address)):
+(address (Aull DeWitt) (Slumerville (Onion Square) 5))
+(address (Reasoner Louis) (Slumerville (Pine Tree Road) 80))
+(address (Bitdiddle Ben) (Slumerville (Ridge Road) 10))

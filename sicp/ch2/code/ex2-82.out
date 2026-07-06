@@ -1,0 +1,25 @@
+done
+done
+done
+done
+done
+Coercions installed.
+
+--- Testing Basic Operations ---
+Add SN+SN: 3
+Add Rat+Rat: (rational 5 . 4)
+Add Comp+Comp: (complex rectangular 3 . 4)
+
+--- Testing Simple Coercion (2 Args) ---
+Add SN+Rat: (rational 11 . 2)
+Add Rat+SN: (rational 11 . 2)
+Add SN+Comp: (complex rectangular 7 . 3)
+Add Comp+SN: (complex rectangular 7 . 3)
+Add Rat+Comp: (complex rectangular 3/2 . 1)
+Add Comp+Rat: (complex rectangular 3/2 . 1)
+
+--- Testing Equ? with Coercion ---
+Equ? SN=Rat: #t
+Equ? Rat=Comp: #t
+Equ? SN=Comp: #t
+Equ? SN!=Comp: #f

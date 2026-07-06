@@ -29,4 +29,7 @@
   <!-- custom styles -->
   <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
   <link rel="stylesheet" href="{{ "/css/syntax.css" | prepend: site.baseurl }}">
+  {% if page.layout == "sicp" %}
+  <link rel="stylesheet" href="{{ "/sicp/assets/css/md2html.css" | prepend: site.baseurl }}">
+  {% endif %}
 </head>

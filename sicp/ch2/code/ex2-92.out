@@ -1,0 +1,11 @@
+done
+done
+done
+done
+done
+done
+(polynomial (3 ((b 10) (a 4) (x 2) (y 2))) (-1 ((x 2) (y 2))) (1 ((x 2) (y 1))) (1 ((x 3))) (1 ((x 1))) (-10 ()))
+(x^3+x)(x^2-y+1) = -x^3y -xy + x^5 + 2x^3 + x^2 + x
+(polynomial (-1 ((x 3) (y 1))) (-1 ((x 1) (y 1))) (1 ((x 5))) (2 ((x 3))) (1 ((x 1))))
+(x^4+x^3+x^2+x+1)(x-1) = x^5 - 1
+(polynomial (1 ((x 5))) (-1 ()))

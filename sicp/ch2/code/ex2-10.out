@@ -1,0 +1,6 @@
+Division by an interval containing zero:
+[2, 3] / [-1, 1.1] = 
+div-interval called with interval containing zero
+  context...:
+   /home/dkmoore/docker/codex-md2html/sicp/ch2/code/ex2-10.rkt:22:0: disp-interval-op
+   body of "/home/dkmoore/docker/codex-md2html/sicp/ch2/code/ex2-10.rkt"
