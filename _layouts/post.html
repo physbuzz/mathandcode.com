@@ -3,8 +3,8 @@ layout: default
 ---
 <article class="post">
   <header class="post-header">
-    <h1 class="post-title">{{ page.title }}</h1>
-    <p class="post-kicker">{{ page.date | date: "%B %-d, %Y" }}</p>
+    <h1 class="post-title">{{ page.title | escape }}</h1>
+    <p class="post-date"><time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: "%B %-d, %Y" }}</time></p>
     {% if page.tags.size > 0 %}
     <div class="tag-row" aria-label="Tags">
       {% for tag in page.tags %}

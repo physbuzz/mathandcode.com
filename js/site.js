@@ -1,74 +1,35 @@
 (function () {
-  var groups = ["theme", "width", "type", "text"];
-  var defaults = { theme: "system", width: "normal", type: "sans", text: "normal" };
-  var allowed = {
-    theme: { system: true, light: true, dark: true },
-    width: { normal: true, wide: true, compact: true },
-    type: { sans: true, serif: true },
-    text: { small: true, normal: true, large: true }
+  const choices = {
+    theme: ["system", "light", "dark"],
+    width: ["normal", "wide", "compact"],
+    type: ["sans", "serif"],
+    text: ["normal", "small", "large"]
   };
-  var namePrefix = "mathandcode-reader:";
-
-  function readWindowState() {
-    if (!window.name || window.name.indexOf(namePrefix) !== 0) return {};
-    try {
-      return JSON.parse(window.name.slice(namePrefix.length)) || {};
-    } catch (error) {
-      return {};
-    }
-  }
-
-  function saveWindowState(name, value) {
-    var state = readWindowState();
-    state[name] = value;
-    try {
-      window.name = namePrefix + JSON.stringify(state);
-    } catch (error) {}
-  }
-
-  function readSetting(name) {
-    var value = null;
-    try {
-      value = localStorage.getItem("mathandcode-reader-" + name);
-    } catch (error) {}
-    if (!value) value = readWindowState()[name];
-    return allowed[name][value] ? value : null;
-  }
-
-  function saveSetting(name, value) {
-    try {
-      localStorage.setItem("mathandcode-reader-" + name, value);
-    } catch (error) {}
-    saveWindowState(name, value);
-  }
+  const root = document.documentElement;
 
   function apply(name, value) {
-    if (value === defaults[name]) {
-      delete document.documentElement.dataset[name];
-      return;
-    }
-    document.documentElement.dataset[name] = value;
+    if (value === choices[name][0]) delete root.dataset[name];
+    else root.dataset[name] = value;
   }
 
-  function bindReaderControls() {
-    groups.forEach(function (name) {
-      var saved = readSetting(name);
-      var inputs = Array.prototype.slice.call(document.querySelectorAll('input[name="reader-' + name + '"]'));
-      inputs.forEach(function (input) {
-        if (saved && input.value === saved) input.checked = true;
-        input.addEventListener("change", function () {
-          if (!input.checked) return;
-          apply(name, input.value);
-          saveSetting(name, input.value);
-          if (window.MathJax && window.MathJax.typesetPromise) {
-            window.MathJax.typesetPromise().catch(function () {});
-          }
-        });
-      });
-    });
+  for (const name of Object.keys(choices)) {
+    try {
+      const value = localStorage.getItem("mathandcode-reader-" + name);
+      if (choices[name].includes(value)) apply(name, value);
+    } catch (error) {}
   }
 
   document.addEventListener("DOMContentLoaded", function () {
-    bindReaderControls();
+    for (const name of Object.keys(choices)) {
+      const inputs = document.querySelectorAll('input[name="reader-' + name + '"]');
+      for (const input of inputs) {
+        input.checked = input.value === (root.dataset[name] || choices[name][0]);
+        input.addEventListener("change", function () {
+          if (!input.checked) return;
+          apply(name, input.value);
+          try { localStorage.setItem("mathandcode-reader-" + name, input.value); } catch (error) {}
+        });
+      }
+    }
   });
 })();

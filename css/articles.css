@@ -1,0 +1,78 @@
+:root {
+  --body-size: 16px;
+  --ink: #000;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #eee8dc;
+  }
+}
+
+html[data-theme="light"],
+html:has(#reader-theme-light:checked) {
+  --ink: #000;
+}
+
+html[data-text="small"],
+html:has(#reader-text-small:checked) {
+  --body-size: 14px;
+}
+
+html[data-text="large"],
+html:has(#reader-text-large:checked) {
+  --body-size: 18px;
+}
+
+.site-main {
+  line-height: 1.6em;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: inherit;
+  line-height: inherit;
+}
+
+h2 {
+  margin: 0.83em 0;
+  font-size: 1.5em;
+}
+
+h3 {
+  margin: 1em 0;
+  font-size: 1.17em;
+}
+
+h4 {
+  margin: 1.33em 0;
+  font-size: 1em;
+}
+
+.post-header,
+.page-header {
+  margin-bottom: 0;
+}
+
+.post-content h1 {
+  margin: 0.67em 0;
+  font-size: 2em;
+}
+
+p,
+ul,
+ol,
+.post-date {
+  margin: 1em 0;
+}
+
+ul,
+ol {
+  padding-left: 40px;
+}
+
+li + li {
+  margin-top: 0;
+}

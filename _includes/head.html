@@ -1,72 +1,39 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script>
-  (function () {
-    var root = document.documentElement;
-    var defaults = {theme: "system", width: "normal", type: "sans", text: "normal"};
-    var allowed = {
-      theme: {system: true, light: true, dark: true},
-      width: {normal: true, wide: true, compact: true},
-      type: {sans: true, serif: true},
-      text: {small: true, normal: true, large: true}
-    };
-    var state = {};
-    if (window.name && window.name.indexOf("mathandcode-reader:") === 0) {
-      try { state = JSON.parse(window.name.slice(19)) || {}; } catch (error) {}
-    }
-    Object.keys(defaults).forEach(function (name) {
-      var value = null;
-      try { value = localStorage.getItem("mathandcode-reader-" + name); } catch (error) {}
-      value = value || state[name];
-      if (allowed[name][value] && value !== defaults[name]) root.dataset[name] = value;
-    });
-    if (window.location.hash.length < 2) return;
-    root.setAttribute("data-hash-pending", "");
-    var fallback = setTimeout(reveal, 2500);
-    function reveal() {
-      if (!root.hasAttribute("data-hash-pending")) return;
-      var name = window.location.hash.slice(1);
-      try { name = decodeURIComponent(name); } catch (error) {}
-      var target = document.getElementById(name) || document.getElementsByName(name)[0];
-      if (target) target.scrollIntoView();
-      requestAnimationFrame(function () {
-        if (target) target.scrollIntoView();
-        root.removeAttribute("data-hash-pending");
-        clearTimeout(fallback);
-      });
-    }
-    document.addEventListener("DOMContentLoaded", reveal, {once: true});
-  }());
-  </script>
-
-  <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+  <title>{% if page.title %}{{ page.title | escape }} | {% endif %}{{ site.title | escape }}</title>
   {% if page.description %}
   <meta name="description" content="{{ page.description | strip_html | strip_newlines | truncate: 160 | escape }}">
   {% endif %}
-  <link rel="canonical" href="{{ page.url | replace: 'index.html', '' | prepend: site.baseurl | prepend: site.url }}">
-  <link rel="icon" type="image/x-icon" href="{{ '/favicon.ico?v=5' | relative_url }}">
-  <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ '/feed.xml' | absolute_url }}">
-  <link rel="stylesheet" href="{{ '/css/main.css' | relative_url }}">
-  <link rel="stylesheet" href="{{ '/css/md2html.css' | relative_url }}">
+  <link rel="canonical" href="{{ page.url | replace: 'index.html', '' | prepend: site.baseurl | prepend: site.url | escape }}">
+  <link rel="icon" type="image/x-icon" href="{{ '/favicon.ico?v=5' | relative_url | escape }}">
+  <link rel="alternate" type="application/atom+xml" title="{{ site.title | escape }}" href="{{ '/feed.xml' | absolute_url | escape }}">
+  <script src="{{ '/js/site.js' | relative_url | escape }}"></script>
+  <link rel="stylesheet" href="{{ '/css/main.css' | relative_url | escape }}">
+  {% unless page.layout == 'sicp' %}
+  <link rel="stylesheet" href="{{ '/css/articles.css' | relative_url | escape }}">
+  {% endunless %}
   {% for font in md2html.font_preloads %}
-  <link rel="preload" href="{{ font }}" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{{ font | escape }}" as="font" type="font/woff2" crossorigin>
   {% endfor %}
   {% for stylesheet in md2html.page_stylesheets %}
-  <link rel="stylesheet" href="{{ stylesheet }}">
+  <link rel="stylesheet" href="{{ stylesheet | escape }}">
   {% endfor %}
   {% if md2html.css %}<style>{{ md2html.css }}</style>{% endif %}
   {% for stylesheet in md2html.math_stylesheets %}
-  <link rel="stylesheet" href="{{ stylesheet }}">
+  <link rel="stylesheet" href="{{ stylesheet | escape }}">
   {% endfor %}
   {% if md2html.math_css %}<style>{{ md2html.math_css }}</style>{% endif %}
+  <link rel="stylesheet" href="{{ '/css/md2html.css' | relative_url | escape }}">
+  {% if page.layout == 'sicp' %}
+  <link rel="stylesheet" href="{{ '/css/sicp.css' | relative_url | escape }}">
+  {% endif %}
+  {% for stylesheet in md2html.inline_stylesheets %}<style>{{ stylesheet }}</style>{% endfor %}
   {% for stylesheet in md2html.stylesheets %}
-  <link rel="stylesheet" href="{{ stylesheet }}">
+  <link rel="stylesheet" href="{{ stylesheet | escape }}">
   {% endfor %}
   {% if md2html.mathjax_src %}
   <script>{{ md2html.mathjax_config }}</script>
-  <script id="MathJax-script" defer src="{{ md2html.mathjax_src }}"></script>
+  <script id="MathJax-script" defer src="{{ md2html.mathjax_src | escape }}"></script>
   {% endif %}
-
-  <script defer src="{{ '/js/site.js' | relative_url }}"></script>
 </head>
