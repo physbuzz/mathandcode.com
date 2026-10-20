@@ -1,35 +1,57 @@
 name: Manual build and deploy
 
-on: 
+on:
   workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
     steps:
-    - uses: actions/checkout@v2
-      with:
-        lfs: true
+      - name: Check out website
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          path: site
+          lfs: true
+          persist-credentials: false
 
-    - name: Setup Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: '3.0.2' # Ensure this matches your project's Ruby version
+      - name: Check out md2html
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: physbuzz/md2html
+          ref: baad11bfd7c812e8c2ea1e4b952b61fd1a770ba0
+          path: md2html
+          persist-credentials: false
 
-    - name: Install dependencies
-      run: |
-        gem install bundler
-        bundle install
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: md2html/.node-version
+          package-manager-cache: false
 
-    - name: Build Jekyll site
-      run: bundle exec jekyll build
+      - name: Install md2html dependencies
+        working-directory: md2html
+        run: |
+          pipx install uv==0.13.1
+          uv sync --locked --no-dev
+          npm ci --ignore-scripts --omit=dev
 
-    - name: Upload via FTP
-      uses: SamKirkland/FTP-Deploy-Action@v4.4.0
-      with:
-        server: ${{ secrets.FTP_SERVER }}
-        username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: ./_site/
-        # git-ftp-args: --insecure # Use this if your FTP server does not support FTPS
+      - name: Build website
+        working-directory: site
+        run: ../md2html/.venv/bin/md2html --no-execute
+
+      - name: Upload via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./site/_site/
+          state-name: .md2html-ftp-sync-state.json
 
