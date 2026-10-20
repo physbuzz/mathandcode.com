@@ -8,7 +8,7 @@ description: "This program demonstrates the properties of nonlinear resonance\ni
 
 
  
-<p>This program demonstrates the properties of nonlinear resonance
+This program demonstrates the properties of nonlinear resonance
 in the following equation, following an excerpt from Landau and Lifshitz's Mechanics. 
 At the moment it is not very sophisticated
 nor interactive. See pages 87 to 93 of Landau and Lifshitz Mechanics 
@@ -18,9 +18,11 @@ One finds interesting facts about what resonant frequencies can be chosen.
 The simulation needs more work done before it can be interacted with
 in real time, though it should be straightforward to more accurately
 plot the steady state magnitude (Fig. 32 L &amp; L) and plot the 
-oscillator movement without so many dumb/time consuming calculations.</p>
+oscillator movement without so many dumb/time consuming calculations.
+
 $$\ddot{x}+2\lambda \dot{x}+\omega_0^2 x=\frac{f}{m} \cos(\gamma t)
 - \alpha x^2 - \beta x^3 $$
+
  <canvas id="mycanvas"></canvas>
  
 

@@ -9,9 +9,12 @@ description: "Conclusion: A massive chain's end in this initial configuration\nf
 <img src="{{ site.baseurl }}/img/bungee.png"></img>
 
 $$L=\frac{1}{4} \mu  g \left(-h^2-2 h L+L^2\right)+\frac{1}{4} \mu  g(h+L) \dot{h}^2$$
+
 $$\ddot{h}=-g-\frac{\dot{h}^2}{2(L+h)}$$
-<p>Conclusion: A massive chain's end in this initial configuration
-falls faster than a ball dropped from the same height!</p>
+
+Conclusion: A massive chain's end in this initial configuration
+falls faster than a ball dropped from the same height!
+
  <canvas id="mycanvas"></canvas>
  <script src="{{ site.baseurl }}/src/processing-1.3.6.min.js"></script> 
  <script src="{{ site.baseurl }}/src/chain.js"></script> 
