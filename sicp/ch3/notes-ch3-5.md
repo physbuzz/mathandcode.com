@@ -3,7 +3,6 @@ layout: sicp
 render_with_liquid: false
 title: SICP Chapter 3.5
 ---
-
 <div class="nav">
     <span class="activenav"><a href="notes-ch3-4.html">← Previous</a></span>
     <span class="activenav"><a href="../index.html">↑ Up</a></span>
@@ -12,20 +11,18 @@ title: SICP Chapter 3.5
 
 [HTML Book Chapter 3.5 Link](https://sarabander.github.io/sicp/html/3_002e5.xhtml#g_t3_002e5)
 
-## Directory
-- [Section 3.5](#section-35)
-  - [Examples and Notes](#examples-and-notes)
-  - [Exercises](#exercises)
-    - *Exercises:* ([Exercise 3.50](#exercise-350), [Exercise 3.51](#exercise-351), [Exercise 3.52](#exercise-352), [Exercise 3.53](#exercise-353), [Exercise 3.54](#exercise-354), [Exercise 3.55](#exercise-355), [Exercise 3.56](#exercise-356), [Exercise 3.57](#exercise-357), [Exercise 3.58](#exercise-358), [Exercise 3.59](#exercise-359), [Exercise 3.60](#exercise-360), [Exercise 3.61](#exercise-361), [Exercise 3.62](#exercise-362), [Exercise 3.63](#exercise-363), [Exercise 3.64](#exercise-364), [Exercise 3.65](#exercise-365), [Exercise 3.66](#exercise-366), [Exercise 3.67](#exercise-367), [Exercise 3.68](#exercise-368), [Exercise 3.69](#exercise-369), [Exercise 3.70](#exercise-370), [Exercise 3.71](#exercise-371), [Exercise 3.72](#exercise-372), [Exercise 3.73](#exercise-373), [Exercise 3.74](#exercise-374), [Exercise 3.75](#exercise-375), [Exercise 3.76](#exercise-376), [Exercise 3.77](#exercise-377), [Exercise 3.78](#exercise-378), [Exercise 3.79](#exercise-379), [Exercise 3.80](#exercise-380), [Exercise 3.81](#exercise-381), [Exercise 3.82](#exercise-382))
+
+
+<div class="table-of-contents"><h2>Directory</h2><ul class="toc-list"><li><a href="#section-35">Section 3.5</a><ul class="toc-list"><li><a href="#examples-and-notes">Examples and Notes</a></li><li><a href="#exercises">Exercises</a> <div class="exercise-container">(<span class="exercise-list"><span><a href="#exercise-350">Exercise 3.50</a></span><span><a href="#exercise-351">Exercise 3.51</a></span><span><a href="#exercise-352">Exercise 3.52</a></span><span><a href="#exercise-353">Exercise 3.53</a></span><span><a href="#exercise-354">Exercise 3.54</a></span><span><a href="#exercise-355">Exercise 3.55</a></span><span><a href="#exercise-356">Exercise 3.56</a></span><span><a href="#exercise-357">Exercise 3.57</a></span><span><a href="#exercise-358">Exercise 3.58</a></span><span><a href="#exercise-359">Exercise 3.59</a></span><span><a href="#exercise-360">Exercise 3.60</a></span><span><a href="#exercise-361">Exercise 3.61</a></span><span><a href="#exercise-362">Exercise 3.62</a></span><span><a href="#exercise-363">Exercise 3.63</a></span><span><a href="#exercise-364">Exercise 3.64</a></span><span><a href="#exercise-365">Exercise 3.65</a></span><span><a href="#exercise-366">Exercise 3.66</a></span><span><a href="#exercise-367">Exercise 3.67</a></span><span><a href="#exercise-368">Exercise 3.68</a></span><span><a href="#exercise-369">Exercise 3.69</a></span><span><a href="#exercise-370">Exercise 3.70</a></span><span><a href="#exercise-371">Exercise 3.71</a></span><span><a href="#exercise-372">Exercise 3.72</a></span><span><a href="#exercise-373">Exercise 3.73</a></span><span><a href="#exercise-374">Exercise 3.74</a></span><span><a href="#exercise-375">Exercise 3.75</a></span><span><a href="#exercise-376">Exercise 3.76</a></span><span><a href="#exercise-377">Exercise 3.77</a></span><span><a href="#exercise-378">Exercise 3.78</a></span><span><a href="#exercise-379">Exercise 3.79</a></span><span><a href="#exercise-380">Exercise 3.80</a></span><span><a href="#exercise-381">Exercise 3.81</a></span><span><a href="#exercise-382">Exercise 3.82</a></span></span>)</div></li></ul></li></ul></div>
+
 
 ## Section 3.5
 
 ### Examples and Notes
 
-<div class="code-box" markdown="1">
-<details class="collapsible-code">
-<summary class="code-summary"><a href="code/example-3-5-1.rkt">code/example-3-5-1.rkt</a> <span class="expand-hint">(click to expand)</span></summary>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><details class="collapsible-code"><summary class="code-summary"><span><a href="code/example-3-5-1.rkt">example-3-5-1.rkt</a></span><span class="expand-hint">(click to expand)</span></summary><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="c1">;; Library functions</span>
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">accumulate</span><span class="w"> </span><span class="n">op</span><span class="w"> </span><span class="n">initial</span><span class="w"> </span><span class="n">sequence</span><span class="p">)</span>
@@ -87,21 +84,15 @@ title: SICP Chapter 3.5
 
 <span class="p">(</span><span class="n">sum-primes-1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1000</span><span class="p">)</span>
 <span class="p">(</span><span class="n">sum-primes-2</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1000</span><span class="p">)</span>
-</pre></div>
-
-</details>
-<div class="code-output">
-<span>Output:</span>
-<pre>76128
+</code></pre></div>
+</details><div class="code-output"><span>Output:</span><pre>76128
 76128
-</pre>
-</div>
-</div>
+</pre></div></div>
 
 
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="code/example-3-5-2.rkt">code/example-3-5-2.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="code/example-3-5-2.rkt">example-3-5-2.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">str</span><span class="w"> </span><span class="p">(</span><span class="nb">cons</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="k">delay</span><span class="w"> </span><span class="mi">2</span><span class="p">)))</span>
 
@@ -118,21 +109,17 @@ title: SICP Chapter 3.5
 <span class="w">  </span><span class="p">(</span><span class="nb">force</span><span class="w"> </span><span class="p">(</span><span class="nb">cdr</span><span class="w"> </span><span class="k">stream</span><span class="p">)))</span>
 <span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="p">(</span><span class="n">cons-stream</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="p">))</span>
 <span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="p">(</span><span class="n">cons-stream</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="p">))</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>1
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>1
 2
 1
 2
-</pre>
-</div>
-</div>
+</pre></div></div>
 
 
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="code/example-3-5-3.rkt">code/example-3-5-3.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="code/example-3-5-3.rkt">example-3-5-3.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="k">stream</span><span class="p">)</span><span class="w"> </span>
 <span class="w">  </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="k">stream</span><span class="p">))</span>
@@ -167,7 +154,7 @@ title: SICP Chapter 3.5
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="nb">stream-for-each</span><span class="w"> </span><span class="n">proc</span><span class="w"> </span><span class="n">s</span><span class="p">)</span>
 <span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">stream-null?</span><span class="w"> </span><span class="n">s</span><span class="p">)</span>
-<span class="w">      </span><span class="o">&#39;</span><span class="ss">done</span>
+<span class="w">      </span><span class="o">'</span><span class="ss">done</span>
 <span class="w">      </span><span class="p">(</span><span class="k">begin</span>
 <span class="w">        </span><span class="p">(</span><span class="n">proc</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">s</span><span class="p">))</span>
 <span class="w">        </span><span class="p">(</span><span class="nb">stream-for-each</span><span class="w"> </span><span class="n">proc</span>
@@ -225,26 +212,27 @@ title: SICP Chapter 3.5
 <span class="w">              </span><span class="p">(</span><span class="nb">cons</span><span class="w"> </span><span class="n">proc</span>
 <span class="w">                    </span><span class="p">(</span><span class="nb">map</span><span class="w"> </span><span class="n">⟨??⟩</span>
 <span class="w">                         </span><span class="n">argstreams</span><span class="p">))))))</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>example-3-5-3.rkt:85:9: module: identifier already defined
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>code/example-3-5-3.rkt:85:9: module: identifier already defined
   at: stream-map
   in: (define-values (stream-map) (r5rs:lambda (proc . argstreams) (if (⟨??⟩ (car argstreams)) the-empty-stream (⟨??⟩ (apply proc (map ⟨??⟩ argstreams)) (apply stream-map (cons proc (map ⟨??⟩ argstreams)))))))
   location...:
-   example-3-5-3.rkt:85:9
-</pre>
-</div>
-</div>
+   code/example-3-5-3.rkt:85:9
+</pre></div></div>
 
 
 Note to self: I had a half-thought-out concern about the caching. In the solution
 to 3.55:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">partial-sums</span><span class="w"> </span><span class="n">s</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="n">cons-stream</span><span class="w"> </span><span class="mi">0</span>
-<span class="w">    </span><span class="p">(</span><span class="n">add-streams</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="p">(</span><span class="n">partial-sums</span><span class="w"> </span><span class="n">s</span><span class="p">))))</span>
-</pre></div>
+
+
+```rkt
+(define (partial-sums s)
+  (cons-stream 0
+    (add-streams s (partial-sums s))))
+```
+
+
 
 I'd be concerned that if `(partial-sums s)` created a new stream with new 
 cached values at every step, that we wouldn't get the additive behavior we want?
@@ -259,41 +247,50 @@ definition, which generalizes `stream-map` to allow procedures that take
 multiple arguments, analogous to `map` in 2.2.1, 
 Footnote 78.
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="nb">stream-map</span><span class="w"> </span><span class="n">proc</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="n">argstreams</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">⟨??⟩</span><span class="w"> </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="n">argstreams</span><span class="p">))</span>
-<span class="w">      </span><span class="n">the-empty-stream</span>
-<span class="w">      </span><span class="p">(</span><span class="n">⟨??⟩</span>
-<span class="w">       </span><span class="p">(</span><span class="nb">apply</span><span class="w"> </span><span class="n">proc</span><span class="w"> </span><span class="p">(</span><span class="nb">map</span><span class="w"> </span><span class="n">⟨??⟩</span><span class="w"> </span><span class="n">argstreams</span><span class="p">))</span>
-<span class="w">       </span><span class="p">(</span><span class="nb">apply</span><span class="w"> </span><span class="nb">stream-map</span>
-<span class="w">              </span><span class="p">(</span><span class="nb">cons</span><span class="w"> </span><span class="n">proc</span><span class="w"> </span>
-<span class="w">                    </span><span class="p">(</span><span class="nb">map</span><span class="w"> </span><span class="n">⟨??⟩</span><span class="w"> </span>
-<span class="w">                         </span><span class="n">argstreams</span><span class="p">))))))</span>
-</pre></div>
+
+
+```rkt
+(define (stream-map proc . argstreams)
+  (if (⟨??⟩ (car argstreams))
+      the-empty-stream
+      (⟨??⟩
+       (apply proc (map ⟨??⟩ argstreams))
+       (apply stream-map
+              (cons proc 
+                    (map ⟨??⟩ 
+                         argstreams))))))
+```
+
+
 
 ##### Solution
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="nb">stream-map</span><span class="w"> </span><span class="n">proc</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="n">argstreams</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">stream-null?</span><span class="w"> </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="n">argstreams</span><span class="p">))</span>
-<span class="w">      </span><span class="n">the-empty-stream</span>
-<span class="w">      </span><span class="p">(</span><span class="n">cons-stream</span>
-<span class="w">       </span><span class="p">(</span><span class="nb">apply</span><span class="w"> </span><span class="n">proc</span><span class="w"> </span><span class="p">(</span><span class="nb">map</span><span class="w"> </span><span class="n">stream-car</span><span class="w"> </span><span class="n">argstreams</span><span class="p">))</span>
-<span class="w">       </span><span class="p">(</span><span class="nb">apply</span><span class="w"> </span><span class="nb">stream-map</span><span class="w"> </span><span class="p">(</span><span class="nb">cons</span><span class="w"> </span><span class="n">proc</span><span class="w"> </span><span class="p">(</span><span class="nb">map</span><span class="w"> </span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">argstreams</span><span class="p">))))))</span>
 
-<span class="c1">;; Enumerate every other triangular number</span>
-<span class="c1">;; ie every other entry from the sequence  </span>
-<span class="c1">;; 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, ... n*(n+1)/2</span>
-<span class="p">(</span><span class="n">display-stream</span><span class="w"> </span>
-<span class="w">  </span><span class="p">(</span><span class="nb">stream-map</span><span class="w"> </span>
-<span class="w">   </span><span class="nb">*</span><span class="w"> </span>
-<span class="w">   </span><span class="p">(</span><span class="n">stream-enumerate-evens</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
-<span class="w">   </span><span class="p">(</span><span class="n">stream-enumerate-odds</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
-<span class="w">   </span><span class="p">(</span><span class="n">stream-enumerate-constant</span><span class="w"> </span><span class="m">1/2</span><span class="w"> </span><span class="mi">5</span><span class="p">)))</span>
-</pre></div>
 
-<div class="code-box" markdown="1">
-<details class="collapsible-code">
-<summary class="code-summary"><a href="code/ex3-50.rkt">code/ex3-50.rkt</a> <span class="expand-hint">(click to expand)</span></summary>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+```rkt
+(define (stream-map proc . argstreams)
+  (if (stream-null? (car argstreams))
+      the-empty-stream
+      (cons-stream
+       (apply proc (map stream-car argstreams))
+       (apply stream-map (cons proc (map stream-cdr argstreams))))))
+
+;; Enumerate every other triangular number
+;; ie every other entry from the sequence  
+;; 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, ... n*(n+1)/2
+(display-stream 
+  (stream-map 
+   * 
+   (stream-enumerate-evens 1 10)
+   (stream-enumerate-odds 1 10)
+   (stream-enumerate-constant 1/2 5)))
+```
+
+
+
+
+
+<div class="code-box"><details class="collapsible-code"><summary class="code-summary"><span><a href="code/ex3-50.rkt">ex3-50.rkt</a></span><span class="expand-hint">(click to expand)</span></summary><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="k">stream</span><span class="p">)</span><span class="w"> </span>
@@ -335,7 +332,7 @@ Footnote 78.
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="nb">stream-for-each</span><span class="w"> </span><span class="n">proc</span><span class="w"> </span><span class="n">s</span><span class="p">)</span>
 <span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">stream-null?</span><span class="w"> </span><span class="n">s</span><span class="p">)</span>
-<span class="w">      </span><span class="o">&#39;</span><span class="ss">done</span>
+<span class="w">      </span><span class="o">'</span><span class="ss">done</span>
 <span class="w">      </span><span class="p">(</span><span class="k">begin</span>
 <span class="w">        </span><span class="p">(</span><span class="n">proc</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">s</span><span class="p">))</span>
 <span class="w">        </span><span class="p">(</span><span class="nb">stream-for-each</span><span class="w"> </span><span class="n">proc</span>
@@ -365,20 +362,14 @@ Footnote 78.
 <span class="w">   </span><span class="p">(</span><span class="n">stream-enumerate-evens</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
 <span class="w">   </span><span class="p">(</span><span class="n">stream-enumerate-odds</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
 <span class="w">   </span><span class="p">(</span><span class="n">stream-enumerate-constant</span><span class="w"> </span><span class="m">1/2</span><span class="w"> </span><span class="mi">5</span><span class="p">)))</span>
-</pre></div>
-
-</details>
-<div class="code-output">
-<span>Output:</span>
-<pre>
+</code></pre></div>
+</details><div class="code-output"><span>Output:</span><pre>
 1
 6
 15
 28
 45done
-</pre>
-</div>
-</div>
+</pre></div></div>
 
 
 
@@ -387,16 +378,21 @@ The following definition has major issues because `rest` is evaluated immediatel
 In fact it *has* to be inside cons-stream (where the second argument is delayed)
 to avoid infinite recursion in scenarios like in problem 3.53.
 
-<div class="codehilite"><pre><span></span><span class="c1">;; bad awful definition of stream-map</span>
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="nb">stream-map</span><span class="w"> </span><span class="n">proc</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="n">argstreams</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">stream-null?</span><span class="w"> </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="n">argstreams</span><span class="p">))</span>
-<span class="w">      </span><span class="n">the-empty-stream</span>
-<span class="w">      </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">args</span><span class="w"> </span><span class="p">(</span><span class="nb">map</span><span class="w"> </span><span class="n">stream-car</span><span class="w"> </span><span class="n">argstreams</span><span class="p">))</span>
-<span class="w">            </span><span class="p">(</span><span class="nb">rest</span><span class="w"> </span><span class="p">(</span><span class="nb">map</span><span class="w"> </span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">argstreams</span><span class="p">)))</span>
-<span class="w">        </span><span class="p">(</span><span class="n">cons-stream</span>
-<span class="w">         </span><span class="p">(</span><span class="nb">apply</span><span class="w"> </span><span class="n">proc</span><span class="w"> </span><span class="n">args</span><span class="p">)</span>
-<span class="w">         </span><span class="p">(</span><span class="nb">apply</span><span class="w"> </span><span class="nb">stream-map</span><span class="w"> </span><span class="p">(</span><span class="nb">cons</span><span class="w"> </span><span class="n">proc</span><span class="w"> </span><span class="nb">rest</span><span class="p">))))))</span>
-</pre></div>
+
+
+```rkt
+;; bad awful definition of stream-map
+(define (stream-map proc . argstreams)
+  (if (stream-null? (car argstreams))
+      the-empty-stream
+      (let ((args (map stream-car argstreams))
+            (rest (map stream-cdr argstreams)))
+        (cons-stream
+         (apply proc args)
+         (apply stream-map (cons proc rest))))))
+```
+
+
 
 #### Exercise 3.51
 
@@ -404,22 +400,32 @@ In order to take a closer look at
 delayed evaluation, we will use the following procedure, which simply returns
 its argument after printing it:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">show</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="n">display-line</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
-<span class="w">  </span><span class="n">x</span><span class="p">)</span>
-</pre></div>
+
+
+```rkt
+(define (show x)
+  (display-line x)
+  x)
+```
+
+
 
 What does the interpreter print in response to evaluating each expression in
 the following sequence?
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">x</span><span class="w"> </span>
-<span class="w">  </span><span class="p">(</span><span class="nb">stream-map</span><span class="w"> </span>
-<span class="w">   </span><span class="n">show</span><span class="w"> </span>
-<span class="w">   </span><span class="p">(</span><span class="n">stream-enumerate-interval</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">10</span><span class="p">)))</span>
 
-<span class="p">(</span><span class="nb">stream-ref</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span>
-<span class="p">(</span><span class="nb">stream-ref</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="mi">7</span><span class="p">)</span>
-</pre></div>
+
+```rkt
+(define x 
+  (stream-map 
+   show 
+   (stream-enumerate-interval 0 10)))
+
+(stream-ref x 5)
+(stream-ref x 7)
+```
+
+
 
 ##### Solution
 
@@ -427,42 +433,56 @@ Zero is printed right when we define x,
 because with our definitions the first element of the 
 stream is computed right away.
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">show</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="n">display-line</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
-<span class="w">  </span><span class="n">x</span><span class="p">)</span>
 
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">x</span>
-<span class="w">  </span><span class="p">(</span><span class="nb">stream-map</span>
-<span class="w">   </span><span class="n">show</span>
-<span class="w">   </span><span class="p">(</span><span class="n">stream-enumerate-interval</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">10</span><span class="p">)))</span>
-<span class="c1">; 0</span>
-</pre></div>
+
+```rkt
+(define (show x)
+  (display-line x)
+  x)
+
+(define x
+  (stream-map
+   show
+   (stream-enumerate-interval 0 10)))
+; 0
+```
+
+
 
 Next, we compute stream-ref, and we print the following,
 no surprises yet:
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="nb">stream-ref</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span>
-<span class="c1">; 1</span>
-<span class="c1">; 2</span>
-<span class="c1">; 3</span>
-<span class="c1">; 4</span>
-<span class="c1">; 5 &lt;- from (newline) (display 5)</span>
-<span class="c1">; 5 &lt;- from the output of the function</span>
-</pre></div>
+
+
+```rkt
+(stream-ref x 5)
+; 1
+; 2
+; 3
+; 4
+; 5 <- from (newline) (display 5)
+; 5 <- from the output of the function
+```
+
+
 
 When we print 7, we find that only the results for elements
 6 and 7 are printed, because all other entries have been 
 memoized.
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="nb">stream-ref</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="mi">7</span><span class="p">)</span>
-<span class="c1">; 6</span>
-<span class="c1">; 7 &lt;- from (newline) (display 5)</span>
-<span class="c1">; 7 &lt;- from the output of the function</span>
-</pre></div>
 
-<div class="code-box" markdown="1">
-<details class="collapsible-code">
-<summary class="code-summary"><a href="code/ex3-51.rkt">code/ex3-51.rkt</a> <span class="expand-hint">(click to expand)</span></summary>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+```rkt
+(stream-ref x 7)
+; 6
+; 7 <- from (newline) (display 5)
+; 7 <- from the output of the function
+```
+
+
+
+
+
+<div class="code-box"><details class="collapsible-code"><summary class="code-summary"><span><a href="code/ex3-51.rkt">ex3-51.rkt</a></span><span class="expand-hint">(click to expand)</span></summary><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="k">stream</span><span class="p">)</span><span class="w"> </span>
 <span class="w">  </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="k">stream</span><span class="p">))</span>
@@ -503,7 +523,7 @@ memoized.
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="nb">stream-for-each</span><span class="w"> </span><span class="n">proc</span><span class="w"> </span><span class="n">s</span><span class="p">)</span>
 <span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">stream-null?</span><span class="w"> </span><span class="n">s</span><span class="p">)</span>
-<span class="w">      </span><span class="o">&#39;</span><span class="ss">done</span>
+<span class="w">      </span><span class="o">'</span><span class="ss">done</span>
 <span class="w">      </span><span class="p">(</span><span class="k">begin</span>
 <span class="w">        </span><span class="p">(</span><span class="n">proc</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">s</span><span class="p">))</span>
 <span class="w">        </span><span class="p">(</span><span class="nb">stream-for-each</span><span class="w"> </span><span class="n">proc</span>
@@ -554,12 +574,8 @@ memoized.
 <span class="c1">; 6</span>
 <span class="c1">; 7 &lt;- from (newline) (display 5)</span>
 <span class="c1">; 7 &lt;- from the output of the function</span>
-</pre></div>
-
-</details>
-<div class="code-output">
-<span>Output:</span>
-<pre>
+</code></pre></div>
+</details><div class="code-output"><span>Output:</span><pre>
 0
 1
 2
@@ -569,9 +585,7 @@ memoized.
 
 6
 77
-</pre>
-</div>
-</div>
+</pre></div></div>
 
 
 #### Exercise 3.52
@@ -579,27 +593,32 @@ memoized.
 Consider the sequence of
 expressions
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
 
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">accum</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">set!</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">sum</span><span class="p">))</span>
-<span class="w">  </span><span class="n">sum</span><span class="p">)</span>
 
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">seq</span><span class="w"> </span>
-<span class="w">  </span><span class="p">(</span><span class="nb">stream-map</span><span class="w"> </span>
-<span class="w">   </span><span class="n">accum</span><span class="w"> </span>
-<span class="w">   </span><span class="p">(</span><span class="n">stream-enumerate-interval</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">20</span><span class="p">)))</span>
+```rkt
+(define sum 0)
 
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="p">(</span><span class="nb">stream-filter</span><span class="w"> </span><span class="nb">even?</span><span class="w"> </span><span class="n">seq</span><span class="p">))</span>
+(define (accum x)
+  (set! sum (+ x sum))
+  sum)
 
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">z</span><span class="w"> </span>
-<span class="w">  </span><span class="p">(</span><span class="nb">stream-filter</span><span class="w"> </span>
-<span class="w">   </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span>
-<span class="w">     </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="p">(</span><span class="nb">remainder</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span><span class="w"> </span><span class="n">seq</span><span class="p">))</span>
+(define seq 
+  (stream-map 
+   accum 
+   (stream-enumerate-interval 1 20)))
 
-<span class="p">(</span><span class="nb">stream-ref</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="mi">7</span><span class="p">)</span>
-<span class="p">(</span><span class="n">display-stream</span><span class="w"> </span><span class="n">z</span><span class="p">)</span>
-</pre></div>
+(define y (stream-filter even? seq))
+
+(define z 
+  (stream-filter 
+   (lambda (x) 
+     (= (remainder x 5) 0)) seq))
+
+(stream-ref y 7)
+(display-stream z)
+```
+
+
 
 What is the value of `sum` after each of the above expressions is
 evaluated?  What is the printed response to evaluating the `stream-ref`
@@ -615,38 +634,42 @@ we'd have to reset `sum` to zero every time we did an operation.
 
 With memoization we get the following:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
 
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">accum</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">set!</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">sum</span><span class="p">))</span>
-<span class="w">  </span><span class="n">sum</span><span class="p">)</span>
 
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">seq</span><span class="w"> </span>
-<span class="w">  </span><span class="p">(</span><span class="nb">stream-map</span><span class="w"> </span>
-<span class="w">   </span><span class="n">accum</span><span class="w"> </span>
-<span class="w">   </span><span class="p">(</span><span class="n">stream-enumerate-interval</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">20</span><span class="p">)))</span>
-<span class="c1">;; display stream would print:</span>
-<span class="c1">;; 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 66, 78, 91, 105, 120, 136, 153, 171, 190, 210</span>
+```rkt
+(define sum 0)
 
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="p">(</span><span class="nb">stream-filter</span><span class="w"> </span><span class="nb">even?</span><span class="w"> </span><span class="n">seq</span><span class="p">))</span>
-<span class="c1">;; Evens: 6, 10, 28, 36, 66, 78, 120, 136, 190, 210</span>
+(define (accum x)
+  (set! sum (+ x sum))
+  sum)
 
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">z</span><span class="w"> </span>
-<span class="w">  </span><span class="p">(</span><span class="nb">stream-filter</span><span class="w"> </span>
-<span class="w">   </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span>
-<span class="w">     </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="p">(</span><span class="nb">remainder</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span><span class="w"> </span><span class="n">seq</span><span class="p">))</span>
-<span class="c1">;; Divisible by 5: 10, 15, 45, 55, 105, 120, 190, 210</span>
+(define seq 
+  (stream-map 
+   accum 
+   (stream-enumerate-interval 1 20)))
+;; display stream would print:
+;; 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 66, 78, 91, 105, 120, 136, 153, 171, 190, 210
 
-<span class="p">(</span><span class="nb">stream-ref</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="mi">7</span><span class="p">)</span>
-<span class="c1">;; 136, the seventh even triangular number</span>
-<span class="p">(</span><span class="n">display-stream</span><span class="w"> </span><span class="n">z</span><span class="p">)</span>
-<span class="c1">;; Prints 10, 15, 45, 55, 105, 120, 190, 210</span>
-</pre></div>
+(define y (stream-filter even? seq))
+;; Evens: 6, 10, 28, 36, 66, 78, 120, 136, 190, 210
 
-<div class="code-box" markdown="1">
-<details class="collapsible-code">
-<summary class="code-summary"><a href="code/ex3-52.rkt">code/ex3-52.rkt</a> <span class="expand-hint">(click to expand)</span></summary>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+(define z 
+  (stream-filter 
+   (lambda (x) 
+     (= (remainder x 5) 0)) seq))
+;; Divisible by 5: 10, 15, 45, 55, 105, 120, 190, 210
+
+(stream-ref y 7)
+;; 136, the seventh even triangular number
+(display-stream z)
+;; Prints 10, 15, 45, 55, 105, 120, 190, 210
+```
+
+
+
+
+
+<div class="code-box"><details class="collapsible-code"><summary class="code-summary"><span><a href="code/ex3-52.rkt">ex3-52.rkt</a></span><span class="expand-hint">(click to expand)</span></summary><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="k">stream</span><span class="p">)</span><span class="w"> </span>
 <span class="w">  </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="k">stream</span><span class="p">))</span>
@@ -663,7 +686,7 @@ With memoization we get the following:
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="nb">stream-for-each</span><span class="w"> </span><span class="n">proc</span><span class="w"> </span><span class="n">s</span><span class="p">)</span>
 <span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">stream-null?</span><span class="w"> </span><span class="n">s</span><span class="p">)</span>
-<span class="w">      </span><span class="o">&#39;</span><span class="ss">done</span>
+<span class="w">      </span><span class="o">'</span><span class="ss">done</span>
 <span class="w">      </span><span class="p">(</span><span class="k">begin</span>
 <span class="w">        </span><span class="p">(</span><span class="n">proc</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">s</span><span class="p">))</span>
 <span class="w">        </span><span class="p">(</span><span class="nb">stream-for-each</span><span class="w"> </span><span class="n">proc</span>
@@ -726,12 +749,8 @@ With memoization we get the following:
 <span class="c1">;; 136, the seventh even triangular number</span>
 <span class="p">(</span><span class="n">display-stream</span><span class="w"> </span><span class="n">z</span><span class="p">)</span>
 <span class="c1">;; Prints 10, 15, 45, 55, 105, 120, 190, 210</span>
-</pre></div>
-
-</details>
-<div class="code-output">
-<span>Output:</span>
-<pre>136
+</code></pre></div>
+</details><div class="code-output"><span>Output:</span><pre>136
 
 10
 15
@@ -741,9 +760,7 @@ With memoization we get the following:
 120
 190
 210done
-</pre>
-</div>
-</div>
+</pre></div></div>
 
 
 #### Exercise 3.53
@@ -751,8 +768,13 @@ With memoization we get the following:
 Without running the program,
 describe the elements of the stream defined by
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="p">(</span><span class="n">cons-stream</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="n">add-streams</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="n">s</span><span class="p">)))</span>
-</pre></div>
+
+
+```rkt
+(define s (cons-stream 1 (add-streams s s)))
+```
+
+
 
 ##### Solution
 
@@ -762,29 +784,38 @@ describe the elements of the stream defined by
 The interesting stuff is when we call 
 `stream-cdr`. We do `force` to evaluate `add-streams`, this looks something like
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">add-streams</span><span class="w"> </span>
-<span class="w">  </span><span class="p">(</span><span class="n">cons-stream</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="n">add-streams</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="n">s</span><span class="p">))</span>
-<span class="w">  </span><span class="p">(</span><span class="n">cons-stream</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="n">add-streams</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="n">s</span><span class="p">)))</span>
-</pre></div>
+
+
+```rkt
+(add-streams 
+  (cons-stream 1 (add-streams s s))
+  (cons-stream 1 (add-streams s s)))
+```
+
+
 
 We create a new stream which looks like this:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">cons-stream</span>
-<span class="w">  </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="n">add-streams</span><span class="w"> </span>
-<span class="w">    </span><span class="p">(</span><span class="n">add-streams</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="n">s</span><span class="p">)</span>
-<span class="w">    </span><span class="p">(</span><span class="n">add-streams</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="n">s</span><span class="p">)))</span>
-</pre></div>
+
+
+```rkt
+(cons-stream
+  (+ 1 1)
+  (add-streams 
+    (add-streams s s)
+    (add-streams s s)))
+```
+
+
 
 We might expect this to give an infinite recursion, but in fact the second 
 argument is delayed, and so doesn't evaluate. (if it evaluated, we'd be in trouble.)
 
 Double checking by evaluating:
 
-<div class="code-box" markdown="1">
-<details class="collapsible-code">
-<summary class="code-summary"><a href="code/ex3-53.rkt">code/ex3-53.rkt</a> <span class="expand-hint">(click to expand)</span></summary>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><details class="collapsible-code"><summary class="code-summary"><span><a href="code/ex3-53.rkt">ex3-53.rkt</a></span><span class="expand-hint">(click to expand)</span></summary><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="k">stream</span><span class="p">)</span><span class="w"> </span>
 <span class="w">  </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="k">stream</span><span class="p">))</span>
@@ -815,20 +846,14 @@ Double checking by evaluating:
 <span class="p">(</span><span class="n">display-line</span><span class="w"> </span><span class="p">(</span><span class="nb">stream-ref</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="mi">3</span><span class="p">))</span>
 <span class="p">(</span><span class="n">display-line</span><span class="w"> </span><span class="p">(</span><span class="nb">stream-ref</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="mi">4</span><span class="p">))</span>
 <span class="p">(</span><span class="n">display-line</span><span class="w"> </span><span class="p">(</span><span class="nb">stream-ref</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="mi">5</span><span class="p">))</span>
-</pre></div>
-
-</details>
-<div class="code-output">
-<span>Output:</span>
-<pre>
+</code></pre></div>
+</details><div class="code-output"><span>Output:</span><pre>
 1
 2
 4
 8
 16
-32</pre>
-</div>
-</div>
+32</pre></div></div>
 
 
 #### Exercise 3.54
@@ -839,21 +864,30 @@ elementwise product of its two input streams.  Use this together with the
 stream of `integers` to complete the following definition of the stream
 whose $n^{\text{th}}$ element (counting from 0) is $n + 1$ factorial:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">factorials</span><span class="w"> </span>
-<span class="w">  </span><span class="p">(</span><span class="n">cons-stream</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="n">mul-streams</span><span class="w"> </span><span class="n">⟨??⟩</span><span class="w"> </span><span class="n">⟨??⟩</span><span class="p">)))</span>
-</pre></div>
+
+
+```rkt
+(define factorials 
+  (cons-stream 1 (mul-streams ⟨??⟩ ⟨??⟩)))
+```
+
+
 ##### Solution
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">mul-streams</span><span class="w"> </span><span class="n">s1</span><span class="w"> </span><span class="n">s2</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="nb">stream-map</span><span class="w"> </span><span class="nb">*</span><span class="w"> </span><span class="n">s1</span><span class="w"> </span><span class="n">s2</span><span class="p">))</span>
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">factorials</span>
-<span class="w">  </span><span class="p">(</span><span class="n">cons-stream</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="n">mul-streams</span><span class="w"> </span><span class="n">integers</span><span class="w"> </span><span class="n">factorials</span><span class="p">)))</span>
-</pre></div>
 
-<div class="code-box" markdown="1">
-<details class="collapsible-code">
-<summary class="code-summary"><a href="code/ex3-54.rkt">code/ex3-54.rkt</a> <span class="expand-hint">(click to expand)</span></summary>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+```rkt
+(define (mul-streams s1 s2)
+  (stream-map * s1 s2))
+(define factorials
+  (cons-stream 1 (mul-streams integers factorials)))
+```
+
+
+
+
+
+<div class="code-box"><details class="collapsible-code"><summary class="code-summary"><span><a href="code/ex3-54.rkt">ex3-54.rkt</a></span><span class="expand-hint">(click to expand)</span></summary><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="k">stream</span><span class="p">)</span><span class="w"> </span>
 <span class="w">  </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="k">stream</span><span class="p">))</span>
@@ -888,7 +922,7 @@ whose $n^{\text{th}}$ element (counting from 0) is $n + 1$ factorial:
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="nb">stream-for-each</span><span class="w"> </span><span class="n">proc</span><span class="w"> </span><span class="n">s</span><span class="p">)</span>
 <span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">stream-null?</span><span class="w"> </span><span class="n">s</span><span class="p">)</span>
-<span class="w">      </span><span class="o">&#39;</span><span class="ss">done</span>
+<span class="w">      </span><span class="o">'</span><span class="ss">done</span>
 <span class="w">      </span><span class="p">(</span><span class="k">begin</span>
 <span class="w">        </span><span class="p">(</span><span class="n">proc</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">s</span><span class="p">))</span>
 <span class="w">        </span><span class="p">(</span><span class="nb">stream-for-each</span><span class="w"> </span><span class="n">proc</span>
@@ -944,12 +978,8 @@ whose $n^{\text{th}}$ element (counting from 0) is $n + 1$ factorial:
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">factorials</span>
 <span class="w">  </span><span class="p">(</span><span class="n">cons-stream</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="n">mul-streams</span><span class="w"> </span><span class="n">integers</span><span class="w"> </span><span class="n">factorials</span><span class="p">)))</span>
 <span class="p">(</span><span class="n">display-stream-first-n</span><span class="w"> </span><span class="n">factorials</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-
-</details>
-<div class="code-output">
-<span>Output:</span>
-<pre>
+</code></pre></div>
+</details><div class="code-output"><span>Output:</span><pre>
 1
 1
 2
@@ -959,9 +989,7 @@ whose $n^{\text{th}}$ element (counting from 0) is $n + 1$ factorial:
 720
 5040
 40320
-362880</pre>
-</div>
-</div>
+362880</pre></div></div>
 
 
 
@@ -977,15 +1005,19 @@ stream 1, 3, 6, 10, 15, $\ldots$.
 
 ##### Solution
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">partial-sums</span><span class="w"> </span><span class="n">s</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="n">cons-stream</span><span class="w"> </span><span class="mi">0</span>
-<span class="w">    </span><span class="p">(</span><span class="n">add-streams</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="p">(</span><span class="n">partial-sums</span><span class="w"> </span><span class="n">s</span><span class="p">))))</span>
-</pre></div>
 
-<div class="code-box" markdown="1">
-<details class="collapsible-code">
-<summary class="code-summary"><a href="code/ex3-55.rkt">code/ex3-55.rkt</a> <span class="expand-hint">(click to expand)</span></summary>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+```rkt
+(define (partial-sums s)
+  (cons-stream 0
+    (add-streams s (partial-sums s))))
+```
+
+
+
+
+
+<div class="code-box"><details class="collapsible-code"><summary class="code-summary"><span><a href="code/ex3-55.rkt">ex3-55.rkt</a></span><span class="expand-hint">(click to expand)</span></summary><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="k">stream</span><span class="p">)</span><span class="w"> </span>
 <span class="w">  </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="k">stream</span><span class="p">))</span>
@@ -1020,7 +1052,7 @@ stream 1, 3, 6, 10, 15, $\ldots$.
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="nb">stream-for-each</span><span class="w"> </span><span class="n">proc</span><span class="w"> </span><span class="n">s</span><span class="p">)</span>
 <span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">stream-null?</span><span class="w"> </span><span class="n">s</span><span class="p">)</span>
-<span class="w">      </span><span class="o">&#39;</span><span class="ss">done</span>
+<span class="w">      </span><span class="o">'</span><span class="ss">done</span>
 <span class="w">      </span><span class="p">(</span><span class="k">begin</span>
 <span class="w">        </span><span class="p">(</span><span class="n">proc</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">s</span><span class="p">))</span>
 <span class="w">        </span><span class="p">(</span><span class="nb">stream-for-each</span><span class="w"> </span><span class="n">proc</span>
@@ -1077,12 +1109,8 @@ stream 1, 3, 6, 10, 15, $\ldots$.
 <span class="w">  </span><span class="p">(</span><span class="n">cons-stream</span><span class="w"> </span><span class="mi">0</span>
 <span class="w">    </span><span class="p">(</span><span class="n">add-streams</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="p">(</span><span class="n">partial-sums</span><span class="w"> </span><span class="n">s</span><span class="p">))))</span>
 <span class="p">(</span><span class="n">display-stream-first-n</span><span class="w"> </span><span class="p">(</span><span class="n">partial-sums</span><span class="w"> </span><span class="n">integers</span><span class="p">)</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-
-</details>
-<div class="code-output">
-<span>Output:</span>
-<pre>
+</code></pre></div>
+</details><div class="code-output"><span>Output:</span><pre>
 0
 1
 3
@@ -1092,9 +1120,7 @@ stream 1, 3, 6, 10, 15, $\ldots$.
 21
 28
 36
-45</pre>
-</div>
-</div>
+45</pre></div></div>
 
 
 #### Exercise 3.56
@@ -1118,43 +1144,52 @@ Now all we have to do is combine elements from these sources.  For this we
 define a procedure `merge` that combines two ordered streams into one
 ordered result stream, eliminating repetitions:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">merge</span><span class="w"> </span><span class="n">s1</span><span class="w"> </span><span class="n">s2</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">cond</span><span class="w"> </span><span class="p">((</span><span class="n">stream-null?</span><span class="w"> </span><span class="n">s1</span><span class="p">)</span><span class="w"> </span><span class="n">s2</span><span class="p">)</span>
-<span class="w">        </span><span class="p">((</span><span class="n">stream-null?</span><span class="w"> </span><span class="n">s2</span><span class="p">)</span><span class="w"> </span><span class="n">s1</span><span class="p">)</span>
-<span class="w">        </span><span class="p">(</span><span class="k">else</span>
-<span class="w">         </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">s1car</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">s1</span><span class="p">))</span>
-<span class="w">               </span><span class="p">(</span><span class="n">s2car</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">s2</span><span class="p">)))</span>
-<span class="w">           </span><span class="p">(</span><span class="k">cond</span><span class="w"> </span><span class="p">((</span><span class="nb">&lt;</span><span class="w"> </span><span class="n">s1car</span><span class="w"> </span><span class="n">s2car</span><span class="p">)</span>
-<span class="w">                  </span><span class="p">(</span><span class="n">cons-stream</span><span class="w"> </span>
-<span class="w">                   </span><span class="n">s1car</span><span class="w"> </span>
-<span class="w">                   </span><span class="p">(</span><span class="n">merge</span><span class="w"> </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">s1</span><span class="p">)</span><span class="w"> </span>
-<span class="w">                          </span><span class="n">s2</span><span class="p">)))</span>
-<span class="w">                 </span><span class="p">((</span><span class="nb">&gt;</span><span class="w"> </span><span class="n">s1car</span><span class="w"> </span><span class="n">s2car</span><span class="p">)</span>
-<span class="w">                  </span><span class="p">(</span><span class="n">cons-stream</span><span class="w"> </span>
-<span class="w">                   </span><span class="n">s2car</span><span class="w"> </span>
-<span class="w">                   </span><span class="p">(</span><span class="n">merge</span><span class="w"> </span><span class="n">s1</span><span class="w"> </span>
-<span class="w">                          </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">s2</span><span class="p">))))</span>
-<span class="w">                 </span><span class="p">(</span><span class="k">else</span>
-<span class="w">                  </span><span class="p">(</span><span class="n">cons-stream</span><span class="w"> </span>
-<span class="w">                   </span><span class="n">s1car</span>
-<span class="w">                   </span><span class="p">(</span><span class="n">merge</span><span class="w"> </span>
-<span class="w">                    </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">s1</span><span class="p">)</span>
-<span class="w">                    </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">s2</span><span class="p">)))))))))</span>
-</pre></div>
+
+
+```rkt
+(define (merge s1 s2)
+  (cond ((stream-null? s1) s2)
+        ((stream-null? s2) s1)
+        (else
+         (let ((s1car (stream-car s1))
+               (s2car (stream-car s2)))
+           (cond ((< s1car s2car)
+                  (cons-stream 
+                   s1car 
+                   (merge (stream-cdr s1) 
+                          s2)))
+                 ((> s1car s2car)
+                  (cons-stream 
+                   s2car 
+                   (merge s1 
+                          (stream-cdr s2))))
+                 (else
+                  (cons-stream 
+                   s1car
+                   (merge 
+                    (stream-cdr s1)
+                    (stream-cdr s2)))))))))
+```
+
+
 
 Then the required stream may be constructed with `merge`, as follows:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="p">(</span><span class="n">cons-stream</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="n">merge</span><span class="w"> </span><span class="n">⟨??⟩</span><span class="w"> </span><span class="n">⟨??⟩</span><span class="p">)))</span>
-</pre></div>
+
+
+```rkt
+(define S (cons-stream 1 (merge ⟨??⟩ ⟨??⟩)))
+```
+
+
 
 Fill in the missing expressions in the places marked `⟨??⟩` above.
 
 ##### Solution
 
-<div class="code-box" markdown="1">
-<details class="collapsible-code">
-<summary class="code-summary"><a href="code/ex3-56.rkt">code/ex3-56.rkt</a> <span class="expand-hint">(click to expand)</span></summary>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><details class="collapsible-code"><summary class="code-summary"><span><a href="code/ex3-56.rkt">ex3-56.rkt</a></span><span class="expand-hint">(click to expand)</span></summary><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="k">stream</span><span class="p">)</span><span class="w"> </span>
 <span class="w">  </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="k">stream</span><span class="p">))</span>
@@ -1171,7 +1206,7 @@ Fill in the missing expressions in the places marked `⟨??⟩` above.
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="nb">stream-for-each</span><span class="w"> </span><span class="n">proc</span><span class="w"> </span><span class="n">s</span><span class="p">)</span>
 <span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">stream-null?</span><span class="w"> </span><span class="n">s</span><span class="p">)</span>
-<span class="w">      </span><span class="o">&#39;</span><span class="ss">done</span>
+<span class="w">      </span><span class="o">'</span><span class="ss">done</span>
 <span class="w">      </span><span class="p">(</span><span class="k">begin</span>
 <span class="w">        </span><span class="p">(</span><span class="n">proc</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">s</span><span class="p">))</span>
 <span class="w">        </span><span class="p">(</span><span class="nb">stream-for-each</span><span class="w"> </span><span class="n">proc</span>
@@ -1257,12 +1292,8 @@ Fill in the missing expressions in the places marked `⟨??⟩` above.
 <span class="w">      </span><span class="p">(</span><span class="n">merge</span><span class="w"> </span><span class="p">(</span><span class="n">scale-stream</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">scale-stream</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="mi">5</span><span class="p">)))))</span>
 
 <span class="p">(</span><span class="n">display-stream-first-n</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="mi">20</span><span class="p">)</span>
-</pre></div>
-
-</details>
-<div class="code-output">
-<span>Output:</span>
-<pre>
+</code></pre></div>
+</details><div class="code-output"><span>Output:</span><pre>
 1
 2
 3
@@ -1282,9 +1313,7 @@ Fill in the missing expressions in the places marked `⟨??⟩` above.
 27
 30
 32
-36</pre>
-</div>
-</div>
+36</pre></div></div>
 
 
 #### Exercise 3.57
@@ -1304,9 +1333,9 @@ the next value.
 
 Without caching, we see that the only base cases are 0 and 1, so we call + at least `Fib(n)` times to calculate `Fib(n)`, probably more if many of them are adding `(+ n 0)`. 
 
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="code/ex3-57.rkt">code/ex3-57.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="code/ex3-57.rkt">ex3-57.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="k">stream</span><span class="p">)</span><span class="w"> </span>
 <span class="w">  </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="k">stream</span><span class="p">))</span>
@@ -1334,10 +1363,8 @@ Without caching, we see that the only base cases are 0 and 1, so we call + at le
 
 <span class="p">(</span><span class="n">display-stream-first-n</span><span class="w"> </span><span class="n">fibs</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
 <span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="n">pluscount</span><span class="p">)</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>
 0
 1
 1
@@ -1347,9 +1374,7 @@ Without caching, we see that the only base cases are 0 and 1, so we call + at le
 8
 13
 21
-3410</pre>
-</div>
-</div>
+3410</pre></div></div>
 
 
 #### Exercise 3.58
@@ -1357,13 +1382,18 @@ Without caching, we see that the only base cases are 0 and 1, so we call + at le
 Give an interpretation of the
 stream computed by the following procedure:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="nb">expand</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="n">den</span><span class="w"> </span><span class="n">radix</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="n">cons-stream</span>
-<span class="w">   </span><span class="p">(</span><span class="nb">quotient</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="n">radix</span><span class="p">)</span><span class="w"> </span><span class="n">den</span><span class="p">)</span>
-<span class="w">   </span><span class="p">(</span><span class="nb">expand</span><span class="w"> </span><span class="p">(</span><span class="nb">remainder</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="n">radix</span><span class="p">)</span><span class="w"> </span><span class="n">den</span><span class="p">)</span><span class="w"> </span>
-<span class="w">           </span><span class="n">den</span><span class="w"> </span>
-<span class="w">           </span><span class="n">radix</span><span class="p">)))</span>
-</pre></div>
+
+
+```rkt
+(define (expand num den radix)
+  (cons-stream
+   (quotient (* num radix) den)
+   (expand (remainder (* num radix) den) 
+           den 
+           radix)))
+```
+
+
 
 (`Quotient` is a primitive that returns the integer quotient of two
 integers.)  What are the successive elements produced by `(expand 1 7
@@ -1395,10 +1425,9 @@ For the first example, `(expand 1 7 10)` will give the repeating
 decimal digits of 1/7. For `(expand 3 8 10)` we expect the 
 sequence `'(3 7 5 0 0 0 ...)`.
 
-<div class="code-box" markdown="1">
-<details class="collapsible-code">
-<summary class="code-summary"><a href="code/ex3-58.rkt">code/ex3-58.rkt</a> <span class="expand-hint">(click to expand)</span></summary>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><details class="collapsible-code"><summary class="code-summary"><span><a href="code/ex3-58.rkt">ex3-58.rkt</a></span><span class="expand-hint">(click to expand)</span></summary><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="k">stream</span><span class="p">)</span><span class="w"> </span>
 <span class="w">  </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="k">stream</span><span class="p">))</span>
@@ -1420,16 +1449,12 @@ sequence `'(3 7 5 0 0 0 ...)`.
 <span class="w">           </span><span class="n">den</span><span class="w"> </span>
 <span class="w">           </span><span class="n">radix</span><span class="p">)))</span>
 
-<span class="p">(</span><span class="n">display-line</span><span class="w"> </span><span class="s2">&quot;1/7:&quot;</span><span class="p">)</span>
+<span class="p">(</span><span class="n">display-line</span><span class="w"> </span><span class="s2">"1/7:"</span><span class="p">)</span>
 <span class="p">(</span><span class="n">display-stream-first-n</span><span class="w"> </span><span class="p">(</span><span class="nb">expand</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="mi">7</span><span class="p">)</span>
-<span class="p">(</span><span class="n">display-line</span><span class="w"> </span><span class="s2">&quot;3/8:&quot;</span><span class="p">)</span>
+<span class="p">(</span><span class="n">display-line</span><span class="w"> </span><span class="s2">"3/8:"</span><span class="p">)</span>
 <span class="p">(</span><span class="n">display-stream-first-n</span><span class="w"> </span><span class="p">(</span><span class="nb">expand</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="mi">7</span><span class="p">)</span>
-</pre></div>
-
-</details>
-<div class="code-output">
-<span>Output:</span>
-<pre>
+</code></pre></div>
+</details><div class="code-output"><span>Output:</span><pre>
 1/7:
 1
 4
@@ -1445,9 +1470,7 @@ sequence `'(3 7 5 0 0 0 ...)`.
 0
 0
 0
-0</pre>
-</div>
-</div>
+0</pre></div></div>
 
 
 #### Exercise 3.59
@@ -1484,39 +1507,53 @@ $e^x$ and the integral of $e^x$ are the same series, except for the
 constant term, which is ${e^0 = 1}$.  Accordingly, we can generate the series
 for $e^x$ as
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">exp-series</span>
-<span class="w">  </span><span class="p">(</span><span class="n">cons-stream</span><span class="w"> </span>
-<span class="w">   </span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="n">integrate-series</span><span class="w"> </span><span class="n">exp-series</span><span class="p">)))</span>
-</pre></div>
+
+
+```rkt
+(define exp-series
+  (cons-stream 
+   1 (integrate-series exp-series)))
+```
+
+
 
 Show how to generate the series for sine and cosine, starting from the facts
 that the derivative of sine is cosine and the derivative of cosine is the
 negative of sine:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">cosine-series</span><span class="w"> </span>
-<span class="w">  </span><span class="p">(</span><span class="n">cons-stream</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">⟨??⟩</span><span class="p">))</span>
 
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">sine-series</span>
-<span class="w">  </span><span class="p">(</span><span class="n">cons-stream</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="n">⟨??⟩</span><span class="p">))</span>
-</pre></div>
+
+```rkt
+(define cosine-series 
+  (cons-stream 1 ⟨??⟩))
+
+(define sine-series
+  (cons-stream 0 ⟨??⟩))
+```
+
+
 
 ##### Solution
 
 We just define the series as integrals as each other:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">cosine-series</span>
-<span class="w">  </span><span class="p">(</span><span class="n">cons-stream</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span>
-<span class="w">    </span><span class="p">(</span><span class="n">integrate-series</span><span class="w"> </span>
-<span class="w">      </span><span class="p">(</span><span class="n">negate-series</span><span class="w"> </span><span class="n">sine-series</span><span class="p">))))</span>
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">sine-series</span>
-<span class="w">  </span><span class="p">(</span><span class="n">cons-stream</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span>
-<span class="w">    </span><span class="p">(</span><span class="n">integrate-series</span><span class="w"> </span><span class="n">cosine-series</span><span class="p">)))</span>
-</pre></div>
 
-<div class="code-box" markdown="1">
-<details class="collapsible-code">
-<summary class="code-summary"><a href="code/ex3-59.rkt">code/ex3-59.rkt</a> <span class="expand-hint">(click to expand)</span></summary>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+```rkt
+(define cosine-series
+  (cons-stream 1 
+    (integrate-series 
+      (negate-series sine-series))))
+(define sine-series
+  (cons-stream 0 
+    (integrate-series cosine-series)))
+```
+
+
+
+
+
+<div class="code-box"><details class="collapsible-code"><summary class="code-summary"><span><a href="code/ex3-59.rkt">ex3-59.rkt</a></span><span class="expand-hint">(click to expand)</span></summary><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="k">stream</span><span class="p">)</span><span class="w"> </span>
 <span class="w">  </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="k">stream</span><span class="p">))</span>
@@ -1550,7 +1587,7 @@ We just define the series as integrals as each other:
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">exp-series</span>
 <span class="w">  </span><span class="p">(</span><span class="n">cons-stream</span>
 <span class="w">   </span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="n">integrate-series</span><span class="w"> </span><span class="n">exp-series</span><span class="p">)))</span>
-<span class="p">(</span><span class="n">display-line</span><span class="w"> </span><span class="s2">&quot;Part 1, exp series:&quot;</span><span class="p">)</span>
+<span class="p">(</span><span class="n">display-line</span><span class="w"> </span><span class="s2">"Part 1, exp series:"</span><span class="p">)</span>
 <span class="p">(</span><span class="n">display-stream-first-n</span><span class="w"> </span><span class="n">exp-series</span><span class="w"> </span><span class="mi">6</span><span class="p">)</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">cosine-series</span>
@@ -1558,17 +1595,13 @@ We just define the series as integrals as each other:
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">sine-series</span>
 <span class="w">  </span><span class="p">(</span><span class="n">cons-stream</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">(</span><span class="n">integrate-series</span><span class="w"> </span><span class="n">cosine-series</span><span class="p">)))</span>
 
-<span class="p">(</span><span class="n">display-line</span><span class="w"> </span><span class="s2">&quot;Part 2, sine series:&quot;</span><span class="p">)</span>
+<span class="p">(</span><span class="n">display-line</span><span class="w"> </span><span class="s2">"Part 2, sine series:"</span><span class="p">)</span>
 
 <span class="p">(</span><span class="n">display-stream-first-n</span><span class="w"> </span><span class="n">sine-series</span><span class="w"> </span><span class="mi">6</span><span class="p">)</span>
-<span class="p">(</span><span class="n">display-line</span><span class="w"> </span><span class="s2">&quot;Part 2, cosine series:&quot;</span><span class="p">)</span>
+<span class="p">(</span><span class="n">display-line</span><span class="w"> </span><span class="s2">"Part 2, cosine series:"</span><span class="p">)</span>
 <span class="p">(</span><span class="n">display-stream-first-n</span><span class="w"> </span><span class="n">cosine-series</span><span class="w"> </span><span class="mi">6</span><span class="p">)</span>
-</pre></div>
-
-</details>
-<div class="code-output">
-<span>Output:</span>
-<pre>
+</code></pre></div>
+</details><div class="code-output"><span>Output:</span><pre>
 Part 1, exp series:
 1
 1
@@ -1589,9 +1622,7 @@ Part 2, cosine series:
 -1/2
 0
 1/24
-0</pre>
-</div>
-</div>
+0</pre></div></div>
 
 
 
@@ -1602,9 +1633,14 @@ streams of coefficients as in Exercise 3.59, adding series is implemented
 by `add-streams`.  Complete the definition of the following procedure for
 multiplying series:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">mul-series</span><span class="w"> </span><span class="n">s1</span><span class="w"> </span><span class="n">s2</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="n">cons-stream</span><span class="w"> </span><span class="n">⟨??⟩</span><span class="w"> </span><span class="p">(</span><span class="n">add-streams</span><span class="w"> </span><span class="n">⟨??⟩</span><span class="w"> </span><span class="n">⟨??⟩</span><span class="p">)))</span>
-</pre></div>
+
+
+```rkt
+(define (mul-series s1 s2)
+  (cons-stream ⟨??⟩ (add-streams ⟨??⟩ ⟨??⟩)))
+```
+
+
 
 You can test your procedure by verifying that ${\sin^2x + \cos^2x = 1,$}
 using the series from Exercise 3.59.
@@ -1618,18 +1654,22 @@ Then we apply a recursive definition of polynomial multiplication:
 $$P_1\times P_2 = \texttt{CAR}(P_1)\cdot P_2 + (0 + \texttt{CDR}(P_1)\times P_2)$$
 
 This is realized in the following algorithm:
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">mul-series</span><span class="w"> </span><span class="n">s1</span><span class="w"> </span><span class="n">s2</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="n">add-streams</span><span class="w"> </span>
-<span class="w">    </span><span class="p">(</span><span class="n">scale-stream</span><span class="w"> </span><span class="n">s2</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">s1</span><span class="p">))</span>
-<span class="w">    </span><span class="p">(</span><span class="n">cons-stream</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">(</span><span class="n">mul-series</span><span class="w"> </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">s1</span><span class="p">)</span><span class="w"> </span><span class="n">s2</span><span class="p">))))</span>
-</pre></div>
+
+
+```rkt
+(define (mul-series s1 s2)
+  (add-streams 
+    (scale-stream s2 (stream-car s1))
+    (cons-stream 0 (mul-series (stream-cdr s1) s2))))
+```
+
+
 
 Using the sum of cosine and sine squared as a test case:
 
-<div class="code-box" markdown="1">
-<details class="collapsible-code">
-<summary class="code-summary"><a href="code/ex3-60.rkt">code/ex3-60.rkt</a> <span class="expand-hint">(click to expand)</span></summary>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><details class="collapsible-code"><summary class="code-summary"><span><a href="code/ex3-60.rkt">ex3-60.rkt</a></span><span class="expand-hint">(click to expand)</span></summary><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="k">stream</span><span class="p">)</span><span class="w"> </span>
 <span class="w">  </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="k">stream</span><span class="p">))</span>
@@ -1692,14 +1732,10 @@ Using the sum of cosine and sine squared as a test case:
 <span class="w">  </span><span class="p">(</span><span class="n">add-streams</span><span class="w"> </span><span class="p">(</span><span class="n">mul-series</span><span class="w"> </span><span class="n">sine-series</span><span class="w"> </span><span class="n">sine-series</span><span class="p">)</span>
 <span class="w">               </span><span class="p">(</span><span class="n">mul-series</span><span class="w"> </span><span class="n">cosine-series</span><span class="w"> </span><span class="n">cosine-series</span><span class="p">)))</span>
 
-<span class="p">(</span><span class="n">display-line</span><span class="w"> </span><span class="s2">&quot;cos^2+sin^2 series:&quot;</span><span class="p">)</span>
+<span class="p">(</span><span class="n">display-line</span><span class="w"> </span><span class="s2">"cos^2+sin^2 series:"</span><span class="p">)</span>
 <span class="p">(</span><span class="n">display-stream-first-n</span><span class="w"> </span><span class="n">sum-squared-stream</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span>
-</pre></div>
-
-</details>
-<div class="code-output">
-<span>Output:</span>
-<pre>
+</code></pre></div>
+</details><div class="code-output"><span>Output:</span><pre>
 cos^2+sin^2 series:
 1
 0
@@ -1708,9 +1744,7 @@ cos^2+sin^2 series:
 0
 0
 0
-0</pre>
-</div>
-</div>
+0</pre></div></div>
 
 
 #### Exercise 3.61
@@ -1739,19 +1773,23 @@ for a power series $S$ with constant term 1.  You will need to use
 It feels like it should be more complicated than this, but this works
 perfectly well!
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">defie</span><span class="w"> </span><span class="p">(</span><span class="n">invert-unit-series</span><span class="w"> </span><span class="n">S</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">not</span><span class="w"> </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">S</span><span class="p">)))</span>
-<span class="w">    </span><span class="p">(</span><span class="nb">error</span><span class="w"> </span><span class="s2">&quot;In invert-unit-series first element is not 1!&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">SR</span><span class="w"> </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">S</span><span class="p">)))</span>
-<span class="w">      </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">X</span><span class="w"> </span>
-<span class="w">        </span><span class="p">(</span><span class="n">cons-stream</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="n">negate-series</span><span class="w"> </span><span class="p">(</span><span class="n">mul-series</span><span class="w"> </span><span class="n">SR</span><span class="w"> </span><span class="n">X</span><span class="p">))))</span>
-<span class="w">      </span><span class="n">X</span><span class="p">)))</span>
-</pre></div>
 
-<div class="code-box" markdown="1">
-<details class="collapsible-code">
-<summary class="code-summary"><a href="code/ex3-61.rkt">code/ex3-61.rkt</a> <span class="expand-hint">(click to expand)</span></summary>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+```rkt
+(defie (invert-unit-series S)
+  (if (not (= 1 (stream-car S)))
+    (error "In invert-unit-series first element is not 1!")
+    (let ((SR (stream-cdr S)))
+      (define X 
+        (cons-stream 1 (negate-series (mul-series SR X))))
+      X)))
+```
+
+
+
+
+
+<div class="code-box"><details class="collapsible-code"><summary class="code-summary"><span><a href="code/ex3-61.rkt">ex3-61.rkt</a></span><span class="expand-hint">(click to expand)</span></summary><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="k">stream</span><span class="p">)</span><span class="w"> </span>
 <span class="w">  </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="k">stream</span><span class="p">))</span>
@@ -1792,7 +1830,7 @@ perfectly well!
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">invert-unit-series</span><span class="w"> </span><span class="n">S</span><span class="p">)</span>
 <span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">not</span><span class="w"> </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">S</span><span class="p">)))</span>
-<span class="w">    </span><span class="p">(</span><span class="nb">error</span><span class="w"> </span><span class="s2">&quot;In invert-unit-series first element is not 1!&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">(</span><span class="nb">error</span><span class="w"> </span><span class="s2">"In invert-unit-series first element is not 1!"</span><span class="p">)</span>
 <span class="w">    </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">SR</span><span class="w"> </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">S</span><span class="p">)))</span>
 <span class="w">      </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">X</span><span class="w"> </span>
 <span class="w">        </span><span class="p">(</span><span class="n">cons-stream</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="n">negate-series</span><span class="w"> </span><span class="p">(</span><span class="n">mul-series</span><span class="w"> </span><span class="n">SR</span><span class="w"> </span><span class="n">X</span><span class="p">))))</span>
@@ -1804,10 +1842,10 @@ perfectly well!
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">ones</span><span class="w"> </span>
 <span class="w">  </span><span class="p">(</span><span class="n">cons-stream</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">ones</span><span class="p">))</span>
 
-<span class="p">(</span><span class="n">display-line</span><span class="w"> </span><span class="s2">&quot;1/(1-x)&quot;</span><span class="p">)</span>
+<span class="p">(</span><span class="n">display-line</span><span class="w"> </span><span class="s2">"1/(1-x)"</span><span class="p">)</span>
 <span class="p">(</span><span class="n">display-stream-first-n</span><span class="w"> </span><span class="n">ones</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span>
 
-<span class="p">(</span><span class="n">display-line</span><span class="w"> </span><span class="s2">&quot;(invert-unit-series 1/(1-x))&quot;</span><span class="p">)</span>
+<span class="p">(</span><span class="n">display-line</span><span class="w"> </span><span class="s2">"(invert-unit-series 1/(1-x))"</span><span class="p">)</span>
 <span class="p">(</span><span class="n">display-stream-first-n</span><span class="w"> </span><span class="p">(</span><span class="n">invert-unit-series</span><span class="w"> </span><span class="n">ones</span><span class="p">)</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span>
 
 
@@ -1825,15 +1863,11 @@ perfectly well!
 <span class="c1">;;   (add-streams (mul-series sine-series sine-series)</span>
 <span class="c1">;;                (mul-series cosine-series cosine-series)))</span>
 <span class="c1">;; </span>
-<span class="c1">;; (display-line &quot;cos^2+sin^2 series:&quot;)</span>
+<span class="c1">;; (display-line "cos^2+sin^2 series:")</span>
 <span class="c1">;; (display-stream-first-n sum-squared-stream 8)</span>
 <span class="c1">;; </span>
-</pre></div>
-
-</details>
-<div class="code-output">
-<span>Output:</span>
-<pre>
+</code></pre></div>
+</details><div class="code-output"><span>Output:</span><pre>
 1/(1-x)
 1
 1
@@ -1851,9 +1885,7 @@ perfectly well!
 0
 0
 0
-0</pre>
-</div>
-</div>
+0</pre></div></div>
 
 
 #### Exercise 3.62
@@ -1870,24 +1902,28 @@ Exercise 3.59 to generate the power series for tangent.
 
 Pretty straightforward:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">invert-series</span><span class="w"> </span><span class="n">S</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">S</span><span class="p">))</span>
-<span class="w">    </span><span class="p">(</span><span class="nb">error</span><span class="w"> </span><span class="s2">&quot;In invert-series first element cannot be 0.&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">S0</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">S</span><span class="p">)))</span>
-<span class="w">      </span><span class="p">(</span><span class="n">scale-stream</span><span class="w"> </span><span class="p">(</span><span class="n">invert-unit-series</span><span class="w"> </span><span class="p">(</span><span class="n">scale-stream</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="p">(</span><span class="nb">/</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">S0</span><span class="p">)))</span>
-<span class="w">                    </span><span class="p">(</span><span class="nb">/</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">S0</span><span class="p">)))))</span>
 
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">div-series</span><span class="w"> </span><span class="n">S1</span><span class="w"> </span><span class="n">S2</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="n">mul-series</span><span class="w"> </span><span class="n">S1</span><span class="w"> </span><span class="p">(</span><span class="n">invert-series</span><span class="w"> </span><span class="n">S2</span><span class="p">)))</span>
 
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">tan-series</span>
-<span class="w">  </span><span class="p">(</span><span class="n">div-series</span><span class="w"> </span><span class="n">sine-series</span><span class="w"> </span><span class="n">cosine-series</span><span class="p">))</span>
-</pre></div>
+```rkt
+(define (invert-series S)
+  (if (= 0 (stream-car S))
+    (error "In invert-series first element cannot be 0.")
+    (let ((S0 (stream-car S)))
+      (scale-stream (invert-unit-series (scale-stream S (/ 1 S0)))
+                    (/ 1 S0)))))
 
-<div class="code-box" markdown="1">
-<details class="collapsible-code">
-<summary class="code-summary"><a href="code/ex3-62.rkt">code/ex3-62.rkt</a> <span class="expand-hint">(click to expand)</span></summary>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+(define (div-series S1 S2)
+  (mul-series S1 (invert-series S2)))
+
+(define tan-series
+  (div-series sine-series cosine-series))
+```
+
+
+
+
+
+<div class="code-box"><details class="collapsible-code"><summary class="code-summary"><span><a href="code/ex3-62.rkt">ex3-62.rkt</a></span><span class="expand-hint">(click to expand)</span></summary><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="k">stream</span><span class="p">)</span><span class="w"> </span>
 <span class="w">  </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="k">stream</span><span class="p">))</span>
@@ -1928,7 +1964,7 @@ Pretty straightforward:
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">invert-unit-series</span><span class="w"> </span><span class="n">S</span><span class="p">)</span>
 <span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">not</span><span class="w"> </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">S</span><span class="p">)))</span>
-<span class="w">    </span><span class="p">(</span><span class="nb">error</span><span class="w"> </span><span class="s2">&quot;In invert-unit-series first element is not 1!&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">(</span><span class="nb">error</span><span class="w"> </span><span class="s2">"In invert-unit-series first element is not 1!"</span><span class="p">)</span>
 <span class="w">    </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">SR</span><span class="w"> </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">S</span><span class="p">)))</span>
 <span class="w">      </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">X</span><span class="w"> </span>
 <span class="w">        </span><span class="p">(</span><span class="n">cons-stream</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="n">negate-series</span><span class="w"> </span><span class="p">(</span><span class="n">mul-series</span><span class="w"> </span><span class="n">SR</span><span class="w"> </span><span class="n">X</span><span class="p">))))</span>
@@ -1936,7 +1972,7 @@ Pretty straightforward:
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">invert-series</span><span class="w"> </span><span class="n">S</span><span class="p">)</span>
 <span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">S</span><span class="p">))</span>
-<span class="w">    </span><span class="p">(</span><span class="nb">error</span><span class="w"> </span><span class="s2">&quot;In invert-series first element cannot be 0.&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">(</span><span class="nb">error</span><span class="w"> </span><span class="s2">"In invert-series first element cannot be 0."</span><span class="p">)</span>
 <span class="w">    </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">S0</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">S</span><span class="p">)))</span>
 <span class="w">      </span><span class="p">(</span><span class="n">scale-stream</span><span class="w"> </span><span class="p">(</span><span class="n">invert-unit-series</span><span class="w"> </span><span class="p">(</span><span class="n">scale-stream</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="p">(</span><span class="nb">/</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">S0</span><span class="p">)))</span>
 <span class="w">                    </span><span class="p">(</span><span class="nb">/</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">S0</span><span class="p">)))))</span>
@@ -1955,14 +1991,10 @@ Pretty straightforward:
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">tan-series</span>
 <span class="w">  </span><span class="p">(</span><span class="n">div-series</span><span class="w"> </span><span class="n">sine-series</span><span class="w"> </span><span class="n">cosine-series</span><span class="p">))</span>
 
-<span class="p">(</span><span class="n">display-line</span><span class="w"> </span><span class="s2">&quot;Series for tan(x)&quot;</span><span class="p">)</span>
+<span class="p">(</span><span class="n">display-line</span><span class="w"> </span><span class="s2">"Series for tan(x)"</span><span class="p">)</span>
 <span class="p">(</span><span class="n">display-stream-first-n</span><span class="w"> </span><span class="n">tan-series</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span>
-</pre></div>
-
-</details>
-<div class="code-output">
-<span>Output:</span>
-<pre>
+</code></pre></div>
+</details><div class="code-output"><span>Output:</span><pre>
 Series for tan(x)
 0
 1
@@ -1971,9 +2003,7 @@ Series for tan(x)
 0
 2/15
 0
-17/315</pre>
-</div>
-</div>
+17/315</pre></div></div>
 
 
 #### Exercise 3.63
@@ -1982,13 +2012,18 @@ Louis Reasoner asks why the
 `sqrt-stream` procedure was not written in the following more
 straightforward way, without the local variable `guesses`:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">sqrt-stream</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="n">cons-stream</span><span class="w"> </span>
-<span class="w">   </span><span class="mf">1.0</span>
-<span class="w">   </span><span class="p">(</span><span class="nb">stream-map</span><span class="w"> </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">guess</span><span class="p">)</span>
-<span class="w">                 </span><span class="p">(</span><span class="n">sqrt-improve</span><span class="w"> </span><span class="n">guess</span><span class="w"> </span><span class="n">x</span><span class="p">))</span>
-<span class="w">               </span><span class="p">(</span><span class="n">sqrt-stream</span><span class="w"> </span><span class="n">x</span><span class="p">))))</span>
-</pre></div>
+
+
+```rkt
+(define (sqrt-stream x)
+  (cons-stream 
+   1.0
+   (stream-map (lambda (guess)
+                 (sqrt-improve guess x))
+               (sqrt-stream x))))
+```
+
+
 
 Alyssa P. Hacker replies that this version of the procedure is considerably
 less efficient because it performs redundant computation.  Explain Alyssa's
@@ -2001,15 +2036,20 @@ using the optimization provided by `memo-proc` (3.5.1)?
 This was quite confusing to me, but here is another way to "sabotage" the original code:
 replace "guesses" with a function.
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">sqrt-stream</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">guesses</span><span class="p">)</span>
-<span class="w">    </span><span class="p">(</span><span class="n">cons-stream</span><span class="w"> </span>
-<span class="w">     </span><span class="mf">1.0</span>
-<span class="w">     </span><span class="p">(</span><span class="nb">stream-map</span><span class="w"> </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">guess</span><span class="p">)</span>
-<span class="w">                   </span><span class="p">(</span><span class="n">sqrt-improve</span><span class="w"> </span><span class="n">guess</span><span class="w"> </span><span class="n">x</span><span class="p">))</span>
-<span class="w">                 </span><span class="p">(</span><span class="n">guesses</span><span class="p">))))</span>
-<span class="w">  </span><span class="p">(</span><span class="n">guesses</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(define (sqrt-stream x)
+  (define (guesses)
+    (cons-stream 
+     1.0
+     (stream-map (lambda (guess)
+                   (sqrt-improve guess x))
+                 (guesses))))
+  (guesses))
+```
+
+
 
 Right, the point here is that every call to `(guesses)` has to build the stream
 again from scratch. Since this is called recursively, that's a big problem! 
@@ -2025,25 +2065,34 @@ elements that differ in absolute value by less than the tolerance, and return
 the second of the two elements.  Using this, we could compute square roots up
 to a given tolerance by
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="nb">sqrt</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">tolerance</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="n">stream-limit</span><span class="w"> </span><span class="p">(</span><span class="n">sqrt-stream</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="n">tolerance</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(define (sqrt x tolerance)
+  (stream-limit (sqrt-stream x) tolerance))
+```
+
+
 
 ##### Solution
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">stream-limit</span><span class="w"> </span><span class="k">stream</span><span class="w"> </span><span class="n">tol</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">iter</span><span class="w"> </span><span class="n">str</span><span class="w"> </span><span class="n">last-elem</span><span class="p">)</span>
-<span class="w">    </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">this-elem</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">str</span><span class="p">)))</span>
-<span class="w">      </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">&lt;</span><span class="w"> </span><span class="p">(</span><span class="nb">abs</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">this-elem</span><span class="w"> </span><span class="n">last-elem</span><span class="p">))</span><span class="w"> </span><span class="n">tol</span><span class="p">)</span><span class="w"> </span>
-<span class="w">        </span><span class="n">this-elem</span>
-<span class="w">        </span><span class="p">(</span><span class="n">iter</span><span class="w"> </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">str</span><span class="p">)</span><span class="w"> </span><span class="n">this-elem</span><span class="p">))))</span>
-<span class="w">  </span><span class="p">(</span><span class="n">iter</span><span class="w"> </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="k">stream</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="k">stream</span><span class="p">)))</span>
-</pre></div>
 
-<div class="code-box" markdown="1">
-<details class="collapsible-code">
-<summary class="code-summary"><a href="code/ex3-64.rkt">code/ex3-64.rkt</a> <span class="expand-hint">(click to expand)</span></summary>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+```rkt
+(define (stream-limit stream tol)
+  (define (iter str last-elem)
+    (let ((this-elem (stream-car str)))
+      (if (< (abs (- this-elem last-elem)) tol) 
+        this-elem
+        (iter (stream-cdr str) this-elem))))
+  (iter (stream-cdr stream) (stream-car stream)))
+```
+
+
+
+
+
+<div class="code-box"><details class="collapsible-code"><summary class="code-summary"><span><a href="code/ex3-64.rkt">ex3-64.rkt</a></span><span class="expand-hint">(click to expand)</span></summary><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="k">stream</span><span class="p">)</span><span class="w"> </span>
 <span class="w">  </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="k">stream</span><span class="p">))</span>
@@ -2091,22 +2140,16 @@ to a given tolerance by
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="nb">sqrt</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">tolerance</span><span class="p">)</span>
 <span class="w">  </span><span class="p">(</span><span class="n">stream-limit</span><span class="w"> </span><span class="p">(</span><span class="n">sqrt-stream</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="n">tolerance</span><span class="p">))</span>
 
-<span class="p">(</span><span class="n">display-line</span><span class="w"> </span><span class="s2">&quot;Series for tan(x)&quot;</span><span class="p">)</span>
+<span class="p">(</span><span class="n">display-line</span><span class="w"> </span><span class="s2">"Series for tan(x)"</span><span class="p">)</span>
 <span class="p">(</span><span class="n">display-line</span><span class="w"> </span><span class="p">(</span><span class="nb">sqrt</span><span class="w"> </span><span class="mf">2.0</span><span class="w"> </span><span class="mf">0.1</span><span class="p">))</span>
 <span class="p">(</span><span class="n">display-line</span><span class="w"> </span><span class="p">(</span><span class="nb">sqrt</span><span class="w"> </span><span class="mf">2.0</span><span class="w"> </span><span class="mf">0.0001</span><span class="p">))</span>
 <span class="p">(</span><span class="n">display-line</span><span class="w"> </span><span class="p">(</span><span class="nb">sqrt</span><span class="w"> </span><span class="mf">2.0</span><span class="w"> </span><span class="mf">0.00000001</span><span class="p">))</span>
-</pre></div>
-
-</details>
-<div class="code-output">
-<span>Output:</span>
-<pre>
+</code></pre></div>
+</details><div class="code-output"><span>Output:</span><pre>
 Series for tan(x)
 1.4166666666666665
 1.4142135623746899
-1.414213562373095</pre>
-</div>
-</div>
+1.414213562373095</pre></div></div>
 
 
 #### Exercise 3.65
@@ -2130,10 +2173,9 @@ $$\ln(2)=0.6931471805599453\ldots$$
 
 We get 12 digits of accuracy after 6 steps (excluding the first 0).
 
-<div class="code-box" markdown="1">
-<details class="collapsible-code">
-<summary class="code-summary"><a href="code/ex3-65.rkt">code/ex3-65.rkt</a> <span class="expand-hint">(click to expand)</span></summary>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><details class="collapsible-code"><summary class="code-summary"><span><a href="code/ex3-65.rkt">ex3-65.rkt</a></span><span class="expand-hint">(click to expand)</span></summary><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="k">stream</span><span class="p">)</span><span class="w"> </span>
 <span class="w">  </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="k">stream</span><span class="p">))</span>
@@ -2208,18 +2250,14 @@ We get 12 digits of accuracy after 6 steps (excluding the first 0).
 <span class="w">   </span><span class="p">(</span><span class="nb">stream-map</span><span class="w"> </span><span class="nb">-</span><span class="w"> </span><span class="p">(</span><span class="n">ln2-summands</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">1</span><span class="p">)))))</span>
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">ln2-stream</span>
 <span class="w">  </span><span class="p">(</span><span class="n">partial-sums</span><span class="w"> </span><span class="p">(</span><span class="n">ln2-summands</span><span class="w"> </span><span class="mi">1</span><span class="p">)))</span>
-<span class="p">(</span><span class="n">display-line</span><span class="w"> </span><span class="s2">&quot;Unaccelerated ln2-stream&quot;</span><span class="p">)</span>
+<span class="p">(</span><span class="n">display-line</span><span class="w"> </span><span class="s2">"Unaccelerated ln2-stream"</span><span class="p">)</span>
 <span class="p">(</span><span class="n">display-stream-first-n</span><span class="w"> </span><span class="n">ln2-stream</span><span class="w"> </span><span class="mi">7</span><span class="p">)</span>
-<span class="p">(</span><span class="n">display-line</span><span class="w"> </span><span class="s2">&quot;Euler transform ln2-stream&quot;</span><span class="p">)</span>
+<span class="p">(</span><span class="n">display-line</span><span class="w"> </span><span class="s2">"Euler transform ln2-stream"</span><span class="p">)</span>
 <span class="p">(</span><span class="n">display-stream-first-n</span><span class="w"> </span><span class="p">(</span><span class="n">euler-transform</span><span class="w"> </span><span class="n">ln2-stream</span><span class="p">)</span><span class="w"> </span><span class="mi">7</span><span class="p">)</span>
-<span class="p">(</span><span class="n">display-line</span><span class="w"> </span><span class="s2">&quot;Euler transform + tableau ln2-stream&quot;</span><span class="p">)</span>
+<span class="p">(</span><span class="n">display-line</span><span class="w"> </span><span class="s2">"Euler transform + tableau ln2-stream"</span><span class="p">)</span>
 <span class="p">(</span><span class="n">display-stream-first-n</span><span class="w"> </span><span class="p">(</span><span class="n">accelerated-sequence</span><span class="w"> </span><span class="n">euler-transform</span><span class="w"> </span><span class="n">ln2-stream</span><span class="p">)</span><span class="w"> </span><span class="mi">7</span><span class="p">)</span>
-</pre></div>
-
-</details>
-<div class="code-output">
-<span>Output:</span>
-<pre>
+</code></pre></div>
+</details><div class="code-output"><span>Output:</span><pre>
 Unaccelerated ln2-stream
 0
 1.0
@@ -2243,9 +2281,7 @@ Euler transform + tableau ln2-stream
 0.6931401273742107
 0.6931471197438599
 0.693147180203895
-0.693147180559321</pre>
-</div>
-</div>
+0.693147180559321</pre></div></div>
 
 #### Exercise 3.66
 
@@ -2304,10 +2340,9 @@ $55,$ then $71$ and so on. So we can answer with general $N:$
 
 For $N=100$ these are $197,$ $1.27\times 10^{30},$ and $9.5\times 10^{29}$ respectively (of course this answer isn't a proof).
 
-<div class="code-box" markdown="1">
-<details class="collapsible-code">
-<summary class="code-summary"><a href="code/ex3-66.rkt">code/ex3-66.rkt</a> <span class="expand-hint">(click to expand)</span></summary>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><details class="collapsible-code"><summary class="code-summary"><span><a href="code/ex3-66.rkt">ex3-66.rkt</a></span><span class="expand-hint">(click to expand)</span></summary><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="k">stream</span><span class="p">)</span><span class="w"> </span>
 <span class="w">  </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="k">stream</span><span class="p">))</span>
@@ -2375,12 +2410,8 @@ For $N=100$ these are $197,$ $1.27\times 10^{30},$ and $9.5\times 10^{29}$ respe
 <span class="w">    </span><span class="p">(</span><span class="n">pairs</span><span class="w"> </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">t</span><span class="p">)))))</span>
 
 <span class="p">(</span><span class="n">display-stream-first-n</span><span class="w"> </span><span class="p">(</span><span class="n">pairs</span><span class="w"> </span><span class="n">integers</span><span class="w"> </span><span class="n">integers</span><span class="p">)</span><span class="w"> </span><span class="mi">16</span><span class="p">)</span>
-</pre></div>
-
-</details>
-<div class="code-output">
-<span>Output:</span>
-<pre>
+</code></pre></div>
+</details><div class="code-output"><span>Output:</span><pre>
 (1 1)
 (1 2)
 (2 2)
@@ -2396,9 +2427,7 @@ For $N=100$ these are $197,$ $1.27\times 10^{30},$ and $9.5\times 10^{29}$ respe
 (2 5)
 (1 8)
 (4 4)
-(1 9)</pre>
-</div>
-</div>
+(1 9)</pre></div></div>
 
 
 
@@ -2415,49 +2444,73 @@ You will need to mix in an additional stream.
 In my solution, we have the same chunks as in the table of 
 `(s0 t0)` values. The top left is this:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">t</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(list (stream-car s) (stream-car t))
+```
+
+
 
 The top-right row of all `(s0 tn)` pairs is is
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="nb">stream-map</span><span class="w"> </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="w">              </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="p">))</span>
-<span class="w">            </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">t</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(stream-map (lambda (x)
+              (list (stream-car s) x))
+            (stream-cdr t))
+```
+
+
 
 
 The recursive bottom-right part of all `(sn tn)` pairs with $n\ge 1$ is this:
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">pairs</span><span class="w"> </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">t</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(pairs (stream-cdr s) (stream-cdr t))
+```
+
+
 
 But now we have to include a bottom-left column consisting of all
 pairs `(sn, t0)`:
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="nb">stream-map</span><span class="w"> </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-<span class="w">                    </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">t</span><span class="p">)))</span>
-<span class="w">                  </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">s</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(stream-map (lambda (y)
+                    (list y (stream-car t)))
+                  (stream-cdr s))
+```
+
+
 
 We just interleave them together to get the result:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">pairs-all</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="n">t</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="n">cons-stream</span>
-<span class="w">   </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">t</span><span class="p">))</span>
-<span class="w">   </span><span class="p">(</span><span class="n">interleave</span><span class="w"> </span>
-<span class="w">    </span><span class="p">(</span><span class="nb">stream-map</span><span class="w"> </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-<span class="w">                        </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">t</span><span class="p">)))</span>
-<span class="w">                      </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">s</span><span class="p">))</span>
-<span class="w">     </span><span class="p">(</span><span class="n">interleave</span>
-<span class="w">      </span><span class="p">(</span><span class="nb">stream-map</span><span class="w"> </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="w">                    </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="p">))</span>
-<span class="w">                  </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">t</span><span class="p">))</span>
-<span class="w">      </span><span class="p">(</span><span class="n">pairs</span><span class="w"> </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">t</span><span class="p">))))))</span>
 
-<span class="p">(</span><span class="n">display-stream-first-n</span><span class="w"> </span><span class="p">(</span><span class="n">pairs-all</span><span class="w"> </span><span class="n">integers</span><span class="w"> </span><span class="n">integers</span><span class="p">)</span><span class="w"> </span><span class="mi">16</span><span class="p">)</span>
-</pre></div>
-<div class="code-box" markdown="1">
-<details class="collapsible-code">
-<summary class="code-summary"><a href="code/ex3-67.rkt">code/ex3-67.rkt</a> <span class="expand-hint">(click to expand)</span></summary>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+```rkt
+(define (pairs-all s t)
+  (cons-stream
+   (list (stream-car s) (stream-car t))
+   (interleave 
+    (stream-map (lambda (y)
+                        (list y (stream-car t)))
+                      (stream-cdr s))
+     (interleave
+      (stream-map (lambda (x)
+                    (list (stream-car s) x))
+                  (stream-cdr t))
+      (pairs (stream-cdr s) (stream-cdr t))))))
+
+(display-stream-first-n (pairs-all integers integers) 16)
+```
+
+
+
+
+<div class="code-box"><details class="collapsible-code"><summary class="code-summary"><span><a href="code/ex3-67.rkt">ex3-67.rkt</a></span><span class="expand-hint">(click to expand)</span></summary><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="k">stream</span><span class="p">)</span><span class="w"> </span>
 <span class="w">  </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="k">stream</span><span class="p">))</span>
@@ -2539,12 +2592,8 @@ We just interleave them together to get the result:
 <span class="w">      </span><span class="p">(</span><span class="n">pairs</span><span class="w"> </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">t</span><span class="p">))))))</span>
 
 <span class="p">(</span><span class="n">display-stream-first-n</span><span class="w"> </span><span class="p">(</span><span class="n">pairs-all</span><span class="w"> </span><span class="n">integers</span><span class="w"> </span><span class="n">integers</span><span class="p">)</span><span class="w"> </span><span class="mi">16</span><span class="p">)</span>
-</pre></div>
-
-</details>
-<div class="code-output">
-<span>Output:</span>
-<pre>
+</code></pre></div>
+</details><div class="code-output"><span>Output:</span><pre>
 (1 1)
 (2 1)
 (1 2)
@@ -2560,9 +2609,7 @@ We just interleave them together to get the result:
 (3 3)
 (8 1)
 (1 5)
-(9 1)</pre>
-</div>
-</div>
+(9 1)</pre></div></div>
 
 
 #### Exercise 3.68
@@ -2572,15 +2619,20 @@ building a stream of pairs from three parts is unnecessarily complicated.
 Instead of separating the pair $(S_0, T_0)$ from the rest of the pairs in
 the first row, he proposes to work with the whole first row, as follows:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">pairs</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="n">t</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="n">interleave</span>
-<span class="w">   </span><span class="p">(</span><span class="nb">stream-map</span>
-<span class="w">    </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span>
-<span class="w">      </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="p">))</span>
-<span class="w">    </span><span class="n">t</span><span class="p">)</span>
-<span class="w">   </span><span class="p">(</span><span class="n">pairs</span><span class="w"> </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">s</span><span class="p">)</span>
-<span class="w">          </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">t</span><span class="p">))))</span>
-</pre></div>
+
+
+```rkt
+(define (pairs s t)
+  (interleave
+   (stream-map
+    (lambda (x) 
+      (list (stream-car s) x))
+    t)
+   (pairs (stream-cdr s)
+          (stream-cdr t))))
+```
+
+
 
 Does this work?  Consider what happens if we evaluate `(pairs integers
 integers)` using Louis's definition of `pairs`.
@@ -2639,32 +2691,36 @@ just a single element, and the others (a line, a triangle, and a tetrahedron)
 have to be constructed specifically. This also should give us an idea of how 
 to generalize if we wanted n-tuples.
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">triples</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">u</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="n">cons-stream</span>
-<span class="w">   </span><span class="c1">; Green single element</span>
-<span class="w">   </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">u</span><span class="p">))</span>
-<span class="w">   </span><span class="p">(</span><span class="n">interleave</span>
-<span class="w">    </span><span class="c1">; Blue 1D list</span>
-<span class="w">    </span><span class="p">(</span><span class="nb">stream-map</span><span class="w"> </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="w">                  </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="p">))</span>
-<span class="w">                </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">u</span><span class="p">))</span>
-<span class="w">    </span><span class="p">(</span><span class="n">interleave</span><span class="w"> </span>
-<span class="w">      </span><span class="c1">; Red triangle</span>
-<span class="w">      </span><span class="p">(</span><span class="nb">stream-map</span><span class="w"> </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="w">                    </span><span class="p">(</span><span class="nb">cons</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="p">))</span>
-<span class="w">                  </span><span class="p">(</span><span class="n">pairs</span><span class="w"> </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">u</span><span class="p">)))</span>
-<span class="w">      </span><span class="c1">; Purple simplex</span>
-<span class="w">      </span><span class="p">(</span><span class="n">triples</span><span class="w"> </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">u</span><span class="p">))))))</span>
-</pre></div>
+
+
+```rkt
+(define (triples s t u)
+  (cons-stream
+   ; Green single element
+   (list (stream-car s) (stream-car t) (stream-car u))
+   (interleave
+    ; Blue 1D list
+    (stream-map (lambda (x)
+                  (list (stream-car s) (stream-car t) x))
+                (stream-cdr u))
+    (interleave 
+      ; Red triangle
+      (stream-map (lambda (x)
+                    (cons (stream-car s) x))
+                  (pairs (stream-cdr t) (stream-cdr u)))
+      ; Purple simplex
+      (triples (stream-cdr s) (stream-cdr t) (stream-cdr u))))))
+```
+
+
 
 
 We might wonder where the tuple `(N N N)` occurs. After some investigation,
 I find (empirically) it occurs at position $(4^N-1)/3$ in the list.
 
-<div class="code-box" markdown="1">
-<details class="collapsible-code">
-<summary class="code-summary"><a href="code/ex3-69.rkt">code/ex3-69.rkt</a> <span class="expand-hint">(click to expand)</span></summary>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><details class="collapsible-code"><summary class="code-summary"><span><a href="code/ex3-69.rkt">ex3-69.rkt</a></span><span class="expand-hint">(click to expand)</span></summary><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="k">stream</span><span class="p">)</span><span class="w"> </span>
 <span class="w">  </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="k">stream</span><span class="p">))</span>
@@ -2747,12 +2803,8 @@ I find (empirically) it occurs at position $(4^N-1)/3$ in the list.
 
 
 <span class="p">(</span><span class="n">display-stream-first-n</span><span class="w"> </span><span class="p">(</span><span class="n">triples</span><span class="w"> </span><span class="n">integers</span><span class="w"> </span><span class="n">integers</span><span class="w"> </span><span class="n">integers</span><span class="p">)</span><span class="w"> </span><span class="mi">21</span><span class="p">)</span>
-</pre></div>
-
-</details>
-<div class="code-output">
-<span>Output:</span>
-<pre>
+</code></pre></div>
+</details><div class="code-output"><span>Output:</span><pre>
 (1 1 1)
 (1 1 2)
 (1 2 2)
@@ -2773,27 +2825,29 @@ I find (empirically) it occurs at position $(4^N-1)/3$ in the list.
 (1 1 10)
 (1 3 4)
 (1 1 11)
-(3 3 3)</pre>
-</div>
-</div>
+(3 3 3)</pre></div></div>
 
 
 
 For enumerating pythagorean triples, this takes a super long time but 
 we can enumerate the first three that we find:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">display-stream-first-n</span><span class="w"> </span>
-<span class="w">  </span><span class="p">(</span><span class="nb">stream-filter</span><span class="w"> </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span>
-<span class="w">    </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">a</span><span class="w"> </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="n">x</span><span class="p">))</span>
-<span class="w">          </span><span class="p">(</span><span class="n">b</span><span class="w"> </span><span class="p">(</span><span class="nb">cadr</span><span class="w"> </span><span class="n">x</span><span class="p">))</span>
-<span class="w">          </span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="p">(</span><span class="nb">caddr</span><span class="w"> </span><span class="n">x</span><span class="p">)))</span>
-<span class="w">      </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="p">(</span><span class="n">square</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">square</span><span class="w"> </span><span class="n">b</span><span class="p">))</span><span class="w"> </span><span class="p">(</span><span class="n">square</span><span class="w"> </span><span class="n">c</span><span class="p">))))</span>
-<span class="w">  </span><span class="p">(</span><span class="n">triples</span><span class="w"> </span><span class="n">integers</span><span class="w"> </span><span class="n">integers</span><span class="w"> </span><span class="n">integers</span><span class="p">))</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span>
-</pre></div>
-<div class="code-box" markdown="1">
-<details class="collapsible-code">
-<summary class="code-summary"><a href="code/ex3-69-2.rkt">code/ex3-69-2.rkt</a> <span class="expand-hint">(click to expand)</span></summary>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+```rkt
+(display-stream-first-n 
+  (stream-filter (lambda (x) 
+    (let ((a (car x))
+          (b (cadr x))
+          (c (caddr x)))
+      (= (+ (square a) (square b)) (square c))))
+  (triples integers integers integers)) 3)
+```
+
+
+
+
+<div class="code-box"><details class="collapsible-code"><summary class="code-summary"><span><a href="code/ex3-69-2.rkt">ex3-69-2.rkt</a></span><span class="expand-hint">(click to expand)</span></summary><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="k">stream</span><span class="p">)</span><span class="w"> </span>
 <span class="w">  </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="k">stream</span><span class="p">))</span>
@@ -2897,17 +2951,11 @@ we can enumerate the first three that we find:
 <span class="w">          </span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="p">(</span><span class="nb">caddr</span><span class="w"> </span><span class="n">x</span><span class="p">)))</span>
 <span class="w">      </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="p">(</span><span class="n">square</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">square</span><span class="w"> </span><span class="n">b</span><span class="p">))</span><span class="w"> </span><span class="p">(</span><span class="n">square</span><span class="w"> </span><span class="n">c</span><span class="p">))))</span>
 <span class="w">  </span><span class="p">(</span><span class="n">triples</span><span class="w"> </span><span class="n">integers</span><span class="w"> </span><span class="n">integers</span><span class="w"> </span><span class="n">integers</span><span class="p">))</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span>
-</pre></div>
-
-</details>
-<div class="code-output">
-<span>Output:</span>
-<pre>
+</code></pre></div>
+</details><div class="code-output"><span>Output:</span><pre>
 (3 4 5)
 (6 8 10)
-(5 12 13)</pre>
-</div>
-</div>
+(5 12 13)</pre></div></div>
 
 
 #### Exercise 3.70
@@ -2939,58 +2987,62 @@ ordered according to the sum $2i + 3j + 5ij.$
 ##### Solution
 
 The key code is this:
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">merge-weighted</span><span class="w"> </span><span class="n">s1</span><span class="w"> </span><span class="n">s2</span><span class="w"> </span><span class="n">W</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">cond</span><span class="w"> </span><span class="p">((</span><span class="n">stream-null?</span><span class="w"> </span><span class="n">s1</span><span class="p">)</span><span class="w"> </span><span class="n">s2</span><span class="p">)</span>
-<span class="w">        </span><span class="p">((</span><span class="n">stream-null?</span><span class="w"> </span><span class="n">s2</span><span class="p">)</span><span class="w"> </span><span class="n">s1</span><span class="p">)</span>
-<span class="w">        </span><span class="p">(</span><span class="k">else</span>
-<span class="w">         </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">s1car</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">s1</span><span class="p">))</span>
-<span class="w">               </span><span class="p">(</span><span class="n">s2car</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">s2</span><span class="p">)))</span>
-<span class="w">           </span><span class="p">(</span><span class="k">cond</span><span class="w"> </span><span class="p">((</span><span class="nb">&lt;=</span><span class="w"> </span><span class="p">(</span><span class="n">W</span><span class="w"> </span><span class="n">s1car</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">W</span><span class="w"> </span><span class="n">s2car</span><span class="p">))</span>
-<span class="w">                  </span><span class="p">(</span><span class="n">cons-stream</span><span class="w"> </span>
-<span class="w">                   </span><span class="n">s1car</span><span class="w"> </span>
-<span class="w">                   </span><span class="p">(</span><span class="n">merge-weighted</span><span class="w"> </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">s1</span><span class="p">)</span><span class="w"> </span>
-<span class="w">                                   </span><span class="n">s2</span><span class="w"> </span>
-<span class="w">                                   </span><span class="n">W</span><span class="p">)))</span>
-<span class="w">                 </span><span class="p">(</span><span class="k">else</span>
-<span class="w">                  </span><span class="p">(</span><span class="n">cons-stream</span><span class="w"> </span>
-<span class="w">                   </span><span class="n">s2car</span><span class="w"> </span>
-<span class="w">                   </span><span class="p">(</span><span class="n">merge-weighted</span><span class="w"> </span><span class="n">s1</span><span class="w"> </span>
-<span class="w">                                   </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">s2</span><span class="p">)</span>
-<span class="w">                                   </span><span class="n">W</span><span class="p">))))))))</span>
 
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">weighted-pairs</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">W</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="n">cons-stream</span>
-<span class="w">   </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">t</span><span class="p">))</span>
-<span class="w">   </span><span class="p">(</span><span class="n">merge-weighted</span>
-<span class="w">    </span><span class="p">(</span><span class="nb">stream-map</span><span class="w"> </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="w">                  </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="p">))</span>
-<span class="w">                </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">t</span><span class="p">))</span>
-<span class="w">    </span><span class="p">(</span><span class="n">weighted-pairs</span><span class="w"> </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="n">W</span><span class="p">)</span><span class="w"> </span>
-<span class="w">    </span><span class="n">W</span><span class="p">)))</span>
 
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">my-not-divisible</span>
-<span class="w">  </span><span class="p">(</span><span class="nb">stream-filter</span><span class="w"> </span>
-<span class="w">    </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span>
-<span class="w">      </span><span class="p">(</span><span class="k">and</span><span class="w"> </span><span class="p">(</span><span class="nb">not</span><span class="w"> </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">(</span><span class="nb">remainder</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="mi">2</span><span class="p">)))</span>
-<span class="w">           </span><span class="p">(</span><span class="nb">not</span><span class="w"> </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">(</span><span class="nb">remainder</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="mi">3</span><span class="p">)))</span>
-<span class="w">           </span><span class="p">(</span><span class="nb">not</span><span class="w"> </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">(</span><span class="nb">remainder</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="mi">5</span><span class="p">)))))</span><span class="w"> </span><span class="n">integers</span><span class="p">))</span>
+```rkt
+(define (merge-weighted s1 s2 W)
+  (cond ((stream-null? s1) s2)
+        ((stream-null? s2) s1)
+        (else
+         (let ((s1car (stream-car s1))
+               (s2car (stream-car s2)))
+           (cond ((<= (W s1car) (W s2car))
+                  (cons-stream 
+                   s1car 
+                   (merge-weighted (stream-cdr s1) 
+                                   s2 
+                                   W)))
+                 (else
+                  (cons-stream 
+                   s2car 
+                   (merge-weighted s1 
+                                   (stream-cdr s2)
+                                   W))))))))
 
-<span class="p">(</span><span class="n">display-line</span><span class="w"> </span><span class="s2">&quot;Integers sorted by i+j&quot;</span><span class="p">)</span>
-<span class="p">(</span><span class="n">display-stream-first-n</span><span class="w"> </span><span class="p">(</span><span class="n">weighted-pairs</span><span class="w"> </span><span class="n">integers</span><span class="w"> </span><span class="n">integers</span>
-<span class="w">  </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">i</span><span class="w"> </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="n">x</span><span class="p">))</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="p">(</span><span class="nb">cadr</span><span class="w"> </span><span class="n">x</span><span class="p">)))</span><span class="w"> </span>
-<span class="w">    </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="n">j</span><span class="p">))))</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
+(define (weighted-pairs s t W)
+  (cons-stream
+   (list (stream-car s) (stream-car t))
+   (merge-weighted
+    (stream-map (lambda (x)
+                  (list (stream-car s) x))
+                (stream-cdr t))
+    (weighted-pairs (stream-cdr s) (stream-cdr t) W) 
+    W)))
 
-<span class="p">(</span><span class="n">display-line</span><span class="w"> </span><span class="s2">&quot;Integers with weird rules:&quot;</span><span class="p">)</span>
+(define my-not-divisible
+  (stream-filter 
+    (lambda (i) 
+      (and (not (= 0 (remainder i 2)))
+           (not (= 0 (remainder i 3)))
+           (not (= 0 (remainder i 5))))) integers))
 
-<span class="p">(</span><span class="n">display-stream-first-n</span><span class="w"> </span><span class="p">(</span><span class="n">weighted-pairs</span><span class="w"> </span><span class="n">my-not-divisible</span><span class="w"> </span><span class="n">my-not-divisible</span>
-<span class="w">  </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">i</span><span class="w"> </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="n">x</span><span class="p">))</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="p">(</span><span class="nb">cadr</span><span class="w"> </span><span class="n">x</span><span class="p">)))</span><span class="w"> </span>
-<span class="w">    </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="n">j</span><span class="p">)))))</span><span class="w"> </span><span class="mi">20</span><span class="p">)</span>
-</pre></div>
+(display-line "Integers sorted by i+j")
+(display-stream-first-n (weighted-pairs integers integers
+  (lambda (x) (let ((i (car x)) (j (cadr x))) 
+    (+ i j)))) 10)
 
-<div class="code-box" markdown="1">
-<details class="collapsible-code">
-<summary class="code-summary"><a href="code/ex3-70.rkt">code/ex3-70.rkt</a> <span class="expand-hint">(click to expand)</span></summary>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+(display-line "Integers with weird rules:")
+
+(display-stream-first-n (weighted-pairs my-not-divisible my-not-divisible
+  (lambda (x) (let ((i (car x)) (j (cadr x))) 
+    (+ (* 2 i) (* 3 j) (* 5 i j))))) 20)
+```
+
+
+
+
+
+<div class="code-box"><details class="collapsible-code"><summary class="code-summary"><span><a href="code/ex3-70.rkt">ex3-70.rkt</a></span><span class="expand-hint">(click to expand)</span></summary><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="k">stream</span><span class="p">)</span><span class="w"> </span>
 <span class="w">  </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="k">stream</span><span class="p">))</span>
@@ -3134,7 +3186,7 @@ The key code is this:
 <span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">and</span><span class="w"> </span><span class="p">(</span><span class="nb">not</span><span class="w"> </span><span class="p">(</span><span class="n">stream-null?</span><span class="w"> </span><span class="n">s</span><span class="p">))</span><span class="w"> </span><span class="p">(</span><span class="nb">&gt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span>
 <span class="w">    </span><span class="p">(</span><span class="k">begin</span><span class="w"> </span>
 <span class="w">      </span><span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">s</span><span class="p">))</span>
-<span class="w">      </span><span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="s2">&quot; : W = &quot;</span><span class="p">)</span>
+<span class="w">      </span><span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="s2">" : W = "</span><span class="p">)</span>
 <span class="w">      </span><span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="p">(</span><span class="n">W</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">s</span><span class="p">)))</span><span class="w"> </span><span class="p">(</span><span class="nb">newline</span><span class="p">)</span>
 <span class="w">      </span><span class="p">(</span><span class="n">display-n-with-weight</span><span class="w"> </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="n">W</span><span class="p">))))</span>
 
@@ -3142,19 +3194,15 @@ The key code is this:
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">W1</span><span class="w"> </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">i</span><span class="w"> </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="n">x</span><span class="p">))</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="p">(</span><span class="nb">cadr</span><span class="w"> </span><span class="n">x</span><span class="p">)))</span><span class="w"> </span>
 <span class="w">    </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="n">j</span><span class="p">))))</span>
-<span class="p">(</span><span class="n">display-line</span><span class="w"> </span><span class="s2">&quot;Integers sorted by i+j&quot;</span><span class="p">)</span>
+<span class="p">(</span><span class="n">display-line</span><span class="w"> </span><span class="s2">"Integers sorted by i+j"</span><span class="p">)</span>
 <span class="p">(</span><span class="n">display-n-with-weight</span><span class="w"> </span><span class="p">(</span><span class="n">weighted-pairs</span><span class="w"> </span><span class="n">integers</span><span class="w"> </span><span class="n">integers</span><span class="w"> </span><span class="n">W1</span><span class="p">)</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="n">W1</span><span class="p">)</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">W2</span><span class="w"> </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">i</span><span class="w"> </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="n">x</span><span class="p">))</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="p">(</span><span class="nb">cadr</span><span class="w"> </span><span class="n">x</span><span class="p">)))</span><span class="w"> </span>
 <span class="w">    </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="n">j</span><span class="p">)))))</span>
-<span class="p">(</span><span class="n">display-line</span><span class="w"> </span><span class="s2">&quot;Integers with weird rules:&quot;</span><span class="p">)</span>
+<span class="p">(</span><span class="n">display-line</span><span class="w"> </span><span class="s2">"Integers with weird rules:"</span><span class="p">)</span>
 <span class="p">(</span><span class="n">display-n-with-weight</span><span class="w"> </span><span class="p">(</span><span class="n">weighted-pairs</span><span class="w"> </span><span class="n">my-not-divisible</span><span class="w"> </span><span class="n">my-not-divisible</span><span class="w"> </span><span class="n">W2</span><span class="p">)</span><span class="w"> </span><span class="mi">40</span><span class="w"> </span><span class="n">W2</span><span class="p">)</span>
-</pre></div>
-
-</details>
-<div class="code-output">
-<span>Output:</span>
-<pre>
+</code></pre></div>
+</details><div class="code-output"><span>Output:</span><pre>
 Integers sorted by i+j(1 1) : W = 2
 (1 2) : W = 3
 (1 3) : W = 4
@@ -3216,9 +3264,7 @@ Integers with weird rules:(1 1) : W = 10
 (7 23) : W = 888
 (1 113) : W = 906
 (13 13) : W = 910
-</pre>
-</div>
-</div>
+</pre></div></div>
 
 
 #### Exercise 3.71
@@ -3239,39 +3285,43 @@ Ramanujan numbers.  The first such number is $1729.$  What are the next five?
 First we generate a stream of consecutive pairs, then 
 we filter the stream to check if any have equal weights.
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">cube</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">x</span><span class="p">))</span>
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">my-W</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span>
-<span class="w">  </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">i</span><span class="w"> </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="n">x</span><span class="p">))</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="p">(</span><span class="nb">cadr</span><span class="w"> </span><span class="n">x</span><span class="p">)))</span><span class="w"> </span>
-<span class="w">    </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="p">(</span><span class="n">cube</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">cube</span><span class="w"> </span><span class="n">j</span><span class="p">))))</span>
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">cube-sorted-stream</span><span class="w"> </span>
-<span class="w">  </span><span class="p">(</span><span class="n">weighted-pairs</span><span class="w"> </span><span class="n">integers</span><span class="w"> </span><span class="n">integers</span><span class="w"> </span><span class="n">my-W</span><span class="p">))</span>
 
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">walking-pairs</span><span class="w"> </span><span class="n">s</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">let*</span><span class="w"> </span><span class="p">((</span><span class="n">s0</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">s</span><span class="p">))</span>
-<span class="w">         </span><span class="p">(</span><span class="n">s-rest</span><span class="w"> </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">s</span><span class="p">))</span>
-<span class="w">         </span><span class="p">(</span><span class="n">s1</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">s-rest</span><span class="p">)))</span>
-<span class="w">    </span><span class="p">(</span><span class="n">cons-stream</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="n">s0</span><span class="w"> </span><span class="n">s1</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">walking-pairs</span><span class="w"> </span><span class="n">s-rest</span><span class="p">))))</span>
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">ramanujan-stream</span>
-<span class="w">  </span><span class="p">(</span><span class="nb">stream-filter</span><span class="w"> </span>
-<span class="w">        </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="w">          </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="p">(</span><span class="n">my-W</span><span class="w"> </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="n">x</span><span class="p">))</span><span class="w"> </span><span class="p">(</span><span class="n">my-W</span><span class="w"> </span><span class="p">(</span><span class="nb">cadr</span><span class="w"> </span><span class="n">x</span><span class="p">))))</span>
-<span class="w">        </span><span class="p">(</span><span class="n">walking-pairs</span><span class="w"> </span><span class="n">cube-sorted-stream</span><span class="p">)))</span>
 
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">display-n-with-weight</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="n">W</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">and</span><span class="w"> </span><span class="p">(</span><span class="nb">not</span><span class="w"> </span><span class="p">(</span><span class="n">stream-null?</span><span class="w"> </span><span class="n">s</span><span class="p">))</span><span class="w"> </span><span class="p">(</span><span class="nb">&gt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span>
-<span class="w">    </span><span class="p">(</span><span class="k">begin</span><span class="w"> </span>
-<span class="w">      </span><span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">s</span><span class="p">))</span>
-<span class="w">      </span><span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="s2">&quot; : Weight = &quot;</span><span class="p">)</span>
-<span class="w">      </span><span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="p">(</span><span class="n">W</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">s</span><span class="p">)))</span><span class="w"> </span><span class="p">(</span><span class="nb">newline</span><span class="p">)</span>
-<span class="w">      </span><span class="p">(</span><span class="n">display-n-with-weight</span><span class="w"> </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="n">W</span><span class="p">))))</span>
+```rkt
+(define (cube x) (* x x x))
+(define (my-W x) 
+  (let ((i (car x)) (j (cadr x))) 
+    (+ (cube i) (cube j))))
+(define cube-sorted-stream 
+  (weighted-pairs integers integers my-W))
 
-<span class="p">(</span><span class="n">display-n-with-weight</span><span class="w"> </span><span class="n">ramanujan-stream</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">my-W</span><span class="w"> </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="n">x</span><span class="p">))))</span>
-</pre></div>
+(define (walking-pairs s)
+  (let* ((s0 (stream-car s))
+         (s-rest (stream-cdr s))
+         (s1 (stream-car s-rest)))
+    (cons-stream (list s0 s1) (walking-pairs s-rest))))
+(define ramanujan-stream
+  (stream-filter 
+        (lambda (x)
+          (= (my-W (car x)) (my-W (cadr x))))
+        (walking-pairs cube-sorted-stream)))
 
-<div class="code-box" markdown="1">
-<details class="collapsible-code">
-<summary class="code-summary"><a href="code/ex3-71.rkt">code/ex3-71.rkt</a> <span class="expand-hint">(click to expand)</span></summary>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+(define (display-n-with-weight s n W)
+  (if (and (not (stream-null? s)) (> n 0))
+    (begin 
+      (display (stream-car s))
+      (display " : Weight = ")
+      (display (W (stream-car s))) (newline)
+      (display-n-with-weight (stream-cdr s) (- n 1) W))))
+
+(display-n-with-weight ramanujan-stream 6 (lambda (x) (my-W (car x))))
+```
+
+
+
+
+
+<div class="code-box"><details class="collapsible-code"><summary class="code-summary"><span><a href="code/ex3-71.rkt">ex3-71.rkt</a></span><span class="expand-hint">(click to expand)</span></summary><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="k">stream</span><span class="p">)</span><span class="w"> </span>
 <span class="w">  </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="k">stream</span><span class="p">))</span>
@@ -3429,7 +3479,7 @@ we filter the stream to check if any have equal weights.
 <span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">and</span><span class="w"> </span><span class="p">(</span><span class="nb">not</span><span class="w"> </span><span class="p">(</span><span class="n">stream-null?</span><span class="w"> </span><span class="n">s</span><span class="p">))</span><span class="w"> </span><span class="p">(</span><span class="nb">&gt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span>
 <span class="w">    </span><span class="p">(</span><span class="k">begin</span><span class="w"> </span>
 <span class="w">      </span><span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">s</span><span class="p">))</span>
-<span class="w">      </span><span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="s2">&quot; : Weight = &quot;</span><span class="p">)</span>
+<span class="w">      </span><span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="s2">" : Weight = "</span><span class="p">)</span>
 <span class="w">      </span><span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="p">(</span><span class="n">W</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">s</span><span class="p">)))</span><span class="w"> </span><span class="p">(</span><span class="nb">newline</span><span class="p">)</span>
 <span class="w">      </span><span class="p">(</span><span class="n">display-n-with-weight</span><span class="w"> </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="n">W</span><span class="p">))))</span>
 
@@ -3440,11 +3490,11 @@ we filter the stream to check if any have equal weights.
 <span class="c1">;;     (let ((nv (stream-car s)))</span>
 <span class="c1">;;       (if (= (my-W nv) (my-W lv))</span>
 <span class="c1">;;         (begin </span>
-<span class="c1">;;           (display &quot;Two cubes found: &quot;)</span>
+<span class="c1">;;           (display "Two cubes found: ")</span>
 <span class="c1">;;           (display nv)</span>
-<span class="c1">;;           (display &quot; and &quot;)</span>
+<span class="c1">;;           (display " and ")</span>
 <span class="c1">;;           (display lv)</span>
-<span class="c1">;;           (display &quot; both have sum cube &quot;)</span>
+<span class="c1">;;           (display " both have sum cube ")</span>
 <span class="c1">;;           (display (my-W lv)) (newline)</span>
 <span class="c1">;;           (my-search (stream-cdr s) nv (- n 1)))</span>
 <span class="c1">;;         (my-search (stream-cdr s) nv n)))))</span>
@@ -3455,20 +3505,14 @@ we filter the stream to check if any have equal weights.
 <span class="c1">;    (display-line (my-W x)) x)))</span>
 <span class="c1">; (display-stream-first-n </span>
 <span class="c1">;  (stream-map echo cube-sorted-stream) 100)</span>
-</pre></div>
-
-</details>
-<div class="code-output">
-<span>Output:</span>
-<pre>((1 12) (9 10)) : Weight = 1729
+</code></pre></div>
+</details><div class="code-output"><span>Output:</span><pre>((1 12) (9 10)) : Weight = 1729
 ((2 16) (9 15)) : Weight = 4104
 ((2 24) (18 20)) : Weight = 13832
 ((10 27) (19 24)) : Weight = 20683
 ((4 32) (18 30)) : Weight = 32832
 ((2 34) (15 33)) : Weight = 39312
-</pre>
-</div>
-</div>
+</pre></div></div>
 
 
 #### Exercise 3.72
@@ -3479,33 +3523,37 @@ squares in three different ways (showing how they can be so written).
 
 ##### Solution
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">my-W</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span>
-<span class="w">  </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">i</span><span class="w"> </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="n">x</span><span class="p">))</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="p">(</span><span class="nb">cadr</span><span class="w"> </span><span class="n">x</span><span class="p">)))</span><span class="w"> </span>
-<span class="w">    </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="p">(</span><span class="n">square</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">square</span><span class="w"> </span><span class="n">j</span><span class="p">))))</span>
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">square-sorted-stream</span><span class="w"> </span>
-<span class="w">  </span><span class="p">(</span><span class="n">weighted-pairs</span><span class="w"> </span><span class="n">integers</span><span class="w"> </span><span class="n">integers</span><span class="w"> </span><span class="n">my-W</span><span class="p">))</span>
 
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">walking-triples</span><span class="w"> </span><span class="n">s</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">let*</span><span class="w"> </span><span class="p">((</span><span class="n">s0</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">s</span><span class="p">))</span>
-<span class="w">         </span><span class="p">(</span><span class="n">s-rest</span><span class="w"> </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">s</span><span class="p">))</span>
-<span class="w">         </span><span class="p">(</span><span class="n">s1</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">s-rest</span><span class="p">))</span>
-<span class="w">         </span><span class="p">(</span><span class="n">s-rest-rest</span><span class="w"> </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">s-rest</span><span class="p">))</span>
-<span class="w">         </span><span class="p">(</span><span class="n">s2</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">s-rest-rest</span><span class="p">)))</span>
-<span class="w">    </span><span class="p">(</span><span class="n">cons-stream</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="n">s0</span><span class="w"> </span><span class="n">s1</span><span class="w"> </span><span class="n">s2</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">walking-triples</span><span class="w"> </span><span class="n">s-rest</span><span class="p">))))</span>
 
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">problem-72-stream</span>
-<span class="w">  </span><span class="p">(</span><span class="nb">stream-filter</span><span class="w"> </span>
-<span class="w">        </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="w">          </span><span class="p">(</span><span class="k">and</span><span class="w"> </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="p">(</span><span class="n">my-W</span><span class="w"> </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="n">x</span><span class="p">))</span><span class="w"> </span><span class="p">(</span><span class="n">my-W</span><span class="w"> </span><span class="p">(</span><span class="nb">cadr</span><span class="w"> </span><span class="n">x</span><span class="p">)))</span>
-<span class="w">               </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="p">(</span><span class="n">my-W</span><span class="w"> </span><span class="p">(</span><span class="nb">cadr</span><span class="w"> </span><span class="n">x</span><span class="p">))</span><span class="w"> </span><span class="p">(</span><span class="n">my-W</span><span class="w"> </span><span class="p">(</span><span class="nb">caddr</span><span class="w"> </span><span class="n">x</span><span class="p">)))))</span>
-<span class="w">        </span><span class="p">(</span><span class="n">walking-triples</span><span class="w"> </span><span class="n">square-sorted-stream</span><span class="p">)))</span>
+```rkt
+(define (my-W x) 
+  (let ((i (car x)) (j (cadr x))) 
+    (+ (square i) (square j))))
+(define square-sorted-stream 
+  (weighted-pairs integers integers my-W))
 
-<span class="p">(</span><span class="n">display-n-with-weight</span><span class="w"> </span><span class="n">problem-72-stream</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">my-W</span><span class="w"> </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="n">x</span><span class="p">))))</span>
-</pre></div>
-<div class="code-box" markdown="1">
-<details class="collapsible-code">
-<summary class="code-summary"><a href="code/ex3-72.rkt">code/ex3-72.rkt</a> <span class="expand-hint">(click to expand)</span></summary>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+(define (walking-triples s)
+  (let* ((s0 (stream-car s))
+         (s-rest (stream-cdr s))
+         (s1 (stream-car s-rest))
+         (s-rest-rest (stream-cdr s-rest))
+         (s2 (stream-car s-rest-rest)))
+    (cons-stream (list s0 s1 s2) (walking-triples s-rest))))
+
+(define problem-72-stream
+  (stream-filter 
+        (lambda (x)
+          (and (= (my-W (car x)) (my-W (cadr x)))
+               (= (my-W (cadr x)) (my-W (caddr x)))))
+        (walking-triples square-sorted-stream)))
+
+(display-n-with-weight problem-72-stream 10 (lambda (x) (my-W (car x))))
+```
+
+
+
+
+<div class="code-box"><details class="collapsible-code"><summary class="code-summary"><span><a href="code/ex3-72.rkt">ex3-72.rkt</a></span><span class="expand-hint">(click to expand)</span></summary><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="k">stream</span><span class="p">)</span><span class="w"> </span>
 <span class="w">  </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="k">stream</span><span class="p">))</span>
@@ -3642,7 +3690,7 @@ squares in three different ways (showing how they can be so written).
 <span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">and</span><span class="w"> </span><span class="p">(</span><span class="nb">not</span><span class="w"> </span><span class="p">(</span><span class="n">stream-null?</span><span class="w"> </span><span class="n">s</span><span class="p">))</span><span class="w"> </span><span class="p">(</span><span class="nb">&gt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span>
 <span class="w">    </span><span class="p">(</span><span class="k">begin</span><span class="w"> </span>
 <span class="w">      </span><span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">s</span><span class="p">))</span>
-<span class="w">      </span><span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="s2">&quot; : Weight = &quot;</span><span class="p">)</span>
+<span class="w">      </span><span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="s2">" : Weight = "</span><span class="p">)</span>
 <span class="w">      </span><span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="p">(</span><span class="n">W</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">s</span><span class="p">)))</span><span class="w"> </span><span class="p">(</span><span class="nb">newline</span><span class="p">)</span>
 <span class="w">      </span><span class="p">(</span><span class="n">display-n-with-weight</span><span class="w"> </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="n">W</span><span class="p">))))</span>
 
@@ -3677,13 +3725,13 @@ squares in three different ways (showing how they can be so written).
 <span class="c1">;;       (if (and (= (my-W nv) (my-W lv))</span>
 <span class="c1">;;                (= (my-W lv) (my-W llv)))</span>
 <span class="c1">;;         (begin </span>
-<span class="c1">;;           (display &quot;Found: &quot;)</span>
+<span class="c1">;;           (display "Found: ")</span>
 <span class="c1">;;           (display nv)</span>
-<span class="c1">;;           (display &quot;, &quot;)</span>
+<span class="c1">;;           (display ", ")</span>
 <span class="c1">;;           (display lv)</span>
-<span class="c1">;;           (display &quot;, &quot;)</span>
+<span class="c1">;;           (display ", ")</span>
 <span class="c1">;;           (display llv)</span>
-<span class="c1">;;           (display &quot; with sum squares &quot;)</span>
+<span class="c1">;;           (display " with sum squares ")</span>
 <span class="c1">;;           (display (my-W lv)) (newline)</span>
 <span class="c1">;;           (my-search (stream-cdr s) nv lv (- n 1)))</span>
 <span class="c1">;;         (my-search (stream-cdr s) nv lv n)))))</span>
@@ -3694,12 +3742,8 @@ squares in three different ways (showing how they can be so written).
 <span class="c1">;    (display-line (my-W x)) x)))</span>
 <span class="c1">; (display-stream-first-n </span>
 <span class="c1">;  (stream-map echo cube-sorted-stream) 100)</span>
-</pre></div>
-
-</details>
-<div class="code-output">
-<span>Output:</span>
-<pre>((1 18) (6 17) (10 15)) : Weight = 325
+</code></pre></div>
+</details><div class="code-output"><span>Output:</span><pre>((1 18) (6 17) (10 15)) : Weight = 325
 ((5 20) (8 19) (13 16)) : Weight = 425
 ((5 25) (11 23) (17 19)) : Weight = 650
 ((7 26) (10 25) (14 23)) : Weight = 725
@@ -3709,9 +3753,7 @@ squares in three different ways (showing how they can be so written).
 ((1 32) (8 31) (20 25)) : Weight = 1025
 ((4 33) (9 32) (12 31)) : Weight = 1105
 ((9 32) (12 31) (23 24)) : Weight = 1105
-</pre>
-</div>
-</div>
+</pre></div></div>
 
 
 
@@ -3742,22 +3784,26 @@ initial capacitor voltage and produces the output stream of voltages.
 ##### Solution
 
 Not too bad, here it is with a constant current input $i=1.$
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">RC</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="n">v0</span><span class="p">)</span>
-<span class="w">    </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">cap-voltage</span><span class="w"> </span>
-<span class="w">        </span><span class="p">(</span><span class="nb">stream-map</span><span class="w"> </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">v0</span><span class="p">))</span><span class="w"> </span><span class="p">(</span><span class="n">scale-stream</span><span class="w"> </span><span class="p">(</span><span class="n">integral</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">/</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="n">C</span><span class="p">))))</span>
-<span class="w">          </span><span class="p">(</span><span class="n">resistor-voltage</span><span class="w"> </span><span class="p">(</span><span class="n">scale-stream</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="n">R</span><span class="p">)))</span>
-<span class="w">      </span><span class="p">(</span><span class="n">add-streams</span><span class="w"> </span><span class="n">cap-voltage</span><span class="w"> </span><span class="n">resistor-voltage</span><span class="p">))))</span>
 
 
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">RC1</span><span class="w"> </span><span class="p">(</span><span class="n">RC</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mf">0.5</span><span class="p">))</span>
-<span class="p">(</span><span class="n">display-stream-first-n</span><span class="w"> </span><span class="p">(</span><span class="n">RC1</span><span class="w"> </span><span class="p">(</span><span class="n">constant-stream</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="mf">1.0</span><span class="p">)</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
+```rkt
+(define (RC R C dt)
+  (lambda (i v0)
+    (let ((cap-voltage 
+        (stream-map (lambda (x) (+ x v0)) (scale-stream (integral i 0 dt) (/ 1.0 C))))
+          (resistor-voltage (scale-stream i R)))
+      (add-streams cap-voltage resistor-voltage))))
 
-<div class="code-box" markdown="1">
-<details class="collapsible-code">
-<summary class="code-summary"><a href="code/ex3-73.rkt">code/ex3-73.rkt</a> <span class="expand-hint">(click to expand)</span></summary>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+(define RC1 (RC 5 1 0.5))
+(display-stream-first-n (RC1 (constant-stream 1) 1.0) 10)
+```
+
+
+
+
+
+<div class="code-box"><details class="collapsible-code"><summary class="code-summary"><span><a href="code/ex3-73.rkt">ex3-73.rkt</a></span><span class="expand-hint">(click to expand)</span></summary><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="k">stream</span><span class="p">)</span><span class="w"> </span>
 <span class="w">  </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="k">stream</span><span class="p">))</span>
@@ -3823,12 +3869,8 @@ Not too bad, here it is with a constant current input $i=1.$
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">RC1</span><span class="w"> </span><span class="p">(</span><span class="n">RC</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mf">0.5</span><span class="p">))</span>
 <span class="p">(</span><span class="n">display-stream-first-n</span><span class="w"> </span><span class="p">(</span><span class="n">RC1</span><span class="w"> </span><span class="p">(</span><span class="n">constant-stream</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="mf">1.0</span><span class="p">)</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-
-</details>
-<div class="code-output">
-<span>Output:</span>
-<pre>
+</code></pre></div>
+</details><div class="code-output"><span>Output:</span><pre>
 6.0
 6.5
 7.0
@@ -3838,9 +3880,7 @@ Not too bad, here it is with a constant current input $i=1.$
 9.0
 9.5
 10.0
-10.5</pre>
-</div>
-</div>
+10.5</pre></div></div>
 
 
 #### Exercise 3.74
@@ -3854,9 +3894,14 @@ changes from positive to negative, and $0$ otherwise.  (Assume that the sign of 
 $0$ input is positive.)  For example, a typical input signal with its associated
 zero-crossing signal would be
 
-<div class="codehilite"><pre><span></span><span class="n">…</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mf">1.5</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="mf">-0.1</span><span class="w"> </span><span class="mi">-2</span><span class="w"> </span><span class="mi">-3</span><span class="w"> </span><span class="mi">-2</span><span class="w"> </span><span class="mf">-0.5</span><span class="w"> </span><span class="mf">0.2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="n">…</span>
-<span class="n">…</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="w">  </span><span class="mi">0</span><span class="w">  </span><span class="mi">0</span><span class="w">  </span><span class="mi">0</span><span class="w">   </span><span class="mi">-1</span><span class="w">   </span><span class="mi">0</span><span class="w">  </span><span class="mi">0</span><span class="w">  </span><span class="mi">0</span><span class="w">   </span><span class="mi">0</span><span class="w">   </span><span class="mi">1</span><span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="n">…</span>
-</pre></div>
+
+
+```rkt
+… 1 2 1.5 1 0.5 -0.1 -2 -3 -2 -0.5 0.2 3 4 …
+… 0 0  0  0  0   -1   0  0  0   0   1  0 0 …
+```
+
+
 
 In Alyssa's system, the signal from the sensor is represented as a stream
 `sense-data` and the stream `zero-crossings` is the corresponding
@@ -3865,29 +3910,39 @@ stream of zero crossings.  Alyssa first writes a procedure
 signs of the values to produce an appropriate $0$, $1$, or $-1$.  She then
 constructs her zero-crossing stream as follows:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">make-zero-crossings</span>
-<span class="w">         </span><span class="n">input-stream</span><span class="w"> </span><span class="n">last-value</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="n">cons-stream</span>
-<span class="w">   </span><span class="p">(</span><span class="n">sign-change-detector</span><span class="w"> </span>
-<span class="w">    </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">input-stream</span><span class="p">)</span><span class="w"> </span>
-<span class="w">    </span><span class="n">last-value</span><span class="p">)</span>
-<span class="w">   </span><span class="p">(</span><span class="n">make-zero-crossings</span><span class="w"> </span>
-<span class="w">    </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">input-stream</span><span class="p">)</span>
-<span class="w">    </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">input-stream</span><span class="p">))))</span>
 
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">zero-crossings</span><span class="w"> </span>
-<span class="w">  </span><span class="p">(</span><span class="n">make-zero-crossings</span><span class="w"> </span><span class="n">sense-data</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span>
-</pre></div>
+
+```rkt
+(define (make-zero-crossings
+         input-stream last-value)
+  (cons-stream
+   (sign-change-detector 
+    (stream-car input-stream) 
+    last-value)
+   (make-zero-crossings 
+    (stream-cdr input-stream)
+    (stream-car input-stream))))
+
+(define zero-crossings 
+  (make-zero-crossings sense-data 0))
+```
+
+
 
 Alyssa's boss, Eva Lu Ator, walks by and suggests that this program is
 approximately equivalent to the following one, which uses the generalized
 version of `stream-map` from Exercise 3.50:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">zero-crossings</span>
-<span class="w">  </span><span class="p">(</span><span class="nb">stream-map</span><span class="w"> </span><span class="n">sign-change-detector</span><span class="w"> </span>
-<span class="w">              </span><span class="n">sense-data</span><span class="w"> </span>
-<span class="w">              </span><span class="n">⟨expression⟩</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(define zero-crossings
+  (stream-map sign-change-detector 
+              sense-data 
+              ⟨expression⟩))
+```
+
+
 
 Complete the program by supplying the indicated `⟨expression⟩`.
 
@@ -3905,17 +3960,22 @@ averaging each value of the sense data with the previous value.  She explains
 the problem to her assistant, Louis Reasoner, who attempts to implement the
 idea, altering Alyssa's program as follows:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">make-zero-crossings</span><span class="w"> </span>
-<span class="w">         </span><span class="n">input-stream</span><span class="w"> </span><span class="n">last-value</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">avpt</span><span class="w"> </span>
-<span class="w">         </span><span class="p">(</span><span class="nb">/</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">input-stream</span><span class="p">)</span><span class="w"> </span>
-<span class="w">               </span><span class="n">last-value</span><span class="p">)</span><span class="w"> </span>
-<span class="w">            </span><span class="mi">2</span><span class="p">)))</span>
-<span class="w">    </span><span class="p">(</span><span class="n">cons-stream</span><span class="w"> </span>
-<span class="w">     </span><span class="p">(</span><span class="n">sign-change-detector</span><span class="w"> </span><span class="n">avpt</span><span class="w"> </span><span class="n">last-value</span><span class="p">)</span>
-<span class="w">     </span><span class="p">(</span><span class="n">make-zero-crossings</span><span class="w"> </span>
-<span class="w">      </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">input-stream</span><span class="p">)</span><span class="w"> </span><span class="n">avpt</span><span class="p">))))</span>
-</pre></div>
+
+
+```rkt
+(define (make-zero-crossings 
+         input-stream last-value)
+  (let ((avpt 
+         (/ (+ (stream-car input-stream) 
+               last-value) 
+            2)))
+    (cons-stream 
+     (sign-change-detector avpt last-value)
+     (make-zero-crossings 
+      (stream-cdr input-stream) avpt))))
+```
+
+
 
 This does not correctly implement Alyssa's plan.  Find the bug that Louis has
 installed and fix it without changing the structure of the program.  (Hint: You
@@ -3945,18 +4005,19 @@ of integers in 3.5.2.  Alternatively, we can give a definition of
 `integral` that is more like `integers-starting-from` (also in
 3.5.2):
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">integral</span>
-<span class="w">         </span><span class="n">integrand</span><span class="w"> </span><span class="n">initial-value</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="n">cons-stream</span><span class="w"> </span>
-<span class="w">   </span><span class="n">initial-value</span>
-<span class="w">   </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">stream-null?</span><span class="w"> </span><span class="n">integrand</span><span class="p">)</span>
-<span class="w">       </span><span class="n">the-empty-stream</span>
-<span class="w">       </span><span class="p">(</span><span class="n">integral</span><span class="w"> </span>
-<span class="w">        </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="n">integrand</span><span class="p">)</span>
-<span class="w">        </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="n">integrand</span><span class="p">))</span>
-<span class="w">           </span><span class="n">initial-value</span><span class="p">)</span>
-<span class="w">        </span><span class="n">dt</span><span class="p">))))</span>
-</pre></div>
+```rkt
+(define (integral
+         integrand initial-value dt)
+  (cons-stream 
+   initial-value
+   (if (stream-null? integrand)
+       the-empty-stream
+       (integral 
+        (stream-cdr integrand)
+        (+ (* dt (stream-car integrand))
+           initial-value)
+        dt))))
+```
 
 When used in systems with loops, this procedure has the same problem as does
 our original version of `integral`.  Modify the procedure so that it

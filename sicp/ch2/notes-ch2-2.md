@@ -3,7 +3,6 @@ layout: sicp
 render_with_liquid: false
 title: SICP Chapter 2.2
 ---
-
 <div class="nav">
     <span class="activenav"><a href="notes-ch2-1.html">← Previous</a></span>
     <span class="activenav"><a href="../index.html">↑ Up</a></span>
@@ -12,26 +11,22 @@ title: SICP Chapter 2.2
 
 [HTML Book Chapter 2.2 Link](https://sarabander.github.io/sicp/html/2_002e2.xhtml#g_t2_002e2)
 
-## Directory
-- [Section 2.2](#section-22)
-  - [Experiments with lists and nil](#experiments-with-lists-and-nil)
-  - [Other stuff I should know:](#other-stuff-i-should-know)
-  - [Experiments with binary trees](#experiments-with-binary-trees)
-  - [Meeting 04-06-2025](#meeting-04-06-2025)
-  - [Exercises](#exercises)
-    - *Exercises:* ([Exercise 2.17](#exercise-217), [Exercise 2.18](#exercise-218), [Exercise 2.19](#exercise-219), [Exercise 2.20](#exercise-220), [Exercise 2.21](#exercise-221), [Exercise 2.22](#exercise-222), [Exercise 2.23](#exercise-223), [Exercise 2.24](#exercise-224), [Exercise 2.25](#exercise-225), [Exercise 2.26](#exercise-226), [Exercise 2.27](#exercise-227), [Exercise 2.28](#exercise-228), [Exercise 2.29](#exercise-229), [Exercise 2.30](#exercise-230), [Exercise 2.31](#exercise-231), [Exercise 2.32](#exercise-232), [Exercise 2.33](#exercise-233), [Exercise 2.34](#exercise-234), [Exercise 2.35](#exercise-235), [Exercise 2.36](#exercise-236), [Exercise 2.37](#exercise-237), [Exercise 2.38](#exercise-238), [Exercise 2.39](#exercise-239), [Exercise 2.40](#exercise-240), [Exercise 2.41](#exercise-241), [Exercise 2.42](#exercise-242), [Exercise 2.43](#exercise-243), [Exercise 2.44](#exercise-244), [Exercise 2.45](#exercise-245), [Exercise 2.46](#exercise-246), [Exercise 2.47](#exercise-247), [Exercise 2.48](#exercise-248), [Exercise 2.49](#exercise-249), [Exercise 2.50](#exercise-250), [Exercise 2.51](#exercise-251), [Exercise 2.52](#exercise-252))
+
+
+<div class="table-of-contents"><h2>Directory</h2><ul class="toc-list"><li><a href="#section-22">Section 2.2</a><ul class="toc-list"><li><a href="#experiments-with-lists-and-nil">Experiments with lists and nil</a></li><li><a href="#other-stuff-i-should-know">Other stuff I should know:</a></li><li><a href="#experiments-with-binary-trees">Experiments with binary trees</a></li><li><a href="#meeting-04-06-2025">Meeting 04-06-2025</a></li><li><a href="#exercises">Exercises</a> <div class="exercise-container">(<span class="exercise-list"><span><a href="#exercise-217">Exercise 2.17</a></span><span><a href="#exercise-218">Exercise 2.18</a></span><span><a href="#exercise-219">Exercise 2.19</a></span><span><a href="#exercise-220">Exercise 2.20</a></span><span><a href="#exercise-221">Exercise 2.21</a></span><span><a href="#exercise-222">Exercise 2.22</a></span><span><a href="#exercise-223">Exercise 2.23</a></span><span><a href="#exercise-224">Exercise 2.24</a></span><span><a href="#exercise-225">Exercise 2.25</a></span><span><a href="#exercise-226">Exercise 2.26</a></span><span><a href="#exercise-227">Exercise 2.27</a></span><span><a href="#exercise-228">Exercise 2.28</a></span><span><a href="#exercise-229">Exercise 2.29</a></span><span><a href="#exercise-230">Exercise 2.30</a></span><span><a href="#exercise-231">Exercise 2.31</a></span><span><a href="#exercise-232">Exercise 2.32</a></span><span><a href="#exercise-233">Exercise 2.33</a></span><span><a href="#exercise-234">Exercise 2.34</a></span><span><a href="#exercise-235">Exercise 2.35</a></span><span><a href="#exercise-236">Exercise 2.36</a></span><span><a href="#exercise-237">Exercise 2.37</a></span><span><a href="#exercise-238">Exercise 2.38</a></span><span><a href="#exercise-239">Exercise 2.39</a></span><span><a href="#exercise-240">Exercise 2.40</a></span><span><a href="#exercise-241">Exercise 2.41</a></span><span><a href="#exercise-242">Exercise 2.42</a></span><span><a href="#exercise-243">Exercise 2.43</a></span><span><a href="#exercise-244">Exercise 2.44</a></span><span><a href="#exercise-245">Exercise 2.45</a></span><span><a href="#exercise-246">Exercise 2.46</a></span><span><a href="#exercise-247">Exercise 2.47</a></span><span><a href="#exercise-248">Exercise 2.48</a></span><span><a href="#exercise-249">Exercise 2.49</a></span><span><a href="#exercise-250">Exercise 2.50</a></span><span><a href="#exercise-251">Exercise 2.51</a></span><span><a href="#exercise-252">Exercise 2.52</a></span></span>)</div></li></ul></li></ul></div>
+
 
 ## Section 2.2
 
 ### Experiments with lists and nil
 
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="code/ch2-2-experiments.rkt">code/ch2-2-experiments.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="code/ch2-2-experiments.rkt">ch2-2-experiments.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 <span class="p">(</span><span class="nb">newline</span><span class="p">)</span>
 <span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="p">(</span><span class="nb">cdr</span><span class="w"> </span><span class="p">(</span><span class="nb">cdr</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="p">))))</span>
 <span class="p">(</span><span class="nb">newline</span><span class="p">)</span>
-<span class="c1">; This gives an error (can&#39;t compare equality with nil):</span>
+<span class="c1">; This gives an error (can't compare equality with nil):</span>
 <span class="c1">; (display (= nil (cdr (cdr (list 1 2)))))</span>
 <span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="n">nil</span><span class="p">)</span>
 <span class="p">(</span><span class="nb">newline</span><span class="p">)</span>
@@ -49,10 +44,8 @@ title: SICP Chapter 2.2
 <span class="c1">; not defined in sicp scheme</span>
 <span class="c1">;(display (last-pair (list 1 2 3 4)))</span>
 <span class="c1">;(display (last (list 1 2 3 4)))</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>
 ()
 ()
 (34)
@@ -62,9 +55,7 @@ title: SICP Chapter 2.2
 (1 2 3 4)
 (1 2 3 4)
 
-</pre>
-</div>
-</div>
+</pre></div></div>
 
 
 ### Other stuff I should know:
@@ -73,17 +64,23 @@ atom?
 
 number?
 
-<div class="codehilite"><pre><span></span>; &#39;symb
+
+
+```
+
+; 'symb
 ; ; (list symb)
-; &#39;(symb)
+; '(symb)
 ; (map (lambda (x) (list x)) (list 1 2 3 4))
 
 ;; Some discussion leading into symbolics/undefined symbol f.
 (define lst (list 1 2 3 4))
-(map (lambda (x) (&#39;f x)) lst)
+(map (lambda (x) ('f x)) lst)
 (list (quote (f 1)) (quote (f 2)) (quote (f 3)) (quote (f 4)))
 (map (lambda (x) `(f ,x)) lst)
-</pre></div>
+```
+
+
 
 ### Experiments with binary trees
 - Note to self: do some enumeration of binary trees here! It'll be fun!
@@ -107,26 +104,27 @@ Define a procedure
 `last-pair` that returns the list that contains only the last element of a
 given (nonempty) list:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="nb">last-pair</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">23</span><span class="w"> </span><span class="mi">72</span><span class="w"> </span><span class="mi">149</span><span class="w"> </span><span class="mi">34</span><span class="p">))</span>
-<span class="p">(</span><span class="mi">34</span><span class="p">)</span>
-</pre></div>
+
+
+```rkt
+(last-pair (list 23 72 149 34))
+(34)
+```
+
+
 
 ##### Solution
 
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="code/ex2-17.rkt">code/ex2-17.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="code/ex2-17.rkt">ex2-17.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="nb">last-pair</span><span class="w"> </span><span class="n">lst</span><span class="p">)</span><span class="w"> </span>
 <span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">null?</span><span class="w"> </span><span class="p">(</span><span class="nb">cdr</span><span class="w"> </span><span class="n">lst</span><span class="p">))</span><span class="w"> </span><span class="n">lst</span><span class="w"> </span><span class="p">(</span><span class="nb">last-pair</span><span class="w"> </span><span class="p">(</span><span class="nb">cdr</span><span class="w"> </span><span class="n">lst</span><span class="p">))))</span>
 <span class="p">(</span><span class="nb">last-pair</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">23</span><span class="w"> </span><span class="mi">72</span><span class="w"> </span><span class="mi">149</span><span class="w"> </span><span class="mi">34</span><span class="p">))</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>(34)
-</pre>
-</div>
-</div>
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>(34)
+</pre></div></div>
 
 
 #### Exercise 2.18
@@ -135,18 +133,23 @@ Define a procedure `reverse`
 that takes a list as argument and returns a list of the same elements in
 reverse order:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="nb">reverse</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">9</span><span class="w"> </span><span class="mi">16</span><span class="w"> </span><span class="mi">25</span><span class="p">))</span>
-<span class="p">(</span><span class="mi">25</span><span class="w"> </span><span class="mi">16</span><span class="w"> </span><span class="mi">9</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
+
+
+```rkt
+(reverse (list 1 4 9 16 25))
+(25 16 9 4 1)
+```
+
+
 
 ##### Solution
 
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="code/ex2-18.rkt">code/ex2-18.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="code/ex2-18.rkt">ex2-18.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="c1">; reverse(a b c ... z) = (reverse(b c ... z) a) = (z reverse(a b ... y))</span>
-<span class="c1">;; This works, but it&#39;s going to be god-awful slow!!! :(</span>
+<span class="c1">;; This works, but it's going to be god-awful slow!!! :(</span>
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">last-elem</span><span class="w"> </span><span class="n">lst</span><span class="p">)</span><span class="w"> </span>
 <span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">null?</span><span class="w"> </span><span class="p">(</span><span class="nb">cdr</span><span class="w"> </span><span class="n">lst</span><span class="p">))</span><span class="w"> </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="n">lst</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">last-elem</span><span class="w"> </span><span class="p">(</span><span class="nb">cdr</span><span class="w"> </span><span class="n">lst</span><span class="p">))))</span>
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">most</span><span class="w"> </span><span class="n">lst</span><span class="p">)</span><span class="w"> </span>
@@ -164,7 +167,7 @@ reverse order:
 <span class="w">		   </span><span class="p">(</span><span class="nb">cons</span><span class="w"> </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="n">lst</span><span class="p">)</span><span class="w"> </span><span class="n">ret</span><span class="p">))))</span>
 <span class="w">  </span><span class="p">(</span><span class="n">reverse-help</span><span class="w"> </span><span class="n">lst</span><span class="w"> </span><span class="n">nil</span><span class="p">))</span>
 
-<span class="c1">;; Let&#39;s test both versions</span>
+<span class="c1">;; Let's test both versions</span>
 <span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="p">(</span><span class="nb">reverse</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">6</span><span class="p">)))</span>
 <span class="p">(</span><span class="nb">newline</span><span class="p">)</span>
 <span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="p">(</span><span class="nb">reverse</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="p">)))</span>
@@ -181,10 +184,8 @@ reverse order:
 <span class="p">(</span><span class="nb">newline</span><span class="p">)</span>
 <span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="p">(</span><span class="n">reverse-n2</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="p">)))</span>
 <span class="p">(</span><span class="nb">newline</span><span class="p">)</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>(6 5 4 3 2 1)
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>(6 5 4 3 2 1)
 (2 1)
 (1)
 ()
@@ -192,9 +193,7 @@ reverse order:
 (2 1)
 (1)
 ()
-</pre>
-</div>
-</div>
+</pre></div></div>
 
 
 > “What else are lists,” you reply, your eyes flashing, “But alternatives?”
@@ -216,40 +215,55 @@ We want to rewrite the procedure `cc` so that its second argument is a
 list of the values of the coins to use rather than an integer specifying which
 coins to use.  We could then have lists that defined each kind of currency:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">us-coins</span><span class="w"> </span>
-<span class="w">  </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">50</span><span class="w"> </span><span class="mi">25</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
 
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">uk-coins</span><span class="w"> </span>
-<span class="w">  </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="mi">50</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mf">0.5</span><span class="p">))</span>
-</pre></div>
+
+```rkt
+(define us-coins 
+  (list 50 25 10 5 1))
+
+(define uk-coins 
+  (list 100 50 20 10 5 2 1 0.5))
+```
+
+
 
 We could then call `cc` as follows:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">cc</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="n">us-coins</span><span class="p">)</span>
-<span class="mi">292</span>
-</pre></div>
+
+
+```rkt
+(cc 100 us-coins)
+292
+```
+
+
 
 To do this will require changing the program `cc` somewhat.  It will still
 have the same form, but it will access its second argument differently, as
 follows:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">cc</span><span class="w"> </span><span class="n">amount</span><span class="w"> </span><span class="n">coin-values</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">cond</span><span class="w"> </span><span class="p">((</span><span class="nb">=</span><span class="w"> </span><span class="n">amount</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span>
-<span class="w">         </span><span class="mi">1</span><span class="p">)</span>
-<span class="w">        </span><span class="p">((</span><span class="k">or</span><span class="w"> </span><span class="p">(</span><span class="nb">&lt;</span><span class="w"> </span><span class="n">amount</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span>
-<span class="w">             </span><span class="p">(</span><span class="n">no-more?</span><span class="w"> </span><span class="n">coin-values</span><span class="p">))</span><span class="w"> </span>
-<span class="w">         </span><span class="mi">0</span><span class="p">)</span>
-<span class="w">        </span><span class="p">(</span><span class="k">else</span>
-<span class="w">         </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="p">(</span><span class="n">cc</span><span class="w"> </span>
-<span class="w">             </span><span class="n">amount</span>
-<span class="w">             </span><span class="p">(</span><span class="n">except-first-denomination</span><span class="w"> </span>
-<span class="w">              </span><span class="n">coin-values</span><span class="p">))</span>
-<span class="w">            </span><span class="p">(</span><span class="n">cc</span><span class="w"> </span>
-<span class="w">             </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">amount</span>
-<span class="w">                </span><span class="p">(</span><span class="n">first-denomination</span><span class="w"> </span>
-<span class="w">                 </span><span class="n">coin-values</span><span class="p">))</span>
-<span class="w">             </span><span class="n">coin-values</span><span class="p">)))))</span>
-</pre></div>
+
+
+```rkt
+(define (cc amount coin-values)
+  (cond ((= amount 0) 
+         1)
+        ((or (< amount 0) 
+             (no-more? coin-values)) 
+         0)
+        (else
+         (+ (cc 
+             amount
+             (except-first-denomination 
+              coin-values))
+            (cc 
+             (- amount
+                (first-denomination 
+                 coin-values))
+             coin-values)))))
+```
+
+
 
 Define the procedures `first-denomination`,
 `except-first-denomination` and `no-more?` in terms of primitive
@@ -257,9 +271,9 @@ operations on list structures.  Does the order of the list `coin-values`
 affect the answer produced by `cc`?  Why or why not?
 
 ##### Solution
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="code/ex2-19.rkt">code/ex2-19.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="code/ex2-19.rkt">ex2-19.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">cc</span><span class="w"> </span><span class="n">amount</span><span class="w"> </span><span class="n">coin-values</span><span class="p">)</span>
@@ -299,18 +313,14 @@ affect the answer produced by `cc`?  Why or why not?
 <span class="p">(</span><span class="nb">newline</span><span class="p">)</span>
 <span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="p">(</span><span class="n">cc</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="mi">50</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">100</span><span class="p">)))</span>
 <span class="p">(</span><span class="nb">newline</span><span class="p">)</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>292
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>292
 104561
 104561
 104561
 104561
 104561
-</pre>
-</div>
-</div>
+</pre></div></div>
 
 Pretty simple definitions, and we've demonstrated that the order doesn't matter.
 
@@ -325,29 +335,49 @@ initial parameters (if any) will have as values the initial arguments, as
 usual, but the final parameter's value will be a list of any
 remaining arguments.  For instance, given the definition
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="n">z</span><span class="p">)</span><span class="w"> </span><span class="n">⟨body⟩</span><span class="p">)</span>
-</pre></div>
+
+
+```rkt
+(define (f x y . z) ⟨body⟩)
+```
+
+
 
 
 the procedure `f` can be called with two or more arguments.  If we
 evaluate
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">6</span><span class="p">)</span>
-</pre></div>
+
+
+```rkt
+(f 1 2 3 4 5 6)
+```
+
+
 
 
 then in the body of `f`, `x` will be 1, `y` will be 2, and
 `z` will be the list `(3 4 5 6)`.  Given the definition
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">g</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="n">w</span><span class="p">)</span><span class="w"> </span><span class="n">⟨body⟩</span><span class="p">)</span>
-</pre></div>
+
+
+```rkt
+(define (g . w) ⟨body⟩)
+```
+
+
 
 
 the procedure `g` can be called with zero or more arguments.  If we
 evaluate
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">g</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">6</span><span class="p">)</span>
-</pre></div>
+
+
+```rkt
+(g 1 2 3 4 5 6)
+```
+
+
 
 
 then in the body of `g`, `w` will be the list `(1 2 3 4 5
@@ -357,18 +387,23 @@ Use this notation to write a procedure `same-parity` that takes one or
 more integers and returns a list of all the arguments that have the same
 even-odd parity as the first argument.  For example,
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">same-parity</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="mi">7</span><span class="p">)</span>
-<span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">7</span><span class="p">)</span>
 
-<span class="p">(</span><span class="n">same-parity</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="mi">7</span><span class="p">)</span>
-<span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">6</span><span class="p">)</span>
-</pre></div>
+
+```rkt
+(same-parity 1 2 3 4 5 6 7)
+(1 3 5 7)
+
+(same-parity 2 3 4 5 6 7)
+(2 4 6)
+```
+
+
 
 ##### Solution
 
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="code/ex2-20.rkt">code/ex2-20.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="code/ex2-20.rkt">ex2-20.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">same-parity</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="n">b</span><span class="p">)</span>
 <span class="w">  </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">same-parity-inner</span><span class="w"> </span><span class="n">lst2</span><span class="w"> </span><span class="n">rem</span><span class="p">)</span>
 <span class="w">    </span><span class="p">(</span><span class="k">cond</span><span class="w"> </span><span class="p">((</span><span class="nb">null?</span><span class="w"> </span><span class="n">lst2</span><span class="p">)</span><span class="w"> </span><span class="n">nil</span><span class="p">)</span>
@@ -380,14 +415,10 @@ even-odd parity as the first argument.  For example,
 <span class="c1">;(1 3 5 7)</span>
 <span class="p">(</span><span class="n">same-parity</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="mi">7</span><span class="p">)</span>
 <span class="c1">;(2 4 6)</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>(1 3 5 7)
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>(1 3 5 7)
 (2 4 6)
-</pre>
-</div>
-</div>
+</pre></div></div>
 
 
 #### Exercise 2.21
@@ -396,27 +427,37 @@ The procedure `square-list`
 takes a list of numbers as argument and returns a list of the squares of those
 numbers.
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">square-list</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="p">))</span>
-<span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">9</span><span class="w"> </span><span class="mi">16</span><span class="p">)</span>
-</pre></div>
+
+
+```rkt
+(square-list (list 1 2 3 4))
+(1 4 9 16)
+```
+
+
 
 Here are two different definitions of `square-list`.  Complete both of
 them by filling in the missing expressions:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">square-list</span><span class="w"> </span><span class="n">items</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">null?</span><span class="w"> </span><span class="n">items</span><span class="p">)</span>
-<span class="w">      </span><span class="n">nil</span>
-<span class="w">      </span><span class="p">(</span><span class="nb">cons</span><span class="w"> </span><span class="n">⟨??⟩</span><span class="w"> </span><span class="n">⟨??⟩</span><span class="p">)))</span>
 
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">square-list</span><span class="w"> </span><span class="n">items</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="nb">map</span><span class="w"> </span><span class="n">⟨??⟩</span><span class="w"> </span><span class="n">⟨??⟩</span><span class="p">))</span>
-</pre></div>
+
+```rkt
+(define (square-list items)
+  (if (null? items)
+      nil
+      (cons ⟨??⟩ ⟨??⟩)))
+
+(define (square-list items)
+  (map ⟨??⟩ ⟨??⟩))
+```
+
+
 
 ##### Solution
 
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="code/ex2-21.rkt">code/ex2-21.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="code/ex2-21.rkt">ex2-21.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">square</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">x</span><span class="p">))</span>
 
 <span class="c1">;; Stubbornly trying to use tail recursion. This is a stupid idea, </span>
@@ -441,15 +482,11 @@ them by filling in the missing expressions:
 <span class="p">(</span><span class="n">square-list1</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="mi">7</span><span class="p">))</span>
 <span class="p">(</span><span class="n">square-list2</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="mi">7</span><span class="p">))</span>
 <span class="p">(</span><span class="n">square-list3</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="mi">7</span><span class="p">))</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>(1 4 9 16 25 36 49)
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>(1 4 9 16 25 36 49)
 (1 4 9 16 25 36 49)
 (1 4 9 16 25 36 49)
-</pre>
-</div>
-</div>
+</pre></div></div>
 
 
 #### Exercise 2.22
@@ -458,49 +495,64 @@ Louis Reasoner tries to rewrite
 the first `square-list` procedure of Exercise 2.21 so that it
 evolves an iterative process:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">square-list</span><span class="w"> </span><span class="n">items</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">iter</span><span class="w"> </span><span class="n">things</span><span class="w"> </span><span class="n">answer</span><span class="p">)</span>
-<span class="w">    </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">null?</span><span class="w"> </span><span class="n">things</span><span class="p">)</span>
-<span class="w">        </span><span class="n">answer</span>
-<span class="w">        </span><span class="p">(</span><span class="n">iter</span><span class="w"> </span><span class="p">(</span><span class="nb">cdr</span><span class="w"> </span><span class="n">things</span><span class="p">)</span>
-<span class="w">              </span><span class="p">(</span><span class="nb">cons</span><span class="w"> </span><span class="p">(</span><span class="n">square</span><span class="w"> </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="n">things</span><span class="p">))</span>
-<span class="w">                    </span><span class="n">answer</span><span class="p">))))</span>
-<span class="w">  </span><span class="p">(</span><span class="n">iter</span><span class="w"> </span><span class="n">items</span><span class="w"> </span><span class="n">nil</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(define (square-list items)
+  (define (iter things answer)
+    (if (null? things)
+        answer
+        (iter (cdr things)
+              (cons (square (car things))
+                    answer))))
+  (iter items nil))
+```
+
+
 
 Unfortunately, defining `square-list` this way produces the answer list in
 the reverse order of the one desired.  Why?
 
 Louis then tries to fix his bug by interchanging the arguments to `cons`:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">square-list</span><span class="w"> </span><span class="n">items</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">iter</span><span class="w"> </span><span class="n">things</span><span class="w"> </span><span class="n">answer</span><span class="p">)</span>
-<span class="w">    </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">null?</span><span class="w"> </span><span class="n">things</span><span class="p">)</span>
-<span class="w">        </span><span class="n">answer</span>
-<span class="w">        </span><span class="p">(</span><span class="n">iter</span><span class="w"> </span><span class="p">(</span><span class="nb">cdr</span><span class="w"> </span><span class="n">things</span><span class="p">)</span>
-<span class="w">              </span><span class="p">(</span><span class="nb">cons</span><span class="w"> </span><span class="n">answer</span>
-<span class="w">                    </span><span class="p">(</span><span class="n">square</span><span class="w"> </span>
-<span class="w">                     </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="n">things</span><span class="p">))))))</span>
-<span class="w">  </span><span class="p">(</span><span class="n">iter</span><span class="w"> </span><span class="n">items</span><span class="w"> </span><span class="n">nil</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(define (square-list items)
+  (define (iter things answer)
+    (if (null? things)
+        answer
+        (iter (cdr things)
+              (cons answer
+                    (square 
+                     (car things))))))
+  (iter items nil))
+```
+
+
 
 This doesn't work either.  Explain.
 
 ##### Solution
 
 This doesn't work, because it's a depth-first list! 
-<div class="codehilite"><pre><span></span><span class="c1">;; We want this:</span>
-<span class="p">(</span><span class="nb">cons</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="nb">cons</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="p">(</span><span class="nb">cons</span><span class="w"> </span><span class="mi">9</span><span class="w"> </span><span class="p">(</span><span class="nb">cons</span><span class="w"> </span><span class="mi">16</span><span class="w"> </span><span class="n">nil</span><span class="p">))))</span>
-<span class="c1">;; We get this:</span>
-<span class="p">(</span><span class="nb">cons</span><span class="w"> </span><span class="p">(</span><span class="nb">cons</span><span class="w"> </span><span class="p">(</span><span class="nb">cons</span><span class="w"> </span><span class="p">(</span><span class="nb">cons</span><span class="w"> </span><span class="n">nil</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="mi">9</span><span class="p">)</span><span class="w"> </span><span class="mi">16</span><span class="p">)</span>
-</pre></div>
+
+
+```rkt
+;; We want this:
+(cons 1 (cons 4 (cons 9 (cons 16 nil))))
+;; We get this:
+(cons (cons (cons (cons nil 1) 4) 9) 16)
+```
+
+
 
 I solved this in 2.22 by doing the first method and adding a reverse, which is another O(n) operation but it's only called once, so the entire method is still only O(n).
 
 Checking:
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="code/ex2-22.rkt">code/ex2-22.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="code/ex2-22.rkt">ex2-22.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">square</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">x</span><span class="p">))</span>
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">square-list</span><span class="w"> </span><span class="n">items</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">map</span><span class="w"> </span><span class="n">square</span><span class="w"> </span><span class="n">items</span><span class="p">))</span>
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">square-list-louis</span><span class="w"> </span><span class="n">items</span><span class="p">)</span>
@@ -514,14 +566,10 @@ Checking:
 <span class="w">  </span><span class="p">(</span><span class="n">iter</span><span class="w"> </span><span class="n">items</span><span class="w"> </span><span class="n">nil</span><span class="p">))</span>
 <span class="p">(</span><span class="n">square-list</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="p">))</span>
 <span class="p">(</span><span class="n">square-list-louis</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="p">))</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>(1 4 9 16)
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>(1 4 9 16)
 ((((() . 1) . 4) . 9) . 16)
-</pre>
-</div>
-</div>
+</pre></div></div>
 
 
 #### Exercise 2.23
@@ -534,14 +582,19 @@ The values returned by applying the procedure to the elements are not used at
 all---`for-each` is used with procedures that perform an action, such as
 printing.  For example,
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="nb">for-each</span><span class="w"> </span>
-<span class="w"> </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">newline</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="n">x</span><span class="p">))</span>
-<span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">57</span><span class="w"> </span><span class="mi">321</span><span class="w"> </span><span class="mi">88</span><span class="p">))</span>
 
-<span class="mi">57</span>
-<span class="mi">321</span>
-<span class="mi">88</span>
-</pre></div>
+
+```rkt
+(for-each 
+ (lambda (x) (newline) (display x))
+ (list 57 321 88))
+
+57
+321
+88
+```
+
+
 
 The value returned by the call to `for-each` (not illustrated above) can
 be something arbitrary, such as true.  Give an implementation of
@@ -549,24 +602,20 @@ be something arbitrary, such as true.  Give an implementation of
 
 ##### Solution
 
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="code/ex2-23.rkt">code/ex2-23.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="code/ex2-23.rkt">ex2-23.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="nb">for-each</span><span class="w"> </span><span class="n">lamb</span><span class="w"> </span><span class="n">lst</span><span class="p">)</span>
 <span class="w">  </span><span class="p">(</span><span class="nb">map</span><span class="w"> </span><span class="n">lamb</span><span class="w"> </span><span class="n">lst</span><span class="p">)</span>
 <span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="no">#f</span><span class="w"> </span><span class="n">nil</span><span class="p">))</span>
 <span class="p">(</span><span class="nb">for-each</span>
 <span class="w">  </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">newline</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="n">x</span><span class="p">))</span>
 <span class="w">  </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">57</span><span class="w"> </span><span class="mi">321</span><span class="w"> </span><span class="mi">88</span><span class="p">))</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>
 57
 321
-88</pre>
-</div>
-</div>
+88</pre></div></div>
 
 
 #### Exercise 2.24
@@ -585,17 +634,13 @@ To view this as a tree, tilt your head 45 degrees.
 
 This should print out `(1 (2 (3 4)))`?
 
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="code/ex2-24.rkt">code/ex2-24.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="code/ex2-24.rkt">ex2-24.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 <span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="p">)))</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>(1 (2 (3 4)))
-</pre>
-</div>
-</div>
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>(1 (2 (3 4)))
+</pre></div></div>
 
 
 #### Exercise 2.25
@@ -603,18 +648,23 @@ This should print out `(1 (2 (3 4)))`?
 Give combinations of `car`s
 and `cdr`s that will pick 7 from each of the following lists:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">(</span><span class="mi">5</span><span class="w"> </span><span class="mi">7</span><span class="p">)</span><span class="w"> </span><span class="mi">9</span><span class="p">)</span>
-<span class="p">((</span><span class="mi">7</span><span class="p">))</span>
-<span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="w"> </span><span class="p">(</span><span class="mi">4</span><span class="w"> </span><span class="p">(</span><span class="mi">5</span><span class="w"> </span><span class="p">(</span><span class="mi">6</span><span class="w"> </span><span class="mi">7</span><span class="p">))))))</span>
-</pre></div>
+
+
+```rkt
+(1 3 (5 7) 9)
+((7))
+(1 (2 (3 (4 (5 (6 7))))))
+```
+
+
 
 ##### Solution
 
 Got it right in one try btw, B)
 
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="code/ex2-25.rkt">code/ex2-25.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="code/ex2-25.rkt">ex2-25.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">list1</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">7</span><span class="p">)</span><span class="w"> </span><span class="mi">9</span><span class="p">))</span>
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">list2</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">7</span><span class="p">)))</span>
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">list3</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="mi">7</span><span class="p">)))))))</span>
@@ -622,15 +672,11 @@ Got it right in one try btw, B)
 <span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="p">(</span><span class="nb">cdr</span><span class="w"> </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="p">(</span><span class="nb">cdr</span><span class="w"> </span><span class="p">(</span><span class="nb">cdr</span><span class="w"> </span><span class="n">list1</span><span class="p">)))))</span>
 <span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="n">list2</span><span class="p">))</span>
 <span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="p">(</span><span class="nb">cdr</span><span class="w"> </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="p">(</span><span class="nb">cdr</span><span class="w"> </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="p">(</span><span class="nb">cdr</span><span class="w"> </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="p">(</span><span class="nb">cdr</span><span class="w"> </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="p">(</span><span class="nb">cdr</span><span class="w"> </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="p">(</span><span class="nb">cdr</span><span class="w"> </span><span class="n">list3</span><span class="p">))))))))))))</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>7
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>7
 7
 7
-</pre>
-</div>
-</div>
+</pre></div></div>
 
 
 #### Exercise 2.26
@@ -638,43 +684,54 @@ Got it right in one try btw, B)
 Suppose we define `x` and
 `y` to be two lists:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">))</span>
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">6</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(define x (list 1 2 3))
+(define y (list 4 5 6))
+```
+
+
 
 What result is printed by the interpreter in response to evaluating each of the
 following expressions:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="nb">append</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
-<span class="p">(</span><span class="nb">cons</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
-<span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
-</pre></div>
+
+
+```rkt
+(append x y)
+(cons x y)
+(list x y)
+```
+
+
 
 ##### Solution
 
 Expected answer:
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">6</span><span class="p">)</span>
-<span class="p">((</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="p">(</span><span class="mi">4</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">6</span><span class="p">))</span>
-<span class="p">((</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="mi">4</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">6</span><span class="p">))</span>
-</pre></div>
 
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="code/ex2-26.rkt">code/ex2-26.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+```rkt
+(1 2 3 4 5 6)
+((1 2 3) . (4 5 6))
+((1 2 3) (4 5 6))
+```
+
+
+
+
+
+<div class="code-box"><div class="code-header"><a href="code/ex2-26.rkt">ex2-26.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">))</span>
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">6</span><span class="p">))</span>
 <span class="p">(</span><span class="nb">append</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
 <span class="p">(</span><span class="nb">cons</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
 <span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>(1 2 3 4 5 6)
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>(1 2 3 4 5 6)
 ((1 2 3) 4 5 6)
 ((1 2 3) (4 5 6))
-</pre>
-</div>
-</div>
+</pre></div></div>
 
 
 Ok, dang I got the middle list wrong! That does make sense though, the structure is
@@ -690,24 +747,29 @@ procedure of Exercise 2.18 to produce a `deep-reverse` procedure
 that takes a list as argument and returns as its value the list with its
 elements reversed and with all sublists deep-reversed as well.  For example,
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">x</span><span class="w"> </span>
-<span class="w">  </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="p">)))</span>
 
-<span class="n">x</span>
-<span class="p">((</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="p">))</span>
 
-<span class="p">(</span><span class="nb">reverse</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
-<span class="p">((</span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="p">))</span>
+```rkt
+(define x 
+  (list (list 1 2) (list 3 4)))
 
-<span class="p">(</span><span class="n">deep-reverse</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
-<span class="p">((</span><span class="mi">4</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
-</pre></div>
+x
+((1 2) (3 4))
+
+(reverse x)
+((3 4) (1 2))
+
+(deep-reverse x)
+((4 3) (2 1))
+```
+
+
 
 ##### Solution
 
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="code/ex2-27.rkt">code/ex2-27.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="code/ex2-27.rkt">ex2-27.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">deep-reverse</span><span class="w"> </span><span class="n">lst</span><span class="p">)</span>
 <span class="w">  </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">reverse-help</span><span class="w"> </span><span class="n">lst</span><span class="w"> </span><span class="n">ret</span><span class="p">)</span>
@@ -722,13 +784,9 @@ elements reversed and with all sublists deep-reversed as well.  For example,
 <span class="w">  </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="p">)))</span>
 
 <span class="p">(</span><span class="n">deep-reverse</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>((4 3) (2 1))
-</pre>
-</div>
-</div>
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>((4 3) (2 1))
+</pre></div></div>
 
 
 #### Exercise 2.28
@@ -738,22 +796,27 @@ that takes as argument a tree (represented as a list) and returns a list whose
 elements are all the leaves of the tree arranged in left-to-right order.  For
 example,
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">x</span><span class="w"> </span>
-<span class="w">  </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="p">)))</span>
 
-<span class="p">(</span><span class="n">fringe</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
-<span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span>
 
-<span class="p">(</span><span class="n">fringe</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">x</span><span class="p">))</span>
-<span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span>
-</pre></div>
+```rkt
+(define x 
+  (list (list 1 2) (list 3 4)))
+
+(fringe x)
+(1 2 3 4)
+
+(fringe (list x x))
+(1 2 3 4 1 2 3 4)
+```
+
+
 
 ##### Solution
 Very straightforward as a recursive procedure using append.
 The fringe of a list is the fringe of the elements of the list appended in order.
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="code/ex2-28.rkt">code/ex2-28.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="code/ex2-28.rkt">ex2-28.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 
 <span class="c1">;;Way too complicated!</span>
@@ -795,18 +858,14 @@ The fringe of a list is the fringe of the elements of the list appended in order
 <span class="p">(</span><span class="n">fringe</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">x</span><span class="p">))</span>
 <span class="p">(</span><span class="n">fringe2</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">x</span><span class="p">))</span>
 <span class="p">(</span><span class="n">fringe3</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">x</span><span class="p">))</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>(1 2 3 4)
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>(1 2 3 4)
 (1 2 3 4)
 (1 2 3 4)
 (1 2 3 4 1 2 3 4)
 (1 2 3 4 1 2 3 4)
 (1 2 3 4 1 2 3 4)
-</pre>
-</div>
-</div>
+</pre></div></div>
 
 
 #### Exercise 2.29
@@ -817,17 +876,27 @@ length, from which hangs either a weight or another binary mobile.  We can
 represent a binary mobile using compound data by constructing it from two
 branches (for example, using `list`):
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">make-mobile</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="n">right</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="n">right</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(define (make-mobile left right)
+  (list left right))
+```
+
+
 
 A branch is constructed from a `length` (which must be a number) together
 with a `structure`, which may be either a number (representing a simple
 weight) or another mobile:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">make-branch</span><span class="w"> </span><span class="nb">length</span><span class="w"> </span><span class="n">structure</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="nb">length</span><span class="w"> </span><span class="n">structure</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(define (make-branch length structure)
+  (list length structure))
+```
+
+
 
 **1.** Write the corresponding selectors `left-branch` and `right-branch`,
 which return the branches of a mobile, and `branch-length` and
@@ -845,21 +914,26 @@ mobile is balanced.
 
 **4.** Suppose we change the representation of mobiles so that the constructors are
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">make-mobile</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="n">right</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="nb">cons</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="n">right</span><span class="p">))</span>
 
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">make-branch</span><span class="w"> </span><span class="nb">length</span><span class="w"> </span><span class="n">structure</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="nb">cons</span><span class="w"> </span><span class="nb">length</span><span class="w"> </span><span class="n">structure</span><span class="p">))</span>
-</pre></div>
+
+```rkt
+(define (make-mobile left right)
+  (cons left right))
+
+(define (make-branch length structure)
+  (cons length structure))
+```
+
+
 
 How much do you need to change your programs to convert to the new
 representation?
 
 ##### Solution
 
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="code/ex2-29.rkt">code/ex2-29.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="code/ex2-29.rkt">ex2-29.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="c1">;; part 1</span>
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">make-mobile</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="n">right</span><span class="p">)</span>
@@ -917,36 +991,37 @@ representation?
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">y1</span><span class="w"> </span><span class="p">(</span><span class="n">make-mobile</span><span class="w"> </span><span class="p">(</span><span class="n">make-branch</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">make-branch</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">10</span><span class="p">)))</span>
 
-<span class="c1">;; All the x&#39;s should be balanced</span>
+<span class="c1">;; All the x's should be balanced</span>
 <span class="p">(</span><span class="n">balanced?</span><span class="w"> </span><span class="n">x1</span><span class="p">)</span>
 <span class="p">(</span><span class="n">balanced?</span><span class="w"> </span><span class="n">x2</span><span class="p">)</span>
 <span class="p">(</span><span class="n">balanced?</span><span class="w"> </span><span class="n">x3</span><span class="p">)</span>
 <span class="p">(</span><span class="n">balanced?</span><span class="w"> </span><span class="n">x4</span><span class="p">)</span>
 <span class="p">(</span><span class="n">balanced?</span><span class="w"> </span><span class="n">x5</span><span class="p">)</span>
 <span class="p">(</span><span class="n">balanced?</span><span class="w"> </span><span class="n">x6</span><span class="p">)</span>
-<span class="c1">;; And y isn&#39;t.</span>
+<span class="c1">;; And y isn't.</span>
 <span class="p">(</span><span class="n">balanced?</span><span class="w"> </span><span class="n">y1</span><span class="p">)</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>#t
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>#t
 #t
 #t
 #t
 #t
 #t
 #f
-</pre>
-</div>
-</div>
+</pre></div></div>
 
 
 For part 4, we just need to change the functions with car and cdr in them. Pretty trivial.
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">left-branch</span><span class="w"> </span><span class="n">mobile</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="n">mobile</span><span class="p">))</span>
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">right-branch</span><span class="w"> </span><span class="n">mobile</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">cdr</span><span class="w"> </span><span class="n">mobile</span><span class="p">))</span>
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">branch-length</span><span class="w"> </span><span class="n">branch</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="n">branch</span><span class="p">))</span>
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">branch-mobile</span><span class="w"> </span><span class="n">branch</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">cdr</span><span class="w"> </span><span class="n">branch</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(define (left-branch mobile) (car mobile))
+(define (right-branch mobile) (cdr mobile))
+(define (branch-length branch) (car branch))
+(define (branch-mobile branch) (cdr branch))
+```
+
+
 
 #### Exercise 2.30
 
@@ -954,21 +1029,26 @@ Define a procedure
 `square-tree` analogous to the `square-list` procedure of
 Exercise 2.21.  That is, `square-tree` should behave as follows:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">square-tree</span>
-<span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span>
-<span class="w">       </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span>
-<span class="w">       </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="mi">7</span><span class="p">)))</span>
-<span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="mi">4</span><span class="w"> </span><span class="p">(</span><span class="mi">9</span><span class="w"> </span><span class="mi">16</span><span class="p">)</span><span class="w"> </span><span class="mi">25</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="mi">36</span><span class="w"> </span><span class="mi">49</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(square-tree
+ (list 1
+       (list 2 (list 3 4) 5)
+       (list 6 7)))
+(1 (4 (9 16) 25) (36 49))
+```
+
+
 
 Define `square-tree` both directly (i.e., without using any higher-order
 procedures) and also by using `map` and recursion.
 
 ##### Solution
 
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="code/ex2-30.rkt">code/ex2-30.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="code/ex2-30.rkt">ex2-30.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">square</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">x</span><span class="p">))</span>
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">square-tree</span><span class="w"> </span><span class="n">tree</span><span class="p">)</span>
@@ -989,14 +1069,10 @@ procedures) and also by using `map` and recursion.
 <span class="w">                </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">12</span><span class="w"> </span><span class="mi">13</span><span class="p">)))</span>
 <span class="p">(</span><span class="n">square-tree</span><span class="w"> </span><span class="n">examp</span><span class="p">)</span>
 <span class="p">(</span><span class="n">square-tree-map</span><span class="w"> </span><span class="n">examp</span><span class="p">)</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>(1 4 ((9 16 25) (49 64 81) ((100 121))) (144 169))
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>(1 4 ((9 16 25) (49 64 81) ((100 121))) (144 169))
 (1 4 ((9 16 25) (49 64 81) ((100 121))) (144 169))
-</pre>
-</div>
-</div>
+</pre></div></div>
 
 
 #### Exercise 2.31
@@ -1005,15 +1081,20 @@ Abstract your answer to
 Exercise 2.30 to produce a procedure `tree-map` with the property
 that `square-tree` could be defined as
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">square-tree</span><span class="w"> </span><span class="n">tree</span><span class="p">)</span><span class="w"> </span>
-<span class="w">  </span><span class="p">(</span><span class="n">tree-map</span><span class="w"> </span><span class="n">square</span><span class="w"> </span><span class="n">tree</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(define (square-tree tree) 
+  (tree-map square tree))
+```
+
+
 
 ##### Solution
 
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="code/ex2-31.rkt">code/ex2-31.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="code/ex2-31.rkt">ex2-31.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">square</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">x</span><span class="p">))</span>
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">tree-map</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="n">tree</span><span class="p">)</span>
@@ -1031,19 +1112,15 @@ that `square-tree` could be defined as
 <span class="w">                      </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="mi">11</span><span class="p">)))</span><span class="w"> </span>
 <span class="w">                </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">12</span><span class="w"> </span><span class="mi">13</span><span class="p">)))</span>
 <span class="p">(</span><span class="n">square-tree</span><span class="w"> </span><span class="n">examp</span><span class="p">)</span>
-<span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="s2">&quot;More advanced thingy: &quot;</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="s2">"More advanced thingy: "</span><span class="p">)</span>
 <span class="p">(</span><span class="nb">newline</span><span class="p">)</span>
 <span class="c1">;; Cool example showing more advanced stuff (symbol literal!)</span>
 <span class="p">(</span><span class="n">tree-map</span><span class="w"> </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">`</span><span class="p">(</span><span class="ss">f</span><span class="w"> </span><span class="o">,</span><span class="n">x</span><span class="p">))</span><span class="w"> </span><span class="n">examp</span><span class="p">)</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>(1 4 ((9 16 25) (49 64 81) ((100 121))) (144 169))
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>(1 4 ((9 16 25) (49 64 81) ((100 121))) (144 169))
 More advanced thingy: 
 ((f 1) (f 2) (((f 3) (f 4) (f 5)) ((f 7) (f 8) (f 9)) (((f 10) (f 11)))) ((f 12) (f 13)))
-</pre>
-</div>
-</div>
+</pre></div></div>
 
 
 #### Exercise 2.32
@@ -1055,21 +1132,26 @@ all subsets is `(() (3) (2) (2 3) (1) (1 3) (1 2) (1 2 3))`.  Complete the
 following definition of a procedure that generates the set of subsets of a set
 and give a clear explanation of why it works:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">subsets</span><span class="w"> </span><span class="n">s</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">null?</span><span class="w"> </span><span class="n">s</span><span class="p">)</span>
-<span class="w">      </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="n">nil</span><span class="p">)</span>
-<span class="w">      </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="nb">rest</span><span class="w"> </span><span class="p">(</span><span class="n">subsets</span><span class="w"> </span><span class="p">(</span><span class="nb">cdr</span><span class="w"> </span><span class="n">s</span><span class="p">))))</span>
-<span class="w">        </span><span class="p">(</span><span class="nb">append</span><span class="w"> </span><span class="nb">rest</span><span class="w"> </span><span class="p">(</span><span class="nb">map</span><span class="w"> </span><span class="n">⟨??⟩</span><span class="w"> </span><span class="nb">rest</span><span class="p">)))))</span>
-</pre></div>
+
+
+```rkt
+(define (subsets s)
+  (if (null? s)
+      (list nil)
+      (let ((rest (subsets (cdr s))))
+        (append rest (map ⟨??⟩ rest)))))
+```
+
+
 
 ##### Solution
 
 When we call `append rest (...)`, `rest` is the list of sets where we don't 
 take the current element (`car s`), and we want to fill in (...) with the list of sets where we do take the current element. We achieve this with a lambda.
 
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="code/ex2-32.rkt">code/ex2-32.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="code/ex2-32.rkt">ex2-32.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">subsets</span><span class="w"> </span><span class="n">s</span><span class="p">)</span>
 <span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">null?</span><span class="w"> </span><span class="n">s</span><span class="p">)</span>
 <span class="w">      </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="n">nil</span><span class="p">)</span>
@@ -1079,13 +1161,9 @@ take the current element (`car s`), and we want to fill in (...) with the list o
 <span class="w">                          </span><span class="p">(</span><span class="nb">append</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="n">s</span><span class="p">))</span><span class="w"> </span><span class="n">lst</span><span class="p">))</span>
 <span class="w">                        </span><span class="nb">rest</span><span class="p">)))))</span>
 <span class="p">(</span><span class="n">subsets</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">))</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>(() (3) (2) (2 3) (1) (1 3) (1 2) (1 2 3))
-</pre>
-</div>
-</div>
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>(() (3) (2) (2 3) (1) (1 3) (1 2) (1 2 3))
+</pre></div></div>
 
 
 #### Exercise 2.33
@@ -1094,22 +1172,27 @@ Fill in the missing expressions
 to complete the following definitions of some basic list-manipulation
 operations as accumulations:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="nb">map</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="n">sequence</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="n">accumulate</span><span class="w"> </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="n">⟨??⟩</span><span class="p">)</span><span class="w"> </span>
-<span class="w">              </span><span class="n">nil</span><span class="w"> </span><span class="n">sequence</span><span class="p">))</span>
 
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="nb">append</span><span class="w"> </span><span class="n">seq1</span><span class="w"> </span><span class="n">seq2</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="n">accumulate</span><span class="w"> </span><span class="nb">cons</span><span class="w"> </span><span class="n">⟨??⟩</span><span class="w"> </span><span class="n">⟨??⟩</span><span class="p">))</span>
 
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="nb">length</span><span class="w"> </span><span class="n">sequence</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="n">accumulate</span><span class="w"> </span><span class="n">⟨??⟩</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="n">sequence</span><span class="p">))</span>
-</pre></div>
+```rkt
+(define (map p sequence)
+  (accumulate (lambda (x y) ⟨??⟩) 
+              nil sequence))
+
+(define (append seq1 seq2)
+  (accumulate cons ⟨??⟩ ⟨??⟩))
+
+(define (length sequence)
+  (accumulate ⟨??⟩ 0 sequence))
+```
+
+
 
 ##### Solution
 
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="code/ex2-33.rkt">code/ex2-33.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="code/ex2-33.rkt">ex2-33.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="c1">;; Copied/useful defns</span>
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">square</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">x</span><span class="p">))</span>
@@ -1135,15 +1218,11 @@ operations as accumulations:
 <span class="p">(</span><span class="nb">map</span><span class="w"> </span><span class="n">square</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="p">))</span>
 <span class="p">(</span><span class="nb">append</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="mi">8</span><span class="p">))</span>
 <span class="p">(</span><span class="nb">length</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="mi">8</span><span class="p">))</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>(1 4 9 16)
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>(1 4 9 16)
 (1 2 3 4 5 6 7 8)
 8
-</pre>
-</div>
-</div>
+</pre></div></div>
 
 
 #### Exercise 2.34
@@ -1169,25 +1248,35 @@ Fill in the following template to produce a procedure that evaluates a
 polynomial using Horner's rule.  Assume that the coefficients of the polynomial
 are arranged in a sequence, from $a_0$ through $a_n$.
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span>
-<span class="w">  </span><span class="p">(</span><span class="n">horner-eval</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">coefficient-sequence</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="n">accumulate</span><span class="w"> </span>
-<span class="w">   </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">this-coeff</span><span class="w"> </span><span class="n">higher-terms</span><span class="p">)</span>
-<span class="w">     </span><span class="n">⟨??⟩</span><span class="p">)</span>
-<span class="w">   </span><span class="mi">0</span>
-<span class="w">   </span><span class="n">coefficient-sequence</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(define 
+  (horner-eval x coefficient-sequence)
+  (accumulate 
+   (lambda (this-coeff higher-terms)
+     ⟨??⟩)
+   0
+   coefficient-sequence))
+```
+
+
 
 For example, to compute ${1 + 3x + {5x^3 + x^5}}$ at ${x = 2}$ you
 would evaluate
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">horner-eval</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(horner-eval 2 (list 1 3 0 5 0 1))
+```
+
+
 
 ##### Solution
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="code/ex2-34.rkt">code/ex2-34.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span><span class="w"> </span>
+
+
+<div class="code-box"><div class="code-header"><a href="code/ex2-34.rkt">ex2-34.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span><span class="w"> </span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">accumulate</span><span class="w"> </span><span class="n">op</span><span class="w"> </span><span class="n">initial</span><span class="w"> </span><span class="n">sequence</span><span class="p">)</span>
 <span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">null?</span><span class="w"> </span><span class="n">sequence</span><span class="p">)</span>
@@ -1205,13 +1294,9 @@ would evaluate
 <span class="c1">; For example, to compute ${1 + 3x$ + {5x^3 + x^5}} at ${x = 2$} you</span>
 
 <span class="p">(</span><span class="n">horner-eval</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>79
-</pre>
-</div>
-</div>
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>79
+</pre></div></div>
 
 
 #### Exercise 2.35
@@ -1219,15 +1304,20 @@ would evaluate
 Redefine `count-leaves` from
 2.2.2 as an accumulation:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">count-leaves</span><span class="w"> </span><span class="n">t</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="n">accumulate</span><span class="w"> </span><span class="n">⟨??⟩</span><span class="w"> </span><span class="n">⟨??⟩</span><span class="w"> </span><span class="p">(</span><span class="nb">map</span><span class="w"> </span><span class="n">⟨??⟩</span><span class="w"> </span><span class="n">⟨??⟩</span><span class="p">)))</span>
-</pre></div>
+
+
+```rkt
+(define (count-leaves t)
+  (accumulate ⟨??⟩ ⟨??⟩ (map ⟨??⟩ ⟨??⟩)))
+```
+
+
 
 ##### Solution
 
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="code/ex2-35.rkt">code/ex2-35.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="code/ex2-35.rkt">ex2-35.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">accumulate</span><span class="w"> </span><span class="n">op</span><span class="w"> </span><span class="n">initial</span><span class="w"> </span><span class="n">sequence</span><span class="p">)</span>
 <span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">null?</span><span class="w"> </span><span class="n">sequence</span><span class="p">)</span>
@@ -1248,13 +1338,9 @@ Redefine `count-leaves` from
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">(</span><span class="nb">cons</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="p">)))</span>
 <span class="p">(</span><span class="n">count-leaves</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">x</span><span class="p">)))</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>16
-</pre>
-</div>
-</div>
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>16
+</pre></div></div>
 
 
 #### Exercise 2.36
@@ -1270,17 +1356,22 @@ sequence containing four sequences, `((1 2 3) (4 5 6) (7 8 9) (10 11
 `(22 26 30)`.  Fill in the missing expressions in the following definition
 of `accumulate-n`:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">accumulate-n</span><span class="w"> </span><span class="n">op</span><span class="w"> </span><span class="k">init</span><span class="w"> </span><span class="n">seqs</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">null?</span><span class="w"> </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="n">seqs</span><span class="p">))</span>
-<span class="w">      </span><span class="n">nil</span>
-<span class="w">      </span><span class="p">(</span><span class="nb">cons</span><span class="w"> </span><span class="p">(</span><span class="n">accumulate</span><span class="w"> </span><span class="n">op</span><span class="w"> </span><span class="k">init</span><span class="w"> </span><span class="n">⟨??⟩</span><span class="p">)</span>
-<span class="w">            </span><span class="p">(</span><span class="n">accumulate-n</span><span class="w"> </span><span class="n">op</span><span class="w"> </span><span class="k">init</span><span class="w"> </span><span class="n">⟨??⟩</span><span class="p">))))</span>
-</pre></div>
+
+
+```rkt
+(define (accumulate-n op init seqs)
+  (if (null? (car seqs))
+      nil
+      (cons (accumulate op init ⟨??⟩)
+            (accumulate-n op init ⟨??⟩))))
+```
+
+
 
 ##### Solution
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="code/ex2-36.rkt">code/ex2-36.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="code/ex2-36.rkt">ex2-36.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">accumulate</span><span class="w"> </span><span class="n">op</span><span class="w"> </span><span class="n">initial</span><span class="w"> </span><span class="n">sequence</span><span class="p">)</span>
 <span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">null?</span><span class="w"> </span><span class="n">sequence</span><span class="p">)</span>
@@ -1297,13 +1388,9 @@ of `accumulate-n`:
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">6</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="mi">9</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="mi">11</span><span class="w"> </span><span class="mi">12</span><span class="p">)))</span>
 <span class="p">(</span><span class="n">accumulate-n</span><span class="w"> </span><span class="nb">+</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="n">s</span><span class="p">)</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>(22 26 30)
-</pre>
-</div>
-</div>
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>(22 26 30)
+</pre></div></div>
 
 #### Exercise 2.37
 
@@ -1333,30 +1420,40 @@ any book on matrix algebra) are the following:
 
 We can define the dot product as
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">dot-product</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">w</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="n">accumulate</span><span class="w"> </span><span class="nb">+</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">(</span><span class="nb">map</span><span class="w"> </span><span class="nb">*</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">w</span><span class="p">)))</span>
-</pre></div>
+
+
+```rkt
+(define (dot-product v w)
+  (accumulate + 0 (map * v w)))
+```
+
+
 
 Fill in the missing expressions in the following procedures for computing the
 other matrix operations.  (The procedure `accumulate-n` is defined in
 Exercise 2.36.)
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">matrix-*-vector</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="n">v</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="nb">map</span><span class="w"> </span><span class="n">⟨??⟩</span><span class="w"> </span><span class="n">m</span><span class="p">))</span>
 
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">transpose</span><span class="w"> </span><span class="n">mat</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="n">accumulate-n</span><span class="w"> </span><span class="n">⟨??⟩</span><span class="w"> </span><span class="n">⟨??⟩</span><span class="w"> </span><span class="n">mat</span><span class="p">))</span>
 
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">matrix-*-matrix</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">cols</span><span class="w"> </span><span class="p">(</span><span class="n">transpose</span><span class="w"> </span><span class="n">n</span><span class="p">)))</span>
-<span class="w">    </span><span class="p">(</span><span class="nb">map</span><span class="w"> </span><span class="n">⟨??⟩</span><span class="w"> </span><span class="n">m</span><span class="p">)))</span>
-</pre></div>
+```rkt
+(define (matrix-*-vector m v)
+  (map ⟨??⟩ m))
+
+(define (transpose mat)
+  (accumulate-n ⟨??⟩ ⟨??⟩ mat))
+
+(define (matrix-*-matrix m n)
+  (let ((cols (transpose n)))
+    (map ⟨??⟩ m)))
+```
+
+
 
 ##### Solution
 
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="code/ex2-37.rkt">code/ex2-37.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="code/ex2-37.rkt">ex2-37.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">accumulate</span><span class="w"> </span><span class="n">op</span><span class="w"> </span><span class="n">initial</span><span class="w"> </span><span class="n">sequence</span><span class="p">)</span>
 <span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">null?</span><span class="w"> </span><span class="n">sequence</span><span class="p">)</span>
@@ -1396,18 +1493,16 @@ Exercise 2.36.)
 <span class="w">                     </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">-1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span>
 <span class="w">                     </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
 <span class="w">                     </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">-1</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="p">)))</span>
-<span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="s2">&quot;Matrix A&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">newline</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="s2">"Matrix A"</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">newline</span><span class="p">)</span>
 <span class="p">(</span><span class="n">disp-mat</span><span class="w"> </span><span class="n">mymat</span><span class="p">)</span>
-<span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="s2">&quot;After transpose:&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">newline</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="s2">"After transpose:"</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">newline</span><span class="p">)</span>
 <span class="p">(</span><span class="n">disp-mat</span><span class="w"> </span><span class="p">(</span><span class="n">transpose</span><span class="w"> </span><span class="n">mymat</span><span class="p">))</span>
-<span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="s2">&quot;Matrix B&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">newline</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="s2">"Matrix B"</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">newline</span><span class="p">)</span>
 <span class="p">(</span><span class="n">disp-mat</span><span class="w"> </span><span class="n">mymat2</span><span class="p">)</span>
-<span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="s2">&quot;Matrix A*B:&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">newline</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="s2">"Matrix A*B:"</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">newline</span><span class="p">)</span>
 <span class="p">(</span><span class="n">disp-mat</span><span class="w"> </span><span class="p">(</span><span class="n">matrix-*-matrix</span><span class="w"> </span><span class="n">mymat</span><span class="w"> </span><span class="n">mymat2</span><span class="p">))</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>Matrix A
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>Matrix A
 (1 2 3 4)
 (4 5 6 6)
 (6 7 8 9)
@@ -1425,9 +1520,7 @@ Matrix A*B:
 (11 0 -4 3 6)
 (25 0 -9 9 11)
 (36 0 -14 13 16)
-</pre>
-</div>
-</div>
+</pre></div></div>
 
 
 #### Exercise 2.38
@@ -1438,50 +1531,65 @@ the sequence with the result of combining all the elements to the right.  There
 is also a `fold-left`, which is similar to `fold-right`, except that
 it combines elements working in the opposite direction:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">fold-left</span><span class="w"> </span><span class="n">op</span><span class="w"> </span><span class="n">initial</span><span class="w"> </span><span class="n">sequence</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">iter</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="nb">rest</span><span class="p">)</span>
-<span class="w">    </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">null?</span><span class="w"> </span><span class="nb">rest</span><span class="p">)</span>
-<span class="w">        </span><span class="n">result</span>
-<span class="w">        </span><span class="p">(</span><span class="n">iter</span><span class="w"> </span><span class="p">(</span><span class="n">op</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="nb">rest</span><span class="p">))</span>
-<span class="w">              </span><span class="p">(</span><span class="nb">cdr</span><span class="w"> </span><span class="nb">rest</span><span class="p">))))</span>
-<span class="w">  </span><span class="p">(</span><span class="n">iter</span><span class="w"> </span><span class="n">initial</span><span class="w"> </span><span class="n">sequence</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(define (fold-left op initial sequence)
+  (define (iter result rest)
+    (if (null? rest)
+        result
+        (iter (op result (car rest))
+              (cdr rest))))
+  (iter initial sequence))
+```
+
+
 
 What are the values of
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">fold-right</span><span class="w"> </span><span class="nb">/</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">))</span>
-<span class="p">(</span><span class="n">fold-left</span><span class="w">  </span><span class="nb">/</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">))</span>
-<span class="p">(</span><span class="n">fold-right</span><span class="w"> </span><span class="nb">list</span><span class="w"> </span><span class="n">nil</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">))</span>
-<span class="p">(</span><span class="n">fold-left</span><span class="w">  </span><span class="nb">list</span><span class="w"> </span><span class="n">nil</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(fold-right / 1 (list 1 2 3))
+(fold-left  / 1 (list 1 2 3))
+(fold-right list nil (list 1 2 3))
+(fold-left  list nil (list 1 2 3))
+```
+
+
 
 Give a property that `op` should satisfy to guarantee that
 `fold-right` and `fold-left` will produce the same values for any
 sequence.
 
 ##### Solution
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">fold-right</span><span class="w"> </span><span class="nb">/</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">))</span>
-<span class="w">  </span><span class="p">(</span><span class="nb">/</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="nb">/</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="nb">/</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="m">2/3</span><span class="p">)</span>
-<span class="w">  </span><span class="n">=3/2</span>
-<span class="p">(</span><span class="n">fold-left</span><span class="w">  </span><span class="nb">/</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">))</span>
-<span class="w">  </span><span class="p">(</span><span class="nb">/</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="nb">/</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="nb">/</span><span class="w"> </span><span class="m">1/2</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span>
-<span class="w">  </span><span class="n">=1/6</span>
-<span class="p">(</span><span class="n">fold-right</span><span class="w"> </span><span class="nb">list</span><span class="w"> </span><span class="n">nil</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">))</span>
-<span class="w">  </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="n">nil</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="n">nil</span><span class="p">))</span>
-<span class="w">  </span><span class="nb">=</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="n">nil</span><span class="p">)))</span>
-<span class="p">(</span><span class="n">fold-left</span><span class="w">  </span><span class="nb">list</span><span class="w"> </span><span class="n">nil</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">))</span>
-<span class="w">  </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="n">nil</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="n">nil</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
-<span class="w">  </span><span class="nb">=</span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="n">nil</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span>
-</pre></div>
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="code/ex2-38.rkt">code/ex2-38.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+```rkt
+(fold-right / 1 (list 1 2 3))
+  (/ 3 1)
+  (/ 2 3)
+  (/ 1 2/3)
+  =3/2
+(fold-left  / 1 (list 1 2 3))
+  (/ 1 1)
+  (/ 1 2)
+  (/ 1/2 3)
+  =1/6
+(fold-right list nil (list 1 2 3))
+  (list 3 nil)
+  (list 2 (list 3 nil))
+  = (list 1 (list 2 (list 3 nil)))
+(fold-left  list nil (list 1 2 3))
+  (list nil 1 )
+  (list (list nil 1) 2)
+  =(list (list (list nil 1) 2) 3)
+```
+
+
+
+
+<div class="code-box"><div class="code-header"><a href="code/ex2-38.rkt">ex2-38.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">accumulate</span><span class="w"> </span><span class="n">op</span><span class="w"> </span><span class="n">initial</span><span class="w"> </span><span class="n">sequence</span><span class="p">)</span>
 <span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">null?</span><span class="w"> </span><span class="n">sequence</span><span class="p">)</span>
@@ -1503,29 +1611,30 @@ sequence.
 <span class="p">(</span><span class="n">fold-left</span><span class="w">  </span><span class="nb">/</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">))</span>
 <span class="p">(</span><span class="n">fold-right</span><span class="w"> </span><span class="nb">list</span><span class="w"> </span><span class="n">nil</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">))</span>
 <span class="p">(</span><span class="n">fold-left</span><span class="w">  </span><span class="nb">list</span><span class="w"> </span><span class="n">nil</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">))</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>3/2
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>3/2
 1/6
 (1 (2 (3 ())))
 (((() 1) 2) 3)
-</pre>
-</div>
-</div>
+</pre></div></div>
 
 
 We want associativity. In lispy form:
 `(op (op a b) c) == (op a (op b c))`
 
 I'm not going to write up a totally formal proof, but we can consider the following two statements and do induction on n.
-<div class="codehilite"><pre><span></span>(fold-right op i (list a1 a2 ... an))
+
+
+```
+(fold-right op i (list a1 a2 ... an))
 =(op a1 (fold-right op i (list a2 ... an))
 
 (fold-left op i (list a1 a2 ... an))
 =(iter i (list a1 a2 ... an))
 =(iter (op i a1) (list a2 ... an))
-</pre></div>
+```
+
+
 
 #### Exercise 2.39
 
@@ -1533,14 +1642,19 @@ Complete the following
 definitions of `reverse` (Exercise 2.18) in terms of
 `fold-right` and `fold-left` from Exercise 2.38:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="nb">reverse</span><span class="w"> </span><span class="n">sequence</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="n">fold-right</span><span class="w"> </span>
-<span class="w">   </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="n">⟨??⟩</span><span class="p">)</span><span class="w"> </span><span class="n">nil</span><span class="w"> </span><span class="n">sequence</span><span class="p">))</span>
 
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="nb">reverse</span><span class="w"> </span><span class="n">sequence</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="n">fold-left</span><span class="w"> </span>
-<span class="w">   </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="n">⟨??⟩</span><span class="p">)</span><span class="w"> </span><span class="n">nil</span><span class="w"> </span><span class="n">sequence</span><span class="p">))</span>
-</pre></div>
+
+```rkt
+(define (reverse sequence)
+  (fold-right 
+   (lambda (x y) ⟨??⟩) nil sequence))
+
+(define (reverse sequence)
+  (fold-left 
+   (lambda (x y) ⟨??⟩) nil sequence))
+```
+
+
 
 ##### Solution
 
@@ -1548,9 +1662,9 @@ This one always gets me. In the book's definition of fold-left, we already
 swap the order of result and `car rest`. ie, in the definition of fold-left the first op that is evaluated is `(op nil (first-elem))` whereas in fold-right 
 it's `(op (last-elem) nil)`. I always end up double-swapping. 
 
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="code/ex2-39.rkt">code/ex2-39.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="code/ex2-39.rkt">ex2-39.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">accumulate</span><span class="w"> </span><span class="n">op</span><span class="w"> </span><span class="n">initial</span><span class="w"> </span><span class="n">sequence</span><span class="p">)</span>
 <span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">null?</span><span class="w"> </span><span class="n">sequence</span><span class="p">)</span>
 <span class="w">      </span><span class="n">initial</span>
@@ -1575,16 +1689,12 @@ it's `(op (last-elem) nil)`. I always end up double-swapping.
 <span class="w">  </span><span class="p">(</span><span class="n">fold-left</span><span class="w"> </span>
 <span class="w">   </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">cons</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="n">x</span><span class="p">))</span><span class="w"> </span><span class="n">nil</span><span class="w"> </span><span class="n">sequence</span><span class="p">))</span>
 
-<span class="p">(</span><span class="n">reverse1</span><span class="w"> </span><span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">5</span><span class="p">))</span>
-<span class="p">(</span><span class="n">reverse2</span><span class="w"> </span><span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">5</span><span class="p">))</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>(5 4 3 2 1)
+<span class="p">(</span><span class="n">reverse1</span><span class="w"> </span><span class="o">'</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">5</span><span class="p">))</span>
+<span class="p">(</span><span class="n">reverse2</span><span class="w"> </span><span class="o">'</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">5</span><span class="p">))</span>
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>(5 4 3 2 1)
 (5 4 3 2 1)
-</pre>
-</div>
-</div>
+</pre></div></div>
 
 
 #### Exercise 2.40
@@ -1597,9 +1707,9 @@ to simplify the definition of `prime-sum-pairs` given above.
 ##### Solution
 The scaffolding code is a bit much, we might have to start actually including a library file! Regardless...
 
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="code/ex2-40.rkt">code/ex2-40.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="code/ex2-40.rkt">ex2-40.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 <span class="c1">;; Solution</span>
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">unique-pairs</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
 <span class="w">  </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">num-list</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="n">ret</span><span class="p">)</span>
@@ -1651,14 +1761,10 @@ The scaffolding code is a bit much, we might have to start actually including a 
 
 <span class="p">(</span><span class="n">unique-pairs</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span>
 <span class="p">(</span><span class="n">prime-sum-pairs</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>((2 1) (3 1) (3 2) (4 1) (4 2) (4 3) (5 1) (5 2) (5 3) (5 4))
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>((2 1) (3 1) (3 2) (4 1) (4 2) (4 3) (5 1) (5 2) (5 3) (5 4))
 ((2 1) (3 2) (4 1) (4 3) (5 2))
-</pre>
-</div>
-</div>
+</pre></div></div>
 
 
 #### Exercise 2.41
@@ -1669,9 +1775,9 @@ or equal to a given integer $n$ that sum to a given integer $s$.
 
 ##### Solution
 Should we write this a clever way?
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="code/ex2-41.rkt">code/ex2-41.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="code/ex2-41.rkt">ex2-41.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 <span class="c1">;; Library functions</span>
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">accumulate</span><span class="w"> </span><span class="n">op</span><span class="w"> </span><span class="n">initial</span><span class="w"> </span><span class="n">sequence</span><span class="p">)</span>
 <span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">null?</span><span class="w"> </span><span class="n">sequence</span><span class="p">)</span>
@@ -1697,8 +1803,8 @@ Should we write this a clever way?
 <span class="w">                       </span><span class="p">(</span><span class="nb">cdr</span><span class="w"> </span><span class="n">sequence</span><span class="p">)))))</span>
 
 <span class="c1">;; Solution</span>
-<span class="c1">;; My solution uses brute force when it doesn&#39;t need to (we don&#39;t need to</span>
-<span class="c1">;; generate pairs and then filter) but it&#39;s fun to use listy stuff. We&#39;ve done</span>
+<span class="c1">;; My solution uses brute force when it doesn't need to (we don't need to</span>
+<span class="c1">;; generate pairs and then filter) but it's fun to use listy stuff. We've done</span>
 <span class="c1">;; enough iteration and cons silliness.</span>
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">tuples</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="n">depth</span><span class="p">)</span>
 <span class="w">  </span><span class="p">(</span><span class="k">cond</span><span class="w"> </span><span class="p">((</span><span class="nb">&lt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="n">depth</span><span class="p">)</span><span class="w"> </span><span class="n">nil</span><span class="p">)</span>
@@ -1715,14 +1821,10 @@ Should we write this a clever way?
 
 <span class="p">(</span><span class="n">tuples</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span>
 <span class="p">(</span><span class="n">tuples-sum</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>((3 2 1) (4 2 1) (4 3 1) (4 3 2) (5 2 1) (5 3 1) (5 3 2) (5 4 1) (5 4 2) (5 4 3) (6 2 1) (6 3 1) (6 3 2) (6 4 1) (6 4 2) (6 4 3) (6 5 1) (6 5 2) (6 5 3) (6 5 4))
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>((3 2 1) (4 2 1) (4 3 1) (4 3 2) (5 2 1) (5 3 1) (5 3 2) (5 4 1) (5 4 2) (5 4 3) (6 2 1) (6 3 1) (6 3 2) (6 4 1) (6 4 2) (6 4 3) (6 5 1) (6 5 2) (6 5 3) (6 5 4))
 ((4 3 1) (5 2 1))
-</pre>
-</div>
-</div>
+</pre></div></div>
 
 
 #### Exercise 2.42
@@ -1749,26 +1851,31 @@ ${n \times n}$ chessboard.  `Queens` has an internal procedure
 `queen-cols` that returns the sequence of all ways to place queens in the
 first $k$ columns of the board.
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">queens</span><span class="w"> </span><span class="n">board-size</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">queen-cols</span><span class="w"> </span><span class="n">k</span><span class="p">)</span>
-<span class="w">    </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
-<span class="w">        </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="n">empty-board</span><span class="p">)</span>
-<span class="w">        </span><span class="p">(</span><span class="nb">filter</span>
-<span class="w">         </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">positions</span><span class="p">)</span><span class="w"> </span>
-<span class="w">           </span><span class="p">(</span><span class="n">safe?</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="n">positions</span><span class="p">))</span>
-<span class="w">         </span><span class="p">(</span><span class="n">flatmap</span>
-<span class="w">          </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">rest-of-queens</span><span class="p">)</span>
-<span class="w">            </span><span class="p">(</span><span class="nb">map</span><span class="w"> </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">new-row</span><span class="p">)</span>
-<span class="w">                   </span><span class="p">(</span><span class="n">adjoin-position</span><span class="w"> </span>
-<span class="w">                    </span><span class="n">new-row</span><span class="w"> </span>
-<span class="w">                    </span><span class="n">k</span><span class="w"> </span>
-<span class="w">                    </span><span class="n">rest-of-queens</span><span class="p">))</span>
-<span class="w">                 </span><span class="p">(</span><span class="n">enumerate-interval</span><span class="w"> </span>
-<span class="w">                  </span><span class="mi">1</span><span class="w"> </span>
-<span class="w">                  </span><span class="n">board-size</span><span class="p">)))</span>
-<span class="w">          </span><span class="p">(</span><span class="n">queen-cols</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="mi">1</span><span class="p">))))))</span>
-<span class="w">  </span><span class="p">(</span><span class="n">queen-cols</span><span class="w"> </span><span class="n">board-size</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(define (queens board-size)
+  (define (queen-cols k)
+    (if (= k 0)
+        (list empty-board)
+        (filter
+         (lambda (positions) 
+           (safe? k positions))
+         (flatmap
+          (lambda (rest-of-queens)
+            (map (lambda (new-row)
+                   (adjoin-position 
+                    new-row 
+                    k 
+                    rest-of-queens))
+                 (enumerate-interval 
+                  1 
+                  board-size)))
+          (queen-cols (- k 1))))))
+  (queen-cols board-size))
+```
+
+
 
 In this procedure `rest-of-queens` is a way to place ${k - 1}$ queens in
 the first ${k - 1}$ columns, and `new-row` is a proposed row in which to
@@ -1787,9 +1894,9 @@ Queen is an integer from 1 to board-size. The queen `k` is safe if:
  - `queen[i]!=queen[k]` for all `i\lt k` (horiz check)
  - `abs(queen[k]-queen[i])!=abs(k-i)` (diagonal check)
 
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="code/ex2-42.rkt">code/ex2-42.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="code/ex2-42.rkt">ex2-42.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">flatmap</span><span class="w"> </span><span class="n">proc</span><span class="w"> </span><span class="n">seq</span><span class="p">)</span>
 <span class="w">  </span><span class="p">(</span><span class="n">accumulate</span><span class="w"> </span><span class="nb">append</span><span class="w"> </span><span class="n">nil</span><span class="w"> </span><span class="p">(</span><span class="nb">map</span><span class="w"> </span><span class="n">proc</span><span class="w"> </span><span class="n">seq</span><span class="p">)))</span><span class="w"> </span>
@@ -1856,13 +1963,9 @@ Queen is an integer from 1 to board-size. The queen `k` is safe if:
 <span class="w">  </span><span class="p">(</span><span class="n">queen-cols</span><span class="w"> </span><span class="n">board-size</span><span class="p">))</span>
 
 <span class="p">(</span><span class="nb">map</span><span class="w"> </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">length</span><span class="w"> </span><span class="p">(</span><span class="n">queens</span><span class="w"> </span><span class="n">n</span><span class="p">)))</span><span class="w"> </span><span class="p">(</span><span class="n">enumerate-interval</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">10</span><span class="p">))</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>(1 0 0 2 10 4 40 92 352 724)
-</pre>
-</div>
-</div>
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>(1 0 0 2 10 4 40 92 352 724)
+</pre></div></div>
 
 
 We can see we reproduce [OEIS A000170](https://oeis.org/A000170):
@@ -1878,14 +1981,19 @@ enough for it to solve even the $6\times6$ case.)  When Louis asks Eva Lu Ator f
 help, she points out that he has interchanged the order of the nested mappings
 in the `flatmap`, writing it as
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">flatmap</span>
-<span class="w"> </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">new-row</span><span class="p">)</span>
-<span class="w">   </span><span class="p">(</span><span class="nb">map</span><span class="w"> </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">rest-of-queens</span><span class="p">)</span>
-<span class="w">          </span><span class="p">(</span><span class="n">adjoin-position</span><span class="w"> </span>
-<span class="w">           </span><span class="n">new-row</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="n">rest-of-queens</span><span class="p">))</span>
-<span class="w">        </span><span class="p">(</span><span class="n">queen-cols</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="mi">1</span><span class="p">))))</span>
-<span class="w"> </span><span class="p">(</span><span class="n">enumerate-interval</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">board-size</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(flatmap
+ (lambda (new-row)
+   (map (lambda (rest-of-queens)
+          (adjoin-position 
+           new-row k rest-of-queens))
+        (queen-cols (- k 1))))
+ (enumerate-interval 1 board-size))
+```
+
+
 
 Explain why this interchange makes the program run slowly.  Estimate how long
 it will take Louis's program to solve the eight-queens puzzle, assuming that
@@ -1927,9 +2035,14 @@ Define the procedure
 `up-split` can be expressed as instances of a general splitting operation.
 Define a procedure `split` with the property that evaluating
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">right-split</span><span class="w"> </span><span class="p">(</span><span class="n">split</span><span class="w"> </span><span class="n">beside</span><span class="w"> </span><span class="n">below</span><span class="p">))</span>
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">up-split</span><span class="w"> </span><span class="p">(</span><span class="n">split</span><span class="w"> </span><span class="n">below</span><span class="w"> </span><span class="n">beside</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(define right-split (split beside below))
+(define up-split (split below beside))
+```
+
+
 
 
 produces procedures `right-split` and `up-split` with the same
@@ -1963,12 +2076,17 @@ $$
 Here are two possible
 constructors for frames:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">make-frame</span><span class="w"> </span><span class="n">origin</span><span class="w"> </span><span class="n">edge1</span><span class="w"> </span><span class="n">edge2</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="n">origin</span><span class="w"> </span><span class="n">edge1</span><span class="w"> </span><span class="n">edge2</span><span class="p">))</span>
 
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">make-frame</span><span class="w"> </span><span class="n">origin</span><span class="w"> </span><span class="n">edge1</span><span class="w"> </span><span class="n">edge2</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="nb">cons</span><span class="w"> </span><span class="n">origin</span><span class="w"> </span><span class="p">(</span><span class="nb">cons</span><span class="w"> </span><span class="n">edge1</span><span class="w"> </span><span class="n">edge2</span><span class="p">)))</span>
-</pre></div>
+
+```rkt
+(define (make-frame origin edge1 edge2)
+  (list origin edge1 edge2))
+
+(define (make-frame origin edge1 edge2)
+  (cons origin (cons edge1 edge2)))
+```
+
+
 
 For each constructor supply the appropriate selectors to produce an
 implementation for frames.

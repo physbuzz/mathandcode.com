@@ -1,0 +1,2908 @@
+{
+  "2-5-scientifically-useful-polynomial.md": {
+    "collections": {},
+    "dependencies": {
+      "../src/bonus/2-5-scientifically-useful-polynomial.md": [
+        1792387070622793474,
+        4837
+      ]
+    },
+    "outputs": [
+      "2-5-scientifically-useful-polynomial.md"
+    ],
+    "scope": "a9d23479745fdba6b6aee425a75e96ea65dab41b96db10036ef6a453347dce3b",
+    "settings": "71d190452fafc1d8a9b1d87a02947a36833751101609763f90b0f18f01f636e2",
+    "stamp": [
+      1792388018001156614,
+      5105
+    ]
+  },
+  "bonus-notes.md": {
+    "collections": {},
+    "dependencies": {
+      "../src/bonus-notes.md": [
+        1792447415272005964,
+        7823
+      ]
+    },
+    "outputs": [
+      "bonus-notes.md"
+    ],
+    "scope": "72ed02d652216ef58e3de29ad715d3f6cb9072e667e627b1b2bc7ae30a0adbf5",
+    "settings": "b2b80f3e3f94a6fdbd7ae62f301030a484351cfa221958969bb5ee7cbbec2028",
+    "stamp": [
+      1792463463158757168,
+      9789
+    ]
+  },
+  "bonus/1-2-asymptotic-approximations-and-some-notes.md": {
+    "collections": {},
+    "dependencies": {
+      "../src/bonus/1-2-asymptotic-approximations-and-some-notes.md": [
+        1792447415272005964,
+        12591
+      ]
+    },
+    "outputs": [
+      "bonus/1-2-asymptotic-approximations-and-some-notes.md"
+    ],
+    "scope": "72ed02d652216ef58e3de29ad715d3f6cb9072e667e627b1b2bc7ae30a0adbf5",
+    "settings": "b2b80f3e3f94a6fdbd7ae62f301030a484351cfa221958969bb5ee7cbbec2028",
+    "stamp": [
+      1792446225512358030,
+      12630
+    ]
+  },
+  "bonus/2-5-extra-polynomial-algorithms.md": {
+    "collections": {},
+    "dependencies": {
+      "../src/bonus/2-5-extra-polynomial-algorithms.md": [
+        1792447415272005964,
+        11864
+      ]
+    },
+    "outputs": [
+      "bonus/2-5-extra-polynomial-algorithms.md"
+    ],
+    "scope": "72ed02d652216ef58e3de29ad715d3f6cb9072e667e627b1b2bc7ae30a0adbf5",
+    "settings": "b2b80f3e3f94a6fdbd7ae62f301030a484351cfa221958969bb5ee7cbbec2028",
+    "stamp": [
+      1792446225560193924,
+      11943
+    ]
+  },
+  "bonus/2-5-scientifically-useful-polynomial.md": {
+    "collections": {},
+    "dependencies": {
+      "../src/bonus/2-5-scientifically-useful-polynomial.md": [
+        1792447415272005964,
+        4896
+      ]
+    },
+    "outputs": [
+      "bonus/2-5-scientifically-useful-polynomial.md"
+    ],
+    "scope": "72ed02d652216ef58e3de29ad715d3f6cb9072e667e627b1b2bc7ae30a0adbf5",
+    "settings": "b2b80f3e3f94a6fdbd7ae62f301030a484351cfa221958969bb5ee7cbbec2028",
+    "stamp": [
+      1792446225561311450,
+      4939
+    ]
+  },
+  "bonus/4-4-building-queries.md": {
+    "collections": {},
+    "dependencies": {
+      "../src/bonus/.md2html-cache/4-4-building-queries/racket-4-4-compound-queries-40df174e046e/.complete": [
+        1792387072732777806,
+        0
+      ],
+      "../src/bonus/.md2html-cache/4-4-building-queries/racket-4-4-compound-queries-40df174e046e/output.txt": [
+        1792387072732777806,
+        1828
+      ],
+      "../src/bonus/.md2html-cache/4-4-building-queries/racket-4-4-simple-database-1c28b2f57e3b/.complete": [
+        1792387072258325661,
+        0
+      ],
+      "../src/bonus/.md2html-cache/4-4-building-queries/racket-4-4-simple-database-1c28b2f57e3b/output.txt": [
+        1792387072258325661,
+        482
+      ],
+      "../src/bonus/.md2html-cache/4-4-building-queries/racket-4-4-simple-driver-2824a292005a/.complete": [
+        1792387072485799870,
+        0
+      ],
+      "../src/bonus/.md2html-cache/4-4-building-queries/racket-4-4-simple-driver-2824a292005a/output.txt": [
+        1792387072485799870,
+        536
+      ],
+      "../src/bonus/.md2html-cache/4-4-building-queries/racket-4-4-simple-frame-038bda5f87ef/.complete": [
+        1792387071837962694,
+        0
+      ],
+      "../src/bonus/.md2html-cache/4-4-building-queries/racket-4-4-simple-frame-038bda5f87ef/output.txt": [
+        1792387071837962694,
+        88
+      ],
+      "../src/bonus/.md2html-cache/4-4-building-queries/racket-4-4-simple-pattern-match-1d3f9ccbc976/.complete": [
+        1792387072035542462,
+        0
+      ],
+      "../src/bonus/.md2html-cache/4-4-building-queries/racket-4-4-simple-pattern-match-1d3f9ccbc976/output.txt": [
+        1792387072035542462,
+        37
+      ],
+      "../src/bonus/4-4-building-queries.md": [
+        1792447415272005964,
+        12949
+      ],
+      "../src/bonus/code/4-4-compound-queries.rkt": [
+        1792383961727858905,
+        17085
+      ],
+      "../src/bonus/code/4-4-simple-database.rkt": [
+        1792383961728031686,
+        11175
+      ],
+      "../src/bonus/code/4-4-simple-driver.rkt": [
+        1792383961728031686,
+        15532
+      ],
+      "../src/bonus/code/4-4-simple-frame.rkt": [
+        1792383961728031686,
+        698
+      ],
+      "../src/bonus/code/4-4-simple-pattern-match.rkt": [
+        1792383961728031686,
+        1438
+      ]
+    },
+    "outputs": [
+      "bonus/code/4-4-simple-driver.rkt",
+      "bonus/4-4-building-queries.md",
+      "bonus/code/4-4-compound-queries.rkt",
+      "bonus/code/4-4-simple-pattern-match.rkt",
+      "bonus/code/4-4-simple-frame.rkt",
+      "bonus/code/4-4-simple-database.rkt"
+    ],
+    "scope": "72ed02d652216ef58e3de29ad715d3f6cb9072e667e627b1b2bc7ae30a0adbf5",
+    "settings": "b2b80f3e3f94a6fdbd7ae62f301030a484351cfa221958969bb5ee7cbbec2028",
+    "stamp": [
+      1792463463146994836,
+      302184
+    ]
+  },
+  "ch1/ch1-anki.md": {
+    "collections": {},
+    "dependencies": {
+      "../src/ch1/ch1-anki.md": [
+        1792447415272005964,
+        13886
+      ]
+    },
+    "outputs": [
+      "ch1/ch1-anki.md"
+    ],
+    "scope": "72ed02d652216ef58e3de29ad715d3f6cb9072e667e627b1b2bc7ae30a0adbf5",
+    "settings": "b2b80f3e3f94a6fdbd7ae62f301030a484351cfa221958969bb5ee7cbbec2028",
+    "stamp": [
+      1792446225604418129,
+      13993
+    ]
+  },
+  "ch1/notes-ch1-1.md": {
+    "collections": {},
+    "dependencies": {
+      "../src/ch1/.md2html-cache/notes-ch1-1/racket-ex1-1-d5c4ad566a0d/.complete": [
+        1792387073071963498,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-1/racket-ex1-1-d5c4ad566a0d/output.txt": [
+        1792387073071963498,
+        28
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-1/racket-ex1-2-634131f83f19/.complete": [
+        1792387073263019274,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-1/racket-ex1-2-634131f83f19/output.txt": [
+        1792387073263019274,
+        8
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-1/racket-ex1-3-eccac58baaa0/.complete": [
+        1792387073456780235,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-1/racket-ex1-3-eccac58baaa0/output.txt": [
+        1792387073456780235,
+        3
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-1/racket-ex1-4-8cff14b0d3f3/.complete": [
+        1792387073649682703,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-1/racket-ex1-4-8cff14b0d3f3/output.txt": [
+        1792387073649682703,
+        4
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-1/racket-ex1-7-e76e126aa74f/.complete": [
+        1792387073843139413,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-1/racket-ex1-7-e76e126aa74f/output.txt": [
+        1792387073843139413,
+        41
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-1/racket-ex1-8-335338309586/.complete": [
+        1792387074039082690,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-1/racket-ex1-8-335338309586/output.txt": [
+        1792387074039082690,
+        19
+      ],
+      "../src/ch1/ch1-code/ex1-1.rkt": [
+        1792444293984765139,
+        492
+      ],
+      "../src/ch1/ch1-code/ex1-2.rkt": [
+        1792383961728200019,
+        167
+      ],
+      "../src/ch1/ch1-code/ex1-3.rkt": [
+        1792383961728200019,
+        462
+      ],
+      "../src/ch1/ch1-code/ex1-4.rkt": [
+        1792383961728200019,
+        158
+      ],
+      "../src/ch1/ch1-code/ex1-7.rkt": [
+        1792383961728200019,
+        822
+      ],
+      "../src/ch1/ch1-code/ex1-8.rkt": [
+        1792383961728200019,
+        412
+      ],
+      "../src/ch1/notes-ch1-1.md": [
+        1792447415272005964,
+        18494
+      ]
+    },
+    "outputs": [
+      "ch1/notes-ch1-1.md",
+      "ch1/ch1-code/ex1-1.rkt",
+      "ch1/ch1-code/ex1-8.rkt",
+      "ch1/ch1-code/ex1-3.rkt",
+      "ch1/ch1-code/ex1-4.rkt",
+      "ch1/ch1-code/ex1-7.rkt",
+      "ch1/ch1-code/ex1-2.rkt"
+    ],
+    "scope": "72ed02d652216ef58e3de29ad715d3f6cb9072e667e627b1b2bc7ae30a0adbf5",
+    "settings": "b2b80f3e3f94a6fdbd7ae62f301030a484351cfa221958969bb5ee7cbbec2028",
+    "stamp": [
+      1792463463177844645,
+      44515
+    ]
+  },
+  "ch1/notes-ch1-2.md": {
+    "collections": {},
+    "dependencies": {
+      "../src/ch1/.md2html-cache/notes-ch1-2/racket-ex1-10-bc1e12c04d5b/.complete": [
+        1792387074306870595,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-2/racket-ex1-10-bc1e12c04d5b/output.txt": [
+        1792387074306870595,
+        19747
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-2/racket-ex1-11a-0fd8d24cce4f/.complete": [
+        1792387074505833554,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-2/racket-ex1-11a-0fd8d24cce4f/output.txt": [
+        1792387074505833554,
+        15
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-2/racket-ex1-11b-3efa4d06c14f/.complete": [
+        1792387074703313372,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-2/racket-ex1-11b-3efa4d06c14f/output.txt": [
+        1792387074703313372,
+        15
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-2/racket-ex1-12-aa4545f1071a/.complete": [
+        1792387074899733108,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-2/racket-ex1-12-aa4545f1071a/output.txt": [
+        1792387074899733108,
+        96
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-2/racket-ex1-15-437e28cba5d7/.complete": [
+        1792387075097457614,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-2/racket-ex1-15-437e28cba5d7/output.txt": [
+        1792387075097457614,
+        57
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-2/racket-ex1-16-1ef5d48b2fe0/.complete": [
+        1792387075294799972,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-2/racket-ex1-16-1ef5d48b2fe0/output.txt": [
+        1792387075294799972,
+        28
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-2/racket-ex1-17-88ae18aa47c8/.complete": [
+        1792387075491818421,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-2/racket-ex1-17-88ae18aa47c8/output.txt": [
+        1792387075491818421,
+        193
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-2/racket-ex1-18-8a4cbbd2a277/.complete": [
+        1792387075894679029,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-2/racket-ex1-18-8a4cbbd2a277/output.txt": [
+        1792387075894679029,
+        193
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-2/racket-ex1-18a-071fb46734c6/.complete": [
+        1792387075695404631,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-2/racket-ex1-18a-071fb46734c6/output.txt": [
+        1792387075695404631,
+        10
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-2/racket-ex1-19-eed37591eda2/.complete": [
+        1792387076093908280,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-2/racket-ex1-19-eed37591eda2/output.txt": [
+        1792387076093908280,
+        17
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-2/racket-ex1-20-d3ab7614315d/.complete": [
+        1792387076290151788,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-2/racket-ex1-20-d3ab7614315d/output.txt": [
+        1792387076290151788,
+        18
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-2/racket-ex1-21-47d7a88d60c1/.complete": [
+        1792387076488939075,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-2/racket-ex1-21-47d7a88d60c1/output.txt": [
+        1792387076488939075,
+        11
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-2/racket-ex1-22a-d5ca9edd20cf/.complete": [
+        1792387076685940250,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-2/racket-ex1-22a-d5ca9edd20cf/output.txt": [
+        1792387076685940250,
+        165
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-2/racket-ex1-23-f6c019812f1b/.complete": [
+        1792387076883855015,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-2/racket-ex1-23-f6c019812f1b/output.txt": [
+        1792387076883855015,
+        165
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-2/racket-ex1-24-88f37e203784/.complete": [
+        1792387077091831791,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-2/racket-ex1-24-88f37e203784/output.txt": [
+        1792387077091831791,
+        342
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-2/racket-ex1-27-927e738ce78b/.complete": [
+        1792387077297573695,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-2/racket-ex1-27-927e738ce78b/output.txt": [
+        1792387077297573695,
+        323
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-2/racket-ex1-28-91a94909e366/.complete": [
+        1792387077497148953,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-2/racket-ex1-28-91a94909e366/output.txt": [
+        1792387077497148953,
+        559
+      ],
+      "../src/ch1/ch1-code/ex1-10.rkt": [
+        1792383961728200019,
+        188
+      ],
+      "../src/ch1/ch1-code/ex1-11a.rkt": [
+        1792383961728200019,
+        204
+      ],
+      "../src/ch1/ch1-code/ex1-11b.rkt": [
+        1792383961728200019,
+        256
+      ],
+      "../src/ch1/ch1-code/ex1-12.rkt": [
+        1792383961728200019,
+        678
+      ],
+      "../src/ch1/ch1-code/ex1-15.rkt": [
+        1792383961728200019,
+        232
+      ],
+      "../src/ch1/ch1-code/ex1-16.rkt": [
+        1792383961728200019,
+        335
+      ],
+      "../src/ch1/ch1-code/ex1-17.rkt": [
+        1792383961728200019,
+        277
+      ],
+      "../src/ch1/ch1-code/ex1-18.rkt": [
+        1792383961728200019,
+        357
+      ],
+      "../src/ch1/ch1-code/ex1-18a.rkt": [
+        1792383961728200019,
+        350
+      ],
+      "../src/ch1/ch1-code/ex1-19.rkt": [
+        1792383961728200019,
+        602
+      ],
+      "../src/ch1/ch1-code/ex1-20.rkt": [
+        1792383961728200019,
+        161
+      ],
+      "../src/ch1/ch1-code/ex1-21.rkt": [
+        1792383961728200019,
+        426
+      ],
+      "../src/ch1/ch1-code/ex1-22a.rkt": [
+        1792383961728200019,
+        918
+      ],
+      "../src/ch1/ch1-code/ex1-23.rkt": [
+        1792383961728200019,
+        1012
+      ],
+      "../src/ch1/ch1-code/ex1-24.rkt": [
+        1792383961728200019,
+        1195
+      ],
+      "../src/ch1/ch1-code/ex1-27.rkt": [
+        1792383961728200019,
+        882
+      ],
+      "../src/ch1/ch1-code/ex1-28.rkt": [
+        1792383961728200019,
+        1905
+      ],
+      "../src/ch1/notes-ch1-2.md": [
+        1792447415272005964,
+        38037
+      ]
+    },
+    "outputs": [
+      "ch1/ch1-code/ex1-12.rkt",
+      "ch1/ch1-code/ex1-16.rkt",
+      "ch1/ch1-code/ex1-21.rkt",
+      "ch1/ch1-code/ex1-27.rkt",
+      "ch1/ch1-code/ex1-11a.rkt",
+      "ch1/ch1-code/ex1-23.rkt",
+      "ch1/ch1-code/ex1-11b.rkt",
+      "ch1/ch1-code/ex1-15.rkt",
+      "ch1/ch1-code/ex1-19.rkt",
+      "ch1/ch1-code/ex1-20.rkt",
+      "ch1/ch1-code/ex1-18a.rkt",
+      "ch1/ch1-code/ex1-18.rkt",
+      "ch1/ch1-code/ex1-22a.rkt",
+      "ch1/ch1-code/ex1-17.rkt",
+      "ch1/notes-ch1-2.md",
+      "ch1/ch1-code/ex1-10.rkt",
+      "ch1/ch1-code/ex1-24.rkt",
+      "ch1/ch1-code/ex1-28.rkt"
+    ],
+    "scope": "72ed02d652216ef58e3de29ad715d3f6cb9072e667e627b1b2bc7ae30a0adbf5",
+    "settings": "b2b80f3e3f94a6fdbd7ae62f301030a484351cfa221958969bb5ee7cbbec2028",
+    "stamp": [
+      1792463463208063600,
+      160039
+    ]
+  },
+  "ch1/notes-ch1-3.md": {
+    "collections": {},
+    "dependencies": {
+      "../src/ch1/.md2html-cache/notes-ch1-3/racket-ex1-29-eef380753f17/.complete": [
+        1792387077955665618,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-3/racket-ex1-29-eef380753f17/output.txt": [
+        1792387077955665618,
+        102
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-3/racket-ex1-30-7394254d53b8/.complete": [
+        1792387078155844737,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-3/racket-ex1-30-7394254d53b8/output.txt": [
+        1792387078155844737,
+        36
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-3/racket-ex1-31-0b228c40fd4a/.complete": [
+        1792387078358614849,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-3/racket-ex1-31-0b228c40fd4a/output.txt": [
+        1792387078358614849,
+        102
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-3/racket-ex1-32-f65e246f2434/.complete": [
+        1792387078553678835,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-3/racket-ex1-32-f65e246f2434/output.txt": [
+        1792387078553678835,
+        38
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-3/racket-ex1-33-1323ec501666/.complete": [
+        1792387078753448133,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-3/racket-ex1-33-1323ec501666/output.txt": [
+        1792387078753448133,
+        75
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-3/racket-ex1-34-f5c37bdb89c3/.complete": [
+        1792463057115287149,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-3/racket-ex1-34-f5c37bdb89c3/output.txt": [
+        1792463057115287149,
+        167
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-3/racket-ex1-35-22811fbe78ab/.complete": [
+        1792387079145889695,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-3/racket-ex1-35-22811fbe78ab/output.txt": [
+        1792387079145889695,
+        37
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-3/racket-ex1-36-f5e564ec5390/.complete": [
+        1792387079344580279,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-3/racket-ex1-36-f5e564ec5390/output.txt": [
+        1792387079344580279,
+        55
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-3/racket-ex1-37-72b2ad13e929/.complete": [
+        1792387079543919199,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-3/racket-ex1-37-72b2ad13e929/output.txt": [
+        1792387079543919199,
+        86
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-3/racket-ex1-38-03d64cdb9d45/.complete": [
+        1792387079741491977,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-3/racket-ex1-38-03d64cdb9d45/output.txt": [
+        1792387079741491977,
+        55
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-3/racket-ex1-39-5fb6f37f6031/.complete": [
+        1792387079939436929,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-3/racket-ex1-39-5fb6f37f6031/output.txt": [
+        1792387079939436929,
+        216
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-3/racket-ex1-40-9beede0e2d4f/.complete": [
+        1792387080139723322,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-3/racket-ex1-40-9beede0e2d4f/output.txt": [
+        1792387080139723322,
+        47
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-3/racket-ex1-41-7efe84adcabd/.complete": [
+        1792387080339432073,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-3/racket-ex1-41-7efe84adcabd/output.txt": [
+        1792387080339432073,
+        5
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-3/racket-ex1-42-a236790b51d3/.complete": [
+        1792387080539255907,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-3/racket-ex1-42-a236790b51d3/output.txt": [
+        1792387080539255907,
+        3
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-3/racket-ex1-43-9304e0247fc8/.complete": [
+        1792387080734709031,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-3/racket-ex1-43-9304e0247fc8/output.txt": [
+        1792387080734709031,
+        7
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-3/racket-ex1-44-005aff57fa37/.complete": [
+        1792387080933253073,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-3/racket-ex1-44-005aff57fa37/output.txt": [
+        1792387080933253073,
+        59
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-3/racket-ex1-45-baf955accabb/.complete": [
+        1792387081138754735,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-3/racket-ex1-45-baf955accabb/output.txt": [
+        1792387081138754735,
+        131
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-3/racket-ex1-46-33903634eced/.complete": [
+        1792387081335412096,
+        0
+      ],
+      "../src/ch1/.md2html-cache/notes-ch1-3/racket-ex1-46-33903634eced/output.txt": [
+        1792387081335412096,
+        38
+      ],
+      "../src/ch1/ch1-code/ex1-29.rkt": [
+        1792383961728200019,
+        688
+      ],
+      "../src/ch1/ch1-code/ex1-30.rkt": [
+        1792383961728200019,
+        675
+      ],
+      "../src/ch1/ch1-code/ex1-31.rkt": [
+        1792383961728200019,
+        969
+      ],
+      "../src/ch1/ch1-code/ex1-32.rkt": [
+        1792383961728200019,
+        1275
+      ],
+      "../src/ch1/ch1-code/ex1-33.rkt": [
+        1792383961728200019,
+        1494
+      ],
+      "../src/ch1/ch1-code/ex1-34.rkt": [
+        1792383961728200019,
+        40
+      ],
+      "../src/ch1/ch1-code/ex1-35.rkt": [
+        1792383961728200019,
+        413
+      ],
+      "../src/ch1/ch1-code/ex1-36.rkt": [
+        1792383961728200019,
+        588
+      ],
+      "../src/ch1/ch1-code/ex1-37.rkt": [
+        1792383961728200019,
+        1196
+      ],
+      "../src/ch1/ch1-code/ex1-38.rkt": [
+        1792383961728200019,
+        538
+      ],
+      "../src/ch1/ch1-code/ex1-39.rkt": [
+        1792383961728200019,
+        996
+      ],
+      "../src/ch1/ch1-code/ex1-40.rkt": [
+        1792383961728200019,
+        725
+      ],
+      "../src/ch1/ch1-code/ex1-41.rkt": [
+        1792383961728200019,
+        134
+      ],
+      "../src/ch1/ch1-code/ex1-42.rkt": [
+        1792383961728200019,
+        135
+      ],
+      "../src/ch1/ch1-code/ex1-43.rkt": [
+        1792383961728200019,
+        238
+      ],
+      "../src/ch1/ch1-code/ex1-44.rkt": [
+        1792383961728200019,
+        364
+      ],
+      "../src/ch1/ch1-code/ex1-45.rkt": [
+        1792383961728200019,
+        951
+      ],
+      "../src/ch1/ch1-code/ex1-46.rkt": [
+        1792383961728200019,
+        615
+      ],
+      "../src/ch1/notes-ch1-3.md": [
+        1792447415272005964,
+        18806
+      ]
+    },
+    "outputs": [
+      "ch1/ch1-code/ex1-45.rkt",
+      "ch1/ch1-code/ex1-39.rkt",
+      "ch1/ch1-code/ex1-36.rkt",
+      "ch1/ch1-code/ex1-34.rkt",
+      "ch1/ch1-code/ex1-41.rkt",
+      "ch1/ch1-code/ex1-42.rkt",
+      "ch1/ch1-code/ex1-35.rkt",
+      "ch1/ch1-code/ex1-46.rkt",
+      "ch1/ch1-code/ex1-33.rkt",
+      "ch1/ch1-code/ex1-40.rkt",
+      "ch1/ch1-code/ex1-32.rkt",
+      "ch1/ch1-code/ex1-29.rkt",
+      "ch1/ch1-code/ex1-37.rkt",
+      "ch1/ch1-code/ex1-31.rkt",
+      "ch1/notes-ch1-3.md",
+      "ch1/ch1-code/ex1-38.rkt",
+      "ch1/ch1-code/ex1-43.rkt",
+      "ch1/ch1-code/ex1-44.rkt",
+      "ch1/ch1-code/ex1-30.rkt"
+    ],
+    "scope": "72ed02d652216ef58e3de29ad715d3f6cb9072e667e627b1b2bc7ae30a0adbf5",
+    "settings": "b2b80f3e3f94a6fdbd7ae62f301030a484351cfa221958969bb5ee7cbbec2028",
+    "stamp": [
+      1792463463230109359,
+      134548
+    ]
+  },
+  "ch2/notes-ch2-1.md": {
+    "collections": {},
+    "dependencies": {
+      "../src/ch2/.md2html-cache/notes-ch2-1/racket-ex2-1-7b9554a6df44/.complete": [
+        1792387081610693387,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-1/racket-ex2-1-7b9554a6df44/output.txt": [
+        1792387081610693387,
+        34
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-1/racket-ex2-10-dd55561a00ce/.complete": [
+        1792463057462861298,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-1/racket-ex2-10-dd55561a00ce/output.txt": [
+        1792463057462861298,
+        246
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-1/racket-ex2-11-63e3165c3eeb/.complete": [
+        1792387083252978020,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-1/racket-ex2-11-63e3165c3eeb/output.txt": [
+        1792387083252978020,
+        59
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-1/racket-ex2-14-46581fae8742/.complete": [
+        1792387083451699218,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-1/racket-ex2-14-46581fae8742/output.txt": [
+        1792387083451699218,
+        240
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-1/racket-ex2-15-bd3f1cb17e76/.complete": [
+        1792387083663771444,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-1/racket-ex2-15-bd3f1cb17e76/output.txt": [
+        1792387083663771444,
+        391
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-1/racket-ex2-2-e098f0b45708/.complete": [
+        1792387081809737499,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-1/racket-ex2-2-e098f0b45708/output.txt": [
+        1792387081809737499,
+        10
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-1/racket-ex2-3-8ed937d90e38/.complete": [
+        1792387082009259837,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-1/racket-ex2-3-8ed937d90e38/output.txt": [
+        1792387082009259837,
+        86
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-1/racket-ex2-4-f0b8943accb6/.complete": [
+        1792387082206096584,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-1/racket-ex2-4-f0b8943accb6/output.txt": [
+        1792387082206096584,
+        3
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-1/racket-ex2-5-9d3034bed48b/.complete": [
+        1792387082406054912,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-1/racket-ex2-5-9d3034bed48b/output.txt": [
+        1792387082406054912,
+        41
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-1/racket-ex2-6-03ba85173fdb/.complete": [
+        1792387082610122920,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-1/racket-ex2-6-03ba85173fdb/output.txt": [
+        1792387082610122920,
+        82
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-1/racket-ex2-9-7c1316fd9b2c/.complete": [
+        1792387082825638915,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-1/racket-ex2-9-7c1316fd9b2c/output.txt": [
+        1792387082825638915,
+        437
+      ],
+      "../src/ch2/code/ex2-1.rkt": [
+        1792383961730313992,
+        215
+      ],
+      "../src/ch2/code/ex2-10.rkt": [
+        1792383961730313992,
+        1243
+      ],
+      "../src/ch2/code/ex2-11.rkt": [
+        1792383961730313992,
+        2232
+      ],
+      "../src/ch2/code/ex2-14.rkt": [
+        1792383961730313992,
+        1882
+      ],
+      "../src/ch2/code/ex2-15.rkt": [
+        1792383961730313992,
+        2594
+      ],
+      "../src/ch2/code/ex2-2.rkt": [
+        1792383961730313992,
+        766
+      ],
+      "../src/ch2/code/ex2-3.rkt": [
+        1792383961730313992,
+        1449
+      ],
+      "../src/ch2/code/ex2-4.rkt": [
+        1792383961730313992,
+        209
+      ],
+      "../src/ch2/code/ex2-5.rkt": [
+        1792383961730313992,
+        632
+      ],
+      "../src/ch2/code/ex2-6.rkt": [
+        1792383961730313992,
+        865
+      ],
+      "../src/ch2/code/ex2-9.rkt": [
+        1792383961731031790,
+        1915
+      ],
+      "../src/ch2/notes-ch2-1.md": [
+        1792447415272005964,
+        16652
+      ]
+    },
+    "outputs": [
+      "ch2/code/ex2-5.rkt",
+      "ch2/code/ex2-14.rkt",
+      "ch2/code/ex2-1.rkt",
+      "ch2/code/ex2-6.rkt",
+      "ch2/code/ex2-15.rkt",
+      "ch2/code/ex2-11.rkt",
+      "ch2/code/ex2-9.rkt",
+      "ch2/code/ex2-4.rkt",
+      "ch2/code/ex2-2.rkt",
+      "ch2/notes-ch2-1.md",
+      "ch2/code/ex2-3.rkt",
+      "ch2/code/ex2-10.rkt"
+    ],
+    "scope": "72ed02d652216ef58e3de29ad715d3f6cb9072e667e627b1b2bc7ae30a0adbf5",
+    "settings": "b2b80f3e3f94a6fdbd7ae62f301030a484351cfa221958969bb5ee7cbbec2028",
+    "stamp": [
+      1792463463251424293,
+      142441
+    ]
+  },
+  "ch2/notes-ch2-2.md": {
+    "collections": {},
+    "dependencies": {
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ch2-2-experiments-49875d7844ac/.complete": [
+        1792387083922228772,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ch2-2-experiments-49875d7844ac/output.txt": [
+        1792387083922228772,
+        38
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-17-7d6d4bb80987/.complete": [
+        1792387084122911756,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-17-7d6d4bb80987/output.txt": [
+        1792387084122911756,
+        5
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-18-993c6be78613/.complete": [
+        1792387084327264371,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-18-993c6be78613/output.txt": [
+        1792387084327264371,
+        54
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-19-cd84873b1716/.complete": [
+        1792387085043600819,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-19-cd84873b1716/output.txt": [
+        1792387085043600819,
+        39
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-20-60f9b95db471/.complete": [
+        1792387085248822178,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-20-60f9b95db471/output.txt": [
+        1792387085248822178,
+        18
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-21-e0c317ee4972/.complete": [
+        1792387085455328217,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-21-e0c317ee4972/output.txt": [
+        1792387085455328217,
+        60
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-22-1208a07bdf8b/.complete": [
+        1792387085659384481,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-22-1208a07bdf8b/output.txt": [
+        1792387085659384481,
+        39
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-23-42c8f6095c7d/.complete": [
+        1792387085863722997,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-23-42c8f6095c7d/output.txt": [
+        1792387085863722997,
+        10
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-24-802283edf550/.complete": [
+        1792387086064677806,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-24-802283edf550/output.txt": [
+        1792387086064677806,
+        14
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-25-0869eb86f2a5/.complete": [
+        1792387086266999044,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-25-0869eb86f2a5/output.txt": [
+        1792387086266999044,
+        6
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-26-c8f0035c0c4b/.complete": [
+        1792387086464404017,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-26-c8f0035c0c4b/output.txt": [
+        1792387086464404017,
+        48
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-27-015a6372d96f/.complete": [
+        1792387086661783702,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-27-015a6372d96f/output.txt": [
+        1792387086661783702,
+        14
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-28-0220cf499d76/.complete": [
+        1792387086863428826,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-28-0220cf499d76/output.txt": [
+        1792387086863428826,
+        84
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-29-0584d159eb91/.complete": [
+        1792387087068569645,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-29-0584d159eb91/output.txt": [
+        1792387087068569645,
+        21
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-30-f63a7400fd10/.complete": [
+        1792387087263896895,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-30-f63a7400fd10/output.txt": [
+        1792387087263896895,
+        102
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-31-06543d345d8a/.complete": [
+        1792387087462029913,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-31-06543d345d8a/output.txt": [
+        1792387087462029913,
+        164
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-32-2c66d663817d/.complete": [
+        1792387087661063158,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-32-2c66d663817d/output.txt": [
+        1792387087661063158,
+        43
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-33-3568cd989933/.complete": [
+        1792387087858156377,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-33-3568cd989933/output.txt": [
+        1792387087858156377,
+        31
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-34-458060627788/.complete": [
+        1792387088053762611,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-34-458060627788/output.txt": [
+        1792387088053762611,
+        3
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-35-d3dec6920cc4/.complete": [
+        1792387088251356080,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-35-d3dec6920cc4/output.txt": [
+        1792387088251356080,
+        3
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-36-3c52fb42d78b/.complete": [
+        1792387088446663160,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-36-3c52fb42d78b/output.txt": [
+        1792387088446663160,
+        11
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-37-a5dcb72c29ba/.complete": [
+        1792387088650455913,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-37-a5dcb72c29ba/output.txt": [
+        1792387088650455913,
+        207
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-38-01b5ec18afd9/.complete": [
+        1792387088848141147,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-38-01b5ec18afd9/output.txt": [
+        1792387088848141147,
+        38
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-39-e24dc24c953b/.complete": [
+        1792387089045903951,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-39-e24dc24c953b/output.txt": [
+        1792387089045903951,
+        24
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-40-06cba046d203/.complete": [
+        1792387089248151279,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-40-06cba046d203/output.txt": [
+        1792387089248151279,
+        94
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-41-b79c08f6641c/.complete": [
+        1792387089445786325,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-41-b79c08f6641c/output.txt": [
+        1792387089445786325,
+        180
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-42-f670e255c8e7/.complete": [
+        1792387089758680762,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-2/racket-ex2-42-f670e255c8e7/output.txt": [
+        1792387089758680762,
+        29
+      ],
+      "../src/ch2/code/ch2-2-experiments.rkt": [
+        1792383961730313992,
+        494
+      ],
+      "../src/ch2/code/ex2-17.rkt": [
+        1792383961730313992,
+        121
+      ],
+      "../src/ch2/code/ex2-18.rkt": [
+        1792383961730313992,
+        1054
+      ],
+      "../src/ch2/code/ex2-19.rkt": [
+        1792383961730313992,
+        976
+      ],
+      "../src/ch2/code/ex2-20.rkt": [
+        1792383961730313992,
+        383
+      ],
+      "../src/ch2/code/ex2-21.rkt": [
+        1792383961730313992,
+        618
+      ],
+      "../src/ch2/code/ex2-22.rkt": [
+        1792383961730313992,
+        396
+      ],
+      "../src/ch2/code/ex2-23.rkt": [
+        1792383961730313992,
+        138
+      ],
+      "../src/ch2/code/ex2-24.rkt": [
+        1792383961730313992,
+        40
+      ],
+      "../src/ch2/code/ex2-25.rkt": [
+        1792383961730313992,
+        288
+      ],
+      "../src/ch2/code/ex2-26.rkt": [
+        1792383961730313992,
+        94
+      ],
+      "../src/ch2/code/ex2-27.rkt": [
+        1792383961730313992,
+        301
+      ],
+      "../src/ch2/code/ex2-28.rkt": [
+        1792383961730313992,
+        1135
+      ],
+      "../src/ch2/code/ex2-29.rkt": [
+        1792383961730313992,
+        1882
+      ],
+      "../src/ch2/code/ex2-30.rkt": [
+        1792383961730313992,
+        559
+      ],
+      "../src/ch2/code/ex2-31.rkt": [
+        1792383961730313992,
+        562
+      ],
+      "../src/ch2/code/ex2-32.rkt": [
+        1792383961730313992,
+        280
+      ],
+      "../src/ch2/code/ex2-33.rkt": [
+        1792383961730313992,
+        665
+      ],
+      "../src/ch2/code/ex2-34.rkt": [
+        1792383961730313992,
+        481
+      ],
+      "../src/ch2/code/ex2-35.rkt": [
+        1792383961730313992,
+        572
+      ],
+      "../src/ch2/code/ex2-36.rkt": [
+        1792383961730313992,
+        478
+      ],
+      "../src/ch2/code/ex2-37.rkt": [
+        1792383961730313992,
+        1349
+      ],
+      "../src/ch2/code/ex2-38.rkt": [
+        1792383961730313992,
+        570
+      ],
+      "../src/ch2/code/ex2-39.rkt": [
+        1792383961730313992,
+        671
+      ],
+      "../src/ch2/code/ex2-40.rkt": [
+        1792383961730313992,
+        1391
+      ],
+      "../src/ch2/code/ex2-41.rkt": [
+        1792383961730313992,
+        1349
+      ],
+      "../src/ch2/code/ex2-42.rkt": [
+        1792383961730313992,
+        1922
+      ],
+      "../src/ch2/notes-ch2-2.md": [
+        1792447415272005964,
+        29419
+      ]
+    },
+    "outputs": [
+      "ch2/code/ex2-18.rkt",
+      "ch2/code/ex2-19.rkt",
+      "ch2/code/ex2-31.rkt",
+      "ch2/code/ex2-35.rkt",
+      "ch2/code/ex2-39.rkt",
+      "ch2/code/ex2-26.rkt",
+      "ch2/code/ex2-28.rkt",
+      "ch2/code/ex2-40.rkt",
+      "ch2/code/ex2-24.rkt",
+      "ch2/code/ex2-30.rkt",
+      "ch2/code/ex2-42.rkt",
+      "ch2/code/ex2-17.rkt",
+      "ch2/code/ex2-37.rkt",
+      "ch2/code/ex2-33.rkt",
+      "ch2/code/ex2-20.rkt",
+      "ch2/code/ex2-32.rkt",
+      "ch2/code/ex2-36.rkt",
+      "ch2/code/ex2-25.rkt",
+      "ch2/code/ex2-21.rkt",
+      "ch2/code/ex2-38.rkt",
+      "ch2/code/ex2-34.rkt",
+      "ch2/code/ex2-22.rkt",
+      "ch2/code/ex2-41.rkt",
+      "ch2/code/ex2-27.rkt",
+      "ch2/code/ex2-29.rkt",
+      "ch2/code/ch2-2-experiments.rkt",
+      "ch2/notes-ch2-2.md",
+      "ch2/code/ex2-23.rkt"
+    ],
+    "scope": "72ed02d652216ef58e3de29ad715d3f6cb9072e667e627b1b2bc7ae30a0adbf5",
+    "settings": "b2b80f3e3f94a6fdbd7ae62f301030a484351cfa221958969bb5ee7cbbec2028",
+    "stamp": [
+      1792446225720485840,
+      192929
+    ]
+  },
+  "ch2/notes-ch2-3.md": {
+    "collections": {},
+    "dependencies": {
+      "../src/ch2/.md2html-cache/notes-ch2-3/racket-ex2-53-4d5cfd0fe903/.complete": [
+        1792387090462632842,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-3/racket-ex2-53-4d5cfd0fe903/output.txt": [
+        1792387090462632842,
+        66
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-3/racket-ex2-53b-92a6d56e2518/.complete": [
+        1792385594815945246,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-3/racket-ex2-53b-92a6d56e2518/output.txt": [
+        1792385594815945246,
+        59
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-3/racket-ex2-53c-61aec5600b26/.complete": [
+        1792387090057813821,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-3/racket-ex2-53c-61aec5600b26/output.txt": [
+        1792387090057813821,
+        8
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-3/racket-ex2-54-49a068d13778/.complete": [
+        1792387090665554370,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-3/racket-ex2-54-49a068d13778/output.txt": [
+        1792387090665554370,
+        15
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-3/racket-ex2-56-c68ef72ec657/.complete": [
+        1792387090874885654,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-3/racket-ex2-56-c68ef72ec657/output.txt": [
+        1792387090874885654,
+        51
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-3/racket-ex2-57-335776fa8e44/.complete": [
+        1792387091084116256,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-3/racket-ex2-57-335776fa8e44/output.txt": [
+        1792387091084116256,
+        216
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-3/racket-ex2-58-a77688426f52/.complete": [
+        1792387091292509579,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-3/racket-ex2-58-a77688426f52/output.txt": [
+        1792387091292509579,
+        254
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-3/racket-ex2-58b-524575c7c6fb/.complete": [
+        1792387091503509631,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-3/racket-ex2-58b-524575c7c6fb/output.txt": [
+        1792387091503509631,
+        293
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-3/racket-ex2-59-9d7f3c836821/.complete": [
+        1792387091699631393,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-3/racket-ex2-59-9d7f3c836821/output.txt": [
+        1792387091699631393,
+        30
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-3/racket-ex2-60-5423d64727e1/.complete": [
+        1792387091901790075,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-3/racket-ex2-60-5423d64727e1/output.txt": [
+        1792387091901790075,
+        38
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-3/racket-ex2-61-56ccd66d9697/.complete": [
+        1792387092099064605,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-3/racket-ex2-61-56ccd66d9697/output.txt": [
+        1792387092099064605,
+        65
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-3/racket-ex2-62-f23c2bdd126e/.complete": [
+        1792387092298065491,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-3/racket-ex2-62-f23c2bdd126e/output.txt": [
+        1792387092298065491,
+        90
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-3/racket-ex2-63-34b5a3e77422/.complete": [
+        1792387092504397557,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-3/racket-ex2-63-34b5a3e77422/output.txt": [
+        1792387092504397557,
+        90
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-3/racket-ex2-67-197a3fdc8744/.complete": [
+        1792387092704668031,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-3/racket-ex2-67-197a3fdc8744/output.txt": [
+        1792387092704668031,
+        16
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-3/racket-ex2-68-e804d02d9083/.complete": [
+        1792387092920923863,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-3/racket-ex2-68-e804d02d9083/output.txt": [
+        1792387092920923863,
+        72
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-3/racket-ex2-69-ea0b69d97a1a/.complete": [
+        1792387093130168847,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-3/racket-ex2-69-ea0b69d97a1a/output.txt": [
+        1792387093130168847,
+        259
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-3/racket-ex2-70-0595999ba56e/.complete": [
+        1792387093337752824,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-3/racket-ex2-70-0595999ba56e/output.txt": [
+        1792387093337752824,
+        372
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-3/racket-ex2-71-02af480cb397/.complete": [
+        1792387093545334008,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-3/racket-ex2-71-02af480cb397/output.txt": [
+        1792387093545334008,
+        403
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-3/racket-symbolic-deriv-ab53daca22e7/.complete": [
+        1792387090264664914,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-3/racket-symbolic-deriv-ab53daca22e7/output.txt": [
+        1792387090264664914,
+        83
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-3/wl-ex2-53b-683e8c2ad902/.complete": [
+        1792463057673095133,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-3/wl-ex2-53b-683e8c2ad902/output.txt": [
+        1792463057673095133,
+        32
+      ],
+      "../src/ch2/code/ex2-53.rkt": [
+        1792383961730313992,
+        538
+      ],
+      "../src/ch2/code/ex2-53b.rkt": [
+        1792383961730313992,
+        308
+      ],
+      "../src/ch2/code/ex2-53b.wl": [
+        1792383961730313992,
+        86
+      ],
+      "../src/ch2/code/ex2-53c.rkt": [
+        1792383961730313992,
+        72
+      ],
+      "../src/ch2/code/ex2-54.rkt": [
+        1792383961730313992,
+        481
+      ],
+      "../src/ch2/code/ex2-56.rkt": [
+        1792383961730313992,
+        2150
+      ],
+      "../src/ch2/code/ex2-57.rkt": [
+        1792383961730313992,
+        3126
+      ],
+      "../src/ch2/code/ex2-58.rkt": [
+        1792383961730313992,
+        2334
+      ],
+      "../src/ch2/code/ex2-58b.rkt": [
+        1792383961730313992,
+        3551
+      ],
+      "../src/ch2/code/ex2-59.rkt": [
+        1792383961730313992,
+        1095
+      ],
+      "../src/ch2/code/ex2-60.rkt": [
+        1792383961730313992,
+        822
+      ],
+      "../src/ch2/code/ex2-61.rkt": [
+        1792383961730313992,
+        342
+      ],
+      "../src/ch2/code/ex2-62.rkt": [
+        1792383961730313992,
+        1740
+      ],
+      "../src/ch2/code/ex2-63.rkt": [
+        1792383961730313992,
+        2317
+      ],
+      "../src/ch2/code/ex2-67.rkt": [
+        1792383961730313992,
+        1995
+      ],
+      "../src/ch2/code/ex2-68.rkt": [
+        1792383961730313992,
+        2913
+      ],
+      "../src/ch2/code/ex2-69.rkt": [
+        1792383961730313992,
+        3434
+      ],
+      "../src/ch2/code/ex2-70.rkt": [
+        1792383961730313992,
+        3804
+      ],
+      "../src/ch2/code/ex2-71.rkt": [
+        1792383961730313992,
+        3593
+      ],
+      "../src/ch2/code/symbolic-deriv.rkt": [
+        1792383961731031790,
+        2303
+      ],
+      "../src/ch2/notes-ch2-3.md": [
+        1792447415273005962,
+        22690
+      ]
+    },
+    "outputs": [
+      "ch2/code/ex2-57.rkt",
+      "ch2/code/ex2-69.rkt",
+      "ch2/code/ex2-58.rkt",
+      "ch2/code/ex2-58b.rkt",
+      "ch2/code/ex2-54.rkt",
+      "ch2/code/ex2-59.rkt",
+      "ch2/code/ex2-63.rkt",
+      "ch2/code/ex2-60.rkt",
+      "ch2/code/ex2-53b.rkt",
+      "ch2/code/ex2-53c.rkt",
+      "ch2/code/ex2-61.rkt",
+      "ch2/notes-ch2-3.md",
+      "ch2/code/ex2-68.rkt",
+      "ch2/code/ex2-62.rkt",
+      "ch2/code/ex2-53.rkt",
+      "ch2/code/ex2-56.rkt",
+      "ch2/code/ex2-53b.wl",
+      "ch2/code/symbolic-deriv.rkt",
+      "ch2/code/ex2-71.rkt",
+      "ch2/code/ex2-70.rkt",
+      "ch2/code/ex2-67.rkt"
+    ],
+    "scope": "72ed02d652216ef58e3de29ad715d3f6cb9072e667e627b1b2bc7ae30a0adbf5",
+    "settings": "b2b80f3e3f94a6fdbd7ae62f301030a484351cfa221958969bb5ee7cbbec2028",
+    "stamp": [
+      1792463463335286765,
+      337726
+    ]
+  },
+  "ch2/notes-ch2-4.md": {
+    "collections": {},
+    "dependencies": {
+      "../src/ch2/.md2html-cache/notes-ch2-4/racket-ex2-73-1a49e6a928b9/.complete": [
+        1792387094283682488,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-4/racket-ex2-73-1a49e6a928b9/output.txt": [
+        1792387094283682488,
+        51
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-4/racket-ex2-75-f3f62891d5eb/.complete": [
+        1792387094480816793,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-4/racket-ex2-75-f3f62891d5eb/output.txt": [
+        1792387094480816793,
+        38
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-4/racket-package-example-45a667be44b3/.complete": [
+        1792387093859938795,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-4/racket-package-example-45a667be44b3/output.txt": [
+        1792387093859938795,
+        3
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-4/racket-package-example2-7a88d089d0bf/.complete": [
+        1792387094070376214,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-4/racket-package-example2-7a88d089d0bf/output.txt": [
+        1792387094070376214,
+        83
+      ],
+      "../src/ch2/code/ex2-73.rkt": [
+        1792383961730313992,
+        3423
+      ],
+      "../src/ch2/code/ex2-75.rkt": [
+        1792383961730313992,
+        489
+      ],
+      "../src/ch2/code/package-example.rkt": [
+        1792383961731031790,
+        1912
+      ],
+      "../src/ch2/code/package-example2.rkt": [
+        1792383961731031790,
+        2928
+      ],
+      "../src/ch2/notes-ch2-4.md": [
+        1792447415273005962,
+        12057
+      ]
+    },
+    "outputs": [
+      "ch2/code/ex2-75.rkt",
+      "ch2/code/ex2-73.rkt",
+      "ch2/code/package-example.rkt",
+      "ch2/code/package-example2.rkt",
+      "ch2/notes-ch2-4.md"
+    ],
+    "scope": "72ed02d652216ef58e3de29ad715d3f6cb9072e667e627b1b2bc7ae30a0adbf5",
+    "settings": "b2b80f3e3f94a6fdbd7ae62f301030a484351cfa221958969bb5ee7cbbec2028",
+    "stamp": [
+      1792463463349158469,
+      82784
+    ]
+  },
+  "ch2/notes-ch2-5.md": {
+    "collections": {},
+    "dependencies": {
+      "../src/ch2/.md2html-cache/notes-ch2-5/racket-ex2-77-2f5a172b4508/.complete": [
+        1792387094724576601,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-5/racket-ex2-77-2f5a172b4508/output.txt": [
+        1792387094724576601,
+        44
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-5/racket-ex2-78-3062b3f87f65/.complete": [
+        1792387094935888545,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-5/racket-ex2-78-3062b3f87f65/output.txt": [
+        1792387094935888545,
+        93
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-5/racket-ex2-79-26497f0dc894/.complete": [
+        1792387095163336039,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-5/racket-ex2-79-26497f0dc894/output.txt": [
+        1792387095163336039,
+        265
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-5/racket-ex2-80-6fd5d89943d4/.complete": [
+        1792387095393431663,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-5/racket-ex2-80-6fd5d89943d4/output.txt": [
+        1792387095393431663,
+        189
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-5/racket-ex2-82-48679d425f3a/.complete": [
+        1792387095639922736,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-5/racket-ex2-82-48679d425f3a/output.txt": [
+        1792387095639922736,
+        543
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-5/racket-ex2-84-54aa3897384f/.complete": [
+        1792387095886013651,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-5/racket-ex2-84-54aa3897384f/output.txt": [
+        1792387095886013651,
+        563
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-5/racket-ex2-85-d851253a4684/.complete": [
+        1792387096137341037,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-5/racket-ex2-85-d851253a4684/output.txt": [
+        1792387096137341037,
+        580
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-5/racket-ex2-86-41eeff453eb6/.complete": [
+        1792387096371569156,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-5/racket-ex2-86-41eeff453eb6/output.txt": [
+        1792387096371569156,
+        135
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-5/racket-ex2-87-5a7994572258/.complete": [
+        1792387096617604938,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-5/racket-ex2-87-5a7994572258/output.txt": [
+        1792387096617604938,
+        169
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-5/racket-ex2-88-6e8c135b0ef5/.complete": [
+        1792387096860603220,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-5/racket-ex2-88-6e8c135b0ef5/output.txt": [
+        1792387096860603220,
+        108
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-5/racket-ex2-89-0731c36963cc/.complete": [
+        1792387097119006733,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-5/racket-ex2-89-0731c36963cc/output.txt": [
+        1792387097119006733,
+        128
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-5/racket-ex2-90-886cdc64cec6/.complete": [
+        1792387097390018392,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-5/racket-ex2-90-886cdc64cec6/output.txt": [
+        1792387097390018392,
+        486
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-5/racket-ex2-91-6ac57d26a009/.complete": [
+        1792387097644562684,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-5/racket-ex2-91-6ac57d26a009/output.txt": [
+        1792387097644562684,
+        183
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-5/racket-ex2-92-a632d502fef3/.complete": [
+        1792387098102936410,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-5/racket-ex2-92-a632d502fef3/output.txt": [
+        1792387098102936410,
+        349
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-5/racket-ex2-92b-e4b5a4920a2c/.complete": [
+        1792387097849948749,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-5/racket-ex2-92b-e4b5a4920a2c/output.txt": [
+        1792387097849948749,
+        65
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-5/racket-ex2-93-60cd43bbe13b/.complete": [
+        1792387098327099641,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-5/racket-ex2-93-60cd43bbe13b/output.txt": [
+        1792387098327099641,
+        159
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-5/racket-ex2-94-1a3c5ee31c6b/.complete": [
+        1792387098573312478,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-5/racket-ex2-94-1a3c5ee31c6b/output.txt": [
+        1792387098573312478,
+        58
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-5/racket-ex2-95-5fdb60689338/.complete": [
+        1792387098814340640,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-5/racket-ex2-95-5fdb60689338/output.txt": [
+        1792387098814340640,
+        85
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-5/racket-ex2-96-a17c58546471/.complete": [
+        1792387099058808348,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-5/racket-ex2-96-a17c58546471/output.txt": [
+        1792387099058808348,
+        64
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-5/racket-ex2-97-0aa763aeae16/.complete": [
+        1792387099308120921,
+        0
+      ],
+      "../src/ch2/.md2html-cache/notes-ch2-5/racket-ex2-97-0aa763aeae16/output.txt": [
+        1792387099308120921,
+        366
+      ],
+      "../src/ch2/code/ex2-77.rkt": [
+        1792383961730313992,
+        6542
+      ],
+      "../src/ch2/code/ex2-78.rkt": [
+        1792383961730313992,
+        2809
+      ],
+      "../src/ch2/code/ex2-79.rkt": [
+        1792383961730313992,
+        10356
+      ],
+      "../src/ch2/code/ex2-80.rkt": [
+        1792383961730313992,
+        10249
+      ],
+      "../src/ch2/code/ex2-82.rkt": [
+        1792383961730313992,
+        15883
+      ],
+      "../src/ch2/code/ex2-84.rkt": [
+        1792383961730313992,
+        14878
+      ],
+      "../src/ch2/code/ex2-85.rkt": [
+        1792383961730313992,
+        15849
+      ],
+      "../src/ch2/code/ex2-86.rkt": [
+        1792383961730313992,
+        11227
+      ],
+      "../src/ch2/code/ex2-87.rkt": [
+        1792383961730313992,
+        13373
+      ],
+      "../src/ch2/code/ex2-88.rkt": [
+        1792383961730313992,
+        14550
+      ],
+      "../src/ch2/code/ex2-89.rkt": [
+        1792383961730313992,
+        18815
+      ],
+      "../src/ch2/code/ex2-90.rkt": [
+        1792383961731031790,
+        20960
+      ],
+      "../src/ch2/code/ex2-91.rkt": [
+        1792383961731031790,
+        16283
+      ],
+      "../src/ch2/code/ex2-92.rkt": [
+        1792383961731031790,
+        16137
+      ],
+      "../src/ch2/code/ex2-92b.rkt": [
+        1792383961731031790,
+        1312
+      ],
+      "../src/ch2/code/ex2-93.rkt": [
+        1792383961731031790,
+        10036
+      ],
+      "../src/ch2/code/ex2-94.rkt": [
+        1792383961731031790,
+        16607
+      ],
+      "../src/ch2/code/ex2-95.rkt": [
+        1792383961731031790,
+        16669
+      ],
+      "../src/ch2/code/ex2-96.rkt": [
+        1792383961731031790,
+        17766
+      ],
+      "../src/ch2/code/ex2-97.rkt": [
+        1792383961731031790,
+        19693
+      ],
+      "../src/ch2/notes-ch2-5.md": [
+        1792447415273005962,
+        47209
+      ]
+    },
+    "outputs": [
+      "ch2/code/ex2-93.rkt",
+      "ch2/code/ex2-92b.rkt",
+      "ch2/code/ex2-91.rkt",
+      "ch2/notes-ch2-5.md",
+      "ch2/code/ex2-82.rkt",
+      "ch2/code/ex2-86.rkt",
+      "ch2/code/ex2-89.rkt",
+      "ch2/code/ex2-78.rkt",
+      "ch2/code/ex2-85.rkt",
+      "ch2/code/ex2-84.rkt",
+      "ch2/code/ex2-88.rkt",
+      "ch2/code/ex2-92.rkt",
+      "ch2/code/ex2-95.rkt",
+      "ch2/code/ex2-87.rkt",
+      "ch2/code/ex2-97.rkt",
+      "ch2/code/ex2-90.rkt",
+      "ch2/code/ex2-96.rkt",
+      "ch2/code/ex2-80.rkt",
+      "ch2/code/ex2-94.rkt",
+      "ch2/code/ex2-79.rkt",
+      "ch2/code/ex2-77.rkt"
+    ],
+    "scope": "72ed02d652216ef58e3de29ad715d3f6cb9072e667e627b1b2bc7ae30a0adbf5",
+    "settings": "b2b80f3e3f94a6fdbd7ae62f301030a484351cfa221958969bb5ee7cbbec2028",
+    "stamp": [
+      1792446225980964427,
+      2099821
+    ]
+  },
+  "ch3/notes-ch3-1.md": {
+    "collections": {},
+    "dependencies": {
+      "../src/ch3/.md2html-cache/notes-ch3-1/racket-ex3-1-1c7abcbf9f0d/.complete": [
+        1792387100183640491,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-1/racket-ex3-1-1c7abcbf9f0d/output.txt": [
+        1792387100183640491,
+        6
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-1/racket-ex3-2-6a67d9c9d78b/.complete": [
+        1792387100379841710,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-1/racket-ex3-2-6a67d9c9d78b/output.txt": [
+        1792387100379841710,
+        9
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-1/racket-ex3-3-1e95b6993dd1/.complete": [
+        1792387100578078999,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-1/racket-ex3-3-1e95b6993dd1/output.txt": [
+        1792387100578078999,
+        24
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-1/racket-ex3-4-45bb005d2134/.complete": [
+        1792387100781575626,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-1/racket-ex3-4-45bb005d2134/output.txt": [
+        1792387100781575626,
+        172
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-1/racket-ex3-5-ec9898032d36/.complete": [
+        1792387101168523214,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-1/racket-ex3-5-ec9898032d36/output.txt": [
+        1792387101168523214,
+        9
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-1/racket-ex3-6-652a96a97d0c/.complete": [
+        1792387101368797290,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-1/racket-ex3-6-652a96a97d0c/output.txt": [
+        1792387101368797290,
+        87
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-1/racket-ex3-7-936ff24b2b13/.complete": [
+        1792387101571511272,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-1/racket-ex3-7-936ff24b2b13/output.txt": [
+        1792387101571511272,
+        27
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-1/racket-ex3-8-4382b2f69b17/.complete": [
+        1792387101774444420,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-1/racket-ex3-8-4382b2f69b17/output.txt": [
+        1792387101774444420,
+        4
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-1/racket-test-822ace1e571c/.complete": [
+        1792387099988568130,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-1/racket-test-822ace1e571c/output.txt": [
+        1792387099988568130,
+        18
+      ],
+      "../src/ch3/code/ex3-1.rkt": [
+        1792383961732416023,
+        193
+      ],
+      "../src/ch3/code/ex3-2.rkt": [
+        1792383961732416023,
+        388
+      ],
+      "../src/ch3/code/ex3-3.rkt": [
+        1792383961732416023,
+        761
+      ],
+      "../src/ch3/code/ex3-4.rkt": [
+        1792383961732416023,
+        1459
+      ],
+      "../src/ch3/code/ex3-5.rkt": [
+        1792383961732416023,
+        611
+      ],
+      "../src/ch3/code/ex3-6.rkt": [
+        1792383961732416023,
+        640
+      ],
+      "../src/ch3/code/ex3-7.rkt": [
+        1792383961732416023,
+        1127
+      ],
+      "../src/ch3/code/ex3-8.rkt": [
+        1792383961732416023,
+        277
+      ],
+      "../src/ch3/code/test.rkt": [
+        1792383961732416023,
+        279
+      ],
+      "../src/ch3/notes-ch3-1.md": [
+        1792447415273005962,
+        8972
+      ]
+    },
+    "outputs": [
+      "ch3/code/ex3-7.rkt",
+      "ch3/code/ex3-2.rkt",
+      "ch3/code/ex3-3.rkt",
+      "ch3/code/ex3-5.rkt",
+      "ch3/code/ex3-6.rkt",
+      "ch3/notes-ch3-1.md",
+      "ch3/code/ex3-4.rkt",
+      "ch3/code/test.rkt",
+      "ch3/code/ex3-1.rkt",
+      "ch3/code/ex3-8.rkt"
+    ],
+    "scope": "72ed02d652216ef58e3de29ad715d3f6cb9072e667e627b1b2bc7ae30a0adbf5",
+    "settings": "b2b80f3e3f94a6fdbd7ae62f301030a484351cfa221958969bb5ee7cbbec2028",
+    "stamp": [
+      1792446225992736036,
+      57492
+    ]
+  },
+  "ch3/notes-ch3-2.md": {
+    "collections": {},
+    "dependencies": {
+      "../src/ch3/notes-ch3-2.md": [
+        1792447415273005962,
+        7681
+      ]
+    },
+    "outputs": [
+      "ch3/notes-ch3-2.md"
+    ],
+    "scope": "72ed02d652216ef58e3de29ad715d3f6cb9072e667e627b1b2bc7ae30a0adbf5",
+    "settings": "b2b80f3e3f94a6fdbd7ae62f301030a484351cfa221958969bb5ee7cbbec2028",
+    "stamp": [
+      1792446225996690230,
+      8291
+    ]
+  },
+  "ch3/notes-ch3-3.md": {
+    "collections": {},
+    "dependencies": {
+      "../src/ch3/.md2html-cache/notes-ch3-3/racket-circuit-fd339c188b89/.complete": [
+        1792387102229622852,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-3/racket-circuit-fd339c188b89/output.txt": [
+        1792387102229622852,
+        134
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-3/racket-constraint-06824afb1c35/.complete": [
+        1792387102444516708,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-3/racket-constraint-06824afb1c35/output.txt": [
+        1792387102444516708,
+        261
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-3/racket-ex3-12-d8711868f2b9/.complete": [
+        1792387102653263531,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-3/racket-ex3-12-d8711868f2b9/output.txt": [
+        1792387102653263531,
+        32
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-3/racket-ex3-14-36c0b0fc2872/.complete": [
+        1792387102854994240,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-3/racket-ex3-14-36c0b0fc2872/output.txt": [
+        1792387102854994240,
+        14
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-3/racket-ex3-16-fbc2dc3b2620/.complete": [
+        1792387103064487628,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-3/racket-ex3-16-fbc2dc3b2620/output.txt": [
+        1792387103064487628,
+        6
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-3/racket-ex3-17-c4ee14cc958d/.complete": [
+        1792387103265352298,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-3/racket-ex3-17-c4ee14cc958d/output.txt": [
+        1792387103265352298,
+        8
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-3/racket-ex3-18-1e9ae766e261/.complete": [
+        1792387103473085342,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-3/racket-ex3-18-1e9ae766e261/output.txt": [
+        1792387103473085342,
+        12
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-3/racket-ex3-19-d1076b8385d1/.complete": [
+        1792387103677655805,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-3/racket-ex3-19-d1076b8385d1/output.txt": [
+        1792387103677655805,
+        12
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-3/racket-ex3-21-8cfbafe5cb9b/.complete": [
+        1792387103881570911,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-3/racket-ex3-21-8cfbafe5cb9b/output.txt": [
+        1792387103881570911,
+        54
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-3/racket-ex3-22-f448879b6d30/.complete": [
+        1792387104090223205,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-3/racket-ex3-22-f448879b6d30/output.txt": [
+        1792387104090223205,
+        17
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-3/racket-ex3-23-75776dfad4f7/.complete": [
+        1792387104303620081,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-3/racket-ex3-23-75776dfad4f7/output.txt": [
+        1792387104303620081,
+        81
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-3/racket-ex3-24-f827a91671c9/.complete": [
+        1792387104505967204,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-3/racket-ex3-24-f827a91671c9/output.txt": [
+        1792387104505967204,
+        12
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-3/racket-ex3-25-474817f1ca60/.complete": [
+        1792387104702724687,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-3/racket-ex3-25-474817f1ca60/output.txt": [
+        1792387104702724687,
+        15
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-3/racket-ex3-27-15dcecd5f083/.complete": [
+        1792387104900724009,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-3/racket-ex3-27-15dcecd5f083/output.txt": [
+        1792387104900724009,
+        3
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-3/racket-ex3-33-715deaedfbd8/.complete": [
+        1792387105112032765,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-3/racket-ex3-33-715deaedfbd8/output.txt": [
+        1792387105112032765,
+        244
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-3/racket-ex3-34-0d02ec87cdab/.complete": [
+        1792387105322758266,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-3/racket-ex3-34-0d02ec87cdab/output.txt": [
+        1792387105322758266,
+        210
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-3/racket-ex3-35-819fedca5dd2/.complete": [
+        1792387105533855908,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-3/racket-ex3-35-819fedca5dd2/output.txt": [
+        1792387105533855908,
+        225
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-3/racket-ex3-37-9e68e8c5dcdc/.complete": [
+        1792387105742858040,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-3/racket-ex3-37-9e68e8c5dcdc/output.txt": [
+        1792387105742858040,
+        258
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-3/racket-examples-3-3-88debb6025e9/.complete": [
+        1792387102006929229,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-3/racket-examples-3-3-88debb6025e9/output.txt": [
+        1792387102006929229,
+        18
+      ],
+      "../src/ch3/code/circuit.rkt": [
+        1792383961732382390,
+        7845
+      ],
+      "../src/ch3/code/constraint.rkt": [
+        1792383961732416023,
+        6502
+      ],
+      "../src/ch3/code/ex3-12.rkt": [
+        1792383961732416023,
+        445
+      ],
+      "../src/ch3/code/ex3-14.rkt": [
+        1792383961732416023,
+        374
+      ],
+      "../src/ch3/code/ex3-16.rkt": [
+        1792383961732416023,
+        556
+      ],
+      "../src/ch3/code/ex3-17.rkt": [
+        1792383961732416023,
+        1022
+      ],
+      "../src/ch3/code/ex3-18.rkt": [
+        1792383961732416023,
+        853
+      ],
+      "../src/ch3/code/ex3-19.rkt": [
+        1792383961732416023,
+        1066
+      ],
+      "../src/ch3/code/ex3-21.rkt": [
+        1792383961732416023,
+        1440
+      ],
+      "../src/ch3/code/ex3-22.rkt": [
+        1792383961732416023,
+        2170
+      ],
+      "../src/ch3/code/ex3-23.rkt": [
+        1792383961732416023,
+        3545
+      ],
+      "../src/ch3/code/ex3-24.rkt": [
+        1792383961732416023,
+        2082
+      ],
+      "../src/ch3/code/ex3-25.rkt": [
+        1792383961732416023,
+        1153
+      ],
+      "../src/ch3/code/ex3-27.rkt": [
+        1792383961732416023,
+        1057
+      ],
+      "../src/ch3/code/ex3-33.rkt": [
+        1792383961732416023,
+        6098
+      ],
+      "../src/ch3/code/ex3-34.rkt": [
+        1792383961732416023,
+        5968
+      ],
+      "../src/ch3/code/ex3-35.rkt": [
+        1792383961732416023,
+        6733
+      ],
+      "../src/ch3/code/ex3-37.rkt": [
+        1792383961732416023,
+        6628
+      ],
+      "../src/ch3/code/examples-3-3.rkt": [
+        1792383961732416023,
+        93
+      ],
+      "../src/ch3/notes-ch3-3.md": [
+        1792447415273005962,
+        29462
+      ]
+    },
+    "outputs": [
+      "ch3/code/constraint.rkt",
+      "ch3/code/ex3-12.rkt",
+      "ch3/code/ex3-21.rkt",
+      "ch3/code/ex3-25.rkt",
+      "ch3/code/ex3-16.rkt",
+      "ch3/code/ex3-19.rkt",
+      "ch3/code/ex3-18.rkt",
+      "ch3/code/ex3-27.rkt",
+      "ch3/code/ex3-14.rkt",
+      "ch3/code/ex3-24.rkt",
+      "ch3/code/examples-3-3.rkt",
+      "ch3/code/ex3-34.rkt",
+      "ch3/code/circuit.rkt",
+      "ch3/code/ex3-35.rkt",
+      "ch3/code/ex3-37.rkt",
+      "ch3/notes-ch3-3.md",
+      "ch3/code/ex3-33.rkt",
+      "ch3/code/ex3-17.rkt",
+      "ch3/code/ex3-22.rkt",
+      "ch3/code/ex3-23.rkt"
+    ],
+    "scope": "72ed02d652216ef58e3de29ad715d3f6cb9072e667e627b1b2bc7ae30a0adbf5",
+    "settings": "b2b80f3e3f94a6fdbd7ae62f301030a484351cfa221958969bb5ee7cbbec2028",
+    "stamp": [
+      1792463463593290602,
+      407608
+    ]
+  },
+  "ch3/notes-ch3-4.md": {
+    "collections": {},
+    "dependencies": {
+      "../src/ch3/notes-ch3-4.md": [
+        1792447415273005962,
+        10972
+      ]
+    },
+    "outputs": [
+      "ch3/notes-ch3-4.md"
+    ],
+    "scope": "72ed02d652216ef58e3de29ad715d3f6cb9072e667e627b1b2bc7ae30a0adbf5",
+    "settings": "b2b80f3e3f94a6fdbd7ae62f301030a484351cfa221958969bb5ee7cbbec2028",
+    "stamp": [
+      1792446226045648103,
+      12066
+    ]
+  },
+  "ch3/notes-ch3-5.md": {
+    "collections": {},
+    "dependencies": {
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-50-74a8448046e3/.complete": [
+        1792387106642949778,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-50-74a8448046e3/output.txt": [
+        1792387106642949778,
+        18
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-51-5dc379948a91/.complete": [
+        1792387106840801224,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-51-5dc379948a91/output.txt": [
+        1792387106840801224,
+        20
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-52-fb57c345d042/.complete": [
+        1792387107045350226,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-52-fb57c345d042/output.txt": [
+        1792387107045350226,
+        37
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-53-c9a815d8ae80/.complete": [
+        1792387107245434038,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-53-c9a815d8ae80/output.txt": [
+        1792387107245434038,
+        14
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-54-27c2f14b6e92/.complete": [
+        1792387107454743691,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-54-27c2f14b6e92/output.txt": [
+        1792387107454743691,
+        37
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-55-8a5df3b9b052/.complete": [
+        1792387107655160188,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-55-8a5df3b9b052/output.txt": [
+        1792387107655160188,
+        26
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-56-8db67ce0600c/.complete": [
+        1792387107863111089,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-56-8db67ce0600c/output.txt": [
+        1792387107863111089,
+        52
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-57-1ee122d18a4e/.complete": [
+        1792387108060302967,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-57-1ee122d18a4e/output.txt": [
+        1792387108060302967,
+        25
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-58-9dc9c587c4e3/.complete": [
+        1792387108261523575,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-58-9dc9c587c4e3/output.txt": [
+        1792387108261523575,
+        38
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-59-0d8aafd7aa23/.complete": [
+        1792387108462367816,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-59-0d8aafd7aa23/output.txt": [
+        1792387108462367816,
+        124
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-60-b6a94f95a809/.complete": [
+        1792387108667989684,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-60-b6a94f95a809/output.txt": [
+        1792387108667989684,
+        36
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-61-865103428773/.complete": [
+        1792387108870643146,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-61-865103428773/output.txt": [
+        1792387108870643146,
+        70
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-62-34da7fc433b6/.complete": [
+        1792387109081036104,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-62-34da7fc433b6/output.txt": [
+        1792387109081036104,
+        44
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-64-f4d11836be33/.complete": [
+        1792387109288112172,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-64-f4d11836be33/output.txt": [
+        1792387109288112172,
+        74
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-65-1e8d7b107a1a/.complete": [
+        1792387109497692355,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-65-1e8d7b107a1a/output.txt": [
+        1792387109497692355,
+        407
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-66-ce14337a637a/.complete": [
+        1792387109708828547,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-66-ce14337a637a/output.txt": [
+        1792387109708828547,
+        96
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-67-8a9516d0096e/.complete": [
+        1792387109920190119,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-67-8a9516d0096e/output.txt": [
+        1792387109920190119,
+        96
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-69-2-9988b0d032ac/.complete": [
+        1792439021600126014,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-69-2-9988b0d032ac/output.txt": [
+        1792439021600126014,
+        27
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-69-2be60c2fccb2/.complete": [
+        1792387110135803043,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-69-2be60c2fccb2/output.txt": [
+        1792387110135803043,
+        170
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-70-1008cd5847ec/.complete": [
+        1792387113399685001,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-70-1008cd5847ec/output.txt": [
+        1792387113399685001,
+        1012
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-71-52cde7c35aa6/.complete": [
+        1792387113613458170,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-71-52cde7c35aa6/output.txt": [
+        1792387113613458170,
+        201
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-72-000148e25223/.complete": [
+        1792387113823138440,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-72-000148e25223/output.txt": [
+        1792387113823138440,
+        399
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-73-862d71c1b58b/.complete": [
+        1792387114038004899,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-ex3-73-862d71c1b58b/output.txt": [
+        1792387114038004899,
+        42
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-example-3-5-1-e3d95fba4b6a/.complete": [
+        1792387106074212341,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-example-3-5-1-e3d95fba4b6a/output.txt": [
+        1792387106074212341,
+        12
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-example-3-5-2-906e73243cf3/.complete": [
+        1792387106271435197,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-example-3-5-2-906e73243cf3/output.txt": [
+        1792387106271435197,
+        8
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-example-3-5-3-c902cb133674/.complete": [
+        1792463058796469332,
+        0
+      ],
+      "../src/ch3/.md2html-cache/notes-ch3-5/racket-example-3-5-3-c902cb133674/output.txt": [
+        1792463058796469332,
+        353
+      ],
+      "../src/ch3/code/ex3-50.rkt": [
+        1792383961732416023,
+        1924
+      ],
+      "../src/ch3/code/ex3-51.rkt": [
+        1792383961732416023,
+        2196
+      ],
+      "../src/ch3/code/ex3-52.rkt": [
+        1792383961732416023,
+        1883
+      ],
+      "../src/ch3/code/ex3-53.rkt": [
+        1792383961732416023,
+        794
+      ],
+      "../src/ch3/code/ex3-54.rkt": [
+        1792383961732416023,
+        2469
+      ],
+      "../src/ch3/code/ex3-55.rkt": [
+        1792383961732416023,
+        2490
+      ],
+      "../src/ch3/code/ex3-56.rkt": [
+        1792383961732416023,
+        2646
+      ],
+      "../src/ch3/code/ex3-57.rkt": [
+        1792383961732416023,
+        596
+      ],
+      "../src/ch3/code/ex3-58.rkt": [
+        1792383961732416023,
+        635
+      ],
+      "../src/ch3/code/ex3-59.rkt": [
+        1792383961732416023,
+        1294
+      ],
+      "../src/ch3/code/ex3-60.rkt": [
+        1792383961732416023,
+        1790
+      ],
+      "../src/ch3/code/ex3-61.rkt": [
+        1792383961732416023,
+        2190
+      ],
+      "../src/ch3/code/ex3-62.rkt": [
+        1792383961732416023,
+        2054
+      ],
+      "../src/ch3/code/ex3-64.rkt": [
+        1792383961732416023,
+        1462
+      ],
+      "../src/ch3/code/ex3-65.rkt": [
+        1792383961732416023,
+        2263
+      ],
+      "../src/ch3/code/ex3-66.rkt": [
+        1792383961732416023,
+        1728
+      ],
+      "../src/ch3/code/ex3-67.rkt": [
+        1792383961732416023,
+        2134
+      ],
+      "../src/ch3/code/ex3-69-2.rkt": [
+        1792383961732416023,
+        2699
+      ],
+      "../src/ch3/code/ex3-69.rkt": [
+        1792383961732416023,
+        2199
+      ],
+      "../src/ch3/code/ex3-70.rkt": [
+        1792383961732416023,
+        4494
+      ],
+      "../src/ch3/code/ex3-71.rkt": [
+        1792383961732416023,
+        5222
+      ],
+      "../src/ch3/code/ex3-72.rkt": [
+        1792383961732416023,
+        5407
+      ],
+      "../src/ch3/code/ex3-73.rkt": [
+        1792383961732416023,
+        1868
+      ],
+      "../src/ch3/code/example-3-5-1.rkt": [
+        1792383961732416023,
+        1469
+      ],
+      "../src/ch3/code/example-3-5-2.rkt": [
+        1792383961732416023,
+        275
+      ],
+      "../src/ch3/code/example-3-5-3.rkt": [
+        1792383961732416023,
+        2323
+      ],
+      "../src/ch3/notes-ch3-5.md": [
+        1792447415273005962,
+        41016
+      ]
+    },
+    "outputs": [
+      "ch3/code/ex3-69-2.rkt",
+      "ch3/code/ex3-67.rkt",
+      "ch3/code/ex3-56.rkt",
+      "ch3/code/ex3-71.rkt",
+      "ch3/code/ex3-57.rkt",
+      "ch3/code/ex3-73.rkt",
+      "ch3/code/ex3-62.rkt",
+      "ch3/code/ex3-64.rkt",
+      "ch3/code/ex3-60.rkt",
+      "ch3/notes-ch3-5.md",
+      "ch3/code/ex3-59.rkt",
+      "ch3/code/ex3-53.rkt",
+      "ch3/code/ex3-69.rkt",
+      "ch3/code/ex3-70.rkt",
+      "ch3/code/ex3-50.rkt",
+      "ch3/code/ex3-65.rkt",
+      "ch3/code/ex3-54.rkt",
+      "ch3/code/example-3-5-3.rkt",
+      "ch3/code/ex3-58.rkt",
+      "ch3/code/ex3-61.rkt",
+      "ch3/code/example-3-5-1.rkt",
+      "ch3/code/example-3-5-2.rkt",
+      "ch3/code/ex3-51.rkt",
+      "ch3/code/ex3-66.rkt",
+      "ch3/code/ex3-52.rkt",
+      "ch3/code/ex3-72.rkt",
+      "ch3/code/ex3-55.rkt"
+    ],
+    "scope": "72ed02d652216ef58e3de29ad715d3f6cb9072e667e627b1b2bc7ae30a0adbf5",
+    "settings": "b2b80f3e3f94a6fdbd7ae62f301030a484351cfa221958969bb5ee7cbbec2028",
+    "stamp": [
+      1792463463655877663,
+      460681
+    ]
+  },
+  "ch4/notes-ch4-1.md": {
+    "collections": {},
+    "dependencies": {
+      "../src/ch4/notes-ch4-1.md": [
+        1792447415273005962,
+        18449
+      ]
+    },
+    "outputs": [
+      "ch4/notes-ch4-1.md"
+    ],
+    "scope": "72ed02d652216ef58e3de29ad715d3f6cb9072e667e627b1b2bc7ae30a0adbf5",
+    "settings": "b2b80f3e3f94a6fdbd7ae62f301030a484351cfa221958969bb5ee7cbbec2028",
+    "stamp": [
+      1792463463666498668,
+      20096
+    ]
+  },
+  "ch4/notes-ch4-2.md": {
+    "collections": {},
+    "dependencies": {
+      "../src/ch4/notes-ch4-2.md": [
+        1792447415274005960,
+        7746
+      ]
+    },
+    "outputs": [
+      "ch4/notes-ch4-2.md"
+    ],
+    "scope": "72ed02d652216ef58e3de29ad715d3f6cb9072e667e627b1b2bc7ae30a0adbf5",
+    "settings": "b2b80f3e3f94a6fdbd7ae62f301030a484351cfa221958969bb5ee7cbbec2028",
+    "stamp": [
+      1792463463670513365,
+      8667
+    ]
+  },
+  "ch4/notes-ch4-3.md": {
+    "collections": {},
+    "dependencies": {
+      "../src/ch4/notes-ch4-3.md": [
+        1792447415274005960,
+        10073
+      ]
+    },
+    "outputs": [
+      "ch4/notes-ch4-3.md"
+    ],
+    "scope": "72ed02d652216ef58e3de29ad715d3f6cb9072e667e627b1b2bc7ae30a0adbf5",
+    "settings": "b2b80f3e3f94a6fdbd7ae62f301030a484351cfa221958969bb5ee7cbbec2028",
+    "stamp": [
+      1792463463675236178,
+      11514
+    ]
+  },
+  "ch4/notes-ch4-4.md": {
+    "collections": {},
+    "dependencies": {
+      "../src/ch4/notes-ch4-4.md": [
+        1792447415274005960,
+        23166
+      ]
+    },
+    "outputs": [
+      "ch4/notes-ch4-4.md"
+    ],
+    "scope": "72ed02d652216ef58e3de29ad715d3f6cb9072e667e627b1b2bc7ae30a0adbf5",
+    "settings": "b2b80f3e3f94a6fdbd7ae62f301030a484351cfa221958969bb5ee7cbbec2028",
+    "stamp": [
+      1792463463685230463,
+      25270
+    ]
+  },
+  "ch5/notes-ch5-1.md": {
+    "collections": {},
+    "dependencies": {
+      "../src/ch5/notes-ch5-1.md": [
+        1792447415274005960,
+        2634
+      ]
+    },
+    "outputs": [
+      "ch5/notes-ch5-1.md"
+    ],
+    "scope": "72ed02d652216ef58e3de29ad715d3f6cb9072e667e627b1b2bc7ae30a0adbf5",
+    "settings": "b2b80f3e3f94a6fdbd7ae62f301030a484351cfa221958969bb5ee7cbbec2028",
+    "stamp": [
+      1792446226120820466,
+      3307
+    ]
+  },
+  "ch5/notes-ch5-2.md": {
+    "collections": {},
+    "dependencies": {
+      "../src/ch5/notes-ch5-2.md": [
+        1792447415274005960,
+        7974
+      ]
+    },
+    "outputs": [
+      "ch5/notes-ch5-2.md"
+    ],
+    "scope": "72ed02d652216ef58e3de29ad715d3f6cb9072e667e627b1b2bc7ae30a0adbf5",
+    "settings": "b2b80f3e3f94a6fdbd7ae62f301030a484351cfa221958969bb5ee7cbbec2028",
+    "stamp": [
+      1792446226123403107,
+      9043
+    ]
+  },
+  "ch5/notes-ch5-3.md": {
+    "collections": {},
+    "dependencies": {
+      "../src/ch5/notes-ch5-3.md": [
+        1792447415274005960,
+        1883
+      ]
+    },
+    "outputs": [
+      "ch5/notes-ch5-3.md"
+    ],
+    "scope": "72ed02d652216ef58e3de29ad715d3f6cb9072e667e627b1b2bc7ae30a0adbf5",
+    "settings": "b2b80f3e3f94a6fdbd7ae62f301030a484351cfa221958969bb5ee7cbbec2028",
+    "stamp": [
+      1792446226124700707,
+      2402
+    ]
+  },
+  "ch5/notes-ch5-4.md": {
+    "collections": {},
+    "dependencies": {
+      "../src/ch5/notes-ch5-4.md": [
+        1792447415274005960,
+        6507
+      ]
+    },
+    "outputs": [
+      "ch5/notes-ch5-4.md"
+    ],
+    "scope": "72ed02d652216ef58e3de29ad715d3f6cb9072e667e627b1b2bc7ae30a0adbf5",
+    "settings": "b2b80f3e3f94a6fdbd7ae62f301030a484351cfa221958969bb5ee7cbbec2028",
+    "stamp": [
+      1792463463695235421,
+      7284
+    ]
+  },
+  "ch5/notes-ch5-5.md": {
+    "collections": {},
+    "dependencies": {
+      "../src/ch5/notes-ch5-5.md": [
+        1792447415274005960,
+        17350
+      ]
+    },
+    "outputs": [
+      "ch5/notes-ch5-5.md"
+    ],
+    "scope": "72ed02d652216ef58e3de29ad715d3f6cb9072e667e627b1b2bc7ae30a0adbf5",
+    "settings": "b2b80f3e3f94a6fdbd7ae62f301030a484351cfa221958969bb5ee7cbbec2028",
+    "stamp": [
+      1792463463701442209,
+      18903
+    ]
+  },
+  "index.md": {
+    "collections": {},
+    "dependencies": {
+      "../src/index.md": [
+        1792447415274005960,
+        3208
+      ]
+    },
+    "outputs": [
+      "index.md"
+    ],
+    "scope": "72ed02d652216ef58e3de29ad715d3f6cb9072e667e627b1b2bc7ae30a0adbf5",
+    "settings": "b2b80f3e3f94a6fdbd7ae62f301030a484351cfa221958969bb5ee7cbbec2028",
+    "stamp": [
+      1792446226133639351,
+      3247
+    ]
+  }
+}

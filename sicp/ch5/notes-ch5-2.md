@@ -3,7 +3,6 @@ layout: sicp
 render_with_liquid: false
 title: SICP Chapter 5.2
 ---
-
 <div class="nav">
     <span class="activenav"><a href="notes-ch5-1.html">← Previous</a></span>
     <span class="activenav"><a href="../index.html">↑ Up</a></span>
@@ -12,11 +11,10 @@ title: SICP Chapter 5.2
 
 [HTML Book Chapter 5.2 Link](https://sarabander.github.io/sicp/html/5_002e2.xhtml#g_t5_002e2)
 
-## Directory
-- [Section 5.2](#section-52)
-  - [Notes](#notes)
-  - [Exercises](#exercises)
-    - *Exercises:* ([Exercise 5.7](#exercise-57), [Exercise 5.8](#exercise-58), [Exercise 5.9](#exercise-59), [Exercise 5.10](#exercise-510), [Exercise 5.11](#exercise-511), [Exercise 5.12](#exercise-512), [Exercise 5.13](#exercise-513), [Exercise 5.14](#exercise-514), [Exercise 5.15](#exercise-515), [Exercise 5.16](#exercise-516), [Exercise 5.17](#exercise-517), [Exercise 5.18](#exercise-518), [Exercise 5.19](#exercise-519))
+
+
+<div class="table-of-contents"><h2>Directory</h2><ul class="toc-list"><li><a href="#section-52">Section 5.2</a><ul class="toc-list"><li><a href="#notes">Notes</a></li><li><a href="#exercises">Exercises</a> <div class="exercise-container">(<span class="exercise-list"><span><a href="#exercise-57">Exercise 5.7</a></span><span><a href="#exercise-58">Exercise 5.8</a></span><span><a href="#exercise-59">Exercise 5.9</a></span><span><a href="#exercise-510">Exercise 5.10</a></span><span><a href="#exercise-511">Exercise 5.11</a></span><span><a href="#exercise-512">Exercise 5.12</a></span><span><a href="#exercise-513">Exercise 5.13</a></span><span><a href="#exercise-514">Exercise 5.14</a></span><span><a href="#exercise-515">Exercise 5.15</a></span><span><a href="#exercise-516">Exercise 5.16</a></span><span><a href="#exercise-517">Exercise 5.17</a></span><span><a href="#exercise-518">Exercise 5.18</a></span><span><a href="#exercise-519">Exercise 5.19</a></span></span>)</div></li></ul></li></ul></div>
+
 
 ## Section 5.2
 
@@ -36,16 +34,21 @@ machines you designed in Exercise 5.4.
 The following register-machine code
 is ambiguous, because the label `here` is defined more than once:
 
-<div class="codehilite"><pre><span></span><span class="n">start</span>
-<span class="w">  </span><span class="p">(</span><span class="n">goto</span><span class="w"> </span><span class="p">(</span><span class="n">label</span><span class="w"> </span><span class="n">here</span><span class="p">))</span>
-<span class="n">here</span>
-<span class="w">  </span><span class="p">(</span><span class="n">assign</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="p">(</span><span class="nb">const</span><span class="w"> </span><span class="mi">3</span><span class="p">))</span>
-<span class="w">  </span><span class="p">(</span><span class="n">goto</span><span class="w"> </span><span class="p">(</span><span class="n">label</span><span class="w"> </span><span class="n">there</span><span class="p">))</span>
-<span class="n">here</span>
-<span class="w">  </span><span class="p">(</span><span class="n">assign</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="p">(</span><span class="nb">const</span><span class="w"> </span><span class="mi">4</span><span class="p">))</span>
-<span class="w">  </span><span class="p">(</span><span class="n">goto</span><span class="w"> </span><span class="p">(</span><span class="n">label</span><span class="w"> </span><span class="n">there</span><span class="p">))</span>
-<span class="n">there</span>
-</pre></div>
+
+
+```rkt
+start
+  (goto (label here))
+here
+  (assign a (const 3))
+  (goto (label there))
+here
+  (assign a (const 4))
+  (goto (label there))
+there
+```
+
+
 
 With the simulator as written, what will the contents of register `a` be
 when control reaches `there`?  Modify the `extract-labels` procedure
@@ -79,10 +82,15 @@ and `restore` in 5.1.4, we didn't specify what would happen
 if you tried to restore a register that was not the last one saved, as in the
 sequence
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">save</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
-<span class="p">(</span><span class="n">save</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
-<span class="p">(</span><span class="n">restore</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
-</pre></div>
+
+
+```rkt
+(save y)
+(save x)
+(restore y)
+```
+
+
 
 There are several reasonable possibilities for the meaning of `restore`:
 
@@ -222,15 +230,25 @@ able to specify a place in the controller sequence where the simulator will
 stop and allow her to examine the state of the machine.  You are to implement a
 procedure
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">set-breakpoint</span><span class="w"> </span><span class="n">⟨@var</span><span class="p">{</span><span class="n">machine</span><span class="p">}</span><span class="n">⟩</span><span class="w"> </span><span class="n">⟨@var</span><span class="p">{</span><span class="n">label</span><span class="p">}</span><span class="n">⟩</span><span class="w"> </span><span class="n">⟨@var</span><span class="p">{</span><span class="n">n</span><span class="p">}</span><span class="n">⟩</span><span class="p">)</span>
-</pre></div>
+
+
+```rkt
+(set-breakpoint ⟨@var{machine}⟩ ⟨@var{label}⟩ ⟨@var{n}⟩)
+```
+
+
 
 
 that sets a breakpoint just before the $n^{\text{th}}$ instruction after the given
 label.  For example,
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">set-breakpoint</span><span class="w"> </span><span class="n">gcd-machine</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">test-b</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span>
-</pre></div>
+
+
+```rkt
+(set-breakpoint gcd-machine 'test-b 4)
+```
+
+
 
 
 installs a breakpoint in `gcd-machine` just before the assignment to
@@ -240,19 +258,34 @@ Alyssa can then use `get-register-contents` and
 `set-register-contents!` to manipulate the state of the simulated machine.
 She should then be able to continue execution by saying
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">proceed-machine</span><span class="w"> </span><span class="n">⟨@var</span><span class="p">{</span><span class="n">machine</span><span class="p">}</span><span class="n">⟩</span><span class="p">)</span>
-</pre></div>
+
+
+```rkt
+(proceed-machine ⟨@var{machine}⟩)
+```
+
+
 
 She should also be able to remove a specific breakpoint by means of
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">cancel-breakpoint</span><span class="w"> </span><span class="n">⟨@var</span><span class="p">{</span><span class="n">machine</span><span class="p">}</span><span class="n">⟩</span><span class="w"> </span><span class="n">⟨@var</span><span class="p">{</span><span class="n">label</span><span class="p">}</span><span class="n">⟩</span><span class="w"> </span><span class="n">⟨@var</span><span class="p">{</span><span class="n">n</span><span class="p">}</span><span class="n">⟩</span><span class="p">)</span>
-</pre></div>
+
+
+```rkt
+(cancel-breakpoint ⟨@var{machine}⟩ ⟨@var{label}⟩ ⟨@var{n}⟩)
+```
+
+
 
 
 or to remove all breakpoints by means of
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">cancel-all-breakpoints</span><span class="w"> </span><span class="n">⟨@var</span><span class="p">{</span><span class="n">machine</span><span class="p">}</span><span class="n">⟩</span><span class="p">)</span>
-</pre></div>
+
+
+```rkt
+(cancel-all-breakpoints ⟨@var{machine}⟩)
+```
+
+
 
 ##### Solution
 

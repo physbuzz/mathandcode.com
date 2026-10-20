@@ -5,26 +5,8 @@ title: SICP Bonus Notes
 ---
 
 
-## Directory
-- [Extras](#extras)
-- [Articles I decided not to work on:](#articles-i-decided-not-to-work-on)
-- [Symbols and SICP Library Functions](#symbols-and-sicp-library-functions)
-- [Symbols and Special Forms](#symbols-and-special-forms)
-- [The ill-fated Santa Barbara Monte Carlo machine](#the-ill-fated-santa-barbara-monte-carlo-machine)
-- [Exact runtime of count-change](#exact-runtime-of-count-change)
-- [RSA implementation](#rsa-implementation)
-- [Linear diophantine equations](#linear-diophantine-equations)
-- [Bonus number theory (Euler totient, base b expansions of fractions)](#bonus-number-theory-euler-totient-base-b-expansions-of-fractions)
-- [Bonus special numbers (Lucas, Catalan, partition numbers, "negative binomial")](#bonus-special-numbers-lucas-catalan-partition-numbers-negative-binomial)
-- [Numerical approximation formulas](#numerical-approximation-formulas)
-- [Improving rates of convergence](#improving-rates-of-convergence)
-- [Ramanujan tau function](#ramanujan-tau-function)
-- [Continued fraction expansion of pi](#continued-fraction-expansion-of-pi)
-- [Reversibility and Quantum Computing](#reversibility-and-quantum-computing)
-- [Drawing Church numerals](#drawing-church-numerals)
-- [Enumerating binary trees and arithmetic expressions](#enumerating-binary-trees-and-arithmetic-expressions)
-- [n queens and dancing links](#n-queens-and-dancing-links)
-- [Story about polynomial long division + my grandpa](#story-about-polynomial-long-division-my-grandpa)
+
+<div class="table-of-contents"><h2>Directory</h2><ul class="toc-list"><li><a href="#extras">Extras</a></li><li><a href="#articles-i-decided-not-to-work-on">Articles I decided not to work on:</a></li><li><a href="#symbols-and-sicp-library-functions">Symbols and SICP Library Functions</a><ul class="toc-list"><li><a href="#symbols-and-special-forms">Symbols and Special Forms</a></li></ul></li><li><a href="#the-ill-fated-santa-barbara-monte-carlo-machine">The ill-fated Santa Barbara Monte Carlo machine</a></li><li><a href="#exact-runtime-of-count-change">Exact runtime of count-change</a></li><li><a href="#rsa-implementation">RSA implementation</a></li><li><a href="#linear-diophantine-equations">Linear diophantine equations</a></li><li><a href="#bonus-number-theory-euler-totient-base-b-expansions-of-fractions">Bonus number theory (Euler totient, base b expansions of fractions)</a></li><li><a href="#bonus-special-numbers-lucas-catalan-partition-numbers-negative-binomial">Bonus special numbers (Lucas, Catalan, partition numbers, "negative binomial")</a></li><li><a href="#numerical-approximation-formulas">Numerical approximation formulas</a></li><li><a href="#improving-rates-of-convergence">Improving rates of convergence</a></li><li><a href="#ramanujan-tau-function">Ramanujan tau function</a></li><li><a href="#continued-fraction-expansion-of-pi">Continued fraction expansion of pi</a></li><li><a href="#reversibility-and-quantum-computing">Reversibility and Quantum Computing</a></li><li><a href="#drawing-church-numerals">Drawing Church numerals</a></li><li><a href="#enumerating-binary-trees-and-arithmetic-expressions">Enumerating binary trees and arithmetic expressions</a></li><li><a href="#n-queens-and-dancing-links">n queens and dancing links</a></li><li><a href="#story-about-polynomial-long-division-my-grandpa">Story about polynomial long division + my grandpa</a></li></ul></div>
 
 ## Extras
 
@@ -99,37 +81,62 @@ big independent project, not a good bonus chapter.
 # Symbols and SICP Library Functions
 ## Symbols and Special Forms
 **Chapter 1.1:**
-<div class="codehilite"><pre><span></span><span class="nb">+</span><span class="w"> </span><span class="nb">-</span><span class="w"> </span><span class="nb">*</span><span class="w"> </span><span class="nb">/</span><span class="w"> </span>
-<span class="nb">display</span><span class="w"> </span><span class="nb">newline</span><span class="w"> </span>
-<span class="k">if</span><span class="w"> </span><span class="k">cond</span>
-<span class="k">and</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="nb">not</span>
-</pre></div>
+
+
+```rkt
++ - * / 
+display newline 
+if cond
+and or not
+```
+
+
 
 **Chapter 1.2:** 
-<div class="codehilite"><pre><span></span><span class="nb">remainder</span>
-<span class="nb">display</span>
-<span class="p">(</span><span class="n">runtime</span><span class="p">)</span>
-</pre></div>
+
+
+```rkt
+remainder
+display
+(runtime)
+```
+
+
 
 **Chapter 1.3:** 
-<div class="codehilite"><pre><span></span><span class="k">lambda</span>
-<span class="k">let</span>
-<span class="nb">error</span>
-</pre></div>
+
+
+```rkt
+lambda
+let
+error
+```
+
+
 
 **Chapter 2.1:** 
-<div class="codehilite"><pre><span></span><span class="nb">cons</span>
-<span class="nb">car</span><span class="o">,</span><span class="w"> </span><span class="nb">cdr</span>
-<span class="nb">pair?</span>
-</pre></div>
+
+
+```rkt
+cons
+car, cdr
+pair?
+```
+
+
 **Chapter 2.2:** 
-<div class="codehilite"><pre><span></span><span class="n">nil</span><span class="w"> </span><span class="c1">; More commonly &#39;() or (list)</span>
-<span class="nb">list</span>
-<span class="nb">list-ref</span><span class="o">,</span><span class="w"> </span><span class="nb">length</span>
-<span class="nb">cadr</span><span class="o">,</span><span class="w"> </span><span class="nb">caddr</span>
-<span class="nb">append</span>
-<span class="nb">map</span>
-</pre></div>
+
+
+```rkt
+nil ; More commonly '() or (list)
+list
+list-ref, length
+cadr, caddr
+append
+map
+```
+
+
 
 
 # The ill-fated Santa Barbara Monte Carlo machine
@@ -153,11 +160,16 @@ with a fifth degree polynomial, and $T(n,5)=P(n) + \cos(...)$ where the "cos" is
  - Do any cool algorithms arise from the generating functions?
  - Pretty sure there's a catalan number algorithm in plain sight here. 
  - Negative binomial numbers. Maybe do this after the matrix stuff? There's a cool way that the square of an alternating pascal number matrix gives you the identity matrix
-<div class="codehilite"><pre><span></span><span class="n">alternatingpascal</span><span class="p">[</span><span class="nv">n_</span><span class="p">]</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>
-<span class="w">  </span><span class="n">Table</span><span class="p">[</span><span class="n">Table</span><span class="p">[</span><span class="n">If</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="mi">-1</span><span class="p">)</span><span class="o">^</span><span class="n">i</span><span class="w"> </span><span class="n">Binomial</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="p">{</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">}],</span><span class="w"> </span><span class="p">{</span><span class="n">j</span><span class="p">,</span><span class="w"> </span>
-<span class="w">    </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">}];</span>
-<span class="n">alternatingpascal</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="w"> </span><span class="err">.</span><span class="w"> </span><span class="n">alternatingpascal</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">MatrixForm</span>
-</pre></div>
+
+
+```mathematica
+alternatingpascal[n_] := 
+  Table[Table[If[i <= j, (-1)^i Binomial[j, i], 0], {i, 0, n}], {j, 
+    0, n}];
+alternatingpascal[10] . alternatingpascal[10] // MatrixForm
+```
+
+
 # Bonus special numbers (Lucas, Catalan, partition numbers, "negative binomial")
 # Numerical approximation formulas 
 (iterated polynomial gives sine, other iterated special polynomials give special things too)

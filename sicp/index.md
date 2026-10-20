@@ -1,7 +1,6 @@
 ---
 layout: sicp
 render_with_liquid: false
-show_title: false
 title: SICP Reading Group
 ---
 

@@ -1,4 +1,0 @@
-
-Error (exit code 1):
-default-load-handler: expected a `module' declaration, but found something else
-  file: /home/dkmoore/sicp/src/ch2/code/complex-impl.rkt

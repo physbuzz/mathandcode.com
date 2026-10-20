@@ -1,6 +1,0 @@
-
-Error (exit code 1):
-src/ch4/code/testing (Copy).rkt:165:3: tagged-list?: unbound identifier
-  in: tagged-list?
-  location...:
-   src/ch4/code/testing (Copy).rkt:165:3

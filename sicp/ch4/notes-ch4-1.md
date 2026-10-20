@@ -3,7 +3,6 @@ layout: sicp
 render_with_liquid: false
 title: SICP Chapter 4.1
 ---
-
 <div class="nav">
     <span class="activenav"><a href="../ch3/notes-ch3-5.html">← Previous</a></span>
     <span class="activenav"><a href="../index.html">↑ Up</a></span>
@@ -13,11 +12,10 @@ title: SICP Chapter 4.1
 
 [HTML Book Chapter 4.1 Link](https://sarabander.github.io/sicp/html/4_002e1.xhtml#g_t4_002e1)
 
-## Directory
-- [Section 4.1](#section-41)
-  - [Notes](#notes)
-  - [Exercises](#exercises)
-    - *Exercises:* ([Exercise 4.1](#exercise-41), [Exercise 4.2](#exercise-42), [Exercise 4.3](#exercise-43), [Exercise 4.4](#exercise-44), [Exercise 4.5](#exercise-45), [Exercise 4.6](#exercise-46), [Exercise 4.7](#exercise-47), [Exercise 4.8](#exercise-48), [Exercise 4.9](#exercise-49), [Exercise 4.10](#exercise-410), [Exercise 4.11](#exercise-411), [Exercise 4.12](#exercise-412), [Exercise 4.13](#exercise-413), [Exercise 4.14](#exercise-414), [Exercise 4.15](#exercise-415), [Exercise 4.16](#exercise-416), [Exercise 4.17](#exercise-417), [Exercise 4.18](#exercise-418), [Exercise 4.19](#exercise-419), [Exercise 4.20](#exercise-420), [Exercise 4.21](#exercise-421), [Exercise 4.22](#exercise-422), [Exercise 4.23](#exercise-423), [Exercise 4.24](#exercise-424))
+
+
+<div class="table-of-contents"><h2>Directory</h2><ul class="toc-list"><li><a href="#section-41">Section 4.1</a><ul class="toc-list"><li><a href="#notes">Notes</a></li><li><a href="#exercises">Exercises</a> <div class="exercise-container">(<span class="exercise-list"><span><a href="#exercise-41">Exercise 4.1</a></span><span><a href="#exercise-42">Exercise 4.2</a></span><span><a href="#exercise-43">Exercise 4.3</a></span><span><a href="#exercise-44">Exercise 4.4</a></span><span><a href="#exercise-45">Exercise 4.5</a></span><span><a href="#exercise-46">Exercise 4.6</a></span><span><a href="#exercise-47">Exercise 4.7</a></span><span><a href="#exercise-48">Exercise 4.8</a></span><span><a href="#exercise-49">Exercise 4.9</a></span><span><a href="#exercise-410">Exercise 4.10</a></span><span><a href="#exercise-411">Exercise 4.11</a></span><span><a href="#exercise-412">Exercise 4.12</a></span><span><a href="#exercise-413">Exercise 4.13</a></span><span><a href="#exercise-414">Exercise 4.14</a></span><span><a href="#exercise-415">Exercise 4.15</a></span><span><a href="#exercise-416">Exercise 4.16</a></span><span><a href="#exercise-417">Exercise 4.17</a></span><span><a href="#exercise-418">Exercise 4.18</a></span><span><a href="#exercise-419">Exercise 4.19</a></span><span><a href="#exercise-420">Exercise 4.20</a></span><span><a href="#exercise-421">Exercise 4.21</a></span><span><a href="#exercise-422">Exercise 4.22</a></span><span><a href="#exercise-423">Exercise 4.23</a></span><span><a href="#exercise-424">Exercise 4.24</a></span></span>)</div></li></ul></li></ul></div>
+
 
 ## Section 4.1
 
@@ -114,9 +112,14 @@ Its value must be a procedure of one argument; this procedure is then invoked
 on the value of the `⟨`@var{test}`⟩`, and the result is returned as the value of
 the `cond` expression.  For example
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">cond</span><span class="w"> </span><span class="p">((</span><span class="nb">assoc</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">b</span><span class="w"> </span><span class="o">&#39;</span><span class="p">((</span><span class="ss">a</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="ss">b</span><span class="w"> </span><span class="mi">2</span><span class="p">)))</span><span class="w"> </span><span class="k">=&gt;</span><span class="w"> </span><span class="nb">cadr</span><span class="p">)</span>
-<span class="w">      </span><span class="p">(</span><span class="k">else</span><span class="w"> </span><span class="k">false</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(cond ((assoc 'b '((a 1) (b 2))) => cadr)
+      (else false))
+```
+
+
 
 
 returns 2.  Modify the handling of `cond` so that it supports this
@@ -129,19 +132,29 @@ extended syntax.
 `Let` expressions are derived
 expressions, because
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">⟨@var</span><span class="p">{</span><span class="n">var₁</span><span class="p">}</span><span class="n">⟩</span><span class="w"> </span><span class="n">⟨@var</span><span class="p">{</span><span class="n">exp₁</span><span class="p">}</span><span class="n">⟩</span><span class="p">)</span><span class="w"> </span><span class="n">@r</span><span class="p">{</span><span class="n">…</span><span class="p">}</span><span class="w"> </span><span class="p">(</span><span class="n">⟨@var</span><span class="p">{</span><span class="n">varₙ</span><span class="p">}</span><span class="n">⟩</span><span class="w"> </span><span class="n">⟨@var</span><span class="p">{</span><span class="n">expₙ</span><span class="p">}</span><span class="n">⟩</span><span class="p">))</span>
-<span class="w">  </span><span class="n">⟨@var</span><span class="p">{</span><span class="n">body</span><span class="p">}</span><span class="n">⟩</span><span class="p">)</span>
-</pre></div>
+
+
+```rkt
+(let ((⟨@var{var₁}⟩ ⟨@var{exp₁}⟩) @r{…} (⟨@var{varₙ}⟩ ⟨@var{expₙ}⟩))
+  ⟨@var{body}⟩)
+```
+
+
 
 
 is equivalent to
 
-<div class="codehilite"><pre><span></span><span class="p">((</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">⟨@var</span><span class="p">{</span><span class="n">var₁</span><span class="p">}</span><span class="n">⟩</span><span class="w"> </span><span class="n">@r</span><span class="p">{</span><span class="n">…</span><span class="p">}</span><span class="w"> </span><span class="n">⟨@var</span><span class="p">{</span><span class="n">varₙ</span><span class="p">}</span><span class="n">⟩</span><span class="p">)</span>
-<span class="w">   </span><span class="n">⟨@var</span><span class="p">{</span><span class="n">body</span><span class="p">}</span><span class="n">⟩</span><span class="p">)</span>
-<span class="w"> </span><span class="n">⟨@var</span><span class="p">{</span><span class="n">exp₁</span><span class="p">}</span><span class="n">⟩</span>
-<span class="w"> </span><span class="n">@r</span><span class="p">{</span><span class="n">…</span><span class="p">}</span>
-<span class="w"> </span><span class="n">⟨@var</span><span class="p">{</span><span class="n">expₙ</span><span class="p">}</span><span class="n">⟩</span><span class="p">)</span>
-</pre></div>
+
+
+```rkt
+((lambda (⟨@var{var₁}⟩ @r{…} ⟨@var{varₙ}⟩)
+   ⟨@var{body}⟩)
+ ⟨@var{exp₁}⟩
+ @r{…}
+ ⟨@var{expₙ}⟩)
+```
+
+
 
 Implement a syntactic transformation `let->combination` that reduces
 evaluating `let` expressions to evaluating combinations of the type shown
@@ -157,11 +170,16 @@ expressions.
 sequentially from left to right, and each binding is made in an environment in
 which all of the preceding bindings are visible.  For example
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">let*</span><span class="w"> </span><span class="p">((</span><span class="n">x</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span>
-<span class="w">       </span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="mi">2</span><span class="p">))</span>
-<span class="w">       </span><span class="p">(</span><span class="n">z</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="mi">5</span><span class="p">)))</span>
-<span class="w">  </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">z</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(let* ((x 3)
+       (y (+ x 2))
+       (z (+ x y 5)))
+  (* x z))
+```
+
+
 
 
 returns 39.  Explain how a `let*` expression can be rewritten as a set of
@@ -170,8 +188,13 @@ that performs this transformation.  If we have already implemented `let`
 (Exercise 4.6) and we want to extend the evaluator to handle `let*`,
 is it sufficient to add a clause to `eval` whose action is
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="nb">eval</span><span class="w"> </span><span class="p">(</span><span class="n">let*-&gt;nested-lets</span><span class="w"> </span><span class="nb">exp</span><span class="p">)</span><span class="w"> </span><span class="n">env</span><span class="p">)</span>
-</pre></div>
+
+
+```rkt
+(eval (let*->nested-lets exp) env)
+```
+
+
 
 
 or must we explicitly expand `let*` in terms of non-derived expressions?
@@ -183,8 +206,9 @@ or must we explicitly expand `let*` in terms of non-derived expressions?
 ``Named `let`'' is a variant
 of `let` that has the form 
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="n">⟨@var</span><span class="p">{</span><span class="n">var</span><span class="p">}</span><span class="n">⟩</span><span class="w"> </span><span class="n">⟨@var</span><span class="p">{</span><span class="n">bindings</span><span class="p">}</span><span class="n">⟩</span><span class="w"> </span><span class="n">⟨@var</span><span class="p">{</span><span class="n">body</span><span class="p">}</span><span class="n">⟩</span><span class="p">)</span>
-</pre></div>
+```rkt
+(let ⟨@var{var}⟩ ⟨@var{bindings}⟩ ⟨@var{body}⟩)
+```
 
 The `⟨`@var{bindings}`⟩` and `⟨`@var{body}`⟩` are just as in ordinary `let`,
 except that `⟨`@var{var}`⟩` is bound within `⟨`@var{body}`⟩` to a procedure whose body
@@ -193,14 +217,15 @@ Thus, one can repeatedly execute the `⟨`@var{body}`⟩` by invoking the proced
 named `⟨`@var{var}`⟩`.  For example, the iterative Fibonacci procedure 
 (1.2.2) can be rewritten using named `let` as follows:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">fib</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="n">fib-iter</span><span class="w"> </span><span class="p">((</span><span class="n">a</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">b</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">count</span><span class="w"> </span><span class="n">n</span><span class="p">))</span>
-<span class="w">    </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="nb">count</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
-<span class="w">        </span><span class="n">b</span>
-<span class="w">        </span><span class="p">(</span><span class="n">fib-iter</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span>
-<span class="w">                  </span><span class="n">a</span><span class="w"> </span>
-<span class="w">                  </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="nb">count</span><span class="w"> </span><span class="mi">1</span><span class="p">)))))</span>
-</pre></div>
+```rkt
+(define (fib n)
+  (let fib-iter ((a 1) (b 0) (count n))
+    (if (= count 0)
+        b
+        (fib-iter (+ a b) 
+                  a 
+                  (- count 1)))))
+```
 
 Modify `let->combination` of Exercise 4.6 to also support named
 `let`.
@@ -284,14 +309,19 @@ impossible to write a procedure `halts?` that correctly determines whether
 the following reasoning: If you had such a procedure `halts?`, you could
 implement the following program:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">run-forever</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="n">run-forever</span><span class="p">))</span>
 
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">try</span><span class="w"> </span><span class="n">p</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">halts?</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="n">p</span><span class="p">)</span>
-<span class="w">      </span><span class="p">(</span><span class="n">run-forever</span><span class="p">)</span>
-<span class="w">      </span><span class="o">&#39;</span><span class="ss">halted</span><span class="p">))</span>
-</pre></div>
+
+```rkt
+(define (run-forever)
+  (run-forever))
+
+(define (try p)
+  (if (halts? p p)
+      (run-forever)
+      'halted))
+```
+
+
 
 Now consider evaluating the expression `(try try)` and show that any
 possible outcome (either halting or running forever) violates the intended
@@ -339,25 +369,27 @@ the extra frame.
 Consider an alternative strategy
 for scanning out definitions that translates the example in the text to
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="n">⟨@var</span><span class="p">{</span><span class="n">vars</span><span class="p">}</span><span class="n">⟩</span>
-<span class="w">  </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">u</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">*unassigned*</span><span class="p">)</span>
-<span class="w">        </span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">*unassigned*</span><span class="p">))</span>
-<span class="w">    </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">a</span><span class="w"> </span><span class="n">⟨@var</span><span class="p">{</span><span class="n">e1</span><span class="p">}</span><span class="n">⟩</span><span class="p">)</span>
-<span class="w">          </span><span class="p">(</span><span class="n">b</span><span class="w"> </span><span class="n">⟨@var</span><span class="p">{</span><span class="n">e2</span><span class="p">}</span><span class="n">⟩</span><span class="p">))</span>
-<span class="w">      </span><span class="p">(</span><span class="k">set!</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">a</span><span class="p">)</span>
-<span class="w">      </span><span class="p">(</span><span class="k">set!</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">b</span><span class="p">))</span>
-<span class="w">    </span><span class="n">⟨@var</span><span class="p">{</span><span class="n">e3</span><span class="p">}</span><span class="n">⟩</span><span class="p">))</span>
-</pre></div>
+```rkt
+(lambda ⟨@var{vars}⟩
+  (let ((u '*unassigned*)
+        (v '*unassigned*))
+    (let ((a ⟨@var{e1}⟩)
+          (b ⟨@var{e2}⟩))
+      (set! u a)
+      (set! v b))
+    ⟨@var{e3}⟩))
+```
 
 Here `a` and `b` are meant to represent new variable names, created
 by the interpreter, that do not appear in the user's program.  Consider the
 `solve` procedure from 3.5.4:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">solve</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="n">y0</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="p">(</span><span class="n">integral</span><span class="w"> </span><span class="p">(</span><span class="k">delay</span><span class="w"> </span><span class="n">dy</span><span class="p">)</span><span class="w"> </span><span class="n">y0</span><span class="w"> </span><span class="n">dt</span><span class="p">))</span>
-<span class="w">  </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">dy</span><span class="w"> </span><span class="p">(</span><span class="nb">stream-map</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="n">y</span><span class="p">))</span>
-<span class="w">  </span><span class="n">y</span><span class="p">)</span>
-</pre></div>
+```rkt
+(define (solve f y0 dt)
+  (define y (integral (delay dy) y0 dt))
+  (define dy (stream-map f y))
+  y)
+```
 
 Will this procedure work if internal definitions are scanned out as shown in
 this exercise?  What if they are scanned out as shown in the text?  Explain.
@@ -370,13 +402,14 @@ Ben Bitdiddle, Alyssa P. Hacker,
 and Eva Lu Ator are arguing about the desired result of evaluating the
 expression
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">a</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
-<span class="w">  </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
-<span class="w">    </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">x</span><span class="p">))</span>
-<span class="w">    </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span>
-<span class="w">    </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="p">))</span>
-<span class="w">  </span><span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="mi">10</span><span class="p">))</span>
-</pre></div>
+```rkt
+(let ((a 1))
+  (define (f x)
+    (define b (+ a x))
+    (define a 5)
+    (+ a b))
+  (f 10))
+```
 
 Ben asserts that the result should be obtained using the sequential rule for
 `define`: `b` is defined to be 11, then `a` is defined to be 5,
@@ -405,26 +438,28 @@ simultaneously and have the same scope as each other.  The sample procedure
 `f` above can be written without internal definitions, but with exactly
 the same meaning, as
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">letrec</span>
-<span class="w">      </span><span class="p">((</span><span class="nb">even?</span>
-<span class="w">        </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-<span class="w">          </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
-<span class="w">              </span><span class="nb">true</span>
-<span class="w">              </span><span class="p">(</span><span class="nb">odd?</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">1</span><span class="p">)))))</span>
-<span class="w">       </span><span class="p">(</span><span class="nb">odd?</span>
-<span class="w">        </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-<span class="w">          </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
-<span class="w">              </span><span class="k">false</span>
-<span class="w">              </span><span class="p">(</span><span class="nb">even?</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">1</span><span class="p">))))))</span>
-<span class="w">    </span><span class="n">⟨@var</span><span class="p">{</span><span class="nb">rest</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="o">`</span><span class="ss">f</span><span class="o">`</span><span class="p">}</span><span class="n">⟩</span><span class="p">))</span>
-</pre></div>
+```rkt
+(define (f x)
+  (letrec
+      ((even?
+        (lambda (n)
+          (if (= n 0)
+              true
+              (odd? (- n 1)))))
+       (odd?
+        (lambda (n)
+          (if (= n 0)
+              false
+              (even? (- n 1))))))
+    ⟨@var{rest of body of `f`}⟩))
+```
 
 `Letrec` expressions, which have the form
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">letrec</span><span class="w"> </span><span class="p">((</span><span class="n">⟨@var</span><span class="p">{</span><span class="n">var₁</span><span class="p">}</span><span class="n">⟩</span><span class="w"> </span><span class="n">⟨@var</span><span class="p">{</span><span class="n">exp₁</span><span class="p">}</span><span class="n">⟩</span><span class="p">)</span><span class="w"> </span><span class="n">@r</span><span class="p">{</span><span class="n">…</span><span class="p">}</span><span class="w"> </span><span class="p">(</span><span class="n">⟨@var</span><span class="p">{</span><span class="n">varₙ</span><span class="p">}</span><span class="n">⟩</span><span class="w"> </span><span class="n">⟨@var</span><span class="p">{</span><span class="n">expₙ</span><span class="p">}</span><span class="n">⟩</span><span class="p">))</span>
-<span class="w">  </span><span class="n">⟨@var</span><span class="p">{</span><span class="n">body</span><span class="p">}</span><span class="n">⟩</span><span class="p">)</span>
-</pre></div>
+```rkt
+(letrec ((⟨@var{var₁}⟩ ⟨@var{exp₁}⟩) @r{…} (⟨@var{varₙ}⟩ ⟨@var{expₙ}⟩))
+  ⟨@var{body}⟩)
+```
 
 
 are a variation on `let` in which the expressions
@@ -434,14 +469,15 @@ that includes all the `letrec` bindings.  This permits recursion in the
 bindings, such as the mutual recursion of `even?` and `odd?` in the
 example above, or the evaluation of 10 factorial with
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">letrec</span>
-<span class="w">    </span><span class="p">((</span><span class="n">fact</span>
-<span class="w">      </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-<span class="w">        </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
-<span class="w">            </span><span class="mi">1</span>
-<span class="w">            </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="p">(</span><span class="n">fact</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">1</span><span class="p">)))))))</span>
-<span class="w">  </span><span class="p">(</span><span class="n">fact</span><span class="w"> </span><span class="mi">10</span><span class="p">))</span>
-</pre></div>
+```rkt
+(letrec
+    ((fact
+      (lambda (n)
+        (if (= n 1)
+            1
+            (* n (fact (- n 1)))))))
+  (fact 10))
+```
 
 **1.** Implement `letrec` as a derived expression, by transforming a
 `letrec` expression into a `let` expression as shown in the text
@@ -471,14 +507,15 @@ method for accomplishing this is much more subtle than Louis imagined.  The
 following expression computes 10 factorial by applying a recursive factorial
 procedure:
 
-<div class="codehilite"><pre><span></span><span class="p">((</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-<span class="w">   </span><span class="p">((</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">fact</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">fact</span><span class="w"> </span><span class="n">fact</span><span class="w"> </span><span class="n">n</span><span class="p">))</span>
-<span class="w">    </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">ft</span><span class="w"> </span><span class="n">k</span><span class="p">)</span>
-<span class="w">      </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
-<span class="w">          </span><span class="mi">1</span>
-<span class="w">          </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="p">(</span><span class="n">ft</span><span class="w"> </span><span class="n">ft</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="mi">1</span><span class="p">)))))))</span>
-<span class="w"> </span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
+```rkt
+((lambda (n)
+   ((lambda (fact) (fact fact n))
+    (lambda (ft k)
+      (if (= k 1)
+          1
+          (* k (ft ft (- k 1)))))))
+ 10)
+```
 
 **1.** Check (by evaluating the expression) that this really does compute factorials.
 Devise an analogous expression for computing Fibonacci numbers.
@@ -486,33 +523,35 @@ Devise an analogous expression for computing Fibonacci numbers.
 **2.** Consider the following procedure, which includes mutually recursive internal
 definitions:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="nb">even?</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
-<span class="w">    </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
-<span class="w">        </span><span class="nb">true</span>
-<span class="w">        </span><span class="p">(</span><span class="nb">odd?</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">1</span><span class="p">))))</span>
-<span class="w">  </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="nb">odd?</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
-<span class="w">    </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
-<span class="w">        </span><span class="k">false</span>
-<span class="w">        </span><span class="p">(</span><span class="nb">even?</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">1</span><span class="p">))))</span>
-<span class="w">  </span><span class="p">(</span><span class="nb">even?</span><span class="w"> </span><span class="n">x</span><span class="p">))</span>
-</pre></div>
+```rkt
+(define (f x)
+  (define (even? n)
+    (if (= n 0)
+        true
+        (odd? (- n 1))))
+  (define (odd? n)
+    (if (= n 0)
+        false
+        (even? (- n 1))))
+  (even? x))
+```
 
 Fill in the missing expressions to complete an alternative definition of
 `f`, which uses neither internal definitions nor `letrec`:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
-<span class="w">  </span><span class="p">((</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="nb">even?</span><span class="w"> </span><span class="nb">odd?</span><span class="p">)</span>
-<span class="w">     </span><span class="p">(</span><span class="nb">even?</span><span class="w"> </span><span class="nb">even?</span><span class="w"> </span><span class="nb">odd?</span><span class="w"> </span><span class="n">x</span><span class="p">))</span>
-<span class="w">   </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">ev?</span><span class="w"> </span><span class="n">od?</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
-<span class="w">     </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span>
-<span class="w">         </span><span class="nb">true</span><span class="w"> </span>
-<span class="w">         </span><span class="p">(</span><span class="n">od?</span><span class="w"> </span><span class="n">⟨??⟩</span><span class="w"> </span><span class="n">⟨??⟩</span><span class="w"> </span><span class="n">⟨??⟩</span><span class="p">)))</span>
-<span class="w">   </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">ev?</span><span class="w"> </span><span class="n">od?</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
-<span class="w">     </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span>
-<span class="w">         </span><span class="k">false</span><span class="w"> </span>
-<span class="w">         </span><span class="p">(</span><span class="n">ev?</span><span class="w"> </span><span class="n">⟨??⟩</span><span class="w"> </span><span class="n">⟨??⟩</span><span class="w"> </span><span class="n">⟨??⟩</span><span class="p">)))))</span>
-</pre></div>
+```rkt
+(define (f x)
+  ((lambda (even? odd?)
+     (even? even? odd? x))
+   (lambda (ev? od? n)
+     (if (= n 0) 
+         true 
+         (od? ⟨??⟩ ⟨??⟩ ⟨??⟩)))
+   (lambda (ev? od? n)
+     (if (= n 0) 
+         false 
+         (ev? ⟨??⟩ ⟨??⟩ ⟨??⟩)))))
+```
 
 
 
@@ -533,20 +572,21 @@ other analysis procedures are straightforward transformations of the
 corresponding evaluation procedures (or `eval` clauses) in 
 4.1.1.  She expected `analyze-sequence` to look like this:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">analyze-sequence</span><span class="w"> </span><span class="n">exps</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">execute-sequence</span><span class="w"> </span><span class="n">procs</span><span class="w"> </span><span class="n">env</span><span class="p">)</span>
-<span class="w">    </span><span class="p">(</span><span class="k">cond</span><span class="w"> </span><span class="p">((</span><span class="nb">null?</span><span class="w"> </span><span class="p">(</span><span class="nb">cdr</span><span class="w"> </span><span class="n">procs</span><span class="p">))</span><span class="w"> </span>
-<span class="w">           </span><span class="p">((</span><span class="nb">car</span><span class="w"> </span><span class="n">procs</span><span class="p">)</span><span class="w"> </span><span class="n">env</span><span class="p">))</span>
-<span class="w">          </span><span class="p">(</span><span class="k">else</span><span class="w"> </span><span class="p">((</span><span class="nb">car</span><span class="w"> </span><span class="n">procs</span><span class="p">)</span><span class="w"> </span><span class="n">env</span><span class="p">)</span>
-<span class="w">                </span><span class="p">(</span><span class="n">execute-sequence</span><span class="w"> </span>
-<span class="w">                 </span><span class="p">(</span><span class="nb">cdr</span><span class="w"> </span><span class="n">procs</span><span class="p">)</span><span class="w"> </span><span class="n">env</span><span class="p">))))</span>
-<span class="w">  </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">procs</span><span class="w"> </span><span class="p">(</span><span class="nb">map</span><span class="w"> </span><span class="n">analyze</span><span class="w"> </span><span class="n">exps</span><span class="p">)))</span>
-<span class="w">    </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">null?</span><span class="w"> </span><span class="n">procs</span><span class="p">)</span>
-<span class="w">        </span><span class="p">(</span><span class="nb">error</span><span class="w"> </span><span class="s2">&quot;Empty sequence: </span>
-<span class="s2">                ANALYZE&quot;</span><span class="p">))</span>
-<span class="w">    </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">env</span><span class="p">)</span><span class="w"> </span>
-<span class="w">      </span><span class="p">(</span><span class="n">execute-sequence</span><span class="w"> </span><span class="n">procs</span><span class="w"> </span><span class="n">env</span><span class="p">))))</span>
-</pre></div>
+```rkt
+(define (analyze-sequence exps)
+  (define (execute-sequence procs env)
+    (cond ((null? (cdr procs)) 
+           ((car procs) env))
+          (else ((car procs) env)
+                (execute-sequence 
+                 (cdr procs) env))))
+  (let ((procs (map analyze exps)))
+    (if (null? procs)
+        (error "Empty sequence: 
+                ANALYZE"))
+    (lambda (env) 
+      (execute-sequence procs env))))
+```
 
 Eva Lu Ator explains to Alyssa that the version in the text does more of the
 work of evaluating a sequence at analysis time.  Alyssa's sequence-execution

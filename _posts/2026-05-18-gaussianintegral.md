@@ -2,6 +2,7 @@
 layout: post
 title:  "Gaussian Integral Notes (Scalar Field Theory Part 1)"
 date:   2026-05-18 00:00:01 -0800
+description: "This is a set of notes moving towards the simplest statistical or quantum field theory of all: the free scalar field. In part 1, I cover some of the gory details about the multivariate Gaussian integral and multivariate Gaussian probability distribution. I don't specialize to a specific form of covariance matrix, and I try to include as many neat facts as I know. This is the reference I wish I read or wrote way back in 2017 when I first learned all this stuff."
 ---
 
 # Gaussian Integral Notes (Scalar Field Theory Part 1)
@@ -13,7 +14,7 @@ If you're studying quantum field theory then a solid 80% of this material should
 Stand-outs here include: "conditioning on constant mass introduces negative correlations", a formula for a Gaussian conditioned on a system of independent affine-linear constraints, and a mention of the equipartition theorem. It's especially fun to apply weird constraints to samples of Gaussian processes:
 
 
-<div><img src="/img/posts/gaussianConditioningBetter.jpeg" style="max-width: 750px;display:block; margin-left:auto; margin-right: auto;"></div>
+<div><img src="/img/posts/gaussianConditioningBetter.jpeg" width="1973" height="1400" style="max-width: 750px;display:block; margin-left:auto; margin-right: auto;"></div>
 
 
 This is discussed in the way I've learned about it in my physics coursework, so if you find yourself saying "this is the most stupid way to discuss this basic probability fact that I've ever seen," you might be right!
@@ -443,7 +444,7 @@ We have all of these fancy tools, and so I can't help myself from throwing them 
 $$E=\sum_i (-x_i (x_{i+1}+x_{i-1}-2x_i)/\Delta x^2 + m^2 x_i^2),$$
 and we'll build in free boundary conditions. If we want to fix boundary conditions, then we're forced to do that through conditioning! At the end of the day I'm pretty satisfied with the images, especially with "Gaussian mt. Everest."
 
-<div><img src="/img/posts/gaussianConditioningBetter.jpeg" style="max-width: 750px;display:block; margin-left:auto; margin-right: auto;"></div>
+<div><img src="/img/posts/gaussianConditioningBetter.jpeg" width="1973" height="1400" style="max-width: 750px;display:block; margin-left:auto; margin-right: auto;"></div>
 
 ```mathematica
 (*

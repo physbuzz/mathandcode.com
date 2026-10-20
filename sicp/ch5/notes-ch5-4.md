@@ -3,7 +3,6 @@ layout: sicp
 render_with_liquid: false
 title: SICP Chapter 5.4
 ---
-
 <div class="nav">
     <span class="activenav"><a href="notes-ch5-3.html">← Previous</a></span>
     <span class="activenav"><a href="../index.html">↑ Up</a></span>
@@ -12,11 +11,10 @@ title: SICP Chapter 5.4
 
 [HTML Book Chapter 5.4 Link](https://sarabander.github.io/sicp/html/5_002e4.xhtml#g_t5_002e4)
 
-## Directory
-- [Section 5.4](#section-54)
-  - [Notes](#notes)
-  - [Exercises](#exercises)
-    - *Exercises:* ([Exercise 5.23](#exercise-523), [Exercise 5.24](#exercise-524), [Exercise 5.25](#exercise-525), [Exercise 5.26](#exercise-526), [Exercise 5.27](#exercise-527), [Exercise 5.28](#exercise-528), [Exercise 5.29](#exercise-529), [Exercise 5.30](#exercise-530))
+
+
+<div class="table-of-contents"><h2>Directory</h2><ul class="toc-list"><li><a href="#section-54">Section 5.4</a><ul class="toc-list"><li><a href="#notes">Notes</a></li><li><a href="#exercises">Exercises</a> <div class="exercise-container">(<span class="exercise-list"><span><a href="#exercise-523">Exercise 5.23</a></span><span><a href="#exercise-524">Exercise 5.24</a></span><span><a href="#exercise-525">Exercise 5.25</a></span><span><a href="#exercise-526">Exercise 5.26</a></span><span><a href="#exercise-527">Exercise 5.27</a></span><span><a href="#exercise-528">Exercise 5.28</a></span><span><a href="#exercise-529">Exercise 5.29</a></span><span><a href="#exercise-530">Exercise 5.30</a></span></span>)</div></li></ul></li></ul></div>
+
 
 ## Section 5.4
 
@@ -57,14 +55,15 @@ explore the tail-recursive property of the evaluator (5.4.2).
 Start the evaluator and define the iterative `factorial` procedure from
 1.2.1:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">factorial</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">iter</span><span class="w"> </span><span class="n">product</span><span class="w"> </span><span class="n">counter</span><span class="p">)</span>
-<span class="w">    </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">&gt;</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
-<span class="w">        </span><span class="n">product</span>
-<span class="w">        </span><span class="p">(</span><span class="n">iter</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="n">product</span><span class="p">)</span>
-<span class="w">              </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="mi">1</span><span class="p">))))</span>
-<span class="w">  </span><span class="p">(</span><span class="n">iter</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
-</pre></div>
+```rkt
+(define (factorial n)
+  (define (iter product counter)
+    (if (> counter n)
+        product
+        (iter (* counter product)
+              (+ counter 1))))
+  (iter 1 1))
+```
 
 Run the procedure with some small values of $n$.  Record the maximum stack
 depth and the number of pushes required to compute ${n!$} for each of these
@@ -88,11 +87,12 @@ For comparison with Exercise 5.26,
 explore the behavior of the following procedure for computing factorials
 recursively:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">factorial</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
-<span class="w">      </span><span class="mi">1</span>
-<span class="w">      </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="p">(</span><span class="n">factorial</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="n">n</span><span class="p">)))</span>
-</pre></div>
+```rkt
+(define (factorial n)
+  (if (= n 1)
+      1
+      (* (factorial (- n 1)) n)))
+```
 
 By running this procedure with the monitored stack, determine, as a function of
 $n$, the maximum depth of the stack and the total number of pushes used in
@@ -134,11 +134,12 @@ their input.
 Monitor the stack operations in
 the tree-recursive Fibonacci computation:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">fib</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">&lt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
-<span class="w">      </span><span class="n">n</span>
-<span class="w">      </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="p">(</span><span class="n">fib</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="p">(</span><span class="n">fib</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">2</span><span class="p">)))))</span>
-</pre></div>
+```rkt
+(define (fib n)
+  (if (< n 2)
+      n
+      (+ (fib (- n 1)) (fib (- n 2)))))
+```
 
 **1.** Give a formula in terms of $n$ for the maximum depth of the stack required to
 compute ${\text{Fib}(n)$} for ${n \ge 2$}.  Hint: In 1.2.2 we

@@ -3,7 +3,6 @@ layout: sicp
 render_with_liquid: false
 title: SICP Chapter 5.5
 ---
-
 <div class="nav">
     <span class="activenav"><a href="notes-ch5-4.html">← Previous</a></span>
     <span class="activenav"><a href="../index.html">↑ Up</a></span>
@@ -12,11 +11,10 @@ title: SICP Chapter 5.5
 
 [HTML Book Chapter 5.5 Link](https://sarabander.github.io/sicp/html/5_002e5.xhtml#g_t5_002e5)
 
-## Directory
-- [Section 3.1](#section-31)
-  - [Notes](#notes)
-  - [Exercises](#exercises)
-    - *Exercises:* ([Exercise 5.31](#exercise-531), [Exercise 5.32](#exercise-532), [Exercise 5.33](#exercise-533), [Exercise 5.34](#exercise-534), [Exercise 5.35](#exercise-535), [Exercise 5.36](#exercise-536), [Exercise 5.37](#exercise-537), [Exercise 5.38](#exercise-538), [Exercise 5.39](#exercise-539), [Exercise 5.40](#exercise-540), [Exercise 5.41](#exercise-541), [Exercise 5.42](#exercise-542), [Exercise 5.43](#exercise-543), [Exercise 5.44](#exercise-544), [Exercise 5.45](#exercise-545), [Exercise 5.46](#exercise-546), [Exercise 5.47](#exercise-547), [Exercise 5.48](#exercise-548), [Exercise 5.49](#exercise-549), [Exercise 5.50](#exercise-550), [Exercise 5.51](#exercise-551), [Exercise 5.52](#exercise-552))
+
+
+<div class="table-of-contents"><h2>Directory</h2><ul class="toc-list"><li><a href="#section-31">Section 3.1</a><ul class="toc-list"><li><a href="#notes">Notes</a></li><li><a href="#exercises">Exercises</a> <div class="exercise-container">(<span class="exercise-list"><span><a href="#exercise-531">Exercise 5.31</a></span><span><a href="#exercise-532">Exercise 5.32</a></span><span><a href="#exercise-533">Exercise 5.33</a></span><span><a href="#exercise-534">Exercise 5.34</a></span><span><a href="#exercise-535">Exercise 5.35</a></span><span><a href="#exercise-536">Exercise 5.36</a></span><span><a href="#exercise-537">Exercise 5.37</a></span><span><a href="#exercise-538">Exercise 5.38</a></span><span><a href="#exercise-539">Exercise 5.39</a></span><span><a href="#exercise-540">Exercise 5.40</a></span><span><a href="#exercise-541">Exercise 5.41</a></span><span><a href="#exercise-542">Exercise 5.42</a></span><span><a href="#exercise-543">Exercise 5.43</a></span><span><a href="#exercise-544">Exercise 5.44</a></span><span><a href="#exercise-545">Exercise 5.45</a></span><span><a href="#exercise-546">Exercise 5.46</a></span><span><a href="#exercise-547">Exercise 5.47</a></span><span><a href="#exercise-548">Exercise 5.48</a></span><span><a href="#exercise-549">Exercise 5.49</a></span><span><a href="#exercise-550">Exercise 5.50</a></span><span><a href="#exercise-551">Exercise 5.51</a></span><span><a href="#exercise-552">Exercise 5.52</a></span></span>)</div></li></ul></li></ul></div>
+
 
 ## Section 3.1
 
@@ -36,11 +34,16 @@ of the following combinations, say which of these `save` and
 `restore` operations are superfluous and thus could be eliminated by the
 compiler's `preserving` mechanism:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">x</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">y</span><span class="p">)</span>
-<span class="p">((</span><span class="n">f</span><span class="p">)</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">x</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">y</span><span class="p">)</span>
-<span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="p">(</span><span class="n">g</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">x</span><span class="p">)</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
-<span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="p">(</span><span class="n">g</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">x</span><span class="p">)</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">y</span><span class="p">)</span>
-</pre></div>
+
+
+```rkt
+(f 'x 'y)
+((f) 'x 'y)
+(f (g 'x) y)
+(f (g 'x) 'y)
+```
+
+
 
 ##### Solution
 
@@ -71,11 +74,16 @@ think of this idea?
 Consider the following definition
 of a factorial procedure, which is slightly different from the one given above:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">factorial-alt</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
-<span class="w">      </span><span class="mi">1</span>
-<span class="w">      </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="p">(</span><span class="n">factorial-alt</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">1</span><span class="p">)))))</span>
-</pre></div>
+
+
+```rkt
+(define (factorial-alt n)
+  (if (= n 1)
+      1
+      (* n (factorial-alt (- n 1)))))
+```
+
+
 
 Compile this procedure and compare the resulting code with that produced for
 `factorial`.  Explain any differences you find.  Does either program
@@ -88,14 +96,19 @@ execute more efficiently than the other?
 Compile the iterative factorial
 procedure
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">factorial</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">iter</span><span class="w"> </span><span class="n">product</span><span class="w"> </span><span class="n">counter</span><span class="p">)</span>
-<span class="w">    </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">&gt;</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
-<span class="w">        </span><span class="n">product</span>
-<span class="w">        </span><span class="p">(</span><span class="n">iter</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="n">product</span><span class="p">)</span>
-<span class="w">              </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="mi">1</span><span class="p">))))</span>
-<span class="w">  </span><span class="p">(</span><span class="n">iter</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(define (factorial n)
+  (define (iter product counter)
+    (if (> counter n)
+        product
+        (iter (* counter product)
+              (+ counter 1))))
+  (iter 1 1))
+```
+
+
 
 Annotate the resulting code, showing the essential difference between the code
 for iterative and recursive versions of `factorial` that makes one process
@@ -154,13 +167,18 @@ open-code primitives---that is, if it could generate code to directly
 use these primitive machine operations.  The expression `(+ a 1)` might be
 compiled into something as simple as
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">assign</span><span class="w"> </span><span class="n">val</span><span class="w"> </span><span class="p">(</span><span class="n">op</span><span class="w"> </span><span class="n">lookup-variable-value</span><span class="p">)</span><span class="w"> </span>
-<span class="w">            </span><span class="p">(</span><span class="nb">const</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span>
-<span class="w">            </span><span class="p">(</span><span class="n">reg</span><span class="w"> </span><span class="n">env</span><span class="p">))</span>
-<span class="p">(</span><span class="n">assign</span><span class="w"> </span><span class="n">val</span><span class="w"> </span><span class="p">(</span><span class="n">op</span><span class="w"> </span><span class="nb">+</span><span class="p">)</span>
-<span class="w">            </span><span class="p">(</span><span class="n">reg</span><span class="w"> </span><span class="n">val</span><span class="p">)</span>
-<span class="w">            </span><span class="p">(</span><span class="nb">const</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(assign val (op lookup-variable-value) 
+            (const a) 
+            (reg env))
+(assign val (op +)
+            (reg val)
+            (const 1))
+```
+
+
 
 In this exercise we will extend our compiler to support open coding of selected
 primitives.  Special-purpose code will be generated for calls to these
@@ -235,18 +253,23 @@ that environment.  For example, in the program fragment that is shown above,
 the compile-time environment during the compilation of expression `⟨`@var{e1}`⟩` is
 `((y z) (a b c d e) (x y))`.  `Find-variable` should produce
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">find-variable</span><span class="w"> </span>
-<span class="w"> </span><span class="o">&#39;</span><span class="ss">c</span><span class="w"> </span><span class="o">&#39;</span><span class="p">((</span><span class="ss">y</span><span class="w"> </span><span class="ss">z</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="ss">a</span><span class="w"> </span><span class="ss">b</span><span class="w"> </span><span class="ss">c</span><span class="w"> </span><span class="ss">d</span><span class="w"> </span><span class="ss">e</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="ss">x</span><span class="w"> </span><span class="ss">y</span><span class="p">)))</span>
-<span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
 
-<span class="p">(</span><span class="n">find-variable</span><span class="w"> </span>
-<span class="w"> </span><span class="o">&#39;</span><span class="ss">x</span><span class="w"> </span><span class="o">&#39;</span><span class="p">((</span><span class="ss">y</span><span class="w"> </span><span class="ss">z</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="ss">a</span><span class="w"> </span><span class="ss">b</span><span class="w"> </span><span class="ss">c</span><span class="w"> </span><span class="ss">d</span><span class="w"> </span><span class="ss">e</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="ss">x</span><span class="w"> </span><span class="ss">y</span><span class="p">)))</span>
-<span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
 
-<span class="p">(</span><span class="n">find-variable</span><span class="w"> </span>
-<span class="w"> </span><span class="o">&#39;</span><span class="ss">w</span><span class="w"> </span><span class="o">&#39;</span><span class="p">((</span><span class="ss">y</span><span class="w"> </span><span class="ss">z</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="ss">a</span><span class="w"> </span><span class="ss">b</span><span class="w"> </span><span class="ss">c</span><span class="w"> </span><span class="ss">d</span><span class="w"> </span><span class="ss">e</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="ss">x</span><span class="w"> </span><span class="ss">y</span><span class="p">)))</span>
-<span class="n">not-found</span>
-</pre></div>
+```rkt
+(find-variable 
+ 'c '((y z) (a b c d e) (x y)))
+(1 2)
+
+(find-variable 
+ 'x '((y z) (a b c d e) (x y)))
+(2 0)
+
+(find-variable 
+ 'w '((y z) (a b c d e) (x y)))
+not-found
+```
+
+
 
 ##### Solution
 
@@ -294,9 +317,10 @@ procedures as reserved words.  If a program were to rebind such a name, the
 mechanism described in Exercise 5.38 would still open-code it as a
 primitive, ignoring the new binding.  For example, consider the procedure
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="nb">*</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="n">y</span><span class="p">)))</span>
-</pre></div>
+```rkt
+(lambda (+ * a b x y)
+  (+ (* a x) (* b y)))
+```
 
 
 which computes a linear combination of `x` and `y`.  We might call it
@@ -353,11 +377,12 @@ Carry out an analysis like the
 one in Exercise 5.45 to determine the effectiveness of compiling the
 tree-recursive Fibonacci procedure
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">fib</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">&lt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
-<span class="w">      </span><span class="n">n</span>
-<span class="w">      </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="p">(</span><span class="n">fib</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="p">(</span><span class="n">fib</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">2</span><span class="p">)))))</span>
-</pre></div>
+```rkt
+(define (fib n)
+  (if (< n 2)
+      n
+      (+ (fib (- n 1)) (fib (- n 2)))))
+```
 
 
 compared to the effectiveness of using the special-purpose Fibonacci machine of
@@ -385,11 +410,12 @@ be defined there), so we will add a register called `compapp` to the
 evaluator machine to hold this entry point, and add an instruction to
 initialize it:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">assign</span><span class="w"> </span><span class="n">compapp</span><span class="w"> </span><span class="p">(</span><span class="n">label</span><span class="w"> </span><span class="n">compound-apply</span><span class="p">))</span>
-<span class="w">  </span><span class="n">@r</span><span class="p">{</span><span class="c1">;; branches if `flag` is set:}</span>
-<span class="w">  </span><span class="p">(</span><span class="n">branch</span><span class="w"> </span><span class="p">(</span><span class="n">label</span><span class="w"> </span><span class="n">external-entry</span><span class="p">))</span>
-<span class="nb">read-eval-print-loop</span><span class="w"> </span><span class="n">@r</span><span class="p">{</span><span class="n">…</span><span class="p">}</span>
-</pre></div>
+```rkt
+(assign compapp (label compound-apply))
+  @r{;; branches if `flag` is set:}
+  (branch (label external-entry))
+read-eval-print-loop @r{…}
+```
 
 To test your code, start by defining a procedure `f` that calls a
 procedure `g`.  Use `compile-and-go` to compile the definition of
@@ -406,22 +432,23 @@ called only once (when the evaluator machine is started).  Augment the
 compiler-interpreter interface by providing a `compile-and-run` primitive
 that can be called from within the explicit-control evaluator as follows:
 
-<div class="codehilite"><pre><span></span><span class="c1">;;; EC-Eval input:</span>
-<span class="p">(</span><span class="n">compile-and-run</span>
-<span class="w"> </span><span class="o">&#39;</span><span class="p">(</span><span class="ss">define</span><span class="w"> </span><span class="p">(</span><span class="ss">factorial</span><span class="w"> </span><span class="ss">n</span><span class="p">)</span>
-<span class="w">    </span><span class="p">(</span><span class="ss">if</span><span class="w"> </span><span class="p">(</span><span class="ss">=</span><span class="w"> </span><span class="ss">n</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
-<span class="w">        </span><span class="mi">1</span>
-<span class="w">        </span><span class="p">(</span><span class="ss">*</span><span class="w"> </span><span class="p">(</span><span class="ss">factorial</span><span class="w"> </span><span class="p">(</span><span class="ss">-</span><span class="w"> </span><span class="ss">n</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="ss">n</span><span class="p">))))</span>
+```rkt
+;;; EC-Eval input:
+(compile-and-run
+ '(define (factorial n)
+    (if (= n 1)
+        1
+        (* (factorial (- n 1)) n))))
 
-<span class="c1">;;; EC-Eval value:</span>
-<span class="n">ok</span>
+;;; EC-Eval value:
+ok
 
-<span class="c1">;;; EC-Eval input:</span>
-<span class="p">(</span><span class="n">factorial</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span>
+;;; EC-Eval input:
+(factorial 5)
 
-<span class="c1">;;; EC-Eval value:</span>
-<span class="mi">120</span>
-</pre></div>
+;;; EC-Eval value:
+120
+```
 
 ##### Solution
 

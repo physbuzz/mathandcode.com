@@ -1,19 +1,9 @@
-
-<!DOCTYPE html>
-<html>
-
+<!doctype html>
+<html lang="{{ page.lang | default: 'en' }}">
 {% include head.html %}
-
-<body>
-
-<div  id="mclink" style="position: absolute; z-index: 1; left: 10px; top: 10px;  height:20px; color: #666; font-size:25px;">
-  <span>Visit <a style="text-decoration:none; color: #E66;" href="{{site.url}}">{{site.url}}</a></span>
-</div>
-
+<body class="layout-fullpage">
+  <a class="fullpage-home" href="{{ '/' | relative_url }}">mathandcode.com</a>
 {{ content }}
-
-
+{% if md2html.has_math_copy %}{% include "math-copy.html" %}{% endif %}
 </body>
-
 </html>
-

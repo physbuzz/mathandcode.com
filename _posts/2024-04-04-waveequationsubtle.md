@@ -3,6 +3,7 @@ layout: post
 title:  "A Wave Equation Subtlety"
 date:   2024-04-04 12:00:00
 comments: true
+description: "The simple wave equation is a really great equation, and it's the starting point for lots of my fascinating stories in physics. Everyone studying physics and applied mathematics should be intimately familiar with it. It's the quintessential equation used to describe waves, and in fact what you learn about it remains useful and nearly unchanged even if you're describing sound waves, water waves, electromagnetic waves, or gravitational waves. But I recently found out there was something I didn't know about this equation which I otherwise know like the back of my hand!"
 ---
 The simple wave equation is a really great equation, and it's the starting point for lots of my fascinating stories in physics. Everyone studying physics and applied mathematics should be intimately familiar with it. It's the quintessential equation used to describe waves, and in fact what you learn about it remains useful and nearly unchanged even if you're describing sound waves, water waves, electromagnetic waves, or gravitational waves. But I recently found out there was something I didn't know about this equation which I otherwise know like the back of my hand!
 

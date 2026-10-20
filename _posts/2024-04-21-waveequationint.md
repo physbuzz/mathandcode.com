@@ -3,6 +3,7 @@ layout: post
 title:  "A Generic and Versatile Wave Equation Integrator"
 date:   2024-04-21 12:00:00
 comments: true
+description: "Well, this is \"as simple as possible, but no simpler\"! I wanted to get this post up right away to explain how some code I wrote works, but I might try to rewrite this article to be more clear in the future."
 ---
 
 Well, this is "as simple as possible, but no simpler"! I wanted to get this post up right away to explain how some code I wrote works, but I might try to rewrite this article to be more clear in the future.

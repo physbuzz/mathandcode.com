@@ -1,9 +1,0 @@
-done
-done
-done
-done
-done
-done
-done
-(x^3+x^2+x+1)+(x-1) = (dense-poly x 1 1 2 0)
-(x^3+x^2+x+1)*(x-1) = (dense-poly x 1 0 0 0 -1)

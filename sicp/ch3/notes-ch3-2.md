@@ -3,7 +3,6 @@ layout: sicp
 render_with_liquid: false
 title: SICP Chapter 3.2
 ---
-
 <div class="nav">
     <span class="activenav"><a href="notes-ch3-1.html">← Previous</a></span>
     <span class="activenav"><a href="../index.html">↑ Up</a></span>
@@ -13,12 +12,10 @@ title: SICP Chapter 3.2
 
 [HTML Book Chapter 3.2 Link](https://sarabander.github.io/sicp/html/3_002e2.xhtml#g_t3_002e2)
 
-## Directory
-- [Section 3.2](#section-32)
-  - [Notes](#notes)
-  - [Meeting 05-18-2025](#meeting-05-18-2025)
-  - [Exercises](#exercises)
-    - *Exercises:* ([Exercise 3.9](#exercise-39), [Exercise 3.10](#exercise-310), [Exercise 3.11](#exercise-311))
+
+
+<div class="table-of-contents"><h2>Directory</h2><ul class="toc-list"><li><a href="#section-32">Section 3.2</a><ul class="toc-list"><li><a href="#notes">Notes</a></li><li><a href="#meeting-05-18-2025">Meeting 05-18-2025</a></li><li><a href="#exercises">Exercises</a> <div class="exercise-container">(<span class="exercise-list"><span><a href="#exercise-39">Exercise 3.9</a></span><span><a href="#exercise-310">Exercise 3.10</a></span><span><a href="#exercise-311">Exercise 3.11</a></span></span>)</div></li></ul></li></ul></div>
+
 
 ## Section 3.2
 
@@ -90,26 +87,36 @@ In 1.2.1 we used the
 substitution model to analyze two procedures for computing factorials, a
 recursive version
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">factorial</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
-<span class="w">      </span><span class="mi">1</span>
-<span class="w">      </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="p">(</span><span class="n">factorial</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">1</span><span class="p">)))))</span>
-</pre></div>
+
+
+```rkt
+(define (factorial n)
+  (if (= n 1)
+      1
+      (* n (factorial (- n 1)))))
+```
+
+
 
 and an iterative version
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">factorial</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="n">fact-iter</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">n</span><span class="p">))</span>
 
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">fact-iter</span><span class="w"> </span><span class="n">product</span><span class="w"> </span>
-<span class="w">                   </span><span class="n">counter</span><span class="w"> </span>
-<span class="w">                   </span><span class="n">max-count</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">&gt;</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="n">max-count</span><span class="p">)</span>
-<span class="w">      </span><span class="n">product</span>
-<span class="w">      </span><span class="p">(</span><span class="n">fact-iter</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="n">product</span><span class="p">)</span>
-<span class="w">                 </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
-<span class="w">                 </span><span class="n">max-count</span><span class="p">)))</span>
-</pre></div>
+
+```rkt
+(define (factorial n)
+  (fact-iter 1 1 n))
+
+(define (fact-iter product 
+                   counter 
+                   max-count)
+  (if (> counter max-count)
+      product
+      (fact-iter (* counter product)
+                 (+ counter 1)
+                 max-count)))
+```
+
+
 
 Show the environment structures created by evaluating `(factorial 6)`
 using each version of the `factorial` procedure.
@@ -117,15 +124,23 @@ using each version of the `factorial` procedure.
 ##### Solution
 
 
-<div class="codehilite"><pre><span></span>factorial E1: n:6
+
+
+```txt
+factorial E1: n:6
 factorial E2: n:5
 factorial E3: n:4
 factorial E4: n:3
 factorial E5: n:2
 factorial E6: n:1
-</pre></div>
+```
 
-<div class="codehilite"><pre><span></span>factorial E1: n:6
+
+
+
+
+```txt
+factorial E1: n:6
 fact-iter E2: product: 1, counter: 1, n: 6
 fact-iter E3: product: 1, counter: 2, n: 6
 fact-iter E4: product: 2, counter: 3, n: 6
@@ -133,7 +148,9 @@ fact-iter E5: product: 6, counter: 4, n: 6
 fact-iter E6: product: 24 counter: 5, n: 6
 fact-iter E7: product: 120 counter: 6, n: 6
 fact-iter E8: product: 720 counter: 7, n: 6
-</pre></div>
+```
+
+
 
 #### Exercise 3.10
 
@@ -142,36 +159,56 @@ procedure, the local variable `balance` is created as a parameter of
 `make-withdraw`.  We could also create the local state variable
 explicitly, using `let`, as follows:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">make-withdraw</span><span class="w"> </span><span class="n">initial-amount</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">balance</span><span class="w"> </span><span class="n">initial-amount</span><span class="p">))</span>
-<span class="w">    </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">amount</span><span class="p">)</span>
-<span class="w">      </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">&gt;=</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span>
-<span class="w">          </span><span class="p">(</span><span class="k">begin</span><span class="w"> </span><span class="p">(</span><span class="k">set!</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span>
-<span class="w">                       </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="n">amount</span><span class="p">))</span>
-<span class="w">                 </span><span class="n">balance</span><span class="p">)</span>
-<span class="w">          </span><span class="s2">&quot;Insufficient funds&quot;</span><span class="p">))))</span>
-</pre></div>
+
+
+```rkt
+(define (make-withdraw initial-amount)
+  (let ((balance initial-amount))
+    (lambda (amount)
+      (if (>= balance amount)
+          (begin (set! balance 
+                       (- balance amount))
+                 balance)
+          "Insufficient funds"))))
+```
+
+
 
 Recall from 1.3.2 that `let` is simply syntactic sugar for a
 procedure call:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">⟨var⟩</span><span class="w"> </span><span class="n">⟨exp⟩</span><span class="p">))</span><span class="w"> </span><span class="n">⟨body⟩</span><span class="p">)</span>
-</pre></div>
+
+
+```rkt
+(let ((⟨var⟩ ⟨exp⟩)) ⟨body⟩)
+```
+
+
 
 
 is interpreted as an alternate syntax for
 
-<div class="codehilite"><pre><span></span><span class="p">((</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">⟨var⟩</span><span class="p">)</span><span class="w"> </span><span class="n">⟨body⟩</span><span class="p">)</span><span class="w"> </span><span class="n">⟨exp⟩</span><span class="p">)</span>
-</pre></div>
+
+
+```rkt
+((lambda (⟨var⟩) ⟨body⟩) ⟨exp⟩)
+```
+
+
 
 Use the environment model to analyze this alternate version of
 `make-withdraw`, drawing figures like the ones above to illustrate the
 interactions
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">W1</span><span class="w"> </span><span class="p">(</span><span class="n">make-withdraw</span><span class="w"> </span><span class="mi">100</span><span class="p">))</span>
-<span class="p">(</span><span class="n">W1</span><span class="w"> </span><span class="mi">50</span><span class="p">)</span>
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">W2</span><span class="w"> </span><span class="p">(</span><span class="n">make-withdraw</span><span class="w"> </span><span class="mi">100</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(define W1 (make-withdraw 100))
+(W1 50)
+(define W2 (make-withdraw 100))
+```
+
+
 
 Show that the two versions of `make-withdraw` create objects with the same
 behavior.  How do the environment structures differ for the two versions?
@@ -189,42 +226,57 @@ Now we have seen how internal definitions work.  A typical message-passing
 procedure contains both of these aspects.  Consider the bank account procedure
 of 3.1.1:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">make-account</span><span class="w"> </span><span class="n">balance</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">withdraw</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span>
-<span class="w">    </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">&gt;=</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span>
-<span class="w">        </span><span class="p">(</span><span class="k">begin</span><span class="w"> </span><span class="p">(</span><span class="k">set!</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span>
-<span class="w">                     </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span>
-<span class="w">                        </span><span class="n">amount</span><span class="p">))</span>
-<span class="w">               </span><span class="n">balance</span><span class="p">)</span>
-<span class="w">        </span><span class="s2">&quot;Insufficient funds&quot;</span><span class="p">))</span>
-<span class="w">  </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">deposit</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span>
-<span class="w">    </span><span class="p">(</span><span class="k">set!</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="n">amount</span><span class="p">))</span>
-<span class="w">    </span><span class="n">balance</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">dispatch</span><span class="w"> </span><span class="n">m</span><span class="p">)</span>
-<span class="w">    </span><span class="p">(</span><span class="k">cond</span><span class="w"> </span><span class="p">((</span><span class="nb">eq?</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">withdraw</span><span class="p">)</span><span class="w"> </span><span class="n">withdraw</span><span class="p">)</span>
-<span class="w">          </span><span class="p">((</span><span class="nb">eq?</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">deposit</span><span class="p">)</span><span class="w"> </span><span class="n">deposit</span><span class="p">)</span>
-<span class="w">          </span><span class="p">(</span><span class="k">else</span><span class="w"> </span><span class="p">(</span><span class="nb">error</span><span class="w"> </span><span class="s2">&quot;Unknown request: </span>
-<span class="s2">                        MAKE-ACCOUNT&quot;</span><span class="w"> </span>
-<span class="w">                       </span><span class="n">m</span><span class="p">))))</span>
-<span class="w">  </span><span class="n">dispatch</span><span class="p">)</span>
-</pre></div>
+
+
+```rkt
+(define (make-account balance)
+  (define (withdraw amount)
+    (if (>= balance amount)
+        (begin (set! balance 
+                     (- balance 
+                        amount))
+               balance)
+        "Insufficient funds"))
+  (define (deposit amount)
+    (set! balance (+ balance amount))
+    balance)
+  (define (dispatch m)
+    (cond ((eq? m 'withdraw) withdraw)
+          ((eq? m 'deposit) deposit)
+          (else (error "Unknown request: 
+                        MAKE-ACCOUNT" 
+                       m))))
+  dispatch)
+```
+
+
 
 Show the environment structure generated by the sequence of interactions
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">acc</span><span class="w"> </span><span class="p">(</span><span class="n">make-account</span><span class="w"> </span><span class="mi">50</span><span class="p">))</span>
 
-<span class="p">((</span><span class="n">acc</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">deposit</span><span class="p">)</span><span class="w"> </span><span class="mi">40</span><span class="p">)</span>
-<span class="mi">90</span>
 
-<span class="p">((</span><span class="n">acc</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">withdraw</span><span class="p">)</span><span class="w"> </span><span class="mi">60</span><span class="p">)</span>
-<span class="mi">30</span>
-</pre></div>
+```rkt
+(define acc (make-account 50))
+
+((acc 'deposit) 40)
+90
+
+((acc 'withdraw) 60)
+30
+```
+
+
 
 Where is the local state for `acc` kept?  Suppose we define another
 account
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">acc2</span><span class="w"> </span><span class="p">(</span><span class="n">make-account</span><span class="w"> </span><span class="mi">100</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(define acc2 (make-account 100))
+```
+
+
 
 How are the local states for the two accounts kept distinct?  Which parts of
 the environment structure are shared between `acc` and `acc2`?

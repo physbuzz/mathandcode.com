@@ -3,7 +3,6 @@ layout: sicp
 render_with_liquid: false
 title: SICP Chapter 4.2
 ---
-
 <div class="nav">
     <span class="activenav"><a href="notes-ch4-1.html">← Previous</a></span>
     <span class="activenav"><a href="../index.html">↑ Up</a></span>
@@ -12,11 +11,10 @@ title: SICP Chapter 4.2
 
 [HTML Book Chapter 4.2 Link](https://sarabander.github.io/sicp/html/4_002e2.xhtml#g_t4_002e2)
 
-## Directory
-- [Section 4.2](#section-42)
-  - [Notes](#notes)
-  - [Exercises](#exercises)
-    - *Exercises:* ([Exercise 4.25](#exercise-425), [Exercise 4.26](#exercise-426), [Exercise 4.27](#exercise-427), [Exercise 4.28](#exercise-428), [Exercise 4.29](#exercise-429), [Exercise 4.30](#exercise-430), [Exercise 4.31](#exercise-431), [Exercise 4.32](#exercise-432), [Exercise 4.33](#exercise-433), [Exercise 4.34](#exercise-434))
+
+
+<div class="table-of-contents"><h2>Directory</h2><ul class="toc-list"><li><a href="#section-42">Section 4.2</a><ul class="toc-list"><li><a href="#notes">Notes</a></li><li><a href="#exercises">Exercises</a> <div class="exercise-container">(<span class="exercise-list"><span><a href="#exercise-425">Exercise 4.25</a></span><span><a href="#exercise-426">Exercise 4.26</a></span><span><a href="#exercise-427">Exercise 4.27</a></span><span><a href="#exercise-428">Exercise 4.28</a></span><span><a href="#exercise-429">Exercise 4.29</a></span><span><a href="#exercise-430">Exercise 4.30</a></span><span><a href="#exercise-431">Exercise 4.31</a></span><span><a href="#exercise-432">Exercise 4.32</a></span><span><a href="#exercise-433">Exercise 4.33</a></span><span><a href="#exercise-434">Exercise 4.34</a></span></span>)</div></li></ul></li></ul></div>
+
 
 ## Section 4.2
 
@@ -30,11 +28,16 @@ Suppose that (in ordinary
 applicative-order Scheme) we define `unless` as shown above and then
 define `factorial` in terms of `unless` as
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">factorial</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">unless</span><span class="w"> </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
-<span class="w">          </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="p">(</span><span class="n">factorial</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">1</span><span class="p">)))</span>
-<span class="w">          </span><span class="mi">1</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(define (factorial n)
+  (unless (= n 1)
+          (* n (factorial (- n 1)))
+          1))
+```
+
+
 
 What happens if we attempt to evaluate `(factorial 5)`?  Will our
 definitions work in a normal-order language?
@@ -61,33 +64,43 @@ than as a special form.
 Suppose we type in the following
 definitions to the lazy evaluator:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="nb">count</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="k">set!</span><span class="w"> </span><span class="nb">count</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="nb">count</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
-</pre></div>
+
+
+```rkt
+(define count 0)
+(define (id x) (set! count (+ count 1)) x)
+```
+
+
 
 Give the missing values in the following sequence of interactions, and explain
 your answers.
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="mi">10</span><span class="p">)))</span>
 
-<span class="c1">;;; L-Eval input:</span>
-<span class="nb">count</span>
 
-<span class="c1">;;; L-Eval value:</span>
-<span class="n">⟨@var</span><span class="p">{</span><span class="n">response</span><span class="p">}</span><span class="n">⟩</span>
+```rkt
+(define w (id (id 10)))
 
-<span class="c1">;;; L-Eval input:</span>
-<span class="n">w</span>
+;;; L-Eval input:
+count
 
-<span class="c1">;;; L-Eval value:</span>
-<span class="n">⟨@var</span><span class="p">{</span><span class="n">response</span><span class="p">}</span><span class="n">⟩</span>
+;;; L-Eval value:
+⟨@var{response}⟩
 
-<span class="c1">;;; L-Eval input:</span>
-<span class="nb">count</span>
+;;; L-Eval input:
+w
 
-<span class="c1">;;; L-Eval value:</span>
-<span class="n">⟨@var</span><span class="p">{</span><span class="n">response</span><span class="p">}</span><span class="n">⟩</span>
-</pre></div>
+;;; L-Eval value:
+⟨@var{response}⟩
+
+;;; L-Eval input:
+count
+
+;;; L-Eval value:
+⟨@var{response}⟩
+```
+
+
 
 ##### Solution
 
@@ -106,20 +119,25 @@ expect to run much more slowly without memoization than with memoization.
 Also, consider the following interaction, where the `id` procedure is
 defined as in Exercise 4.27 and `count` starts at 0:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">square</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">x</span><span class="p">))</span>
 
-<span class="c1">;;; L-Eval input:</span>
-<span class="p">(</span><span class="n">square</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="mi">10</span><span class="p">))</span>
 
-<span class="c1">;;; L-Eval value:</span>
-<span class="n">⟨@var</span><span class="p">{</span><span class="n">response</span><span class="p">}</span><span class="n">⟩</span>
+```rkt
+(define (square x) (* x x))
 
-<span class="c1">;;; L-Eval input:</span>
-<span class="nb">count</span>
+;;; L-Eval input:
+(square (id 10))
 
-<span class="c1">;;; L-Eval value:</span>
-<span class="n">⟨@var</span><span class="p">{</span><span class="n">response</span><span class="p">}</span><span class="n">⟩</span>
-</pre></div>
+;;; L-Eval value:
+⟨@var{response}⟩
+
+;;; L-Eval input:
+count
+
+;;; L-Eval value:
+⟨@var{response}⟩
+```
+
+
 
 Give the responses both when the evaluator memoizes and when it does not.
 
@@ -138,42 +156,57 @@ evaluating sequences, we must force all expressions in the sequence except the
 final one.  He proposes to modify `eval-sequence` from 4.1.1
 to use `actual-value` rather than `eval`:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">eval-sequence</span><span class="w"> </span><span class="n">exps</span><span class="w"> </span><span class="n">env</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">cond</span><span class="w"> </span><span class="p">((</span><span class="n">last-exp?</span><span class="w"> </span><span class="n">exps</span><span class="p">)</span><span class="w"> </span>
-<span class="w">         </span><span class="p">(</span><span class="nb">eval</span><span class="w"> </span><span class="p">(</span><span class="n">first-exp</span><span class="w"> </span><span class="n">exps</span><span class="p">)</span><span class="w"> </span><span class="n">env</span><span class="p">))</span>
-<span class="w">        </span><span class="p">(</span><span class="k">else</span><span class="w"> </span>
-<span class="w">         </span><span class="p">(</span><span class="n">actual-value</span><span class="w"> </span><span class="p">(</span><span class="n">first-exp</span><span class="w"> </span><span class="n">exps</span><span class="p">)</span><span class="w"> </span>
-<span class="w">                       </span><span class="n">env</span><span class="p">)</span>
-<span class="w">         </span><span class="p">(</span><span class="n">eval-sequence</span><span class="w"> </span><span class="p">(</span><span class="n">rest-exps</span><span class="w"> </span><span class="n">exps</span><span class="p">)</span><span class="w"> </span>
-<span class="w">                        </span><span class="n">env</span><span class="p">))))</span>
-</pre></div>
+
+
+```rkt
+(define (eval-sequence exps env)
+  (cond ((last-exp? exps) 
+         (eval (first-exp exps) env))
+        (else 
+         (actual-value (first-exp exps) 
+                       env)
+         (eval-sequence (rest-exps exps) 
+                        env))))
+```
+
+
 
 **1.** Ben Bitdiddle thinks Cy is wrong.  He shows Cy the `for-each` procedure
 described in Exercise 2.23, which gives an important example of a
 sequence with side effects:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="nb">for-each</span><span class="w"> </span><span class="n">proc</span><span class="w"> </span><span class="n">items</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">null?</span><span class="w"> </span><span class="n">items</span><span class="p">)</span>
-<span class="w">      </span><span class="o">&#39;</span><span class="ss">done</span>
-<span class="w">      </span><span class="p">(</span><span class="k">begin</span><span class="w"> </span><span class="p">(</span><span class="n">proc</span><span class="w"> </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="n">items</span><span class="p">))</span>
-<span class="w">             </span><span class="p">(</span><span class="nb">for-each</span><span class="w"> </span><span class="n">proc</span><span class="w"> </span>
-<span class="w">                       </span><span class="p">(</span><span class="nb">cdr</span><span class="w"> </span><span class="n">items</span><span class="p">)))))</span>
-</pre></div>
+
+
+```rkt
+(define (for-each proc items)
+  (if (null? items)
+      'done
+      (begin (proc (car items))
+             (for-each proc 
+                       (cdr items)))))
+```
+
+
 
 He claims that the evaluator in the text (with the original
 `eval-sequence`) handles this correctly:
 
-<div class="codehilite"><pre><span></span><span class="c1">;;; L-Eval input:</span>
-<span class="p">(</span><span class="nb">for-each</span>
-<span class="w"> </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">newline</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="n">x</span><span class="p">))</span>
-<span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">57</span><span class="w"> </span><span class="mi">321</span><span class="w"> </span><span class="mi">88</span><span class="p">))</span>
-<span class="mi">57</span>
-<span class="mi">321</span>
-<span class="mi">88</span>
 
-<span class="c1">;;; L-Eval value:</span>
-<span class="n">done</span>
-</pre></div>
+
+```rkt
+;;; L-Eval input:
+(for-each
+ (lambda (x) (newline) (display x))
+ (list 57 321 88))
+57
+321
+88
+
+;;; L-Eval value:
+done
+```
+
+
 
 Explain why Ben is right about the behavior of `for-each`.
 
@@ -182,13 +215,18 @@ that's not the kind of program he was thinking about when he proposed his
 change to `eval-sequence`.  He defines the following two procedures in the
 lazy evaluator:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">p1</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">set!</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">(</span><span class="nb">cons</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&#39;</span><span class="p">(</span><span class="mi">2</span><span class="p">)))</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
 
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">p2</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="p">(</span><span class="k">set!</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">(</span><span class="nb">cons</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&#39;</span><span class="p">(</span><span class="mi">2</span><span class="p">)))))</span>
-</pre></div>
+
+```rkt
+(define (p1 x)
+  (set! x (cons x '(2))) x)
+
+(define (p2 x)
+  (define (p e) e x)
+  (p (set! x (cons x '(2)))))
+```
+
+
 
 What are the values of `(p1 1)` and `(p2 1)` with the original
 `eval-sequence`?  What would the values be with Cy's proposed change to
@@ -215,9 +253,14 @@ procedure declarations to let the user control whether or not arguments are to
 be delayed.  While we're at it, we may as well also give the user the choice
 between delaying with and without memoization.  For example, the definition
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="p">(</span><span class="n">b</span><span class="w"> </span><span class="k">lazy</span><span class="p">)</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="p">(</span><span class="n">d</span><span class="w"> </span><span class="n">lazy-memo</span><span class="p">))</span>
-<span class="w">  </span><span class="n">@r</span><span class="p">{</span><span class="n">…</span><span class="p">})</span>
-</pre></div>
+
+
+```rkt
+(define (f a (b lazy) c (d lazy-memo))
+  @r{…})
+```
+
+
 
 
 would define `f` to be a procedure of four arguments, where the first and
@@ -249,8 +292,9 @@ this extra laziness?
 Ben Bitdiddle tests the lazy list
 implementation given above by evaluating the expression
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="o">&#39;</span><span class="p">(</span><span class="ss">a</span><span class="w"> </span><span class="ss">b</span><span class="w"> </span><span class="ss">c</span><span class="p">))</span>
-</pre></div>
+```rkt
+(car '(a b c))
+```
 
 To his surprise, this produces an error.  After some thought, he realizes that
 the ``lists'' obtained by reading in quoted expressions are different from the

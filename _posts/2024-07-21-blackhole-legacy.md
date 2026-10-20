@@ -3,6 +3,7 @@ layout: post
 title:  "Black Hole Raytracer (2015)"
 date:   2024-07-21 12:00:00
 comments: true
+description: "I took my first general relativity course in 2015, just before the first gravitational waves were detected. That summer I read through \"Manifolds, Tensors, and Forms: An Introduction for Mathematicians and Physicists\" by Paul Renteln, a book which I highly recommend to anyone."
 ---
 
 > [Source code here.](https://github.com/physbuzz/blackhole-2015)

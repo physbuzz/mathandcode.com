@@ -3,6 +3,7 @@ layout: post
 title:  "Navier-Stokes equations from SPH"
 date:   2024-02-17 12:00:00
 comments: true
+description: "In this article, I derive the Navier-Stokes equations from the equations of smoothed particle hydrodynamics (SPH). I phrase everything in terms of Lagrangian densities and I definitely don't pull any punches when it comes to the multivariable calculus involved. Many important identities are put in the appendix, but you might also want to refer to a vector calculus textbook. For a reference on the continuum physics, chapter 13 of Goldstein's Classical Mechanics textbook is quite good, but it doesn't go far enough for fluid and solid mechanics. "
 ---
 
 

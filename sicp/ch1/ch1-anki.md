@@ -24,11 +24,16 @@ Named function: `(define (square x) (* x x))`
 ## Question
 ### Statement
 Exercise 1.5: how does this procedure evaluate using normal order? Using applicative order?
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">test</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span>
-<span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="n">y</span><span class="p">))</span>
-<span class="p">(</span><span class="n">test</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(define (p) (p))
+(define (test x y) 
+  (if (= x 0) 0 y))
+(test 0 (p))
+```
+
+
 ### Answer
 This is a point of confusion! Using applicative order, we first evaluate the arguments of `test`. One of these is a recursive bomb, so it gets implement recursion right away. This is how Scheme evaluates things, so this program will blow up.
 
@@ -37,24 +42,34 @@ In normal order evaluation, we don't evaluate the arguments right away, and in f
 ## Question
 ### Statement
 Loosely define the substitution model of evaluation of a Scheme program, and write out the evaluation of `(f 5)` in the program below using the substitution model.
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">square</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">x</span><span class="p">))</span>
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">sum-of-squares</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="p">(</span><span class="n">square</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">square</span><span class="w"> </span><span class="n">y</span><span class="p">)))</span>
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="n">a</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="n">sum-of-squares</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="mi">2</span><span class="p">)))</span>
-<span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span>
-</pre></div>
+
+
+```rkt
+(define (square x) (* x x))
+(define (sum-of-squares x y)
+  (+ (square x) (square y)))
+(define (f a)
+  (sum-of-squares (+ a 1) (* a 2)))
+(f 5)
+```
+
+
 ### Answer
 The substitution model is just obtained by evaluating function arguments (applicative order) and then substituting the definitions of thesub-expressions that can be evaluated. 
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span>
-<span class="p">(</span><span class="n">sum-of-squares</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">2</span><span class="p">))</span>
-<span class="p">(</span><span class="n">sum-of-squares</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
-<span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="p">(</span><span class="n">square</span><span class="w"> </span><span class="mi">6</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">square</span><span class="w"> </span><span class="mi">10</span><span class="p">))</span>
-<span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="mi">6</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="mi">10</span><span class="p">))</span>
-<span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="mi">36</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span>
-<span class="mi">136</span>
-</pre></div>
+
+
+```rkt
+(f 5)
+(sum-of-squares (+ 5 1) (* 5 2))
+(sum-of-squares 6 10)
+(+ (square 6) (square 10))
+(+ (* 6 6) (* 10 10))
+(+ 36 100)
+136
+```
+
+
 
 ## Question
 ### Statement
@@ -64,10 +79,15 @@ How do you write `if` and `cond` statements in Scheme? What's special about thei
 This breaks the strict rule of applicative order evaluation, which might lead you to believe that `bool a b` are all evaluated.
 
 `cond` is another way to achieve conditional evaluation. Here we see how to evaluate `e1`, `e2`, or `e3` based on Boolean predicates `p1` and `p2`. If p1 is true, then p2, e2, e3 are never evaluated.
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">cond</span><span class="w"> </span><span class="p">(</span><span class="n">p1</span><span class="w"> </span><span class="n">e1</span><span class="p">)</span>
-<span class="w">    </span><span class="p">(</span><span class="n">p2</span><span class="w"> </span><span class="n">e2</span><span class="p">)</span>
-<span class="w">    </span><span class="p">(</span><span class="k">else</span><span class="w"> </span><span class="n">e3</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(cond (p1 e1)
+    (p2 e2)
+    (else e3))
+```
+
+
 
 # Chapter 1.2
 
@@ -78,24 +98,34 @@ Write out the linear recursive and linear iterative factorial functions.
 ### Answer
 
 Linear recursive:
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">factorial</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span>
-<span class="w">      </span><span class="mi">1</span><span class="w"> </span>
-<span class="w">      </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="p">(</span><span class="n">factorial</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">1</span><span class="p">)))))</span>
-</pre></div>
+
+
+```rkt
+(define (factorial n)
+  (if (= n 1) 
+      1 
+      (* n (factorial (- n 1)))))
+```
+
+
 This is "linear recursive" because the size of the "call stack" grows linearly.
 
 Linear iterative:
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">factorial</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span>
-<span class="w">  </span><span class="p">(</span><span class="n">fact-iter</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">n</span><span class="p">))</span>
 
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">fact-iter</span><span class="w"> </span><span class="n">product</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="n">max-count</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">&gt;</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="n">max-count</span><span class="p">)</span>
-<span class="w">      </span><span class="n">product</span>
-<span class="w">      </span><span class="p">(</span><span class="n">fact-iter</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="n">product</span><span class="p">)</span>
-<span class="w">                 </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
-<span class="w">                 </span><span class="n">max-count</span><span class="p">)))</span>
-</pre></div>
+
+```rkt
+(define (factorial n) 
+  (fact-iter 1 1 n))
+
+(define (fact-iter product counter max-count)
+  (if (> counter max-count)
+      product
+      (fact-iter (* counter product)
+                 (+ counter 1)
+                 max-count)))
+```
+
+
 This is not linear recursive, but it is linear iterative, and it is an example of tail-recursion.
 
 ## Question
@@ -103,21 +133,31 @@ This is not linear recursive, but it is linear iterative, and it is an example o
 Write out the tree recursive and linear iterative Fibonacci functions.
 ### Answer
 Tree recursive:
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">fib</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">cond</span><span class="w"> </span><span class="p">((</span><span class="nb">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
-<span class="w">        </span><span class="p">((</span><span class="nb">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
-<span class="w">        </span><span class="p">(</span><span class="k">else</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="p">(</span><span class="n">fib</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
-<span class="w">                 </span><span class="p">(</span><span class="n">fib</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">2</span><span class="p">))))))</span>
-</pre></div>
-Linear iterative:
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">fib</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span>
-<span class="w">  </span><span class="p">(</span><span class="n">fib-iter</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="n">n</span><span class="p">))</span>
 
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">fib-iter</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="nb">count</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="nb">count</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
-<span class="w">      </span><span class="n">b</span>
-<span class="w">      </span><span class="p">(</span><span class="n">fib-iter</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="nb">count</span><span class="w"> </span><span class="mi">1</span><span class="p">))))</span>
-</pre></div>
+
+```rkt
+(define (fib n)
+  (cond ((= n 0) 0)
+        ((= n 1) 1)
+        (else (+ (fib (- n 1))
+                 (fib (- n 2))))))
+```
+
+
+Linear iterative:
+
+
+```rkt
+(define (fib n) 
+  (fib-iter 1 0 n))
+
+(define (fib-iter a b count)
+  (if (= count 0)
+      b
+      (fib-iter (+ a b) a (- count 1))))
+```
+
+
 
 ## Question
 ### Statement
@@ -152,14 +192,19 @@ The tree-recursive Fibonacci algorithm takes $\Theta(\varphi^n)$ steps and $\The
 Write the recursive `fast-expt` algorithm to compute $b^n$ in $\Theta(\log(n))$ steps.
 ### Answer
 We use the statements $b^n=(b^{n/2})^2$ if $n$ is even and $b^n=b b^{n-1}$ if $b$ is odd.
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">fast-expt</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">cond</span><span class="w"> </span><span class="p">((</span><span class="nb">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span>
-<span class="w">         </span><span class="mi">1</span><span class="p">)</span>
-<span class="w">        </span><span class="p">((</span><span class="nb">even?</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span>
-<span class="w">         </span><span class="p">(</span><span class="n">square</span><span class="w"> </span><span class="p">(</span><span class="n">fast-expt</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="p">(</span><span class="nb">/</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">2</span><span class="p">))))</span>
-<span class="w">        </span><span class="p">(</span><span class="k">else</span><span class="w"> </span>
-<span class="w">         </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="p">(</span><span class="n">fast-expt</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">1</span><span class="p">))))))</span>
-</pre></div>
+
+
+```rkt
+(define (fast-expt b n)
+  (cond ((= n 0) 
+         1)
+        ((even? n) 
+         (square (fast-expt b (/ n 2))))
+        (else 
+         (* b (fast-expt b (- n 1))))))
+```
+
+
 ## Question
 ### Statement
 Write the iterative (tail-recursive) `fast-exp` algorithm to compute $b^n$ in $\Theta(\log(n))$ steps.
@@ -167,13 +212,18 @@ Write the iterative (tail-recursive) `fast-exp` algorithm to compute $b^n$ in $\
 We use the statements $b^n=(b^{n/2})^2$ if $n$ is even and $b^n=b b^{n-1}$ if $b$ is odd.
 If $a$ is the return value, we use the statements $ab^n=a (b^2)^{n/2}$ if $n$ is even (do nothing to the return value,
 square the base) or $a b^n=(ab)^{n-1}$ if $n$ is odd (map $a\mapsto ab,$ $n\mapsto n-1$, do nothing to base).
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">fast-expt</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">fast-expt-iter</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
-<span class="w">    </span><span class="p">(</span><span class="k">cond</span><span class="w"> </span><span class="p">((</span><span class="nb">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">a</span><span class="p">)</span>
-<span class="w">          </span><span class="p">((</span><span class="nb">=</span><span class="w"> </span><span class="p">(</span><span class="nb">remainder</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">fast-expt-iter</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">/</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">2</span><span class="p">)))</span>
-<span class="w">          </span><span class="p">(</span><span class="k">else</span><span class="w"> </span><span class="p">(</span><span class="n">fast-expt-iter</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">1</span><span class="p">)))))</span>
-<span class="w">  </span><span class="p">(</span><span class="n">fast-expt-iter</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="n">n</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(define (fast-expt b n)
+  (define (fast-expt-iter a b n)
+    (cond ((= n 0) a)
+          ((= (remainder n 2) 0) (fast-expt-iter a (* b b) (/ n 2)))
+          (else (fast-expt-iter (* a b) b (- n 1)))))
+  (fast-expt-iter 1 b n))
+```
+
+
 ## Question
 ### Statement
 Write the `gcd` algorithm.
@@ -182,11 +232,16 @@ The relevant theorem for calculating $\textrm{gcd}(a,b)$ is that if $c|a$ and $c
 The most reasonable $k$ to choose would be one that eg. leaves $a-kb\in [0,b).$ This is precisely $a\textrm{ mod }b$.
 Whether we do this or $b\textrm{ mod }a$ doesn't change the common divisor, so we should do both until we can't any more.
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="nb">gcd</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
-<span class="w">    </span><span class="n">a</span>
-<span class="w">    </span><span class="p">(</span><span class="nb">gcd</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="p">(</span><span class="nb">remainder</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="p">))))</span>
-</pre></div>
+
+
+```rkt
+(define (gcd a b)
+  (if (= b 0)
+    a
+    (gcd b (remainder a b))))
+```
+
+
 
 
 (*Note:* "$a|b$" means "a divides b." ie, there's some integer $c$ with $ac=b.$)
@@ -229,9 +284,14 @@ Group theoretically, it defines a ring isomorphism
 What are the two equivalent ways to define a function, one with a lambda and one without?
 ### Answer
 We can do things the following two ways:
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">func</span><span class="w"> </span><span class="n">argument</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">function</span><span class="w"> </span><span class="n">definition</span><span class="p">))</span>
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">func</span><span class="w"> </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">argument</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">function</span><span class="w"> </span><span class="n">definition</span><span class="p">)))</span>
-</pre></div>
+
+
+```rkt
+(define (func argument) (function definition))
+(define func (lambda (argument) (function definition)))
+```
+
+
 ## Question
 ### Statement
 What are the use cases for the `let` keyword? How do you use `let` with only one variable (get the parentheses right)?
@@ -243,19 +303,29 @@ While it's equivalent to a lambda, in the corresponding lambda expression the va
 ### Statement
 What is the definition of `let` in terms of lambdas?
 ### Answer
-<div class="codehilite"><pre><span></span><span class="c1">;; This let</span>
-<span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">v1</span><span class="w"> </span><span class="n">arg1</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">v2</span><span class="w"> </span><span class="n">arg2</span><span class="p">))</span><span class="w"> </span><span class="p">(</span><span class="n">function-body</span><span class="p">))</span>
-<span class="c1">;; is equivalent to:</span>
-<span class="p">((</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">v1</span><span class="w"> </span><span class="n">v2</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">function-body</span><span class="p">))</span><span class="w"> </span><span class="n">arg1</span><span class="w"> </span><span class="n">arg2</span><span class="p">)</span>
-</pre></div>
+
+
+```rkt
+;; This let
+(let ((v1 arg1) (v2 arg2)) (function-body))
+;; is equivalent to:
+((lambda (v1 v2) (function-body)) arg1 arg2)
+```
+
+
 ## Question
 ### Statement
 Give an example of a closure in a returned function (in the broad functional programming sense, not the sense used in SICP).
 ### Answer
 Here we return a function which multiplies by the desired value:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">multiply-by</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="n">m</span><span class="p">)))</span>
-</pre></div>
+
+
+```rkt
+(define (multiply-by n) (lambda (m) (* n m)))
+```
+
+
 
 # Chapter 2.1
 ## Question
@@ -281,10 +351,15 @@ What are the Church numeral definitions of `zero` and `add-one`?
 The idea is that they're pure lambdas. Zero, given a function and an $x$ returns $x$. $n$ applies $f$ $n$ times. 
 So `(zero f)` is the identity function. `(two f)` is `(lambda (x) (f (f x)))` and so on.
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">zero</span><span class="w"> </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="p">)))</span>
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">add-1</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="p">((</span><span class="n">n</span><span class="w"> </span><span class="n">f</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="p">)))))</span>
-</pre></div>
+
+
+```rkt
+(define zero (lambda (f) (lambda (x) x)))
+(define (add-1 n)
+  (lambda (f) (lambda (x) (f ((n f) x)))))
+```
+
+
 # Chapter 2.2
 ## Question
 ### Statement
@@ -322,40 +397,51 @@ The essential difference is that `fold-right` starts applying the operations fro
 
 They give the same result if the binary operation is associative.
 
-<div class="codehilite"><pre><span></span><span class="c1">; fold right AKA accumulate</span>
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">accumulate</span><span class="w"> </span><span class="n">op</span><span class="w"> </span><span class="n">initial</span><span class="w"> </span><span class="n">sequence</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">null?</span><span class="w"> </span><span class="n">sequence</span><span class="p">)</span>
-<span class="w">      </span><span class="n">initial</span>
-<span class="w">      </span><span class="p">(</span><span class="n">op</span><span class="w"> </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="n">sequence</span><span class="p">)</span>
-<span class="w">          </span><span class="p">(</span><span class="n">accumulate</span><span class="w"> </span><span class="n">op</span>
-<span class="w">                      </span><span class="n">initial</span>
-<span class="w">                      </span><span class="p">(</span><span class="nb">cdr</span><span class="w"> </span><span class="n">sequence</span><span class="p">)))))</span>
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">fold-right</span><span class="w"> </span><span class="n">accumulate</span><span class="p">)</span>
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">fold-left</span><span class="w"> </span><span class="n">op</span><span class="w"> </span><span class="n">initial</span><span class="w"> </span><span class="n">sequence</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">iter</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="nb">rest</span><span class="p">)</span>
-<span class="w">    </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">null?</span><span class="w"> </span><span class="nb">rest</span><span class="p">)</span>
-<span class="w">        </span><span class="n">result</span>
-<span class="w">        </span><span class="p">(</span><span class="n">iter</span><span class="w"> </span><span class="p">(</span><span class="n">op</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="p">(</span><span class="nb">car</span><span class="w"> </span><span class="nb">rest</span><span class="p">))</span>
-<span class="w">              </span><span class="p">(</span><span class="nb">cdr</span><span class="w"> </span><span class="nb">rest</span><span class="p">))))</span>
-<span class="w">  </span><span class="p">(</span><span class="n">iter</span><span class="w"> </span><span class="n">initial</span><span class="w"> </span><span class="n">sequence</span><span class="p">))</span>
-<span class="p">(</span><span class="n">fold-right</span><span class="w"> </span><span class="nb">list</span><span class="w"> </span><span class="n">nil</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">))</span>
-<span class="c1">;(1 (2 (3 ())))</span>
 
-<span class="p">(</span><span class="n">fold-left</span><span class="w">  </span><span class="nb">list</span><span class="w"> </span><span class="n">nil</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">))</span>
-<span class="c1">;(((() 1) 2) 3)</span>
-</pre></div>
+
+```rkt
+
+; fold right AKA accumulate
+(define (accumulate op initial sequence)
+  (if (null? sequence)
+      initial
+      (op (car sequence)
+          (accumulate op
+                      initial
+                      (cdr sequence)))))
+(define fold-right accumulate)
+(define (fold-left op initial sequence)
+  (define (iter result rest)
+    (if (null? rest)
+        result
+        (iter (op result (car rest))
+              (cdr rest))))
+  (iter initial sequence))
+(fold-right list nil (list 1 2 3))
+;(1 (2 (3 ())))
+
+(fold-left  list nil (list 1 2 3))
+;(((() 1) 2) 3)
+```
+
+
 ## Question
 ### Statement
 What are the arguments of `accumulate`, `fold-left`, `flatmap`, `filter`? What's their usefulness?
 ### Answer
 
 The arguments are:
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">accumulate</span><span class="w"> </span><span class="n">op</span><span class="w"> </span><span class="n">initial</span><span class="w"> </span><span class="n">sequence</span><span class="p">)</span>
-<span class="p">(</span><span class="n">fold-left</span><span class="w"> </span><span class="n">op</span><span class="w"> </span><span class="n">initial</span><span class="w"> </span><span class="n">sequence</span><span class="p">)</span>
-<span class="p">(</span><span class="nb">filter</span><span class="w"> </span><span class="n">q?</span><span class="w"> </span><span class="n">sequence</span><span class="p">)</span>
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">flatmap</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="n">sequence</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="n">accumulate</span><span class="w"> </span><span class="nb">append</span><span class="w"> </span><span class="n">nil</span><span class="w"> </span><span class="p">(</span><span class="nb">map</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="n">sequence</span><span class="p">)))</span><span class="w"> </span>
-</pre></div>
+
+
+```rkt
+(accumulate op initial sequence)
+(fold-left op initial sequence)
+(filter q? sequence)
+(define (flatmap f sequence)
+  (accumulate append nil (map f sequence))) 
+```
+
+
 Accumulate and fold-left are very similar, except that in the case of accumulate the first evaluation is `(op last-element initial)`
 while in the case of `fold-left` the first evaluation is `(op initial first-element)`.
 

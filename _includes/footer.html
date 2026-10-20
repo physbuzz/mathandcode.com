@@ -1,12 +1,5 @@
-<footer id="pagefooter" class="footer">
-Contact me at 
-  <script language="JavaScript">
-   <!--
-   var user = "dmoore101";
-   var host = "gmx.com";
-   var link = user + "@" + host;
-   document.write('<a href=\"'+link+'\">'+link+'</a>');
-   //--> 
-  </script>. Page last built on {{ 'now' | date: "%b %d, %Y at %H:%M" }}.
+<footer class="site-footer">
+  <p><a href="{{ '/feed.xml' | relative_url }}">Atom feed</a> <span aria-hidden="true">/</span> <a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+  <p>Page last built on {{ site.time | date: "%b %d, %Y at %H:%M" }}.</p>
 </footer>
-
+{% if md2html.has_math_copy %}{% include "math-copy.html" %}{% endif %}

@@ -1,71 +1,22 @@
 ---
 layout: indexlayout
+title: mathandcode
+description: David's website, used to host various projects.
 ---
 
 <div class="sublogo">
-    <p>Hey, I'm David, I stream computational and theoretical physics on <a href="twitch.tv/physbuzz/">Twitch</a> sometimes. 
-    I also have a <a href="https://github.com/physbuzz">GitHub</a>. 
-    I did a BSc math, BSc physics, MSc computational physics, and did a bunch of studying in lattice field theory in pursuit of a PhD.</p>
-    <p>A recent hobby project of mine was solving all of the problems in Structure and Interpretation of Computer Programs, which you can find here: <a href="/sicp">/sicp/</a>. Done with chapters 1-3, and it sparked some fun discussion.</p>
-    <p>You can also visit an <a href="/archive/">archive of my old website</a>.</p>
+  <p>Hey, I'm David, I stream computational and theoretical physics on <a href="https://twitch.tv/physbuzz/">Twitch</a> sometimes. I also have a <a href="https://github.com/physbuzz">GitHub</a>. I did a BSc math, BSc physics, MSc computational physics, and did a bunch of studying in lattice field theory in pursuit of a PhD.</p>
+  <p>A recent hobby project of mine was solving all of the problems in Structure and Interpretation of Computer Programs, which you can find here: <a href="{{ '/sicp/' | relative_url }}">/sicp/</a>. Done with chapters 1-3, and it sparked some fun discussion.</p>
+  <p>You can also visit an <a href="/archive/">archive of my old website</a>.</p>
 </div>
 
-<div class="pure-g">
-<!--
-  <div class="pure-u-1 pure-u-md-1-2">
-    <h2>SICP</h2>
-    <ul>
-      <li><a href="/sicp/">SICP book club notes + solutions</a></li>
-      <li>(More to come)</li>
-    </ul>
-  </div>
-  <div class="pure-u-1 pure-u-md-1-2">
-    <h2>Tools</h2>
-    <ul>
-      <li><a href="#">Undergraduate Physics Quizzes</a></li>
-      <li><a href="#">Physics GRE exam quiz</a></li>
-    </ul>
-  </div>
-  <div class="pure-u-1 pure-u-md-1-2">
-    <h2>Quantum Physics Notes</h2>
-    <ul>
-      <li><a href="#">Simulating 2D quantum systems in mathematica</a></li>
-      <li><a href="#">The quantum particle on a 1D ring</a></li>
-      <li><a href="#">Deriving Fourier identities from quantum mechanics</a></li>
-      <li><a href="#">Inference in quantum mechanics</a></li>
-    </ul>
-  </div>
-</div>
-<div class="pure-g">
-  <div class="pure-u-1 pure-u-md-1-2">
-    <h2>Classical Physics Notes</h2>
-    <ul>
-      <li><a href="#">Billiard ball physics</a></li>
-      <li><a href="#">Dynamics in special relativity</a></li>
-      <li><a href="#">Life on a relativistic merry-go-round</a></li>
-      <li><a href="#">Some notes on Feynman-Wheeler electrodynamics</a></li>
-      <li><a href="#">The many faces of a Schwarzschild black hole</a></li>
-    </ul>
-  </div>
-  <div class="pure-u-1 pure-u-md-1-2">
-    <h2>Legacy website stuff (2010 - 2017)</h2>
-    <ul>
-      <li><a href="#">Billiard ball physics</a></li>
-      <li><a href="#">Dynamics in special relativity</a></li>
-      <li><a href="#">Life on a relativistic merry-go-round</a></li>
-      <li><a href="#">Some notes on Feynman-Wheeler electrodynamics</a></li>
-      <li><a href="#">The many faces of a Schwarzschild black hole</a></li>
-    </ul>
-  </div>
--->
-  <div class="pure-u-1 pure-u-md-1-1">
-    <h2>All posts by date</h2>
-    <ul>
+<section class="post-list-panel" aria-label="All posts by date">
+  <h2>All posts by date</h2>
+  <ul class="dense-post-list">
     {% for post in site.posts %}
-      <li>
-        {{ post.date | date: "%B %-d, %Y" }}&mdash;<a href="{{ post.url }}">{{ post.title }}</a>
-      </li>
+    <li>
+      <time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%B %-d, %Y" }}</time>&mdash;<a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    </li>
     {% endfor %}
-    </ul>
-  </div>
-</div> <!-- pure-g -->
+  </ul>
+</section>

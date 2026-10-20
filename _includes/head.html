@@ -1,35 +1,72 @@
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width initial-scale=1">
-
-  <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
-
-  <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
-  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
-  <link rel="icon" type="image/x-icon" href="{{ site.url}}{{site.baseurl}}/favicon.ico?v=4">
-  <!-- <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" /> -->
-
-  <!-- MathJax (Allow $math$, $$math$$) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <script>
-  MathJax = {
-    tex: {
-      inlineMath: [['$', '$'], ['\\(', '\\)']],
+  (function () {
+    var root = document.documentElement;
+    var defaults = {theme: "system", width: "normal", type: "sans", text: "normal"};
+    var allowed = {
+      theme: {system: true, light: true, dark: true},
+      width: {normal: true, wide: true, compact: true},
+      type: {sans: true, serif: true},
+      text: {small: true, normal: true, large: true}
+    };
+    var state = {};
+    if (window.name && window.name.indexOf("mathandcode-reader:") === 0) {
+      try { state = JSON.parse(window.name.slice(19)) || {}; } catch (error) {}
     }
-  };
-  </script>
-  <script id="MathJax-script" async
-    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+    Object.keys(defaults).forEach(function (name) {
+      var value = null;
+      try { value = localStorage.getItem("mathandcode-reader-" + name); } catch (error) {}
+      value = value || state[name];
+      if (allowed[name][value] && value !== defaults[name]) root.dataset[name] = value;
+    });
+    if (window.location.hash.length < 2) return;
+    root.setAttribute("data-hash-pending", "");
+    var fallback = setTimeout(reveal, 2500);
+    function reveal() {
+      if (!root.hasAttribute("data-hash-pending")) return;
+      var name = window.location.hash.slice(1);
+      try { name = decodeURIComponent(name); } catch (error) {}
+      var target = document.getElementById(name) || document.getElementsByName(name)[0];
+      if (target) target.scrollIntoView();
+      requestAnimationFrame(function () {
+        if (target) target.scrollIntoView();
+        root.removeAttribute("data-hash-pending");
+        clearTimeout(fallback);
+      });
+    }
+    document.addEventListener("DOMContentLoaded", reveal, {once: true});
+  }());
   </script>
 
-  <!-- purecss -->
-  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous"> 
-  <link rel="stylesheet" href="https://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
-
-  <!-- custom styles -->
-  <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
-  <link rel="stylesheet" href="{{ "/css/syntax.css" | prepend: site.baseurl }}">
-  {% if page.layout == "sicp" %}
-  <link rel="stylesheet" href="{{ "/sicp/assets/css/md2html.css" | prepend: site.baseurl }}">
+  <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+  {% if page.description %}
+  <meta name="description" content="{{ page.description | strip_html | strip_newlines | truncate: 160 | escape }}">
   {% endif %}
+  <link rel="canonical" href="{{ page.url | replace: 'index.html', '' | prepend: site.baseurl | prepend: site.url }}">
+  <link rel="icon" type="image/x-icon" href="{{ '/favicon.ico?v=5' | relative_url }}">
+  <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ '/feed.xml' | absolute_url }}">
+  <link rel="stylesheet" href="{{ '/css/main.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/css/md2html.css' | relative_url }}">
+  {% for font in md2html.font_preloads %}
+  <link rel="preload" href="{{ font }}" as="font" type="font/woff2" crossorigin>
+  {% endfor %}
+  {% for stylesheet in md2html.page_stylesheets %}
+  <link rel="stylesheet" href="{{ stylesheet }}">
+  {% endfor %}
+  {% if md2html.css %}<style>{{ md2html.css }}</style>{% endif %}
+  {% for stylesheet in md2html.math_stylesheets %}
+  <link rel="stylesheet" href="{{ stylesheet }}">
+  {% endfor %}
+  {% if md2html.math_css %}<style>{{ md2html.math_css }}</style>{% endif %}
+  {% for stylesheet in md2html.stylesheets %}
+  <link rel="stylesheet" href="{{ stylesheet }}">
+  {% endfor %}
+  {% if md2html.mathjax_src %}
+  <script>{{ md2html.mathjax_config }}</script>
+  <script id="MathJax-script" defer src="{{ md2html.mathjax_src }}"></script>
+  {% endif %}
+
+  <script defer src="{{ '/js/site.js' | relative_url }}"></script>
 </head>

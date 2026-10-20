@@ -1,6 +1,0 @@
-done
-Output of 
-(apply-generic 'mul
-  (make-scheme-number 13)
-  (make-scheme-number 11))
-143

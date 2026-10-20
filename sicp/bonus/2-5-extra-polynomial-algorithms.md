@@ -1,10 +1,8 @@
 ---
 layout: sicp
 render_with_liquid: false
-show_title: false
 title: The Abstract Algebra of Chapter 2.5
 ---
-
 # The Abstract Algebra of Chapter 2.5
 
 The system of generic operations discussed in SICP is perfect for starting a 
@@ -32,32 +30,47 @@ of type `'my-type`. In addition, `'zero` and `'one` are elements of type `'my-ty
 
 **1.** `'my-type` is an abelian group under addition, meaning the following comparisons 
 return true for every input `a,b,c` of type `'my-input`.
-<div class="codehilite"><pre><span></span><span class="c1">;; Addition is commutative</span>
-<span class="p">(</span><span class="nb">equal?</span><span class="w"> </span><span class="p">(</span><span class="nf">add</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">b</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nf">add</span><span class="w"> </span><span class="nv">b</span><span class="w"> </span><span class="nv">a</span><span class="p">))</span>
-<span class="c1">;; Addition is associative</span>
-<span class="p">(</span><span class="nb">equal?</span><span class="w"> </span><span class="p">(</span><span class="nf">add</span><span class="w"> </span><span class="p">(</span><span class="nf">add</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">b</span><span class="p">)</span><span class="w"> </span><span class="nv">c</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nf">add</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="p">(</span><span class="nf">add</span><span class="w"> </span><span class="nv">b</span><span class="w"> </span><span class="nv">c</span><span class="p">)))</span>
-<span class="c1">;; The zero element, which satisfies a+0 == a</span>
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="nv">zero</span><span class="w"> </span><span class="p">(</span><span class="nf">get</span><span class="w"> </span><span class="ss">&#39;my-type</span><span class="w"> </span><span class="ss">&#39;zero</span><span class="p">))</span>
-<span class="p">(</span><span class="nb">equal?</span><span class="w"> </span><span class="p">(</span><span class="nf">add</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">zero</span><span class="p">)</span><span class="w"> </span><span class="nv">a</span><span class="p">)</span>
-<span class="c1">;; Negation, there exists an additive inverse</span>
-<span class="p">(</span><span class="nb">equal?</span><span class="w"> </span><span class="p">(</span><span class="nf">add</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="p">(</span><span class="nb">negate</span><span class="w"> </span><span class="nv">a</span><span class="p">))</span><span class="w"> </span><span class="nv">zero</span><span class="p">)</span>
-</pre></div>
+
+
+```scm
+;; Addition is commutative
+(equal? (add a b) (add b a))
+;; Addition is associative
+(equal? (add (add a b) c) (add a (add b c)))
+;; The zero element, which satisfies a+0 == a
+(define zero (get 'my-type 'zero))
+(equal? (add a zero) a)
+;; Negation, there exists an additive inverse
+(equal? (add a (negate a)) zero)
+```
+
+
 
 **2.** `'my-type` is a monoid under multiplication: 
-<div class="codehilite"><pre><span></span><span class="c1">;; Multiplication is associative</span>
-<span class="p">(</span><span class="nb">equal?</span><span class="w"> </span><span class="p">(</span><span class="nf">mul</span><span class="w"> </span><span class="p">(</span><span class="nf">mul</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">b</span><span class="p">)</span><span class="w"> </span><span class="nv">c</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nf">mul</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="p">(</span><span class="nf">mul</span><span class="w"> </span><span class="nv">b</span><span class="w"> </span><span class="nv">c</span><span class="p">)))</span>
-<span class="c1">;; The multiplicative identity, which satisfies a*1 == 1*a == a</span>
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="nv">one</span><span class="w"> </span><span class="p">(</span><span class="nf">get</span><span class="w"> </span><span class="ss">&#39;my-type</span><span class="w"> </span><span class="ss">&#39;one</span><span class="p">))</span>
-<span class="p">(</span><span class="nb">equal?</span><span class="w"> </span><span class="p">(</span><span class="nf">mul</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">one</span><span class="p">)</span><span class="w"> </span><span class="nv">a</span><span class="p">)</span>
-<span class="p">(</span><span class="nb">equal?</span><span class="w"> </span><span class="p">(</span><span class="nf">mul</span><span class="w"> </span><span class="nv">one</span><span class="w"> </span><span class="nv">a</span><span class="p">)</span><span class="w"> </span><span class="nv">a</span><span class="p">)</span>
-</pre></div>
+
+
+```scm
+;; Multiplication is associative
+(equal? (mul (mul a b) c) (mul a (mul b c)))
+;; The multiplicative identity, which satisfies a*1 == 1*a == a
+(define one (get 'my-type 'one))
+(equal? (mul a one) a)
+(equal? (mul one a) a)
+```
+
+
 
 **3.** `'my-type` satisfies the distributive law with respect to addition: 
-<div class="codehilite"><pre><span></span><span class="c1">;; Left-distributivity</span>
-<span class="p">(</span><span class="nb">equal?</span><span class="w"> </span><span class="p">(</span><span class="nf">mul</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="p">(</span><span class="nf">add</span><span class="w"> </span><span class="nv">b</span><span class="w"> </span><span class="nv">c</span><span class="p">))</span><span class="w"> </span><span class="p">(</span><span class="nf">add</span><span class="w"> </span><span class="p">(</span><span class="nf">mul</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">b</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nf">mul</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">c</span><span class="p">)))</span>
-<span class="c1">;; Right-distributivity</span>
-<span class="p">(</span><span class="nb">equal?</span><span class="w"> </span><span class="p">(</span><span class="nf">mul</span><span class="w"> </span><span class="p">(</span><span class="nf">add</span><span class="w"> </span><span class="nv">b</span><span class="w"> </span><span class="nv">c</span><span class="p">)</span><span class="w"> </span><span class="nv">a</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nf">add</span><span class="w"> </span><span class="p">(</span><span class="nf">mul</span><span class="w"> </span><span class="nv">b</span><span class="w"> </span><span class="nv">a</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nf">mul</span><span class="w"> </span><span class="nv">c</span><span class="w"> </span><span class="nv">a</span><span class="p">)))</span>
-</pre></div>
+
+
+```scm
+;; Left-distributivity
+(equal? (mul a (add b c)) (add (mul a b) (mul a c)))
+;; Right-distributivity
+(equal? (mul (add b c) a) (add (mul b a) (mul c a)))
+```
+
+
 
 ## More Examples of Rings
 
@@ -77,10 +90,15 @@ denoted $\mathbb{Z}[x],$ $\mathbb{Q}[x],$ and $\mathbb{C}[x].$
 There are loads of other rings we could define. For example, let's look at 
 the integers modulo 12, denoted $\mathbb{Z}_{12}.$ These will have type `'int-mod-12` and multiplication
 operation
-<div class="codehilite"><pre><span></span><span class="c1">;; inside (install-int-mod-12)</span>
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">mul</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="p">)</span>
-<span class="w">  </span><span class="p">((</span><span class="nb">*</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="nb">remainder</span><span class="w"> </span><span class="mi">12</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+;; inside (install-int-mod-12)
+(define (mul a b)
+  ((* a b) remainder 12))
+```
+
+
 Clearly then, we have an interesting situation where `(mul 4 3)` will 
 return $0$! $4$ and $3$ are called zero divisors, and we often want to work
 in a ring without zero divisors. Such a ring without any zero
@@ -108,9 +126,14 @@ run `(install-ring)`, and demonstrate some of its interesting properties.
 
 Let's go back to the interesting properties of *commutative rings*. That is,
 rings where we have the additional property
-<div class="codehilite"><pre><span></span><span class="c1">;; Commutativity of multiplication</span>
-<span class="p">(</span><span class="nb">equal?</span><span class="w"> </span><span class="p">(</span><span class="n">mul</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">mul</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="n">a</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+;; Commutativity of multiplication
+(equal? (mul a b) (mul b a))
+```
+
+
 
 Given any ring $R$, we can define the polynomial ring $R[x].$ In fact since our
 code was implemented using generics, the multiplication and addition operations
@@ -127,11 +150,16 @@ of the following polynomial:
 $$(y^2+1)x^3+(2y)x+1$$
 
 which we might represent as the following data structure:
-<div class="codehilite"><pre><span></span><span class="o">&#39;</span><span class="p">(</span><span class="ss">polynomial</span><span class="w"> </span><span class="ss">x</span>
-<span class="w">  </span><span class="p">(</span><span class="mi">3</span><span class="w"> </span><span class="p">(</span><span class="ss">polynomial</span><span class="w"> </span><span class="ss">y</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="p">)))</span>
-<span class="w">  </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="ss">polynomial</span><span class="w"> </span><span class="ss">y</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="p">)))</span>
-<span class="w">  </span><span class="p">(</span><span class="mi">0</span><span class="w"> </span><span class="p">(</span><span class="ss">polynomial</span><span class="w"> </span><span class="ss">y</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="p">))))</span>
-</pre></div>
+
+
+```rkt
+'(polynomial x
+  (3 (polynomial y (2 1) (0 1)))
+  (1 (polynomial y (1 2)))
+  (0 (polynomial y (0 1))))
+```
+
+
 
 In exercise 2.92, we're asked to redesign the polynomial system to work with
 multivariate polynomials natively. 
@@ -145,12 +173,17 @@ $$x^3y^2+x^3+2xy+1$$
 
 With the following Lisp representation:
 
-<div class="codehilite"><pre><span></span><span class="o">&#39;</span><span class="p">(</span><span class="ss">polynomial-multivariate</span>
-<span class="w">  </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="p">((</span><span class="ss">x</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="ss">y</span><span class="w"> </span><span class="mi">2</span><span class="p">)))</span>
-<span class="w">  </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="p">((</span><span class="ss">x</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="ss">y</span><span class="w"> </span><span class="mi">0</span><span class="p">)))</span>
-<span class="w">  </span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="p">((</span><span class="ss">x</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="ss">y</span><span class="w"> </span><span class="mi">1</span><span class="p">)))</span>
-<span class="w">  </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="p">((</span><span class="ss">x</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="ss">y</span><span class="w"> </span><span class="mi">0</span><span class="p">))))</span>
-</pre></div>
+
+
+```rkt
+'(polynomial-multivariate
+  (1 ((x 3) (y 2)))
+  (1 ((x 3) (y 0)))
+  (2 ((x 1) (y 1)))
+  (1 ((x 0) (y 0))))
+```
+
+
 
 Transforming between these two polynomial representations would be some 
 function that we'd have to define, and is an example of an isomorphism:
@@ -170,21 +203,31 @@ Integer division: if $|b|\lt |a|$ and we want to compute `(remainder a b)`,
 we subtract off as many copies of `b` as possible until we find an integer 
 with smaller absolute value than `b` or we reach zero.
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="nb">remainder</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">cond</span><span class="w"> </span><span class="p">((</span><span class="nb">=</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">error</span><span class="w"> </span><span class="s2">&quot;division by zero&quot;</span><span class="p">))</span>
-<span class="w">        </span><span class="p">((</span><span class="nb">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
-<span class="w">        </span><span class="p">((</span><span class="nb">&lt;</span><span class="w"> </span><span class="p">(</span><span class="nb">abs</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">abs</span><span class="w"> </span><span class="n">b</span><span class="p">))</span><span class="w"> </span><span class="n">a</span><span class="p">)</span>
-<span class="w">        </span><span class="p">(</span><span class="k">else</span><span class="w"> </span><span class="p">(</span><span class="nb">remainder</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="p">(</span><span class="nb">sgn</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">sgn</span><span class="w"> </span><span class="n">b</span><span class="p">))))</span><span class="w"> </span><span class="n">b</span><span class="p">))))</span>
-</pre></div>
+
+
+```rkt
+(define (remainder a b)
+  (cond ((= b 0) (error "division by zero"))
+        ((= a 0) 0)
+        ((< (abs a) (abs b)) a)
+        (else (remainder (- a (* b (* (sgn a) (sgn b)))) b))))
+```
+
+
 
 Polynomial division: we saw this in exercise 2.91, to get the remainder
 we subtract off the monomial with coefficient and order defined by 
 the code in the book:
-<div class="codehilite"><pre><span></span><span class="w">  </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">new-c</span><span class="w"> </span><span class="p">(</span><span class="n">div</span><span class="w"> </span><span class="p">(</span><span class="n">coeff</span><span class="w"> </span><span class="n">t1</span><span class="p">)</span><span class="w"> </span>
-<span class="w">                    </span><span class="p">(</span><span class="n">coeff</span><span class="w"> </span><span class="n">t2</span><span class="p">)))</span>
-<span class="w">        </span><span class="p">(</span><span class="n">new-o</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="p">(</span><span class="n">order</span><span class="w"> </span><span class="n">t1</span><span class="p">)</span><span class="w"> </span>
-<span class="w">                  </span><span class="p">(</span><span class="n">order</span><span class="w"> </span><span class="n">t2</span><span class="p">))))</span>
-</pre></div>
+
+
+```rkt
+  (let ((new-c (div (coeff t1) 
+                    (coeff t2)))
+        (new-o (- (order t1) 
+                  (order t2))))
+```
+
+
 Because we have a division here, we should note that we only defined 
 polynomial division for $\mathbb{Q}[x]$! This is actually a deep insight, 
 and we cannot perform a simple Euclidean division algorithm over 
@@ -256,10 +299,15 @@ So, if we have such a property, then we can always do a GCD algorithm. Each time
 
 Our Euclidean algorithm is...
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="nb">gcd</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span>
-<span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">apply-generic</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">=zero?</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="n">a</span>
-<span class="w">    </span><span class="p">(</span><span class="nb">gcd</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="p">(</span><span class="n">apply-generic</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">remainder</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="p">))))</span>
-</pre></div>
+
+
+```rkt
+(define (gcd a b) 
+  (if (apply-generic '=zero? b) a
+    (gcd b (apply-generic 'remainder a b))))
+```
+
+
 At each step we reduce the valuation of our arguments by one. We may have a $b$ which isn't
 zero but with a zero valuation, but this means that on the next step $(remainder a b)$ 
 returns an element of the ring which either has lower valuation or which is equal to zero. 

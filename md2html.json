@@ -1,0 +1,25 @@
+{
+  "input": ".",
+  "output": "_site",
+  "output_mode": "site",
+  "highlighter": "pygments",
+  "math": {
+    "backend": "mathjax-chtml",
+    "chtml_fonts": "auto"
+  },
+  "site": {
+    "title": "mathandcode",
+    "email": "dmoore101@gmx.com",
+    "description": "David's website for computational physics, math notes, and code projects.",
+    "baseurl": "",
+    "url": "https://www.mathandcode.com",
+    "permalink": "/:year/:month/:day/:title.html"
+  },
+  "exclude": [
+    "md2html.json",
+    "README.md",
+    "readme.md",
+    "makefile"
+  ],
+  "css": []
+}

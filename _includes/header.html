@@ -1,5 +1,33 @@
-
-<header id="pageheader">
-  <a href="{{ "/" | prepend: site.baseurl }}"><h1 class="logo">mathandcode<span class="logo-com">.com</span></h1></a>
+<header class="site-header">
+  <a class="site-brand" href="{{ '/' | relative_url }}" aria-label="{{ site.title }} home">
+    <span class="brand-main">mathandcode</span><span class="brand-dot">.com</span>
+  </a>
+  <details class="reader-widget">
+    <summary aria-label="Reader controls" title="Reader controls">Aa</summary>
+    <form aria-label="Reader controls">
+      <fieldset>
+        <legend>Theme</legend>
+        <label><input id="reader-theme-system" name="reader-theme" value="system" type="radio" checked> system</label>
+        <label><input id="reader-theme-light" name="reader-theme" value="light" type="radio"> light</label>
+        <label><input id="reader-theme-dark" name="reader-theme" value="dark" type="radio"> dark</label>
+      </fieldset>
+      <fieldset>
+        <legend>Measure</legend>
+        <label><input id="reader-width-normal" name="reader-width" value="normal" type="radio" checked> normal</label>
+        <label><input id="reader-width-wide" name="reader-width" value="wide" type="radio"> wide</label>
+        <label><input id="reader-width-compact" name="reader-width" value="compact" type="radio"> compact</label>
+      </fieldset>
+      <fieldset>
+        <legend>Type</legend>
+        <label><input id="reader-type-sans" name="reader-type" value="sans" type="radio" checked> sans</label>
+        <label><input id="reader-type-serif" name="reader-type" value="serif" type="radio"> serif</label>
+      </fieldset>
+      <fieldset>
+        <legend>Text</legend>
+        <label><input id="reader-text-small" name="reader-text" value="small" type="radio"> small</label>
+        <label><input id="reader-text-normal" name="reader-text" value="normal" type="radio" checked> normal</label>
+        <label><input id="reader-text-large" name="reader-text" value="large" type="radio"> large</label>
+      </fieldset>
+    </form>
+  </details>
 </header>
-

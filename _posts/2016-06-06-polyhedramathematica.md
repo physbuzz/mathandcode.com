@@ -3,6 +3,7 @@ layout: post
 title:  "Generating 3D Rotation Groups and Polyhedron Sculpture with Mathematica"
 date:   2016-06-06 12:00:00
 tags: Technical Mathematica
+description: "In this post, I will show you how to use Mathematica to construct different three dimensional rotation groups, as well as how to generate different mathematical sculptures using the rotation groups."
 ---
 
 

@@ -3,7 +3,6 @@ layout: sicp
 render_with_liquid: false
 title: SICP Chapter 3.1
 ---
-
 <div class="nav">
     <span class="activenav"><a href="../ch2/notes-ch2-5.html">← Previous</a></span>
     <span class="activenav"><a href="../index.html">↑ Up</a></span>
@@ -13,12 +12,10 @@ title: SICP Chapter 3.1
 
 [HTML Book Chapter 3.1 Link](https://sarabander.github.io/sicp/html/3_002e1.xhtml#g_t3_002e1)
 
-## Directory
-- [Section 3.1](#section-31)
-  - [Notes](#notes)
-  - [Meeting 05-11-2025](#meeting-05-11-2025)
-  - [Exercises](#exercises)
-    - *Exercises:* ([Exercise 3.1](#exercise-31), [Exercise 3.2](#exercise-32), [Exercise 3.3](#exercise-33), [Exercise 3.4](#exercise-34), [Exercise 3.5](#exercise-35), [Exercise 3.6](#exercise-36), [Exercise 3.7](#exercise-37), [Exercise 3.8](#exercise-38))
+
+
+<div class="table-of-contents"><h2>Directory</h2><ul class="toc-list"><li><a href="#section-31">Section 3.1</a><ul class="toc-list"><li><a href="#notes">Notes</a></li><li><a href="#meeting-05-11-2025">Meeting 05-11-2025</a></li><li><a href="#exercises">Exercises</a> <div class="exercise-container">(<span class="exercise-list"><span><a href="#exercise-31">Exercise 3.1</a></span><span><a href="#exercise-32">Exercise 3.2</a></span><span><a href="#exercise-33">Exercise 3.3</a></span><span><a href="#exercise-34">Exercise 3.4</a></span><span><a href="#exercise-35">Exercise 3.5</a></span><span><a href="#exercise-36">Exercise 3.6</a></span><span><a href="#exercise-37">Exercise 3.7</a></span><span><a href="#exercise-38">Exercise 3.8</a></span></span>)</div></li></ul></li></ul></div>
+
 
 ## Section 3.1
 
@@ -30,9 +27,9 @@ the arguments of let in order.
 
 Here's some useful code about the equality of different functions in the context of the end of 3.1
 
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="code/test.rkt">code/test.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="code/test.rkt">test.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">make-decrementer</span><span class="w"> </span><span class="n">balance</span><span class="p">)</span>
 <span class="w">  </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">amount</span><span class="p">)</span>
@@ -47,18 +44,14 @@ Here's some useful code about the equality of different functions in the context
 <span class="p">(</span><span class="nb">eq?</span><span class="w"> </span><span class="n">D2</span><span class="w"> </span><span class="n">D3</span><span class="p">)</span>
 <span class="p">(</span><span class="nb">eqv?</span><span class="w"> </span><span class="n">D2</span><span class="w"> </span><span class="n">D3</span><span class="p">)</span>
 <span class="p">(</span><span class="nb">equal?</span><span class="w"> </span><span class="n">D2</span><span class="w"> </span><span class="n">D3</span><span class="p">)</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>#f
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>#f
 #f
 #f
 #t
 #t
 #t
-</pre>
-</div>
-</div>
+</pre></div></div>
 
 
 ### Meeting 05-11-2025
@@ -90,20 +83,25 @@ generates accumulators, each maintaining an independent sum.  The input to
 `make-accumulator` should specify the initial value of the sum; for
 example
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="p">(</span><span class="n">make-accumulator</span><span class="w"> </span><span class="mi">5</span><span class="p">))</span>
 
-<span class="p">(</span><span class="n">A</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
-<span class="mi">15</span>
 
-<span class="p">(</span><span class="n">A</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
-<span class="mi">25</span>
-</pre></div>
+```rkt
+(define A (make-accumulator 5))
+
+(A 10)
+15
+
+(A 10)
+25
+```
+
+
 
 ##### Solution
 
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="code/ex3-1.rkt">code/ex3-1.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="code/ex3-1.rkt">ex3-1.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">make-accumulator</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
 <span class="w">  </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">total</span><span class="w"> </span><span class="n">n</span><span class="p">))</span>
 <span class="w">    </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">arg</span><span class="p">)</span><span class="w"> </span>
@@ -116,14 +114,10 @@ example
 <span class="p">(</span><span class="n">A</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
 
 <span class="p">(</span><span class="n">A</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>15
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>15
 25
-</pre>
-</div>
-</div>
+</pre></div></div>
 
 
 #### Exercise 3.2
@@ -141,27 +135,32 @@ resets the counter to zero.  For any other input, `mf` returns the result
 of calling `f` on that input and increments the counter.  For instance, we
 could make a monitored version of the `sqrt` procedure:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="p">(</span><span class="n">make-monitored</span><span class="w"> </span><span class="nb">sqrt</span><span class="p">))</span>
 
-<span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span>
-<span class="mi">10</span>
 
-<span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">how-many-calls?</span><span class="p">)</span>
-<span class="mi">1</span>
-</pre></div>
+```rkt
+(define s (make-monitored sqrt))
+
+(s 100)
+10
+
+(s 'how-many-calls?)
+1
+```
+
+
 
 ##### Solution
 
 
 
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="code/ex3-2.rkt">code/ex3-2.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="code/ex3-2.rkt">ex3-2.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">make-monitored</span><span class="w"> </span><span class="n">func</span><span class="p">)</span>
 <span class="w">  </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">ncalls</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span>
 <span class="w">    </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">arg</span><span class="p">)</span><span class="w"> </span>
-<span class="w">      </span><span class="p">(</span><span class="k">cond</span><span class="w"> </span><span class="p">((</span><span class="nb">eq?</span><span class="w"> </span><span class="n">arg</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">how-many-calls?</span><span class="p">)</span><span class="w"> </span><span class="n">ncalls</span><span class="p">)</span>
-<span class="w">            </span><span class="p">((</span><span class="nb">eq?</span><span class="w"> </span><span class="n">arg</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">reset-count</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="k">set!</span><span class="w"> </span><span class="n">ncalls</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span>
+<span class="w">      </span><span class="p">(</span><span class="k">cond</span><span class="w"> </span><span class="p">((</span><span class="nb">eq?</span><span class="w"> </span><span class="n">arg</span><span class="w"> </span><span class="o">'</span><span class="ss">how-many-calls?</span><span class="p">)</span><span class="w"> </span><span class="n">ncalls</span><span class="p">)</span>
+<span class="w">            </span><span class="p">((</span><span class="nb">eq?</span><span class="w"> </span><span class="n">arg</span><span class="w"> </span><span class="o">'</span><span class="ss">reset-count</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="k">set!</span><span class="w"> </span><span class="n">ncalls</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span>
 <span class="w">            </span><span class="p">(</span><span class="k">else</span><span class="w"> </span><span class="p">(</span><span class="k">begin</span>
 <span class="w">              </span><span class="p">(</span><span class="k">set!</span><span class="w"> </span><span class="n">ncalls</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="n">ncalls</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
 <span class="w">              </span><span class="p">(</span><span class="n">func</span><span class="w"> </span><span class="n">arg</span><span class="p">)))))))</span>
@@ -171,19 +170,15 @@ could make a monitored version of the `sqrt` procedure:
 <span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span>
 <span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="mi">9</span><span class="p">)</span>
 
-<span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">how-many-calls?</span><span class="p">)</span>
-<span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">reset-count</span><span class="p">)</span>
-<span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">how-many-calls?</span><span class="p">)</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>10
+<span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="o">'</span><span class="ss">how-many-calls?</span><span class="p">)</span>
+<span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="o">'</span><span class="ss">reset-count</span><span class="p">)</span>
+<span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="o">'</span><span class="ss">how-many-calls?</span><span class="p">)</span>
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>10
 3
 2
 0
-</pre>
-</div>
-</div>
+</pre></div></div>
 
 
 
@@ -193,62 +188,68 @@ Modify the `make-account`
 procedure so that it creates password-protected accounts.  That is,
 `make-account` should take a symbol as an additional argument, as in
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">acc</span><span class="w"> </span>
-<span class="w">  </span><span class="p">(</span><span class="n">make-account</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">secret-password</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(define acc 
+  (make-account 100 'secret-password))
+```
+
+
 
 The resulting account object should process a request only if it is accompanied
 by the password with which the account was created, and should otherwise return
 a complaint:
 
-<div class="codehilite"><pre><span></span><span class="p">((</span><span class="n">acc</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">secret-password</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">withdraw</span><span class="p">)</span><span class="w"> </span><span class="mi">40</span><span class="p">)</span>
-<span class="mi">60</span>
 
-<span class="p">((</span><span class="n">acc</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">some-other-password</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">deposit</span><span class="p">)</span><span class="w"> </span><span class="mi">50</span><span class="p">)</span>
-<span class="s2">&quot;Incorrect password&quot;</span>
-</pre></div>
+
+```rkt
+((acc 'secret-password 'withdraw) 40)
+60
+
+((acc 'some-other-password 'deposit) 50)
+"Incorrect password"
+```
+
+
 
 ##### Solution
 
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="code/ex3-3.rkt">code/ex3-3.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="code/ex3-3.rkt">ex3-3.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">make-account</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="n">pw</span><span class="p">)</span>
 <span class="w">  </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">withdraw</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span>
 <span class="w">    </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">&gt;=</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span>
 <span class="w">        </span><span class="p">(</span><span class="k">begin</span><span class="w"> </span><span class="p">(</span><span class="k">set!</span><span class="w"> </span><span class="n">balance</span>
 <span class="w">                     </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="n">amount</span><span class="p">))</span>
 <span class="w">               </span><span class="n">balance</span><span class="p">)</span>
-<span class="w">        </span><span class="s2">&quot;Insufficient funds&quot;</span><span class="p">))</span>
+<span class="w">        </span><span class="s2">"Insufficient funds"</span><span class="p">))</span>
 <span class="w">  </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">deposit</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span>
 <span class="w">    </span><span class="p">(</span><span class="k">set!</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="n">amount</span><span class="p">))</span>
 <span class="w">    </span><span class="n">balance</span><span class="p">)</span>
 <span class="w">  </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">errorfunc</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span>
-<span class="w">    </span><span class="s2">&quot;Incorrect Password&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="s2">"Incorrect Password"</span><span class="p">)</span>
 <span class="w">  </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">dispatch</span><span class="w"> </span><span class="n">pw-arg</span><span class="w"> </span><span class="n">m</span><span class="p">)</span>
 <span class="w">    </span><span class="p">(</span><span class="k">cond</span><span class="w"> </span><span class="p">((</span><span class="nb">not</span><span class="w"> </span><span class="p">(</span><span class="nb">eq?</span><span class="w"> </span><span class="n">pw</span><span class="w"> </span><span class="n">pw-arg</span><span class="p">))</span><span class="w"> </span><span class="n">errorfunc</span><span class="p">)</span>
-<span class="w">          </span><span class="p">((</span><span class="nb">eq?</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">withdraw</span><span class="p">)</span><span class="w"> </span><span class="n">withdraw</span><span class="p">)</span>
-<span class="w">          </span><span class="p">((</span><span class="nb">eq?</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">deposit</span><span class="p">)</span><span class="w"> </span><span class="n">deposit</span><span class="p">)</span>
-<span class="w">          </span><span class="p">(</span><span class="k">else</span><span class="w"> </span><span class="p">(</span><span class="nb">error</span><span class="w"> </span><span class="s2">&quot;Unknown request:</span>
-<span class="s2">                 MAKE-ACCOUNT&quot;</span><span class="w"> </span><span class="n">m</span><span class="p">))))</span>
+<span class="w">          </span><span class="p">((</span><span class="nb">eq?</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">'</span><span class="ss">withdraw</span><span class="p">)</span><span class="w"> </span><span class="n">withdraw</span><span class="p">)</span>
+<span class="w">          </span><span class="p">((</span><span class="nb">eq?</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">'</span><span class="ss">deposit</span><span class="p">)</span><span class="w"> </span><span class="n">deposit</span><span class="p">)</span>
+<span class="w">          </span><span class="p">(</span><span class="k">else</span><span class="w"> </span><span class="p">(</span><span class="nb">error</span><span class="w"> </span><span class="s2">"Unknown request:</span>
+<span class="s2">                 MAKE-ACCOUNT"</span><span class="w"> </span><span class="n">m</span><span class="p">))))</span>
 <span class="w">  </span><span class="n">dispatch</span><span class="p">)</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">acc</span><span class="w"> </span>
-<span class="w">  </span><span class="p">(</span><span class="n">make-account</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">secret-password</span><span class="p">))</span>
+<span class="w">  </span><span class="p">(</span><span class="n">make-account</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="o">'</span><span class="ss">secret-password</span><span class="p">))</span>
 
-<span class="p">((</span><span class="n">acc</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">secret-password</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">withdraw</span><span class="p">)</span><span class="w"> </span><span class="mi">40</span><span class="p">)</span>
+<span class="p">((</span><span class="n">acc</span><span class="w"> </span><span class="o">'</span><span class="ss">secret-password</span><span class="w"> </span><span class="o">'</span><span class="ss">withdraw</span><span class="p">)</span><span class="w"> </span><span class="mi">40</span><span class="p">)</span>
 <span class="c1">;60</span>
 
-<span class="p">((</span><span class="n">acc</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">some-other-password</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">deposit</span><span class="p">)</span><span class="w"> </span><span class="mi">50</span><span class="p">)</span>
-<span class="c1">;&quot;Incorrect password&quot;</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>60
+<span class="p">((</span><span class="n">acc</span><span class="w"> </span><span class="o">'</span><span class="ss">some-other-password</span><span class="w"> </span><span class="o">'</span><span class="ss">deposit</span><span class="p">)</span><span class="w"> </span><span class="mi">50</span><span class="p">)</span>
+<span class="c1">;"Incorrect password"</span>
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>60
 &quot;Incorrect Password&quot;
-</pre>
-</div>
-</div>
+</pre></div></div>
 
 #### Exercise 3.4
 
@@ -264,9 +265,9 @@ I structured this answer in a bit of a weird way, I want the
 is returned. Not when the returned function is called by the 
 user.
 
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="code/ex3-4.rkt">code/ex3-4.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="code/ex3-4.rkt">ex3-4.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">make-account</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="n">pw</span><span class="p">)</span>
 <span class="w">  </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">num-consec-fails</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span>
 <span class="w">    </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">withdraw</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span>
@@ -274,50 +275,48 @@ user.
 <span class="w">        </span><span class="p">(</span><span class="k">begin</span><span class="w"> </span><span class="p">(</span><span class="k">set!</span><span class="w"> </span><span class="n">balance</span>
 <span class="w">                 </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="n">amount</span><span class="p">))</span>
 <span class="w">          </span><span class="n">balance</span><span class="p">)</span>
-<span class="w">        </span><span class="s2">&quot;Insufficient funds&quot;</span><span class="p">))</span>
+<span class="w">        </span><span class="s2">"Insufficient funds"</span><span class="p">))</span>
 <span class="w">    </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">deposit</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span>
 <span class="w">      </span><span class="p">(</span><span class="k">set!</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="n">amount</span><span class="p">))</span>
 <span class="w">      </span><span class="n">balance</span><span class="p">)</span>
 <span class="w">    </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">call-the-cops</span><span class="p">)</span><span class="w"> </span>
-<span class="w">      </span><span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="s2">&quot;&gt;:( cops called&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">newline</span><span class="p">))</span>
+<span class="w">      </span><span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="s2">"&gt;:( cops called"</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">newline</span><span class="p">))</span>
 <span class="w">    </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">return-errorfunc</span><span class="p">)</span><span class="w"> </span>
 <span class="w">      </span><span class="p">(</span><span class="k">begin</span><span class="w"> </span>
 <span class="w">        </span><span class="p">(</span><span class="k">set!</span><span class="w"> </span><span class="n">num-consec-fails</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="n">num-consec-fails</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
 <span class="w">        </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">&gt;</span><span class="w"> </span><span class="n">num-consec-fails</span><span class="w"> </span><span class="mi">7</span><span class="p">)</span>
 <span class="w">          </span><span class="p">(</span><span class="k">begin</span><span class="w"> </span><span class="p">(</span><span class="n">call-the-cops</span><span class="p">)</span>
-<span class="w">                 </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="n">args</span><span class="w"> </span><span class="s2">&quot;N/A&quot;</span><span class="p">))</span>
-<span class="w">          </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="n">args</span><span class="w"> </span><span class="s2">&quot;Incorrect Password&quot;</span><span class="p">))))</span>
+<span class="w">                 </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="n">args</span><span class="w"> </span><span class="s2">"N/A"</span><span class="p">))</span>
+<span class="w">          </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="n">args</span><span class="w"> </span><span class="s2">"Incorrect Password"</span><span class="p">))))</span>
 <span class="w">    </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">dispatch</span><span class="w"> </span><span class="n">pw-arg</span><span class="w"> </span><span class="n">m</span><span class="p">)</span>
 <span class="w">      </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">not</span><span class="w"> </span><span class="p">(</span><span class="nb">eq?</span><span class="w"> </span><span class="n">pw</span><span class="w"> </span><span class="n">pw-arg</span><span class="p">))</span><span class="w"> </span>
 <span class="w">        </span><span class="p">(</span><span class="n">return-errorfunc</span><span class="p">)</span>
 <span class="w">        </span><span class="p">(</span><span class="k">begin</span><span class="w"> </span>
 <span class="w">          </span><span class="p">(</span><span class="k">set!</span><span class="w"> </span><span class="n">num-consec-fails</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
 <span class="w">          </span><span class="p">(</span><span class="k">cond</span><span class="w"> </span>
-<span class="w">            </span><span class="p">((</span><span class="nb">eq?</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">withdraw</span><span class="p">)</span><span class="w"> </span><span class="n">withdraw</span><span class="p">)</span>
-<span class="w">            </span><span class="p">((</span><span class="nb">eq?</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">deposit</span><span class="p">)</span><span class="w"> </span><span class="n">deposit</span><span class="p">)</span>
-<span class="w">            </span><span class="p">(</span><span class="k">else</span><span class="w"> </span><span class="p">(</span><span class="nb">error</span><span class="w"> </span><span class="s2">&quot;Unknown request:</span>
-<span class="s2">                         MAKE-ACCOUNT&quot;</span><span class="w"> </span><span class="n">m</span><span class="p">))))))</span>
+<span class="w">            </span><span class="p">((</span><span class="nb">eq?</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">'</span><span class="ss">withdraw</span><span class="p">)</span><span class="w"> </span><span class="n">withdraw</span><span class="p">)</span>
+<span class="w">            </span><span class="p">((</span><span class="nb">eq?</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">'</span><span class="ss">deposit</span><span class="p">)</span><span class="w"> </span><span class="n">deposit</span><span class="p">)</span>
+<span class="w">            </span><span class="p">(</span><span class="k">else</span><span class="w"> </span><span class="p">(</span><span class="nb">error</span><span class="w"> </span><span class="s2">"Unknown request:</span>
+<span class="s2">                         MAKE-ACCOUNT"</span><span class="w"> </span><span class="n">m</span><span class="p">))))))</span>
 <span class="w">    </span><span class="n">dispatch</span><span class="p">))</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">acc</span><span class="w"> </span>
-<span class="w">  </span><span class="p">(</span><span class="n">make-account</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">secret-password</span><span class="p">))</span>
+<span class="w">  </span><span class="p">(</span><span class="n">make-account</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="o">'</span><span class="ss">secret-password</span><span class="p">))</span>
 
-<span class="p">((</span><span class="n">acc</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">secret-password</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">withdraw</span><span class="p">)</span><span class="w"> </span><span class="mi">40</span><span class="p">)</span>
+<span class="p">((</span><span class="n">acc</span><span class="w"> </span><span class="o">'</span><span class="ss">secret-password</span><span class="w"> </span><span class="o">'</span><span class="ss">withdraw</span><span class="p">)</span><span class="w"> </span><span class="mi">40</span><span class="p">)</span>
 <span class="c1">;60</span>
 
-<span class="p">((</span><span class="n">acc</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">some-other-password</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">deposit</span><span class="p">)</span><span class="w"> </span><span class="mi">50</span><span class="p">)</span>
-<span class="p">((</span><span class="n">acc</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">some-other-password</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">deposit</span><span class="p">)</span><span class="w"> </span><span class="mi">50</span><span class="p">)</span>
-<span class="p">((</span><span class="n">acc</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">some-other-password</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">deposit</span><span class="p">)</span><span class="w"> </span><span class="mi">50</span><span class="p">)</span>
-<span class="p">((</span><span class="n">acc</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">some-other-password</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">deposit</span><span class="p">)</span><span class="w"> </span><span class="mi">50</span><span class="p">)</span>
-<span class="p">((</span><span class="n">acc</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">some-other-password</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">deposit</span><span class="p">)</span><span class="w"> </span><span class="mi">50</span><span class="p">)</span>
-<span class="p">((</span><span class="n">acc</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">some-other-password</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">deposit</span><span class="p">)</span><span class="w"> </span><span class="mi">50</span><span class="p">)</span>
-<span class="p">((</span><span class="n">acc</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">some-other-password</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">deposit</span><span class="p">)</span><span class="w"> </span><span class="mi">50</span><span class="p">)</span>
-<span class="p">((</span><span class="n">acc</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">some-other-password</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">deposit</span><span class="p">)</span><span class="w"> </span><span class="mi">50</span><span class="p">)</span>
-<span class="c1">;&quot;Incorrect password&quot;</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>60
+<span class="p">((</span><span class="n">acc</span><span class="w"> </span><span class="o">'</span><span class="ss">some-other-password</span><span class="w"> </span><span class="o">'</span><span class="ss">deposit</span><span class="p">)</span><span class="w"> </span><span class="mi">50</span><span class="p">)</span>
+<span class="p">((</span><span class="n">acc</span><span class="w"> </span><span class="o">'</span><span class="ss">some-other-password</span><span class="w"> </span><span class="o">'</span><span class="ss">deposit</span><span class="p">)</span><span class="w"> </span><span class="mi">50</span><span class="p">)</span>
+<span class="p">((</span><span class="n">acc</span><span class="w"> </span><span class="o">'</span><span class="ss">some-other-password</span><span class="w"> </span><span class="o">'</span><span class="ss">deposit</span><span class="p">)</span><span class="w"> </span><span class="mi">50</span><span class="p">)</span>
+<span class="p">((</span><span class="n">acc</span><span class="w"> </span><span class="o">'</span><span class="ss">some-other-password</span><span class="w"> </span><span class="o">'</span><span class="ss">deposit</span><span class="p">)</span><span class="w"> </span><span class="mi">50</span><span class="p">)</span>
+<span class="p">((</span><span class="n">acc</span><span class="w"> </span><span class="o">'</span><span class="ss">some-other-password</span><span class="w"> </span><span class="o">'</span><span class="ss">deposit</span><span class="p">)</span><span class="w"> </span><span class="mi">50</span><span class="p">)</span>
+<span class="p">((</span><span class="n">acc</span><span class="w"> </span><span class="o">'</span><span class="ss">some-other-password</span><span class="w"> </span><span class="o">'</span><span class="ss">deposit</span><span class="p">)</span><span class="w"> </span><span class="mi">50</span><span class="p">)</span>
+<span class="p">((</span><span class="n">acc</span><span class="w"> </span><span class="o">'</span><span class="ss">some-other-password</span><span class="w"> </span><span class="o">'</span><span class="ss">deposit</span><span class="p">)</span><span class="w"> </span><span class="mi">50</span><span class="p">)</span>
+<span class="p">((</span><span class="n">acc</span><span class="w"> </span><span class="o">'</span><span class="ss">some-other-password</span><span class="w"> </span><span class="o">'</span><span class="ss">deposit</span><span class="p">)</span><span class="w"> </span><span class="mi">50</span><span class="p">)</span>
+<span class="c1">;"Incorrect password"</span>
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>60
 &quot;Incorrect Password&quot;
 &quot;Incorrect Password&quot;
 &quot;Incorrect Password&quot;
@@ -327,9 +326,7 @@ user.
 &quot;Incorrect Password&quot;
 &gt;:( cops called
 &quot;N/A&quot;
-</pre>
-</div>
-</div>
+</pre></div></div>
 
 
 #### Exercise 3.5
@@ -367,16 +364,21 @@ implements this in terms of the `random` procedure used in
 1.2.6, which returns a nonnegative number less than its
 input.
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">random-in-range</span><span class="w"> </span><span class="n">low</span><span class="w"> </span><span class="n">high</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="nb">range</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">high</span><span class="w"> </span><span class="n">low</span><span class="p">)))</span>
-<span class="w">    </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="n">low</span><span class="w"> </span><span class="p">(</span><span class="nb">random</span><span class="w"> </span><span class="nb">range</span><span class="p">))))</span>
-</pre></div>
+
+
+```rkt
+(define (random-in-range low high)
+  (let ((range (- high low)))
+    (+ low (random range))))
+```
+
+
 
 ##### Solution
 
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="code/ex3-5.rkt">code/ex3-5.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="code/ex3-5.rkt">ex3-5.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">RAND-MAX</span><span class="w"> </span><span class="mi">2147483647</span><span class="p">)</span>
 
@@ -400,13 +402,9 @@ input.
 <span class="p">(</span><span class="n">estimate-integral</span><span class="w"> </span>
 <span class="w">  </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">&lt;</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="p">(</span><span class="n">square</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">square</span><span class="w"> </span><span class="n">y</span><span class="p">))</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
 <span class="w">  </span><span class="mi">-1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">-1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1000000</span><span class="p">)</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>3.143016
-</pre>
-</div>
-</div>
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>3.140828
+</pre></div></div>
 
 
 #### Exercise 3.6
@@ -423,9 +421,9 @@ programs that use random numbers.
 
 ##### Solution
 
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="code/ex3-6.rkt">code/ex3-6.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="code/ex3-6.rkt">ex3-6.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="mi">1664525</span><span class="p">)</span>
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="mi">1013904223</span><span class="p">)</span>
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="mi">4294967296</span><span class="p">)</span>
@@ -436,28 +434,26 @@ programs that use random numbers.
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">rand</span>
 <span class="w">  </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">x</span><span class="w"> </span><span class="n">random-init</span><span class="p">))</span>
 <span class="w">    </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="w"> </span>
-<span class="w">      </span><span class="p">(</span><span class="k">cond</span><span class="w"> </span><span class="p">((</span><span class="nb">eq?</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">generate</span><span class="p">)</span>
+<span class="w">      </span><span class="p">(</span><span class="k">cond</span><span class="w"> </span><span class="p">((</span><span class="nb">eq?</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">'</span><span class="ss">generate</span><span class="p">)</span>
 <span class="w">             </span><span class="p">(</span><span class="k">set!</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">(</span><span class="n">rand-update</span><span class="w"> </span><span class="n">x</span><span class="p">))</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
-<span class="w">            </span><span class="p">((</span><span class="nb">eq?</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">reset</span><span class="p">)</span>
+<span class="w">            </span><span class="p">((</span><span class="nb">eq?</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">'</span><span class="ss">reset</span><span class="p">)</span>
 <span class="w">             </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">arg</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="k">set!</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">arg</span><span class="p">)))</span>
-<span class="w">            </span><span class="p">(</span><span class="k">else</span><span class="w"> </span><span class="p">(</span><span class="nb">error</span><span class="w"> </span><span class="s2">&quot;invalid message&quot;</span><span class="w"> </span><span class="n">m</span><span class="p">))))))</span>
+<span class="w">            </span><span class="p">(</span><span class="k">else</span><span class="w"> </span><span class="p">(</span><span class="nb">error</span><span class="w"> </span><span class="s2">"invalid message"</span><span class="w"> </span><span class="n">m</span><span class="p">))))))</span>
 
 
-<span class="p">(</span><span class="n">rand</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">generate</span><span class="p">)</span>
-<span class="p">(</span><span class="n">rand</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">generate</span><span class="p">)</span>
-<span class="p">(</span><span class="n">rand</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">generate</span><span class="p">)</span>
-<span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="s2">&quot;Resetting&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">newline</span><span class="p">)</span>
-<span class="p">((</span><span class="n">rand</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">reset</span><span class="p">)</span><span class="w"> </span><span class="mi">12345</span><span class="p">)</span>
-<span class="p">(</span><span class="n">rand</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">generate</span><span class="p">)</span>
-<span class="p">(</span><span class="n">rand</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">generate</span><span class="p">)</span>
-<span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="s2">&quot;Resetting&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">newline</span><span class="p">)</span>
-<span class="p">((</span><span class="n">rand</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">reset</span><span class="p">)</span><span class="w"> </span><span class="mi">12345</span><span class="p">)</span>
-<span class="p">(</span><span class="n">rand</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">generate</span><span class="p">)</span>
-<span class="p">(</span><span class="n">rand</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">generate</span><span class="p">)</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>3386560671
+<span class="p">(</span><span class="n">rand</span><span class="w"> </span><span class="o">'</span><span class="ss">generate</span><span class="p">)</span>
+<span class="p">(</span><span class="n">rand</span><span class="w"> </span><span class="o">'</span><span class="ss">generate</span><span class="p">)</span>
+<span class="p">(</span><span class="n">rand</span><span class="w"> </span><span class="o">'</span><span class="ss">generate</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="s2">"Resetting"</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">newline</span><span class="p">)</span>
+<span class="p">((</span><span class="n">rand</span><span class="w"> </span><span class="o">'</span><span class="ss">reset</span><span class="p">)</span><span class="w"> </span><span class="mi">12345</span><span class="p">)</span>
+<span class="p">(</span><span class="n">rand</span><span class="w"> </span><span class="o">'</span><span class="ss">generate</span><span class="p">)</span>
+<span class="p">(</span><span class="n">rand</span><span class="w"> </span><span class="o">'</span><span class="ss">generate</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="s2">"Resetting"</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">newline</span><span class="p">)</span>
+<span class="p">((</span><span class="n">rand</span><span class="w"> </span><span class="o">'</span><span class="ss">reset</span><span class="p">)</span><span class="w"> </span><span class="mi">12345</span><span class="p">)</span>
+<span class="p">(</span><span class="n">rand</span><span class="w"> </span><span class="o">'</span><span class="ss">generate</span><span class="p">)</span>
+<span class="p">(</span><span class="n">rand</span><span class="w"> </span><span class="o">'</span><span class="ss">generate</span><span class="p">)</span>
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>3386560671
 187819378
 394593833
 Resetting
@@ -466,9 +462,7 @@ Resetting
 Resetting
 87628868
 71072467
-</pre>
-</div>
-</div>
+</pre></div></div>
 
 
 #### Exercise 3.7
@@ -485,11 +479,16 @@ an additional access to the original account using the new password.  For
 example, if `peter-acc` is a bank account with password
 `open-sesame`, then
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">paul-acc</span>
-<span class="w">  </span><span class="p">(</span><span class="n">make-joint</span><span class="w"> </span><span class="n">peter-acc</span><span class="w"> </span>
-<span class="w">              </span><span class="o">&#39;</span><span class="ss">open-sesame</span><span class="w"> </span>
-<span class="w">              </span><span class="o">&#39;</span><span class="ss">rosebud</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(define paul-acc
+  (make-joint peter-acc 
+              'open-sesame 
+              'rosebud))
+```
+
+
 
 
 will allow one to make transactions on `peter-acc` using the name
@@ -498,9 +497,9 @@ solution to Exercise 3.3 to accommodate this new feature.
 
 ##### Solution
 
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="code/ex3-7.rkt">code/ex3-7.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="code/ex3-7.rkt">ex3-7.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">make-account</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="n">pw</span><span class="p">)</span>
 <span class="w">  </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">withdraw</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span>
@@ -508,51 +507,47 @@ solution to Exercise 3.3 to accommodate this new feature.
 <span class="w">        </span><span class="p">(</span><span class="k">begin</span><span class="w"> </span><span class="p">(</span><span class="k">set!</span><span class="w"> </span><span class="n">balance</span>
 <span class="w">                     </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="n">amount</span><span class="p">))</span>
 <span class="w">               </span><span class="n">balance</span><span class="p">)</span>
-<span class="w">        </span><span class="s2">&quot;Insufficient funds&quot;</span><span class="p">))</span>
+<span class="w">        </span><span class="s2">"Insufficient funds"</span><span class="p">))</span>
 <span class="w">  </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">deposit</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span>
 <span class="w">    </span><span class="p">(</span><span class="k">set!</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="n">amount</span><span class="p">))</span>
 <span class="w">    </span><span class="n">balance</span><span class="p">)</span>
 <span class="w">  </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">errorfunc</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span>
-<span class="w">    </span><span class="s2">&quot;Incorrect Password&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="s2">"Incorrect Password"</span><span class="p">)</span>
 <span class="w">  </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">dispatch</span><span class="w"> </span><span class="n">pw-arg</span><span class="w"> </span><span class="n">m</span><span class="p">)</span>
 <span class="w">    </span><span class="p">(</span><span class="k">cond</span><span class="w"> </span><span class="p">((</span><span class="nb">not</span><span class="w"> </span><span class="p">(</span><span class="nb">eq?</span><span class="w"> </span><span class="n">pw</span><span class="w"> </span><span class="n">pw-arg</span><span class="p">))</span><span class="w"> </span><span class="n">errorfunc</span><span class="p">)</span>
-<span class="w">          </span><span class="p">((</span><span class="nb">eq?</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">withdraw</span><span class="p">)</span><span class="w"> </span><span class="n">withdraw</span><span class="p">)</span>
-<span class="w">          </span><span class="p">((</span><span class="nb">eq?</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">deposit</span><span class="p">)</span><span class="w"> </span><span class="n">deposit</span><span class="p">)</span>
-<span class="w">          </span><span class="p">(</span><span class="k">else</span><span class="w"> </span><span class="p">(</span><span class="nb">error</span><span class="w"> </span><span class="s2">&quot;Unknown request:</span>
-<span class="s2">                 MAKE-ACCOUNT&quot;</span><span class="w"> </span><span class="n">m</span><span class="p">))))</span>
+<span class="w">          </span><span class="p">((</span><span class="nb">eq?</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">'</span><span class="ss">withdraw</span><span class="p">)</span><span class="w"> </span><span class="n">withdraw</span><span class="p">)</span>
+<span class="w">          </span><span class="p">((</span><span class="nb">eq?</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">'</span><span class="ss">deposit</span><span class="p">)</span><span class="w"> </span><span class="n">deposit</span><span class="p">)</span>
+<span class="w">          </span><span class="p">(</span><span class="k">else</span><span class="w"> </span><span class="p">(</span><span class="nb">error</span><span class="w"> </span><span class="s2">"Unknown request:</span>
+<span class="s2">                 MAKE-ACCOUNT"</span><span class="w"> </span><span class="n">m</span><span class="p">))))</span>
 <span class="w">  </span><span class="n">dispatch</span><span class="p">)</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">make-joint</span><span class="w"> </span><span class="n">orig-account</span><span class="w"> </span><span class="n">orig-password</span><span class="w"> </span><span class="n">new-password</span><span class="p">)</span>
 <span class="w">  </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">pw-arg</span><span class="w"> </span><span class="n">m</span><span class="p">)</span>
 <span class="w">    </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">eq?</span><span class="w"> </span><span class="n">pw-arg</span><span class="w"> </span><span class="n">new-password</span><span class="p">)</span>
 <span class="w">      </span><span class="p">(</span><span class="n">orig-account</span><span class="w"> </span><span class="n">orig-password</span><span class="w"> </span><span class="n">m</span><span class="p">)</span>
-<span class="w">      </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="n">args</span><span class="w"> </span><span class="s2">&quot;Incorrect password&quot;</span><span class="p">))))</span>
+<span class="w">      </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="n">args</span><span class="w"> </span><span class="s2">"Incorrect password"</span><span class="p">))))</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">peter-acc</span><span class="w"> </span>
-<span class="w">  </span><span class="p">(</span><span class="n">make-account</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">peter-password</span><span class="p">))</span>
+<span class="w">  </span><span class="p">(</span><span class="n">make-account</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="o">'</span><span class="ss">peter-password</span><span class="p">))</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">paul-acc</span>
 <span class="w">  </span><span class="p">(</span><span class="n">make-joint</span><span class="w"> </span><span class="n">peter-acc</span><span class="w"> </span>
-<span class="w">              </span><span class="o">&#39;</span><span class="ss">peter-password</span><span class="w"> </span>
-<span class="w">              </span><span class="o">&#39;</span><span class="ss">paul-password</span><span class="p">))</span>
+<span class="w">              </span><span class="o">'</span><span class="ss">peter-password</span><span class="w"> </span>
+<span class="w">              </span><span class="o">'</span><span class="ss">paul-password</span><span class="p">))</span>
 
-<span class="p">((</span><span class="n">peter-acc</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">peter-password</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">withdraw</span><span class="p">)</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
+<span class="p">((</span><span class="n">peter-acc</span><span class="w"> </span><span class="o">'</span><span class="ss">peter-password</span><span class="w"> </span><span class="o">'</span><span class="ss">withdraw</span><span class="p">)</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
 <span class="c1">;; 90</span>
 
-<span class="p">((</span><span class="n">paul-acc</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">paul-password</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">withdraw</span><span class="p">)</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
+<span class="p">((</span><span class="n">paul-acc</span><span class="w"> </span><span class="o">'</span><span class="ss">paul-password</span><span class="w"> </span><span class="o">'</span><span class="ss">withdraw</span><span class="p">)</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
 <span class="c1">;; 80</span>
 
-<span class="p">((</span><span class="n">paul-acc</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">peter-password</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">withdraw</span><span class="p">)</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
-<span class="c1">;; &quot;Incorrect password&quot;</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>90
+<span class="p">((</span><span class="n">paul-acc</span><span class="w"> </span><span class="o">'</span><span class="ss">peter-password</span><span class="w"> </span><span class="o">'</span><span class="ss">withdraw</span><span class="p">)</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
+<span class="c1">;; "Incorrect password"</span>
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>90
 80
 &quot;Incorrect password&quot;
-</pre>
-</div>
-</div>
+</pre></div></div>
 
 
 #### Exercise 3.8
@@ -565,8 +560,13 @@ to left).  When we introduce assignment, the order in which the arguments to a
 procedure are evaluated can make a difference to the result.  Define a simple
 procedure `f` such that evaluating 
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(+ (f 0) (f 1))
+```
+
+
 
 
 will return 0 if
@@ -575,9 +575,9 @@ the arguments are evaluated from right to left.
 
 ##### Solution
 
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="code/ex3-8.rkt">code/ex3-8.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="code/ex3-8.rkt">ex3-8.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">my-num</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span>
@@ -592,12 +592,8 @@ the arguments are evaluated from right to left.
 <span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">sec</span><span class="w"> </span><span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
 <span class="w">      </span><span class="p">(</span><span class="n">fir</span><span class="w"> </span><span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="mi">0</span><span class="p">)))</span>
 <span class="w">  </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="n">fir</span><span class="w"> </span><span class="n">sec</span><span class="p">))</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>0
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>0
 1
-</pre>
-</div>
-</div>
+</pre></div></div>
 

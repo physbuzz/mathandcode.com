@@ -1,10 +1,8 @@
 ---
 layout: sicp
 render_with_liquid: false
-show_title: false
 title: Asymptotic Approximations
 ---
-
 # Asymptotic approximations and some notes on $\Theta$, $\Omega$, $O$. 
 
 SICP covers the notation $\Theta(f(n)),$ but for a function $g(n)$ to be order $\Theta(f(n))$ is a 

@@ -3,7 +3,6 @@ layout: sicp
 render_with_liquid: false
 title: SICP Chapter 4.3
 ---
-
 <div class="nav">
     <span class="activenav"><a href="notes-ch4-2.html">← Previous</a></span>
     <span class="activenav"><a href="../index.html">↑ Up</a></span>
@@ -12,11 +11,10 @@ title: SICP Chapter 4.3
 
 [HTML Book Chapter 4.3 Link](https://sarabander.github.io/sicp/html/4_002e3.xhtml#g_t4_002e3)
 
-## Directory
-- [Section 4.3](#section-43)
-  - [Notes](#notes)
-  - [Exercises](#exercises)
-    - *Exercises:* ([Exercise 4.35](#exercise-435), [Exercise 4.36](#exercise-436), [Exercise 4.37](#exercise-437), [Exercise 4.38](#exercise-438), [Exercise 4.39](#exercise-439), [Exercise 4.40](#exercise-440), [Exercise 4.41](#exercise-441), [Exercise 4.42](#exercise-442), [Exercise 4.43](#exercise-443), [Exercise 4.44](#exercise-444), [Exercise 4.45](#exercise-445), [Exercise 4.46](#exercise-446), [Exercise 4.47](#exercise-447), [Exercise 4.48](#exercise-448), [Exercise 4.49](#exercise-449), [Exercise 4.50](#exercise-450), [Exercise 4.51](#exercise-451), [Exercise 4.52](#exercise-452), [Exercise 4.53](#exercise-453), [Exercise 4.54](#exercise-454))
+
+
+<div class="table-of-contents"><h2>Directory</h2><ul class="toc-list"><li><a href="#section-43">Section 4.3</a><ul class="toc-list"><li><a href="#notes">Notes</a></li><li><a href="#exercises">Exercises</a> <div class="exercise-container">(<span class="exercise-list"><span><a href="#exercise-435">Exercise 4.35</a></span><span><a href="#exercise-436">Exercise 4.36</a></span><span><a href="#exercise-437">Exercise 4.37</a></span><span><a href="#exercise-438">Exercise 4.38</a></span><span><a href="#exercise-439">Exercise 4.39</a></span><span><a href="#exercise-440">Exercise 4.40</a></span><span><a href="#exercise-441">Exercise 4.41</a></span><span><a href="#exercise-442">Exercise 4.42</a></span><span><a href="#exercise-443">Exercise 4.43</a></span><span><a href="#exercise-444">Exercise 4.44</a></span><span><a href="#exercise-445">Exercise 4.45</a></span><span><a href="#exercise-446">Exercise 4.46</a></span><span><a href="#exercise-447">Exercise 4.47</a></span><span><a href="#exercise-448">Exercise 4.48</a></span><span><a href="#exercise-449">Exercise 4.49</a></span><span><a href="#exercise-450">Exercise 4.50</a></span><span><a href="#exercise-451">Exercise 4.51</a></span><span><a href="#exercise-452">Exercise 4.52</a></span><span><a href="#exercise-453">Exercise 4.53</a></span><span><a href="#exercise-454">Exercise 4.54</a></span></span>)</div></li></ul></li></ul></div>
+
 
 ## Section 4.3
 
@@ -32,14 +30,19 @@ This can be used to implement a procedure that finds Pythagorean triples, i.e.,
 triples of integers ${(i, j, k)$} between the given bounds such that
 ${i \le j$} and ${i^2 + j^2 = k^2$}, as follows:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">a-pythagorean-triple-between</span><span class="w"> </span><span class="n">low</span><span class="w"> </span><span class="n">high</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">i</span><span class="w"> </span><span class="p">(</span><span class="n">an-integer-between</span><span class="w"> </span><span class="n">low</span><span class="w"> </span><span class="n">high</span><span class="p">)))</span>
-<span class="w">    </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">j</span><span class="w"> </span><span class="p">(</span><span class="n">an-integer-between</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="n">high</span><span class="p">)))</span>
-<span class="w">      </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">k</span><span class="w"> </span><span class="p">(</span><span class="n">an-integer-between</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="n">high</span><span class="p">)))</span>
-<span class="w">        </span><span class="p">(</span><span class="k">require</span><span class="w"> </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="n">j</span><span class="p">))</span><span class="w"> </span>
-<span class="w">                    </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="n">k</span><span class="p">)))</span>
-<span class="w">        </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="n">k</span><span class="p">)))))</span>
-</pre></div>
+
+
+```rkt
+(define (a-pythagorean-triple-between low high)
+  (let ((i (an-integer-between low high)))
+    (let ((j (an-integer-between i high)))
+      (let ((k (an-integer-between j high)))
+        (require (= (+ (* i i) (* j j)) 
+                    (* k k)))
+        (list i j k)))))
+```
+
+
 
 ##### Solution
 
@@ -63,16 +66,21 @@ following method for generating Pythagorean triples is more efficient than the
 one in Exercise 4.35.  Is he correct?  (Hint: Consider the number of
 possibilities that must be explored.)
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">a-pythagorean-triple-between</span><span class="w"> </span><span class="n">low</span><span class="w"> </span><span class="n">high</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">i</span><span class="w"> </span><span class="p">(</span><span class="n">an-integer-between</span><span class="w"> </span><span class="n">low</span><span class="w"> </span><span class="n">high</span><span class="p">))</span>
-<span class="w">        </span><span class="p">(</span><span class="n">hsq</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">high</span><span class="w"> </span><span class="n">high</span><span class="p">)))</span>
-<span class="w">    </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">j</span><span class="w"> </span><span class="p">(</span><span class="n">an-integer-between</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="n">high</span><span class="p">)))</span>
-<span class="w">      </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">ksq</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="n">j</span><span class="p">))))</span>
-<span class="w">        </span><span class="p">(</span><span class="k">require</span><span class="w"> </span><span class="p">(</span><span class="nb">&gt;=</span><span class="w"> </span><span class="n">hsq</span><span class="w"> </span><span class="n">ksq</span><span class="p">))</span>
-<span class="w">        </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">k</span><span class="w"> </span><span class="p">(</span><span class="nb">sqrt</span><span class="w"> </span><span class="n">ksq</span><span class="p">)))</span>
-<span class="w">          </span><span class="p">(</span><span class="k">require</span><span class="w"> </span><span class="p">(</span><span class="nb">integer?</span><span class="w"> </span><span class="n">k</span><span class="p">))</span>
-<span class="w">          </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="n">k</span><span class="p">))))))</span>
-</pre></div>
+
+
+```rkt
+(define (a-pythagorean-triple-between low high)
+  (let ((i (an-integer-between low high))
+        (hsq (* high high)))
+    (let ((j (an-integer-between i high)))
+      (let ((ksq (+ (* i i) (* j j))))
+        (require (>= hsq ksq))
+        (let ((k (sqrt ksq)))
+          (require (integer? k))
+          (list i j k))))))
+```
+
+
 
 ##### Solution
 
@@ -201,13 +209,18 @@ since a verb phrase is either a verb or a verb phrase followed by a
 prepositional phrase, it would be much more straightforward to define the
 procedure `parse-verb-phrase` as follows (and similarly for noun phrases):
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">parse-verb-phrase</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="n">amb</span><span class="w"> </span><span class="p">(</span><span class="n">parse-word</span><span class="w"> </span><span class="n">verbs</span><span class="p">)</span>
-<span class="w">       </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span>
-<span class="w">        </span><span class="o">&#39;</span><span class="ss">verb-phrase</span>
-<span class="w">        </span><span class="p">(</span><span class="n">parse-verb-phrase</span><span class="p">)</span>
-<span class="w">        </span><span class="p">(</span><span class="n">parse-prepositional-phrase</span><span class="p">))))</span>
-</pre></div>
+
+
+```rkt
+(define (parse-verb-phrase)
+  (amb (parse-word verbs)
+       (list 
+        'verb-phrase
+        (parse-verb-phrase)
+        (parse-prepositional-phrase))))
+```
+
+
 
 Does this work?  Does the program's behavior change if we interchange the order
 of expressions in the `amb`?
@@ -251,23 +264,24 @@ assignment called `permanent-set!` that is not undone upon failure.  For
 example, we can choose two distinct elements from a list and count the number
 of trials required to make a successful choice as follows:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="nb">count</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
-<span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">x</span><span class="w"> </span><span class="p">(</span><span class="n">an-element-of</span><span class="w"> </span><span class="o">&#39;</span><span class="p">(</span><span class="ss">a</span><span class="w"> </span><span class="ss">b</span><span class="w"> </span><span class="ss">c</span><span class="p">)))</span>
-<span class="w">      </span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="p">(</span><span class="n">an-element-of</span><span class="w"> </span><span class="o">&#39;</span><span class="p">(</span><span class="ss">a</span><span class="w"> </span><span class="ss">b</span><span class="w"> </span><span class="ss">c</span><span class="p">))))</span>
-<span class="w">  </span><span class="p">(</span><span class="n">permanent-set!</span><span class="w"> </span><span class="nb">count</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="nb">count</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
-<span class="w">  </span><span class="p">(</span><span class="k">require</span><span class="w"> </span><span class="p">(</span><span class="nb">not</span><span class="w"> </span><span class="p">(</span><span class="nb">eq?</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="p">)))</span>
-<span class="w">  </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="nb">count</span><span class="p">))</span>
+```rkt
+(define count 0)
+(let ((x (an-element-of '(a b c)))
+      (y (an-element-of '(a b c))))
+  (permanent-set! count (+ count 1))
+  (require (not (eq? x y)))
+  (list x y count))
 
-<span class="c1">;;; Starting a new problem</span>
-<span class="c1">;;; Amb-Eval value:</span>
-<span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
+;;; Starting a new problem
+;;; Amb-Eval value:
+(a b 2)
 
-<span class="c1">;;; Amb-Eval input:</span>
-<span class="n">try-again</span>
+;;; Amb-Eval input:
+try-again
 
-<span class="c1">;;; Amb-Eval value:</span>
-<span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span>
-</pre></div>
+;;; Amb-Eval value:
+(a c 3)
+```
 
 What values would have been displayed if we had used `set!` here
 rather than `permanent-set!`?
@@ -283,28 +297,29 @@ usual and returns as usual if the evaluation succeeds.  If the evaluation
 fails, however, the value of the second expression is returned, as in the
 following example:
 
-<div class="codehilite"><pre><span></span><span class="c1">;;; Amb-Eval input:</span>
-<span class="p">(</span><span class="n">if-fail</span><span class="w"> </span>
-<span class="w"> </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">x</span><span class="w"> </span><span class="p">(</span><span class="n">an-element-of</span><span class="w"> </span><span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">5</span><span class="p">))))</span>
-<span class="w">   </span><span class="p">(</span><span class="k">require</span><span class="w"> </span><span class="p">(</span><span class="nb">even?</span><span class="w"> </span><span class="n">x</span><span class="p">))</span>
-<span class="w">   </span><span class="n">x</span><span class="p">)</span>
-<span class="w"> </span><span class="o">&#39;</span><span class="ss">all-odd</span><span class="p">)</span>
+```rkt
+;;; Amb-Eval input:
+(if-fail 
+ (let ((x (an-element-of '(1 3 5))))
+   (require (even? x))
+   x)
+ 'all-odd)
 
-<span class="c1">;;; Starting a new problem</span>
-<span class="c1">;;; Amb-Eval value:</span>
-<span class="n">all-odd</span>
+;;; Starting a new problem
+;;; Amb-Eval value:
+all-odd
 
-<span class="c1">;;; Amb-Eval input:</span>
-<span class="p">(</span><span class="n">if-fail</span>
-<span class="w"> </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">x</span><span class="w"> </span><span class="p">(</span><span class="n">an-element-of</span><span class="w"> </span><span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">8</span><span class="p">))))</span>
-<span class="w">   </span><span class="p">(</span><span class="k">require</span><span class="w"> </span><span class="p">(</span><span class="nb">even?</span><span class="w"> </span><span class="n">x</span><span class="p">))</span>
-<span class="w">   </span><span class="n">x</span><span class="p">)</span>
-<span class="w"> </span><span class="o">&#39;</span><span class="ss">all-odd</span><span class="p">)</span>
+;;; Amb-Eval input:
+(if-fail
+ (let ((x (an-element-of '(1 3 5 8))))
+   (require (even? x))
+   x)
+ 'all-odd)
 
-<span class="c1">;;; Starting a new problem</span>
-<span class="c1">;;; Amb-Eval value:</span>
-<span class="mi">8</span>
-</pre></div>
+;;; Starting a new problem
+;;; Amb-Eval value:
+8
+```
 
 ##### Solution
 
@@ -314,16 +329,17 @@ With `permanent-set!` as
 described in Exercise 4.51 and `if-fail` as in Exercise 4.52,
 what will be the result of evaluating
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">pairs</span><span class="w"> </span><span class="o">&#39;</span><span class="p">()))</span>
-<span class="w">  </span><span class="p">(</span><span class="n">if-fail</span><span class="w"> </span>
-<span class="w">   </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">p</span><span class="w"> </span><span class="p">(</span><span class="n">prime-sum-pair</span><span class="w"> </span>
-<span class="w">             </span><span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span><span class="w"> </span>
-<span class="w">             </span><span class="o">&#39;</span><span class="p">(</span><span class="mi">20</span><span class="w"> </span><span class="mi">35</span><span class="w"> </span><span class="mi">110</span><span class="p">))))</span>
-<span class="w">     </span><span class="p">(</span><span class="n">permanent-set!</span><span class="w"> </span><span class="n">pairs</span><span class="w"> </span>
-<span class="w">                     </span><span class="p">(</span><span class="nb">cons</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="n">pairs</span><span class="p">))</span>
-<span class="w">     </span><span class="p">(</span><span class="n">amb</span><span class="p">))</span>
-<span class="w">   </span><span class="n">pairs</span><span class="p">))</span>
-</pre></div>
+```rkt
+(let ((pairs '()))
+  (if-fail 
+   (let ((p (prime-sum-pair 
+             '(1 3 5 8) 
+             '(20 35 110))))
+     (permanent-set! pairs 
+                     (cons p pairs))
+     (amb))
+   pairs))
+```
 
 ##### Solution
 
@@ -335,34 +351,41 @@ If we had not realized that
 would have had to implement it as a special form.  This would require syntax
 procedures
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">require?</span><span class="w"> </span><span class="nb">exp</span><span class="p">)</span><span class="w"> </span>
-<span class="w">  </span><span class="p">(</span><span class="n">tagged-list?</span><span class="w"> </span><span class="nb">exp</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">require</span><span class="p">))</span>
+```rkt
+(define (require? exp) 
+  (tagged-list? exp 'require))
 
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">require-predicate</span><span class="w"> </span><span class="nb">exp</span><span class="p">)</span><span class="w"> </span>
-<span class="w">  </span><span class="p">(</span><span class="nb">cadr</span><span class="w"> </span><span class="nb">exp</span><span class="p">))</span>
-</pre></div>
+(define (require-predicate exp) 
+  (cadr exp))
+```
 
 
 and a new clause in the dispatch in `analyze`
 
-<div class="codehilite"><pre><span></span><span class="p">((</span><span class="n">require?</span><span class="w"> </span><span class="nb">exp</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">analyze-require</span><span class="w"> </span><span class="nb">exp</span><span class="p">))</span>
-</pre></div>
+```rkt
+((require? exp) (analyze-require exp))
+```
 
 
 as well the procedure `analyze-require` that handles `require`
 expressions.  Complete the following definition of `analyze-require`.
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">analyze-require</span><span class="w"> </span><span class="nb">exp</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">pproc</span><span class="w"> </span><span class="p">(</span><span class="n">analyze</span><span class="w"> </span>
-<span class="w">                </span><span class="p">(</span><span class="n">require-predicate</span><span class="w"> </span><span class="nb">exp</span><span class="p">))))</span>
-<span class="w">    </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">env</span><span class="w"> </span><span class="n">succeed</span><span class="w"> </span><span class="n">fail</span><span class="p">)</span>
-<span class="w">      </span><span class="p">(</span><span class="n">pproc</span><span class="w"> </span><span class="n">env</span>
-<span class="w">             </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">pred-value</span><span class="w"> </span><span class="n">fail2</span><span class="p">)</span>
-<span class="w">               </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="n">⟨??⟩</span>
-<span class="w">                   </span><span class="n">⟨??⟩</span>
-<span class="w">                   </span><span class="p">(</span><span class="n">succeed</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">ok</span><span class="w"> </span><span class="n">fail2</span><span class="p">)))</span>
-<span class="w">             </span><span class="n">fail</span><span class="p">))))</span>
-</pre></div>
+
+
+```rkt
+(define (analyze-require exp)
+  (let ((pproc (analyze 
+                (require-predicate exp))))
+    (lambda (env succeed fail)
+      (pproc env
+             (lambda (pred-value fail2)
+               (if ⟨??⟩
+                   ⟨??⟩
+                   (succeed 'ok fail2)))
+             fail))))
+```
+
+
 
 ##### Solution
 

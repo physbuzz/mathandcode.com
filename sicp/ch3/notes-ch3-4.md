@@ -3,7 +3,6 @@ layout: sicp
 render_with_liquid: false
 title: SICP Chapter 3.4
 ---
-
 <div class="nav">
     <span class="activenav"><a href="notes-ch3-3.html">← Previous</a></span>
     <span class="activenav"><a href="../index.html">↑ Up</a></span>
@@ -13,12 +12,10 @@ title: SICP Chapter 3.4
 
 [HTML Book Chapter 3.4 Link](https://sarabander.github.io/sicp/html/3_002e4.xhtml#g_t3_002e4)
 
-## Directory
-- [Section 3.4](#section-34)
-  - [Notes](#notes)
-  - [Meeting 06-08-2025](#meeting-06-08-2025)
-  - [Exercises](#exercises)
-    - *Exercises:* ([Exercise 3.38](#exercise-338), [Exercise 3.39](#exercise-339), [Exercise 3.40](#exercise-340), [Exercise 3.41](#exercise-341), [Exercise 3.42](#exercise-342), [Exercise 3.43](#exercise-343), [Exercise 3.44](#exercise-344), [Exercise 3.45](#exercise-345), [Exercise 3.46](#exercise-346), [Exercise 3.47](#exercise-347), [Exercise 3.48](#exercise-348), [Exercise 3.49](#exercise-349))
+
+
+<div class="table-of-contents"><h2>Directory</h2><ul class="toc-list"><li><a href="#section-34">Section 3.4</a><ul class="toc-list"><li><a href="#notes">Notes</a></li><li><a href="#meeting-06-08-2025">Meeting 06-08-2025</a></li><li><a href="#exercises">Exercises</a> <div class="exercise-container">(<span class="exercise-list"><span><a href="#exercise-338">Exercise 3.38</a></span><span><a href="#exercise-339">Exercise 3.39</a></span><span><a href="#exercise-340">Exercise 3.40</a></span><span><a href="#exercise-341">Exercise 3.41</a></span><span><a href="#exercise-342">Exercise 3.42</a></span><span><a href="#exercise-343">Exercise 3.43</a></span><span><a href="#exercise-344">Exercise 3.44</a></span><span><a href="#exercise-345">Exercise 3.45</a></span><span><a href="#exercise-346">Exercise 3.46</a></span><span><a href="#exercise-347">Exercise 3.47</a></span><span><a href="#exercise-348">Exercise 3.48</a></span><span><a href="#exercise-349">Exercise 3.49</a></span></span>)</div></li></ul></li></ul></div>
+
 
 ## Section 3.4
 
@@ -38,15 +35,20 @@ easier to make mistakes. --> should double check with online solutions.
 #### Exercise 3.38
 
 Suppose that Peter, Paul, and
-Mary share a joint bank account that initially contains \\$100.  Concurrently,
-Peter deposits \\$10, Paul withdraws \\$20, and Mary withdraws half the money in
+Mary share a joint bank account that initially contains \$100.  Concurrently,
+Peter deposits \$10, Paul withdraws \$20, and Mary withdraws half the money in
 the account, by executing the following commands:
 
-<div class="codehilite"><pre><span></span>Peter: (set! balance (+ balance 10))
+
+
+```
+Peter: (set! balance (+ balance 10))
 Paul:  (set! balance (- balance 20))
 Mary:  (set! balance (- balance 
                         (/ balance 2)))
-</pre></div>
+```
+
+
 
 **1.** List all the different possible values for `balance` after these three
 transactions have been completed, assuming that the banking system forces the
@@ -87,45 +89,65 @@ Which of the five possibilities
 in the parallel execution shown above remain if we instead serialize execution
 as follows:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="p">(</span><span class="n">make-serializer</span><span class="p">))</span>
-<span class="p">(</span><span class="n">parallel-execute</span><span class="w"> </span>
-<span class="w">  </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
-<span class="w">    </span><span class="p">(</span><span class="k">set!</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">((</span><span class="n">s</span><span class="w"> </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">x</span><span class="p">))))))</span>
-<span class="w">  </span><span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">(</span><span class="k">set!</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="mi">1</span><span class="p">)))))</span>
-</pre></div>
+
+
+```rkt
+(define x 10)
+(define s (make-serializer))
+(parallel-execute 
+  (lambda () 
+    (set! x ((s (lambda () (* x x))))))
+  (s (lambda () (set! x (+ x 1)))))
+```
+
+
 
 ##### Solution
 
 
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="p">(</span><span class="n">make-serializer</span><span class="p">))</span>
-<span class="p">(</span><span class="n">parallel-execute</span><span class="w"> </span>
-<span class="w">  </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
-<span class="w">    </span><span class="p">(</span><span class="k">set!</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">((</span><span class="n">s</span><span class="w"> </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">x</span><span class="p">))))))</span>
-<span class="w">  </span><span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">(</span><span class="k">set!</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="mi">1</span><span class="p">)))))</span>
-</pre></div>
+
+
+```rkt
+(define x 10)
+(define s (make-serializer))
+(parallel-execute 
+  (lambda () 
+    (set! x ((s (lambda () (* x x))))))
+  (s (lambda () (set! x (+ x 1)))))
+```
+
+
 
 #### Exercise 3.40
 
 Give all possible values of
 `x` that can result from executing
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
-<span class="p">(</span><span class="n">parallel-execute</span><span class="w"> </span>
-<span class="w"> </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">(</span><span class="k">set!</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">x</span><span class="p">)))</span>
-<span class="w"> </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">(</span><span class="k">set!</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">x</span><span class="p">))))</span>
-</pre></div>
+
+
+```rkt
+(define x 10)
+(parallel-execute 
+ (lambda () (set! x (* x x)))
+ (lambda () (set! x (* x x x))))
+```
+
+
 
 Which of these possibilities remain if we instead use serialized procedures:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="p">(</span><span class="n">make-serializer</span><span class="p">))</span>
-<span class="p">(</span><span class="n">parallel-execute</span><span class="w"> </span>
-<span class="w"> </span><span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">(</span><span class="k">set!</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">x</span><span class="p">))))</span>
-<span class="w"> </span><span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">(</span><span class="k">set!</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">x</span><span class="p">)))))</span>
-</pre></div>
+
+
+```rkt
+(define x 10)
+(define s (make-serializer))
+(parallel-execute 
+ (s (lambda () (set! x (* x x))))
+ (s (lambda () (set! x (* x x x)))))
+```
+
+
 
 ##### Solution
 
@@ -135,34 +157,39 @@ Ben Bitdiddle worries that it
 would be better to implement the bank account as follows (where the commented
 line has been changed):
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">make-account</span><span class="w"> </span><span class="n">balance</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">withdraw</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span>
-<span class="w">    </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">&gt;=</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span>
-<span class="w">        </span><span class="p">(</span><span class="k">begin</span><span class="w"> </span>
-<span class="w">          </span><span class="p">(</span><span class="k">set!</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span>
-<span class="w">                </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="n">amount</span><span class="p">))</span>
-<span class="w">          </span><span class="n">balance</span><span class="p">)</span>
-<span class="w">        </span><span class="s2">&quot;Insufficient funds&quot;</span><span class="p">))</span>
-<span class="w">  </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">deposit</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span>
-<span class="w">    </span><span class="p">(</span><span class="k">set!</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="n">amount</span><span class="p">))</span>
-<span class="w">    </span><span class="n">balance</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">protected</span><span class="w"> </span><span class="p">(</span><span class="n">make-serializer</span><span class="p">)))</span>
-<span class="w">    </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">dispatch</span><span class="w"> </span><span class="n">m</span><span class="p">)</span>
-<span class="w">      </span><span class="p">(</span><span class="k">cond</span><span class="w"> </span><span class="p">((</span><span class="nb">eq?</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">withdraw</span><span class="p">)</span><span class="w"> </span>
-<span class="w">             </span><span class="p">(</span><span class="n">protected</span><span class="w"> </span><span class="n">withdraw</span><span class="p">))</span>
-<span class="w">            </span><span class="p">((</span><span class="nb">eq?</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">deposit</span><span class="p">)</span><span class="w"> </span>
-<span class="w">             </span><span class="p">(</span><span class="n">protected</span><span class="w"> </span><span class="n">deposit</span><span class="p">))</span>
-<span class="w">            </span><span class="p">((</span><span class="nb">eq?</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">balance</span><span class="p">)</span>
-<span class="w">             </span><span class="p">((</span><span class="n">protected</span><span class="w"> </span>
-<span class="w">                </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
-<span class="w">                  </span><span class="n">balance</span><span class="p">))))</span><span class="w"> </span><span class="n">@r</span><span class="p">{</span><span class="c1">; serialized}</span>
-<span class="w">            </span><span class="p">(</span><span class="k">else</span><span class="w"> </span>
-<span class="w">             </span><span class="p">(</span><span class="nb">error</span><span class="w"> </span>
-<span class="w">              </span><span class="s2">&quot;Unknown request: </span>
-<span class="s2">               MAKE-ACCOUNT&quot;</span>
-<span class="w">              </span><span class="n">m</span><span class="p">))))</span>
-<span class="w">    </span><span class="n">dispatch</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(define (make-account balance)
+  (define (withdraw amount)
+    (if (>= balance amount)
+        (begin 
+          (set! balance 
+                (- balance amount))
+          balance)
+        "Insufficient funds"))
+  (define (deposit amount)
+    (set! balance (+ balance amount))
+    balance)
+  (let ((protected (make-serializer)))
+    (define (dispatch m)
+      (cond ((eq? m 'withdraw) 
+             (protected withdraw))
+            ((eq? m 'deposit) 
+             (protected deposit))
+            ((eq? m 'balance)
+             ((protected 
+                (lambda () 
+                  balance)))) @r{; serialized}
+            (else 
+             (error 
+              "Unknown request: 
+               MAKE-ACCOUNT"
+              m))))
+    dispatch))
+```
+
+
 
 
 because allowing unserialized access to the bank balance can result in
@@ -181,34 +208,39 @@ could be changed so that the calls to `protected` are done outside the
 serialized procedure (which was created at the same time as the account) each
 time it is asked for a withdrawal procedure.
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">make-account</span><span class="w"> </span><span class="n">balance</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">withdraw</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span>
-<span class="w">    </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">&gt;=</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span>
-<span class="w">        </span><span class="p">(</span><span class="k">begin</span><span class="w"> </span><span class="p">(</span><span class="k">set!</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span>
-<span class="w">                     </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="n">amount</span><span class="p">))</span>
-<span class="w">               </span><span class="n">balance</span><span class="p">)</span>
-<span class="w">        </span><span class="s2">&quot;Insufficient funds&quot;</span><span class="p">))</span>
-<span class="w">  </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">deposit</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span>
-<span class="w">    </span><span class="p">(</span><span class="k">set!</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="n">amount</span><span class="p">))</span>
-<span class="w">    </span><span class="n">balance</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">protected</span><span class="w"> </span><span class="p">(</span><span class="n">make-serializer</span><span class="p">)))</span>
-<span class="w">    </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">protected-withdraw</span><span class="w"> </span>
-<span class="w">           </span><span class="p">(</span><span class="n">protected</span><span class="w"> </span><span class="n">withdraw</span><span class="p">))</span>
-<span class="w">          </span><span class="p">(</span><span class="n">protected-deposit</span><span class="w"> </span>
-<span class="w">           </span><span class="p">(</span><span class="n">protected</span><span class="w"> </span><span class="n">deposit</span><span class="p">)))</span>
-<span class="w">      </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">dispatch</span><span class="w"> </span><span class="n">m</span><span class="p">)</span>
-<span class="w">        </span><span class="p">(</span><span class="k">cond</span><span class="w"> </span><span class="p">((</span><span class="nb">eq?</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">withdraw</span><span class="p">)</span><span class="w"> </span>
-<span class="w">               </span><span class="n">protected-withdraw</span><span class="p">)</span>
-<span class="w">              </span><span class="p">((</span><span class="nb">eq?</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">deposit</span><span class="p">)</span><span class="w"> </span>
-<span class="w">               </span><span class="n">protected-deposit</span><span class="p">)</span>
-<span class="w">              </span><span class="p">((</span><span class="nb">eq?</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">balance</span><span class="p">)</span><span class="w"> </span>
-<span class="w">               </span><span class="n">balance</span><span class="p">)</span>
-<span class="w">              </span><span class="p">(</span><span class="k">else</span><span class="w"> </span>
-<span class="w">               </span><span class="p">(</span><span class="nb">error</span><span class="w"> </span><span class="s2">&quot;Unknown request: </span>
-<span class="s2">                       MAKE-ACCOUNT&quot;</span>
-<span class="w">                      </span><span class="n">m</span><span class="p">))))</span>
-<span class="w">      </span><span class="n">dispatch</span><span class="p">)))</span>
-</pre></div>
+
+
+```rkt
+(define (make-account balance)
+  (define (withdraw amount)
+    (if (>= balance amount)
+        (begin (set! balance 
+                     (- balance amount))
+               balance)
+        "Insufficient funds"))
+  (define (deposit amount)
+    (set! balance (+ balance amount))
+    balance)
+  (let ((protected (make-serializer)))
+    (let ((protected-withdraw 
+           (protected withdraw))
+          (protected-deposit 
+           (protected deposit)))
+      (define (dispatch m)
+        (cond ((eq? m 'withdraw) 
+               protected-withdraw)
+              ((eq? m 'deposit) 
+               protected-deposit)
+              ((eq? m 'balance) 
+               balance)
+              (else 
+               (error "Unknown request: 
+                       MAKE-ACCOUNT"
+                      m))))
+      dispatch)))
+```
+
+
 
 Is this a safe change to make?  In particular, is there any difference in what
 concurrency is allowed by these two versions of `make-account`?
@@ -218,10 +250,10 @@ concurrency is allowed by these two versions of `make-account`?
 #### Exercise 3.43
 
 Suppose that the balances in
-three accounts start out as \\$10, \\$20, and \\$30, and that multiple processes run,
+three accounts start out as \$10, \$20, and \$30, and that multiple processes run,
 exchanging the balances in the accounts.  Argue that if the processes are run
 sequentially, after any number of concurrent exchanges, the account balances
-should be \\$10, \\$20, and \\$30 in some order.  Draw a timing diagram like the one
+should be \$10, \$20, and \$30 in some order.  Draw a timing diagram like the one
 in Figure 3.29 to show how this condition can be violated if the
 exchanges are implemented using the first version of the account-exchange
 program in this section.  On the other hand, argue that even with this
@@ -240,11 +272,16 @@ multiple people concurrently transferring money among multiple accounts, using
 any account mechanism that serializes deposit and withdrawal transactions, for
 example, the version of `make-account` in the text above.
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span>
-<span class="w">  </span><span class="p">(</span><span class="n">transfer</span><span class="w"> </span><span class="n">from-account</span><span class="w"> </span><span class="n">to-account</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span>
-<span class="w">  </span><span class="p">((</span><span class="n">from-account</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">withdraw</span><span class="p">)</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span>
-<span class="w">  </span><span class="p">((</span><span class="n">to-account</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">deposit</span><span class="p">)</span><span class="w"> </span><span class="n">amount</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(define 
+  (transfer from-account to-account amount)
+  ((from-account 'withdraw) amount)
+  ((to-account 'deposit) amount))
+```
+
+
 
 Louis Reasoner claims that there is a problem here, and that we need to use a
 more sophisticated method, such as the one required for dealing with the
@@ -264,39 +301,49 @@ by such procedures as `serialized-exchange`) in addition to (rather than
 instead of) using it to serialize accounts and deposits as `make-account`
 did.  He proposes to redefine accounts as follows:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span>
-<span class="w">  </span><span class="p">(</span><span class="n">make-account-and-serializer</span><span class="w"> </span><span class="n">balance</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">withdraw</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span>
-<span class="w">    </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">&gt;=</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span>
-<span class="w">        </span><span class="p">(</span><span class="k">begin</span><span class="w"> </span><span class="p">(</span><span class="k">set!</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span>
-<span class="w">                     </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="n">amount</span><span class="p">))</span>
-<span class="w">               </span><span class="n">balance</span><span class="p">)</span>
-<span class="w">        </span><span class="s2">&quot;Insufficient funds&quot;</span><span class="p">))</span>
-<span class="w">  </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">deposit</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span>
-<span class="w">    </span><span class="p">(</span><span class="k">set!</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="n">amount</span><span class="p">))</span>
-<span class="w">    </span><span class="n">balance</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="n">balance-serializer</span><span class="w"> </span>
-<span class="w">         </span><span class="p">(</span><span class="n">make-serializer</span><span class="p">)))</span>
-<span class="w">    </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">dispatch</span><span class="w"> </span><span class="n">m</span><span class="p">)</span>
-<span class="w">      </span><span class="p">(</span><span class="k">cond</span><span class="w"> </span><span class="p">((</span><span class="nb">eq?</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">withdraw</span><span class="p">)</span><span class="w"> </span>
-<span class="w">             </span><span class="p">(</span><span class="n">balance-serializer</span><span class="w"> </span><span class="n">withdraw</span><span class="p">))</span>
-<span class="w">            </span><span class="p">((</span><span class="nb">eq?</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">deposit</span><span class="p">)</span><span class="w"> </span>
-<span class="w">             </span><span class="p">(</span><span class="n">balance-serializer</span><span class="w"> </span><span class="n">deposit</span><span class="p">))</span>
-<span class="w">            </span><span class="p">((</span><span class="nb">eq?</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">balance</span><span class="p">)</span><span class="w"> </span>
-<span class="w">             </span><span class="n">balance</span><span class="p">)</span>
-<span class="w">            </span><span class="p">((</span><span class="nb">eq?</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">serializer</span><span class="p">)</span><span class="w"> </span>
-<span class="w">             </span><span class="n">balance-serializer</span><span class="p">)</span>
-<span class="w">            </span><span class="p">(</span><span class="k">else</span><span class="w"> </span><span class="p">(</span><span class="nb">error</span><span class="w"> </span><span class="s2">&quot;Unknown request: </span>
-<span class="s2">                          MAKE-ACCOUNT&quot;</span>
-<span class="w">                         </span><span class="n">m</span><span class="p">))))</span>
-<span class="w">    </span><span class="n">dispatch</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(define 
+  (make-account-and-serializer balance)
+  (define (withdraw amount)
+    (if (>= balance amount)
+        (begin (set! balance 
+                     (- balance amount))
+               balance)
+        "Insufficient funds"))
+  (define (deposit amount)
+    (set! balance (+ balance amount))
+    balance)
+  (let ((balance-serializer 
+         (make-serializer)))
+    (define (dispatch m)
+      (cond ((eq? m 'withdraw) 
+             (balance-serializer withdraw))
+            ((eq? m 'deposit) 
+             (balance-serializer deposit))
+            ((eq? m 'balance) 
+             balance)
+            ((eq? m 'serializer) 
+             balance-serializer)
+            (else (error "Unknown request: 
+                          MAKE-ACCOUNT"
+                         m))))
+    dispatch))
+```
+
+
 
 Then deposits are handled as with the original `make-account`:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">deposit</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span>
-<span class="w">  </span><span class="p">((</span><span class="n">account</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">deposit</span><span class="p">)</span><span class="w"> </span><span class="n">amount</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(define (deposit account amount)
+  ((account 'deposit) amount))
+```
+
+
 
 Explain what is wrong with Louis's reasoning.  In particular, consider what
 happens when `serialized-exchange` is called.

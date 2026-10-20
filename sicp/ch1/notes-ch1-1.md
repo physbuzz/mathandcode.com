@@ -13,30 +13,14 @@ title: SICP Chapter 1.1
 
 [https://sarabander.github.io/sicp/html/1_002e1.xhtml](https://sarabander.github.io/sicp/html/1_002e1.xhtml)
 
-## Directory
-- [Section 1.1](#section-11)
-  - [Introduction](#introduction)
-  - [1.1.1-1.1.3](#111-113)
-  - [1.4](#14)
-  - [1.5](#15)
-  - [1.6](#16)
-  - [1.7](#17)
-  - [1.8](#18)
-- [Meeting 02-23-2025](#meeting-02-23-2025)
-  - [Useful links from before the meeting:](#useful-links-from-before-the-meeting)
-  - [Introductory Notes](#introductory-notes)
-  - [Discussion](#discussion)
-  - [For next time:](#for-next-time)
-  - [Other Links](#other-links)
-- [Meeting 03-02-2025](#meeting-03-02-2025)
-  - [Meeting Notes](#meeting-notes)
-  - [For next time](#for-next-time-2)
-- [Appendix on Mathematica/WL](#appendix-on-mathematicawl)
-  - [Basic expressions in WL](#basic-expressions-in-wl)
-  - [Defines in WL](#defines-in-wl)
-  - [Exercises](#exercises)
-    - *Exercises:* ([Exercise 1.1](#exercise-11), [Exercise 1.2](#exercise-12), [Exercise 1.3](#exercise-13), [Exercise 1.4](#exercise-14), [Exercise 1.5](#exercise-15), [Exercise 1.7](#exercise-17), [Exercise 1.8](#exercise-18))
-    - [1.6](#16-2)
+
+
+<div class="table-of-contents"><h2>Directory</h2><ul class="toc-list"><li><a href="#section-11">Section 1.1</a><ul class="toc-list"><li><a href="#introduction">Introduction</a></li><li><a href="#111-113">1.1.1-1.1.3</a></li><li><a href="#14">1.4</a></li><li><a href="#15">1.5</a></li><li><a href="#16">1.6</a></li><li><a href="#17">1.7</a></li><li><a href="#18">1.8</a></li></ul></li><li><a href="#meeting-02-23-2025">Meeting 02-23-2025</a><ul class="toc-list"><li><a href="#useful-links-from-before-the-meeting">Useful links from before the meeting:</a></li><li><a href="#introductory-notes">Introductory Notes</a></li><li><a href="#discussion">Discussion</a></li><li><a href="#for-next-time">For next time:</a></li><li><a href="#other-links">Other Links</a></li></ul></li><li><a href="#meeting-03-02-2025">Meeting 03-02-2025</a><ul class="toc-list"><li><a href="#meeting-notes">Meeting Notes</a></li><li><a href="#for-next-time-2">For next time</a></li></ul></li><li><a href="#appendix-on-mathematicawl">Appendix on Mathematica/WL</a><ul class="toc-list"><li><a href="#basic-expressions-in-wl">Basic expressions in WL</a></li><li><a href="#defines-in-wl">Defines in WL</a></li><li><a href="#exercises">Exercises</a> <div class="exercise-container">(<span class="exercise-list"><span><a href="#exercise-11">Exercise 1.1</a></span><span><a href="#exercise-12">Exercise 1.2</a></span><span><a href="#exercise-13">Exercise 1.3</a></span><span><a href="#exercise-14">Exercise 1.4</a></span><span><a href="#exercise-15">Exercise 1.5</a></span><span><a href="#exercise-17">Exercise 1.7</a></span><span><a href="#exercise-18">Exercise 1.8</a></span></span>)</div><ul class="toc-list"><li><a href="#16-2">1.6</a></li></ul></li></ul></li></ul></div>
+
+
+
+
+
 
 ## Section 1.1
 
@@ -58,15 +42,25 @@ title: SICP Chapter 1.1
 
 - REPL = "read-eval-print loop"
 - Pretty printing is defined such that each operator with a deeper nesting starts at a deeper level of indentation. For example
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">5</span><span class="p">)))</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="mi">7</span><span class="p">)</span><span class="w"> </span><span class="mi">6</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(+ (* 3 (+ (* 2 4) (+ 3 5))) (+ (- 10 7) 6))
+```
+
+
 becomes
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="mi">3</span>
-<span class="w">      </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span>
-<span class="w">         </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">5</span><span class="p">)))</span>
-<span class="w">   </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="mi">7</span><span class="p">)</span>
-<span class="w">      </span><span class="mi">6</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(+ (* 3
+      (+ (* 2 4)
+         (+ 3 5)))
+   (+ (- 10 7)
+      6))
+```
+
+
 - We can associate values with variables. `(define size 2)` defines a value in a global environment.
 - Evaluation can be done recursively in this model, "tree accumulation" is one way to evaluate tree expressions.
 - *Special forms* are exceptions to the general evaluation rules. "define" is one of them. We deal with a very simple language -> small number of special forms.
@@ -81,25 +75,35 @@ Note that the fact that we're allowed to evaluate a sequence of expressions here
 > [14] More generally, the body of the procedure can be a sequence of expressions. In this case, the interpreter evaluates each expression in the sequence in turn and returns the value of the final expression as the value of the procedure application. 
 
 So, the authors aren't going to give us any more warning, they're just going to start throwing stuff like the following at us without explanation. 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">hello-world</span><span class="w"> </span>
-<span class="w">  </span><span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="s2">&quot;Hello &quot;</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="s2">&quot;World&quot;</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="s2">&quot;!&quot;</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="nb">newline</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(define hello-world 
+  (display "Hello ")
+  (display "World")
+  (display "!")
+  (newline))
+```
+
+
 
 Supposedly this can also be handled with the `begin` keyword. eg.
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
-<span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span>
-<span class="w">  </span><span class="p">(</span><span class="k">begin</span>
-<span class="w">    </span><span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="s2">&quot;Hello &quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="s2">&quot;World&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="p">(</span><span class="nb">newline</span><span class="p">))</span>
-<span class="w">  </span><span class="p">(</span><span class="k">begin</span>
-<span class="w">    </span><span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="s2">&quot;Goodbye &quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="s2">&quot;World&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="p">(</span><span class="nb">newline</span><span class="p">)))</span>
-</pre></div>
+
+
+```rkt
+(define x 0)
+(if (= x 0) 
+  (begin
+    (display "Hello ")
+    (display "World")
+    (newline))
+  (begin
+    (display "Goodbye ")
+    (display "World")
+    (newline)))
+```
+
+
 One way to think of this is that `define` contains an implicit `begin`.
 
 ### 1.5
@@ -116,22 +120,37 @@ Applicative ordering vs. normal ordering.
 
 ### 1.6
 New special form `cond`:
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="nb">abs</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">cond</span><span class="w"> </span><span class="p">((</span><span class="nb">&gt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
-<span class="w">        </span><span class="p">((</span><span class="nb">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
-<span class="w">        </span><span class="p">((</span><span class="nb">&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">x</span><span class="p">))))</span>
-</pre></div>
+
+
+```rkt
+(define (abs x)
+  (cond ((> x 0) x)
+        ((= x 0) 0)
+        ((< x 0) (- x))))
+```
+
+
 Also `else`
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="nb">abs</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">cond</span><span class="w"> </span><span class="p">((</span><span class="nb">&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">x</span><span class="p">))</span>
-<span class="w">        </span><span class="p">(</span><span class="k">else</span><span class="w"> </span><span class="n">x</span><span class="p">)))</span>
-</pre></div>
+
+
+```rkt
+(define (abs x)
+  (cond ((< x 0) (- x))
+        (else x)))
+```
+
+
 Also
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="nb">abs</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
-<span class="w">      </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
-<span class="w">      </span><span class="n">x</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(define (abs x)
+  (if (< x 0)
+      (- x)
+      x))
+```
+
+
 
 - `(if predicate consequent alternative)` is a *special form* which evaluates `predicate` and then evaluates `consequent` if `predicate` is true or `alternative` if `predicate is` false. This breaks the strict rule of applicative order evaluation, which might lead you to believe that all three terms are evaluated.
 
@@ -205,9 +224,14 @@ Also, note that I'm in 2025 reading about this stuff from the 80's :P I'm sure t
 
 `(+ 1 2 3 4)` is represented in WL as `Plus[1,2,3,4]`. This can also be written as `1+2+3+4`, which is syntax sugar. In order to see the full form but also make sure that this expression doesn't evaluate to 10 immediately, we want to use `FullForm[HoldForm[...]]`:
 
-<div class="codehilite"><pre><span></span><span class="n">In</span><span class="p">[]</span><span class="o">:=</span><span class="w"> </span><span class="n">FullForm</span><span class="p">[</span><span class="n">HoldForm</span><span class="p">[</span><span class="mi">1</span><span class="o">+</span><span class="mi">2</span><span class="o">+</span><span class="mi">3</span><span class="o">+</span><span class="mi">4</span><span class="p">]]</span>
-<span class="n">Out</span><span class="p">[]</span><span class="o">=</span><span class="w"> </span><span class="n">HoldForm</span><span class="p">[</span><span class="n">Plus</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]]</span>
-</pre></div>
+
+
+```mathematica
+In[]:= FullForm[HoldForm[1+2+3+4]]
+Out[]= HoldForm[Plus[1,2,3,4]]
+```
+
+
 
 In Mathematica, this expression gets substituted with `10` immediately, but say we have another expression `expression = plus[1,2,3,4]` (lowercase "P"). Then in fact `expression[[0]]` returns `plus`, `expression[[1]]` returns `1`, and so on (2,3,4). So this is identical to lisp, where the operator is called the head in Mathematica (and can be retrieved through `Head[expression]` which returns `add`).
 
@@ -223,29 +247,49 @@ The syntax sugar version is `x:=(Print["Hi"]; 5)`. Here CompoundExpression is li
 To translate `(define (square x) (* x x))` to Mathematica, it gets a bit gnarly! I think this is really a lambda expression in Scheme, so it should be `Set[square,Function[x,Times[x,x]]]`. The syntax sugar version is `square = x |-> x*x`.
 
 In Mathematica, it's more typical to use pattern matching though. The syntax sugar version is `f[x_] = x^2`, which expands to this crazy expression:
-<div class="codehilite"><pre><span></span><span class="n">In</span><span class="p">[]</span><span class="o">:=</span><span class="w"> </span><span class="n">FullForm</span><span class="p">[</span><span class="n">HoldForm</span><span class="p">[</span><span class="n">f</span><span class="p">[</span><span class="nv">x_</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="o">^</span><span class="mi">2</span><span class="p">]]</span>
-<span class="n">Out</span><span class="p">[]</span><span class="o">=</span><span class="w"> </span><span class="n">HoldForm</span><span class="p">[</span><span class="n">Set</span><span class="p">[</span><span class="n">f</span><span class="p">[</span><span class="n">Pattern</span><span class="p">[</span><span class="n">x</span><span class="p">,</span><span class="n">Blank</span><span class="p">[]]],</span><span class="n">Power</span><span class="p">[</span><span class="n">x</span><span class="p">,</span><span class="mi">2</span><span class="p">]]]</span>
-</pre></div>
+
+
+```mathematica
+In[]:= FullForm[HoldForm[f[x_] = x^2]]
+Out[]= HoldForm[Set[f[Pattern[x,Blank[]]],Power[x,2]]]
+```
+
+
 It's something like: Whenever `f[arg]` is called from now on, we check if arg matches the pattern `Pattern[x,Blank[]]` (which it does, because that's the empty pattern). If it does, then `x` on the righthand side of Set gets replaced with `arg`.
 
 
 Well anyways, this is the cause of a huge amount of confusion, but you get an enormous amount from this! For example, here we write a complicated expression and then look at the definition using `?f`:
 
-<div class="codehilite"><pre><span></span><span class="n">In</span><span class="p">[]</span><span class="o">:=</span><span class="w"> </span><span class="n">f</span><span class="p">[</span><span class="nv">y_</span><span class="p">]</span><span class="o">=</span><span class="n">FullSimplify</span><span class="p">[</span><span class="n">Integrate</span><span class="p">[</span><span class="n">Cos</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span><span class="p">,{</span><span class="n">x</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">y</span><span class="p">}]];</span>
-<span class="n">In</span><span class="p">[]</span><span class="o">:=</span><span class="w"> </span><span class="o">?</span><span class="n">f</span>
-<span class="n">Out</span><span class="p">[]</span><span class="o">=</span><span class="w">  </span><span class="n">Symbol</span><span class="w">	</span>
-<span class="w">        </span><span class="nn">Global`</span><span class="n">f</span><span class="w">	</span>
-<span class="w">        </span><span class="n">f</span><span class="p">[</span><span class="nv">y_</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="w"> </span><span class="p">(</span><span class="n">y</span><span class="o">+</span><span class="n">Cos</span><span class="p">[</span><span class="n">y</span><span class="p">]</span><span class="w"> </span><span class="n">Sin</span><span class="p">[</span><span class="n">y</span><span class="p">])</span>
-</pre></div>
+
+
+```mathematica
+In[]:= f[y_]=FullSimplify[Integrate[Cos[x]^2,{x,0,y}]];
+In[]:= ?f
+Out[]=  Symbol	
+        Global`f	
+        f[y_]=1/2 (y+Cos[y] Sin[y])
+```
+
+
 The evaluation rules mean that the integral and simplification get evaluated symbolically before assignment. In most other languages you'd think of this as metaprogramming. The analogy with Scheme isn't totally precise, because `x` is a symbolic expression. But what I'm saying is that it's a set of definitions where this:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">FullSimplify</span>
-<span class="w">  </span><span class="p">(</span><span class="n">Integrate</span>
-<span class="w">    </span><span class="p">(</span><span class="n">Pow</span><span class="w"> </span><span class="p">(</span><span class="n">Cos</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">List</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="n">y</span><span class="p">)))</span>
-</pre></div>
+
+
+```rkt
+(FullSimplify
+  (Integrate
+    (Pow (Cos x) 2) (List x 0 y)))
+```
+
+
 becomes this:
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="nb">/</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="p">(</span><span class="n">Cos</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">Sin</span><span class="w"> </span><span class="n">y</span><span class="p">)))</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
-</pre></div>
+
+
+```rkt
+(/ (+ y (* (Cos y) (Sin y))) 2)
+```
+
+
 
 
 
@@ -258,9 +302,9 @@ Below is a sequence of expressions. What is the result printed by the interprete
 
 ##### Solution
 
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="ch1-code/ex1-1.rkt">ch1-code/ex1-1.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="ch1-code/ex1-1.rkt">ex1-1.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="c1">; 10</span>
 <span class="mi">10</span>
@@ -307,10 +351,8 @@ Below is a sequence of expressions. What is the result printed by the interprete
 <span class="w">         </span><span class="p">((</span><span class="nb">&lt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="n">b</span><span class="p">)</span>
 <span class="w">         </span><span class="p">(</span><span class="k">else</span><span class="w"> </span><span class="mi">-1</span><span class="p">))</span>
 <span class="w">   </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>10
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>10
 12
 8
 3
@@ -321,9 +363,7 @@ Below is a sequence of expressions. What is the result printed by the interprete
 16
 6
 16
-</pre>
-</div>
-</div>
+</pre></div></div>
 
 
 #### Exercise 1.2
@@ -332,9 +372,9 @@ $$\frac{5+4+(2-(3-(6+\frac{4}{5})))}{3(6-2)(2-7)}$$
 
 ##### Solution
 
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="ch1-code/ex1-2.rkt">ch1-code/ex1-2.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="ch1-code/ex1-2.rkt">ex1-2.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 <span class="c1">;(/ (+ 5 4 (- 2 (- 3 (+ 6 (/ 4 5))))) (* 3 (- 6 2) (- 2 7)))</span>
 <span class="p">(</span><span class="nb">/</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span>
 <span class="w">      </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span>
@@ -342,22 +382,18 @@ $$\frac{5+4+(2-(3-(6+\frac{4}{5})))}{3(6-2)(2-7)}$$
 <span class="w">   </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span>
 <span class="w">      </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span>
 <span class="w">      </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">7</span><span class="p">)))</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>-37/150
-</pre>
-</div>
-</div>
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>-37/150
+</pre></div></div>
 
 
 #### Exercise 1.3
 Define a procedure that takes three numbers as arguments and returns the sum of the squares of the two larger numbers.
 ##### Solution
 
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="ch1-code/ex1-3.rkt">ch1-code/ex1-3.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="ch1-code/ex1-3.rkt">ex1-3.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">mymin2</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">&lt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="p">))</span>
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">mymin3</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">mymin2</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="p">(</span><span class="n">mymin2</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="n">c</span><span class="p">)))</span>
@@ -376,27 +412,28 @@ Define a procedure that takes three numbers as arguments and returns the sum of 
 <span class="cm">|#</span>
 
 <span class="p">(</span><span class="n">largesquare</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>13
-</pre>
-</div>
-</div>
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>13
+</pre></div></div>
 
 
 #### Exercise 1.4
 
 Observe that our model of evaluation allows for combinations whose operators are compound expressions. Use this observation to describe the behavior of the following procedure:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">a-plus-abs-b</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="p">)</span>
-<span class="w">  </span><span class="p">((</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">&gt;</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="nb">+</span><span class="w"> </span><span class="nb">-</span><span class="p">)</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(define (a-plus-abs-b a b)
+  ((if (> b 0) + -) a b))
+```
+
+
 ##### Solution
 
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="ch1-code/ex1-4.rkt">ch1-code/ex1-4.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="ch1-code/ex1-4.rkt">ex1-4.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 
 <span class="c1">; returns a+|b| by performing a+b if b&gt;0, else a-b.</span>
@@ -405,26 +442,27 @@ Observe that our model of evaluation allows for combinations whose operators are
 
 <span class="p">(</span><span class="n">a-plus-abs-b</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">-3</span><span class="p">)</span>
 <span class="p">(</span><span class="n">a-plus-abs-b</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>4
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>4
 4
-</pre>
-</div>
-</div>
+</pre></div></div>
 
 
 #### Exercise 1.5
 Ben Bitdiddle has invented a test to determine whether the interpreter he is faced with is using applicative-order evaluation or normal-order evaluation. He defines the following two procedures:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
 
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">test</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span>
-<span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span>
-<span class="w">      </span><span class="mi">0</span><span class="w"> </span>
-<span class="w">      </span><span class="n">y</span><span class="p">))</span>
-</pre></div>
+
+```rkt
+(define (p) (p))
+
+(define (test x y) 
+  (if (= x 0) 
+      0 
+      y))
+```
+
+
 Then he evaluates the expression
 
 `(test 0 (p))`
@@ -446,28 +484,43 @@ This is the same reasoning as given in the answers to [this stackoverflow questi
 
 Alyssa P. Hacker doesn’t see why if needs to be provided as a special form. “Why can’t I just define it as an ordinary procedure in terms of cond?” she asks. Alyssa’s friend Eva Lu Ator claims this can indeed be done, and she defines a new version of if:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">new-if</span><span class="w"> </span><span class="n">predicate</span><span class="w"> </span>
-<span class="w">                </span><span class="n">then-clause</span><span class="w"> </span>
-<span class="w">                </span><span class="n">else-clause</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">cond</span><span class="w"> </span><span class="p">(</span><span class="n">predicate</span><span class="w"> </span><span class="n">then-clause</span><span class="p">)</span>
-<span class="w">        </span><span class="p">(</span><span class="k">else</span><span class="w"> </span><span class="n">else-clause</span><span class="p">)))</span>
-</pre></div>
+
+
+```rkt
+(define (new-if predicate 
+                then-clause 
+                else-clause)
+  (cond (predicate then-clause)
+        (else else-clause)))
+```
+
+
 Eva demonstrates the program for Alyssa:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">new-if</span><span class="w"> </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span>
-<span class="mi">5</span>
 
-<span class="p">(</span><span class="n">new-if</span><span class="w"> </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span>
-<span class="mi">0</span>
-</pre></div>
+
+```rkt
+(new-if (= 2 3) 0 5)
+5
+
+(new-if (= 1 1) 0 5)
+0
+```
+
+
 
 Delighted, Alyssa uses new-if to rewrite the square-root program:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">sqrt-iter</span><span class="w"> </span><span class="n">guess</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="n">new-if</span><span class="w"> </span><span class="p">(</span><span class="n">good-enough?</span><span class="w"> </span><span class="n">guess</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
-<span class="w">          </span><span class="n">guess</span>
-<span class="w">          </span><span class="p">(</span><span class="n">sqrt-iter</span><span class="w"> </span><span class="p">(</span><span class="n">improve</span><span class="w"> </span><span class="n">guess</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="p">)))</span>
-</pre></div>
+
+
+```rkt
+(define (sqrt-iter guess x)
+  (new-if (good-enough? guess x)
+          guess
+          (sqrt-iter (improve guess x) x)))
+```
+
+
 
 What happens when Alyssa attempts to use this to compute square roots? Explain.
 
@@ -500,9 +553,9 @@ For large $x$, I imagine there would be problems where $|y^2-x|$ cannot be less 
 
 For small $x$, the implementation of the procedure demonstrates that using the fractional change as a stop condition is better.
 
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="ch1-code/ex1-7.rkt">ch1-code/ex1-7.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="ch1-code/ex1-7.rkt">ex1-7.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">average</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span>
 <span class="w">  </span><span class="p">(</span><span class="nb">/</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="mi">2</span><span class="p">))</span>
@@ -525,7 +578,7 @@ For small $x$, the implementation of the procedure demonstrates that using the f
 <span class="w">  </span><span class="p">(</span><span class="n">sqrt-iter</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="n">x</span><span class="p">))</span>
 
 <span class="c1">; Given the last and 2nd last guesses, check if the fractional change is good enough.</span>
-<span class="c1">; I&#39;m choosing the formula |guessL-guessLL|/guessL &lt; 0.001</span>
+<span class="c1">; I'm choosing the formula |guessL-guessLL|/guessL &lt; 0.001</span>
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">good-enough2?</span><span class="w"> </span><span class="n">guessL</span><span class="w"> </span><span class="n">guessLL</span><span class="p">)</span><span class="w"> </span>
 <span class="w">  </span><span class="p">(</span><span class="nb">&lt;</span><span class="w"> </span><span class="p">(</span><span class="nb">/</span><span class="w"> </span><span class="p">(</span><span class="nb">abs</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">guessL</span><span class="w"> </span><span class="n">guessLL</span><span class="p">))</span><span class="w"> </span><span class="n">guessL</span><span class="p">)</span><span class="w"> </span><span class="mf">0.01</span><span class="p">))</span>
 
@@ -539,14 +592,10 @@ For small $x$, the implementation of the procedure demonstrates that using the f
 
 <span class="p">(</span><span class="n">my-sqrt</span><span class="w"> </span><span class="mf">0.0001</span><span class="p">)</span>
 <span class="p">(</span><span class="n">my-sqrt2</span><span class="w"> </span><span class="mf">0.0001</span><span class="p">)</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>0.03230844833048122
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>0.03230844833048122
 0.010000000025490743
-</pre>
-</div>
-</div>
+</pre></div></div>
 
 
 #### Exercise 1.8
@@ -559,9 +608,9 @@ Use this formula to implement a cube-root procedure analogous to the square-root
 
 ##### Solution
 
-<div class="code-box" markdown="1">
-<div class="code-header"><a href="ch1-code/ex1-8.rkt">ch1-code/ex1-8.rkt</a></div>
-<div class="codehilite"><pre><span></span><span class="kn">#lang </span><span class="nn">sicp</span>
+
+
+<div class="code-box"><div class="code-header"><a href="ch1-code/ex1-8.rkt">ex1-8.rkt</a></div><div class="codehilite" data-language="racket"><pre><code><span class="kn">#lang </span><span class="nn">sicp</span>
 
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">improve</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
 <span class="w">  </span><span class="p">(</span><span class="nb">/</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="p">(</span><span class="nb">/</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="n">y</span><span class="p">))</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">y</span><span class="p">))</span><span class="w"> </span><span class="mi">3</span><span class="p">))</span>
@@ -580,13 +629,9 @@ Use this formula to implement a cube-root procedure analogous to the square-root
 
 <span class="c1">; 1.4422495703074083</span>
 <span class="p">(</span><span class="n">my-curt</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span>
-</pre></div>
-<div class="code-output">
-<span>Output:</span>
-<pre>1.4422497895989996
-</pre>
-</div>
-</div>
+</code></pre></div>
+<div class="code-output"><span>Output:</span><pre>1.4422497895989996
+</pre></div></div>
 
 
 

@@ -1,3 +1,0 @@
-Are (list 'a 'b 'c) and '(a b c) structurally equal?
-#t
-#t

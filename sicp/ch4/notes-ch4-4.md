@@ -3,7 +3,6 @@ layout: sicp
 render_with_liquid: false
 title: SICP Chapter 4.4
 ---
-
 <div class="nav">
     <span class="activenav"><a href="notes-ch4-3.html">← Previous</a></span>
     <span class="activenav"><a href="../index.html">↑ Up</a></span>
@@ -12,16 +11,11 @@ title: SICP Chapter 4.4
 
 [HTML Book Chapter 4.4 Link](https://sarabander.github.io/sicp/html/4_002e4.xhtml#g_t4_002e4)
 
-## Directory
-- [Section 4.4](#section-44)
-  - [Notes](#notes)
-    - [Writing the Unifier](#writing-the-unifier)
-  - [Outdated Notes](#outdated-notes)
-    - [Confusion on append-to-form](#confusion-on-append-to-form)
-    - [Comment on "appendo"](#comment-on-appendo)
-    - [Mathematica Analogy](#mathematica-analogy)
-  - [Exercises](#exercises)
-    - *Exercises:* ([Exercise 4.55](#exercise-455), [Exercise 4.56](#exercise-456), [Exercise 4.57](#exercise-457), [Exercise 4.58](#exercise-458), [Exercise 4.59](#exercise-459), [Exercise 4.60](#exercise-460), [Exercise 4.61](#exercise-461), [Exercise 4.62](#exercise-462), [Exercise 4.63](#exercise-463), [Exercise 4.64](#exercise-464), [Exercise 4.65](#exercise-465), [Exercise 4.66](#exercise-466), [Exercise 4.67](#exercise-467), [Exercise 4.68](#exercise-468), [Exercise 4.69](#exercise-469), [Exercise 4.70](#exercise-470), [Exercise 4.71](#exercise-471), [Exercise 4.72](#exercise-472), [Exercise 4.73](#exercise-473), [Exercise 4.74](#exercise-474), [Exercise 4.75](#exercise-475), [Exercise 4.76](#exercise-476), [Exercise 4.77](#exercise-477), [Exercise 4.78](#exercise-478), [Exercise 4.79](#exercise-479))
+
+
+<div class="table-of-contents"><h2>Directory</h2><ul class="toc-list"><li><a href="#section-44">Section 4.4</a><ul class="toc-list"><li><a href="#notes">Notes</a><ul class="toc-list"><li><a href="#writing-the-unifier">Writing the Unifier</a></li></ul></li><li><a href="#outdated-notes">Outdated Notes</a><ul class="toc-list"><li><a href="#confusion-on-append-to-form">Confusion on append-to-form</a></li><li><a href="#comment-on-appendo">Comment on "appendo"</a></li><li><a href="#mathematica-analogy">Mathematica Analogy</a></li></ul></li><li><a href="#exercises">Exercises</a> <div class="exercise-container">(<span class="exercise-list"><span><a href="#exercise-455">Exercise 4.55</a></span><span><a href="#exercise-456">Exercise 4.56</a></span><span><a href="#exercise-457">Exercise 4.57</a></span><span><a href="#exercise-458">Exercise 4.58</a></span><span><a href="#exercise-459">Exercise 4.59</a></span><span><a href="#exercise-460">Exercise 4.60</a></span><span><a href="#exercise-461">Exercise 4.61</a></span><span><a href="#exercise-462">Exercise 4.62</a></span><span><a href="#exercise-463">Exercise 4.63</a></span><span><a href="#exercise-464">Exercise 4.64</a></span><span><a href="#exercise-465">Exercise 4.65</a></span><span><a href="#exercise-466">Exercise 4.66</a></span><span><a href="#exercise-467">Exercise 4.67</a></span><span><a href="#exercise-468">Exercise 4.68</a></span><span><a href="#exercise-469">Exercise 4.69</a></span><span><a href="#exercise-470">Exercise 4.70</a></span><span><a href="#exercise-471">Exercise 4.71</a></span><span><a href="#exercise-472">Exercise 4.72</a></span><span><a href="#exercise-473">Exercise 4.73</a></span><span><a href="#exercise-474">Exercise 4.74</a></span><span><a href="#exercise-475">Exercise 4.75</a></span><span><a href="#exercise-476">Exercise 4.76</a></span><span><a href="#exercise-477">Exercise 4.77</a></span><span><a href="#exercise-478">Exercise 4.78</a></span><span><a href="#exercise-479">Exercise 4.79</a></span></span>)</div></li></ul></li></ul></div>
+
+
 
 ## Section 4.4
 
@@ -48,13 +42,18 @@ and terminology, we have two patterns
 `a` and `b`, and we can call `unify-match` to find a frame that unifies both
 expressions.
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">initial-frame</span><span class="w"> </span><span class="o">&#39;</span><span class="p">())</span>
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&#39;</span><span class="p">(</span><span class="ss">+</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">(</span><span class="ss">*</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="p">(</span><span class="ss">?</span><span class="w"> </span><span class="ss">z</span><span class="p">))))</span>
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">&#39;</span><span class="p">(</span><span class="ss">+</span><span class="w"> </span><span class="p">(</span><span class="ss">?</span><span class="w"> </span><span class="ss">y</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="ss">*</span><span class="w"> </span><span class="p">(</span><span class="ss">?</span><span class="w"> </span><span class="ss">x</span><span class="p">)</span><span class="w"> </span><span class="mi">2</span><span class="p">)))</span>
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="p">(</span><span class="n">unify-match</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="n">initial-frame</span><span class="p">))</span>
-<span class="p">(</span><span class="nb">display</span><span class="w"> </span><span class="n">S</span><span class="p">)</span>
-<span class="c1">;; (((? z) . 2) ((? x) . 7) ((? y) . 3))</span>
-</pre></div>
+
+
+```rkt
+(define initial-frame '())
+(define a '(+ 3 (* 7 (? z))))
+(define b '(+ (? y) (* (? x) 2)))
+(define S (unify-match a b initial-frame))
+(display S)
+;; (((? z) . 2) ((? x) . 7) ((? y) . 3))
+```
+
+
 
 I'm fairly certain that the algorithm for `unify-match` is the same as described in
 Robinson 1965, A Machine-Oriented Logic Based on the Resolution Principle, section 5.8. However
@@ -82,17 +81,27 @@ Definition 4.4 of append:
 Is this saying that there's an implicit definition of append,
 as... it's the symbol such that
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="nb">equal?</span><span class="w"> </span><span class="p">(</span><span class="nb">append</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="n">z</span><span class="p">)</span><span class="w"> </span>
-<span class="k">=&gt;</span><span class="w"> </span>
-<span class="p">(</span><span class="nb">equal?</span><span class="w"> </span><span class="p">(</span><span class="nb">append</span><span class="w"> </span><span class="p">(</span><span class="nb">cons</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">cons</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">z</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(equal? (append v y) z) 
+=> 
+(equal? (append (cons u v) y) (cons u z))
+```
+
+
 
 This definition is bonkers. However it makes more sense in rule notation:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">rule</span><span class="w"> </span><span class="p">(</span><span class="n">append-to-form</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="n">?y</span><span class="w"> </span><span class="n">?y</span><span class="p">))</span>
-<span class="p">(</span><span class="n">rule</span><span class="w"> </span><span class="p">(</span><span class="n">append-to-form</span><span class="w"> </span><span class="p">(</span><span class="n">?u</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="n">?v</span><span class="p">)</span><span class="w"> </span><span class="n">?y</span><span class="w"> </span><span class="p">(</span><span class="n">?u</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="n">?z</span><span class="p">))</span>
-<span class="w">      </span><span class="p">(</span><span class="n">append-to-form</span><span class="w"> </span><span class="n">?v</span><span class="w"> </span><span class="n">?y</span><span class="w"> </span><span class="n">?z</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(rule (append-to-form () ?y ?y))
+(rule (append-to-form (?u . ?v) ?y (?u . ?z))
+      (append-to-form ?v ?y ?z))
+```
+
+
 
 It's not fair to call this a crazy implicit definition of 
 append-to-form, we can see by how the dotted tail notation 
@@ -112,23 +121,33 @@ relational programming, where I think
 #### Mathematica Analogy
 
 Basic patterns could be matched like this:
-<div class="codehilite"><pre><span></span><span class="p">;</span><span class="w"> </span><span class="p">(</span><span class="n">job</span><span class="w"> </span><span class="o">?</span><span class="n">x</span><span class="w"> </span><span class="p">(</span><span class="n">computer</span><span class="w"> </span><span class="n">programmer</span><span class="p">))</span>
-<span class="n">facts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">job</span><span class="p">[</span><span class="s">&quot;Hacker Alyssa P&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">computer</span><span class="p">,</span><span class="w"> </span><span class="n">programmer</span><span class="p">}],</span><span class="w"> </span>
-<span class="w">   </span><span class="n">address</span><span class="p">[</span><span class="s">&quot;Hacker Alyssa P&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;Cambridge&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;Mass Ave&quot;</span><span class="p">},</span><span class="w"> </span><span class="mi">78</span><span class="p">}],</span><span class="w"> </span>
-<span class="w">   </span><span class="n">job</span><span class="p">[</span><span class="s">&quot;Fect Cy D&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">computer</span><span class="p">,</span><span class="w"> </span><span class="n">programmer</span><span class="p">}],</span><span class="w"> </span>
-<span class="w">   </span><span class="n">address</span><span class="p">[</span><span class="s">&quot;Fect Cy D&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;Cambridge&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;Ames Street&quot;</span><span class="p">},</span><span class="w"> </span><span class="mi">3</span><span class="p">}],</span><span class="w"> </span>
-<span class="w">   </span><span class="n">job</span><span class="p">[</span><span class="s">&quot;Foo Bar&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">waiter</span><span class="p">}]};</span>
-<span class="n">Cases</span><span class="p">[</span><span class="n">facts</span><span class="p">,</span><span class="w"> </span><span class="n">job</span><span class="p">[</span><span class="nv">p_</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">computer</span><span class="p">,</span><span class="w"> </span><span class="n">programmer</span><span class="p">}]]</span>
 
-<span class="p">{</span><span class="n">job</span><span class="p">[</span><span class="s">&quot;Hacker Alyssa P&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">computer</span><span class="p">,</span><span class="w"> </span><span class="n">programmer</span><span class="p">}],</span><span class="w"> </span>
-<span class="w"> </span><span class="n">job</span><span class="p">[</span><span class="s">&quot;Fect Cy D&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">computer</span><span class="p">,</span><span class="w"> </span><span class="n">programmer</span><span class="p">}]}</span>
-</pre></div>
+
+```mathematica
+; (job ?x (computer programmer))
+facts = {job["Hacker Alyssa P", {computer, programmer}], 
+   address["Hacker Alyssa P", {"Cambridge", {"Mass Ave"}, 78}], 
+   job["Fect Cy D", {computer, programmer}], 
+   address["Fect Cy D", {"Cambridge", {"Ames Street"}, 3}], 
+   job["Foo Bar", {waiter}]};
+Cases[facts, job[p_, {computer, programmer}]]
+
+{job["Hacker Alyssa P", {computer, programmer}], 
+ job["Fect Cy D", {computer, programmer}]}
+```
+
+
 
 More complicated stuff gets more complicated, it doesn't match one-to-one.
 Say we want to implement this:
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">and</span><span class="w"> </span><span class="p">(</span><span class="n">job</span><span class="w"> </span><span class="n">?person</span><span class="w"> </span><span class="p">(</span><span class="n">computer</span><span class="w"> </span><span class="n">programmer</span><span class="p">))</span>
-<span class="w">     </span><span class="p">(</span><span class="n">address</span><span class="w"> </span><span class="n">?person</span><span class="w"> </span><span class="n">?where</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+(and (job ?person (computer programmer))
+     (address ?person ?where))
+```
+
+
 
 I couldn't get a solution working using `Cases` or `ReplaceAll`. But two 
 tricks got it to work:
@@ -141,20 +160,25 @@ trying to find single matches with a list of elements.
 
 With this, we have the working match code. No idea if the algorithmic complexity renders this feasible, sometimes Mathematica's pattern matching is magical enough to make this O(N).
 
-<div class="codehilite"><pre><span></span><span class="n">In</span><span class="p">[]</span><span class="o">:=</span><span class="w"> </span><span class="n">SetAttributes</span><span class="p">[</span><span class="n">factBase</span><span class="p">,</span><span class="w"> </span><span class="n">Orderless</span><span class="p">];</span>
-<span class="n">facts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">factBase</span><span class="p">[</span><span class="n">job</span><span class="p">[</span><span class="s">&quot;Hacker Alyssa P&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">computer</span><span class="p">,</span><span class="w"> </span><span class="n">programmer</span><span class="p">}],</span><span class="w"> </span>
-<span class="w">   </span><span class="n">address</span><span class="p">[</span><span class="s">&quot;Hacker Alyssa P&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;Cambridge&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;Mass Ave&quot;</span><span class="p">},</span><span class="w"> </span><span class="mi">78</span><span class="p">}],</span><span class="w"> </span>
-<span class="w">   </span><span class="n">job</span><span class="p">[</span><span class="s">&quot;Fect Cy D&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">computer</span><span class="p">,</span><span class="w"> </span><span class="n">programmer</span><span class="p">}],</span><span class="w"> </span>
-<span class="w">   </span><span class="n">address</span><span class="p">[</span><span class="s">&quot;Fect Cy D&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;Cambridge&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;Ames Street&quot;</span><span class="p">},</span><span class="w"> </span><span class="mi">3</span><span class="p">}],</span><span class="w"> </span>
-<span class="w">   </span><span class="n">job</span><span class="p">[</span><span class="s">&quot;Foo Bar&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">waiter</span><span class="p">}]];</span>
-<span class="n">ReplaceList</span><span class="p">[</span><span class="n">facts</span><span class="p">,</span>
-<span class="w"> </span><span class="n">factBase</span><span class="p">[</span>
-<span class="w">   </span><span class="n">address</span><span class="p">[</span><span class="nv">p_</span><span class="p">,</span><span class="w"> </span><span class="nv">where_</span><span class="p">],</span><span class="w"> </span><span class="n">job</span><span class="p">[</span><span class="nv">p_</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">computer</span><span class="p">,</span><span class="w"> </span><span class="n">programmer</span><span class="p">}],</span><span class="w"> </span><span class="nv">___</span><span class="p">]</span>
-<span class="w">  </span><span class="o">:&gt;</span><span class="w"> </span><span class="p">{</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">where</span><span class="p">}]</span>
 
-<span class="n">Out</span><span class="p">[]</span><span class="o">=</span><span class="w"> </span><span class="p">{{</span><span class="s">&quot;Fect Cy D&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;Cambridge&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;Ames Street&quot;</span><span class="p">},</span><span class="w"> </span>
-<span class="w">   </span><span class="mi">3</span><span class="p">}},</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;Hacker Alyssa P&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;Cambridge&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;Mass Ave&quot;</span><span class="p">},</span><span class="w"> </span><span class="mi">78</span><span class="p">}}}</span>
-</pre></div>
+
+```mathematica
+In[]:= SetAttributes[factBase, Orderless];
+facts = factBase[job["Hacker Alyssa P", {computer, programmer}], 
+   address["Hacker Alyssa P", {"Cambridge", {"Mass Ave"}, 78}], 
+   job["Fect Cy D", {computer, programmer}], 
+   address["Fect Cy D", {"Cambridge", {"Ames Street"}, 3}], 
+   job["Foo Bar", {waiter}]];
+ReplaceList[facts,
+ factBase[
+   address[p_, where_], job[p_, {computer, programmer}], ___]
+  :> {p, where}]
+
+Out[]= {{"Fect Cy D", {"Cambridge", {"Ames Street"}, 
+   3}}, {"Hacker Alyssa P", {"Cambridge", {"Mass Ave"}, 78}}}
+```
+
+
 
 
 
@@ -175,13 +199,18 @@ the following information from the data base:
 
 ##### Solution
 
-<div class="codehilite"><pre><span></span><span class="c1">; 1.</span>
-<span class="p">(</span><span class="n">supervisor</span><span class="w"> </span><span class="n">?x</span><span class="w"> </span><span class="p">(</span><span class="n">Bitdiddle</span><span class="w"> </span><span class="n">Ben</span><span class="p">))</span><span class="w"> </span>
-<span class="c1">; 2. </span>
-<span class="p">(</span><span class="n">job</span><span class="w"> </span><span class="n">?name</span><span class="w"> </span><span class="p">(</span><span class="n">accounting</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="n">?type</span><span class="p">))</span>
-<span class="c1">; 3.</span>
-<span class="p">(</span><span class="n">address</span><span class="w"> </span><span class="n">?name</span><span class="w"> </span><span class="p">(</span><span class="n">Slumerville</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="n">?address</span><span class="p">))</span>
-</pre></div>
+
+
+```rkt
+; 1.
+(supervisor ?x (Bitdiddle Ben)) 
+; 2. 
+(job ?name (accounting . ?type))
+; 3.
+(address ?name (Slumerville . ?address))
+```
+
+
 
 #### Exercise 4.56
 
@@ -199,18 +228,23 @@ together with the supervisor's name and job.
 
 ##### Solution
 
-<div class="codehilite"><pre><span></span><span class="c1">; 1.</span>
-<span class="p">(</span><span class="k">and</span><span class="w"> </span><span class="p">(</span><span class="n">supervisor</span><span class="w"> </span><span class="n">?x</span><span class="w"> </span><span class="p">(</span><span class="n">Bitdiddle</span><span class="w"> </span><span class="n">Ben</span><span class="p">))</span>
-<span class="w">     </span><span class="p">(</span><span class="n">address</span><span class="w"> </span><span class="n">?x</span><span class="w"> </span><span class="n">?address</span><span class="p">))</span>
-<span class="c1">; 2. </span>
-<span class="p">(</span><span class="k">and</span><span class="w"> </span><span class="p">(</span><span class="n">salary</span><span class="w"> </span><span class="p">(</span><span class="n">Bitdiddle</span><span class="w"> </span><span class="n">Ben</span><span class="p">)</span><span class="w"> </span><span class="n">?benamount</span><span class="p">)</span>
-<span class="w">     </span><span class="p">(</span><span class="n">salary</span><span class="w"> </span><span class="n">?person</span><span class="w"> </span><span class="n">?personamount</span><span class="p">)</span>
-<span class="w">     </span><span class="p">(</span><span class="n">lisp-value</span><span class="w"> </span><span class="nb">&lt;</span><span class="w"> </span><span class="n">?personamount</span><span class="w"> </span><span class="n">?benamount</span><span class="p">))</span>
-<span class="c1">; 3.</span>
-<span class="p">(</span><span class="k">and</span><span class="w"> </span><span class="p">(</span><span class="n">supervisor</span><span class="w"> </span><span class="n">?person</span><span class="w"> </span><span class="n">?super</span><span class="p">)</span>
-<span class="w">     </span><span class="p">(</span><span class="n">job</span><span class="w"> </span><span class="n">?super</span><span class="w"> </span><span class="p">(</span><span class="n">?division</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="n">?type</span><span class="p">))</span>
-<span class="w">     </span><span class="p">(</span><span class="nb">not</span><span class="w"> </span><span class="p">(</span><span class="n">job</span><span class="w"> </span><span class="n">?super</span><span class="w"> </span><span class="p">(</span><span class="n">computer</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="n">?type</span><span class="p">))))</span>
-</pre></div>
+
+
+```rkt
+; 1.
+(and (supervisor ?x (Bitdiddle Ben))
+     (address ?x ?address))
+; 2. 
+(and (salary (Bitdiddle Ben) ?benamount)
+     (salary ?person ?personamount)
+     (lisp-value < ?personamount ?benamount))
+; 3.
+(and (supervisor ?person ?super)
+     (job ?super (?division . ?type))
+     (not (job ?super (computer . ?type))))
+```
+
+
 
 
 #### Exercise 4.57
@@ -245,18 +279,20 @@ meeting too many.  Fearing that his habit of forgetting meetings could cost him
 his job, Ben decides to do something about it.  He adds all the weekly meetings
 of the firm to the Microshaft data base by asserting the following:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">meeting</span><span class="w"> </span><span class="n">accounting</span><span class="w"> </span><span class="p">(</span><span class="n">Monday</span><span class="w"> </span><span class="n">9am</span><span class="p">))</span>
-<span class="p">(</span><span class="n">meeting</span><span class="w"> </span><span class="n">administration</span><span class="w"> </span><span class="p">(</span><span class="n">Monday</span><span class="w"> </span><span class="n">10am</span><span class="p">))</span>
-<span class="p">(</span><span class="n">meeting</span><span class="w"> </span><span class="n">computer</span><span class="w"> </span><span class="p">(</span><span class="n">Wednesday</span><span class="w"> </span><span class="n">3pm</span><span class="p">))</span>
-<span class="p">(</span><span class="n">meeting</span><span class="w"> </span><span class="n">administration</span><span class="w"> </span><span class="p">(</span><span class="n">Friday</span><span class="w"> </span><span class="n">1pm</span><span class="p">))</span>
-</pre></div>
+```rkt
+(meeting accounting (Monday 9am))
+(meeting administration (Monday 10am))
+(meeting computer (Wednesday 3pm))
+(meeting administration (Friday 1pm))
+```
 
 Each of the above assertions is for a meeting of an entire division.  Ben also
 adds an entry for the company-wide meeting that spans all the divisions.  All
 of the company's employees attend this meeting.
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">meeting</span><span class="w"> </span><span class="n">whole-company</span><span class="w"> </span><span class="p">(</span><span class="n">Wednesday</span><span class="w"> </span><span class="n">4pm</span><span class="p">))</span>
-</pre></div>
+```rkt
+(meeting whole-company (Wednesday 4pm))
+```
 
 **1.** On Friday morning, Ben wants to query the data base for all the meetings that
 occur that day.  What query should he use?
@@ -267,9 +303,10 @@ that says that a person's meetings include all `whole-company` meetings
 plus all meetings of that person's division.  Fill in the body of Alyssa's
 rule.
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">rule</span><span class="w"> </span><span class="p">(</span><span class="n">meeting-time</span><span class="w"> </span><span class="n">?person</span><span class="w"> </span><span class="n">?day-and-time</span><span class="p">)</span>
-<span class="w">      </span><span class="n">⟨@var</span><span class="p">{</span><span class="n">rule-body</span><span class="p">}</span><span class="n">⟩</span><span class="p">)</span>
-</pre></div>
+```rkt
+(rule (meeting-time ?person ?day-and-time)
+      ⟨@var{rule-body}⟩)
+```
 
 **3.** Alyssa arrives at work on Wednesday morning and wonders what meetings she has
 to attend that day.  Having defined the above rule, what query should she make
@@ -283,23 +320,26 @@ to find this out?
 
 By giving the query
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">lives-near</span><span class="w"> </span><span class="n">?person</span><span class="w"> </span><span class="p">(</span><span class="n">Hacker</span><span class="w"> </span><span class="n">Alyssa</span><span class="w"> </span><span class="n">P</span><span class="p">))</span>
-</pre></div>
+```rkt
+(lives-near ?person (Hacker Alyssa P))
+```
 
 Alyssa P. Hacker is able to find people who live near her, with whom she can
 ride to work.  On the other hand, when she tries to find all pairs of people
 who live near each other by querying
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">lives-near</span><span class="w"> </span><span class="n">?person-1</span><span class="w"> </span><span class="n">?person-2</span><span class="p">)</span>
-</pre></div>
+```rkt
+(lives-near ?person-1 ?person-2)
+```
 
 
 she notices that each pair of people who live near each other is listed twice;
 for example,
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">lives-near</span><span class="w"> </span><span class="p">(</span><span class="n">Hacker</span><span class="w"> </span><span class="n">Alyssa</span><span class="w"> </span><span class="n">P</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">Fect</span><span class="w"> </span><span class="n">Cy</span><span class="w"> </span><span class="n">D</span><span class="p">))</span>
-<span class="p">(</span><span class="n">lives-near</span><span class="w"> </span><span class="p">(</span><span class="n">Fect</span><span class="w"> </span><span class="n">Cy</span><span class="w"> </span><span class="n">D</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">Hacker</span><span class="w"> </span><span class="n">Alyssa</span><span class="w"> </span><span class="n">P</span><span class="p">))</span>
-</pre></div>
+```rkt
+(lives-near (Hacker Alyssa P) (Fect Cy D))
+(lives-near (Fect Cy D) (Hacker Alyssa P))
+```
 
 Why does this happen?  Is there a way to find a list of people who live near
 each other, in which each pair appears only once?  Explain.
@@ -311,16 +351,18 @@ each other, in which each pair appears only once?  Explain.
 The following rules implement a
 `next-to` relation that finds adjacent elements of a list:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">rule</span><span class="w"> </span><span class="p">(</span><span class="n">?x</span><span class="w"> </span><span class="n">next-to</span><span class="w"> </span><span class="n">?y</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="p">(</span><span class="n">?x</span><span class="w"> </span><span class="n">?y</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="n">?u</span><span class="p">)))</span>
-<span class="p">(</span><span class="n">rule</span><span class="w"> </span><span class="p">(</span><span class="n">?x</span><span class="w"> </span><span class="n">next-to</span><span class="w"> </span><span class="n">?y</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="p">(</span><span class="n">?v</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="n">?z</span><span class="p">))</span>
-<span class="w">      </span><span class="p">(</span><span class="n">?x</span><span class="w"> </span><span class="n">next-to</span><span class="w"> </span><span class="n">?y</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">?z</span><span class="p">))</span>
-</pre></div>
+```rkt
+(rule (?x next-to ?y in (?x ?y . ?u)))
+(rule (?x next-to ?y in (?v . ?z))
+      (?x next-to ?y in ?z))
+```
 
 What will the response be to the following queries?
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">?x</span><span class="w"> </span><span class="n">next-to</span><span class="w"> </span><span class="n">?y</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="mi">4</span><span class="p">))</span>
-<span class="p">(</span><span class="n">?x</span><span class="w"> </span><span class="n">next-to</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
-</pre></div>
+```rkt
+(?x next-to ?y in (1 (2 3) 4))
+(?x next-to 1 in (2 1 3 1))
+```
 
 ##### Solution
 
@@ -341,13 +383,14 @@ The following data base (see
 Genesis 4) traces the genealogy of the descendants of Ada back to Adam, by way
 of Cain:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">son</span><span class="w"> </span><span class="n">Adam</span><span class="w"> </span><span class="n">Cain</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">son</span><span class="w"> </span><span class="n">Cain</span><span class="w"> </span><span class="n">Enoch</span><span class="p">)</span>
-<span class="p">(</span><span class="n">son</span><span class="w"> </span><span class="n">Enoch</span><span class="w"> </span><span class="n">Irad</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">son</span><span class="w"> </span><span class="n">Irad</span><span class="w"> </span><span class="n">Mehujael</span><span class="p">)</span>
-<span class="p">(</span><span class="n">son</span><span class="w"> </span><span class="n">Mehujael</span><span class="w"> </span><span class="n">Methushael</span><span class="p">)</span>
-<span class="p">(</span><span class="n">son</span><span class="w"> </span><span class="n">Methushael</span><span class="w"> </span><span class="n">Lamech</span><span class="p">)</span>
-<span class="p">(</span><span class="n">wife</span><span class="w"> </span><span class="n">Lamech</span><span class="w"> </span><span class="n">Ada</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">son</span><span class="w"> </span><span class="n">Ada</span><span class="w"> </span><span class="n">Jabal</span><span class="p">)</span>
-<span class="p">(</span><span class="n">son</span><span class="w"> </span><span class="n">Ada</span><span class="w"> </span><span class="n">Jubal</span><span class="p">)</span>
-</pre></div>
+```rkt
+(son Adam Cain) (son Cain Enoch)
+(son Enoch Irad) (son Irad Mehujael)
+(son Mehujael Methushael)
+(son Methushael Lamech)
+(wife Lamech Ada) (son Ada Jabal)
+(son Ada Jubal)
+```
 
 Formulate rules such as ``If $S$ is the son of $f$, and $f$ is the son of
 $G$, then $S$ is the grandson of $G$'' and ``If $W$ is the wife of
@@ -366,19 +409,21 @@ the `outranked-by` rule (4.4.1) from the data base.  When he
 realizes this, he quickly reinstalls it.  Unfortunately, he makes a slight
 change in the rule, and types it in as
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">rule</span><span class="w"> </span><span class="p">(</span><span class="n">outranked-by</span><span class="w"> </span><span class="n">?staff-person</span><span class="w"> </span><span class="n">?boss</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">or</span><span class="w"> </span><span class="p">(</span><span class="n">supervisor</span><span class="w"> </span><span class="n">?staff-person</span><span class="w"> </span><span class="n">?boss</span><span class="p">)</span>
-<span class="w">      </span><span class="p">(</span><span class="k">and</span><span class="w"> </span><span class="p">(</span><span class="n">outranked-by</span><span class="w"> </span><span class="n">?middle-manager</span>
-<span class="w">                         </span><span class="n">?boss</span><span class="p">)</span>
-<span class="w">           </span><span class="p">(</span><span class="n">supervisor</span><span class="w"> </span><span class="n">?staff-person</span><span class="w"> </span>
-<span class="w">                       </span><span class="n">?middle-manager</span><span class="p">))))</span>
-</pre></div>
+```rkt
+(rule (outranked-by ?staff-person ?boss)
+  (or (supervisor ?staff-person ?boss)
+      (and (outranked-by ?middle-manager
+                         ?boss)
+           (supervisor ?staff-person 
+                       ?middle-manager))))
+```
 
 Just after Louis types this information into the system, DeWitt Aull comes by
 to find out who outranks Ben Bitdiddle. He issues the query
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">outranked-by</span><span class="w"> </span><span class="p">(</span><span class="n">Bitdiddle</span><span class="w"> </span><span class="n">Ben</span><span class="p">)</span><span class="w"> </span><span class="n">?who</span><span class="p">)</span>
-</pre></div>
+```rkt
+(outranked-by (Bitdiddle Ben) ?who)
+```
 
 After answering, the system goes into an infinite loop.  Explain why.
 
@@ -390,18 +435,20 @@ Cy D. Fect, looking forward to
 the day when he will rise in the organization, gives a query to find all the
 wheels (using the `wheel` rule of 4.4.1):
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">wheel</span><span class="w"> </span><span class="n">?who</span><span class="p">)</span>
-</pre></div>
+```rkt
+(wheel ?who)
+```
 
 To his surprise, the system responds
 
-<div class="codehilite"><pre><span></span><span class="c1">;;; Query results:</span>
-<span class="p">(</span><span class="n">wheel</span><span class="w"> </span><span class="p">(</span><span class="n">Warbucks</span><span class="w"> </span><span class="n">Oliver</span><span class="p">))</span>
-<span class="p">(</span><span class="n">wheel</span><span class="w"> </span><span class="p">(</span><span class="n">Bitdiddle</span><span class="w"> </span><span class="n">Ben</span><span class="p">))</span>
-<span class="p">(</span><span class="n">wheel</span><span class="w"> </span><span class="p">(</span><span class="n">Warbucks</span><span class="w"> </span><span class="n">Oliver</span><span class="p">))</span>
-<span class="p">(</span><span class="n">wheel</span><span class="w"> </span><span class="p">(</span><span class="n">Warbucks</span><span class="w"> </span><span class="n">Oliver</span><span class="p">))</span>
-<span class="p">(</span><span class="n">wheel</span><span class="w"> </span><span class="p">(</span><span class="n">Warbucks</span><span class="w"> </span><span class="n">Oliver</span><span class="p">))</span>
-</pre></div>
+```rkt
+;;; Query results:
+(wheel (Warbucks Oliver))
+(wheel (Bitdiddle Ben))
+(wheel (Warbucks Oliver))
+(wheel (Warbucks Oliver))
+(wheel (Warbucks Oliver))
+```
 
 Why is Oliver Warbucks listed four times?
 
@@ -413,16 +460,18 @@ Ben has been generalizing the
 query system to provide statistics about the company.  For example, to find the
 total salaries of all the computer programmers one will be able to say
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">sum</span><span class="w"> </span><span class="n">?amount</span>
-<span class="w">     </span><span class="p">(</span><span class="k">and</span><span class="w"> </span><span class="p">(</span><span class="n">job</span><span class="w"> </span><span class="n">?x</span><span class="w"> </span><span class="p">(</span><span class="n">computer</span><span class="w"> </span><span class="n">programmer</span><span class="p">))</span>
-<span class="w">          </span><span class="p">(</span><span class="n">salary</span><span class="w"> </span><span class="n">?x</span><span class="w"> </span><span class="n">?amount</span><span class="p">)))</span>
-</pre></div>
+```rkt
+(sum ?amount
+     (and (job ?x (computer programmer))
+          (salary ?x ?amount)))
+```
 
 In general, Ben's new system allows expressions of the form
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">accumulation-function</span><span class="w"> </span><span class="n">⟨@var</span><span class="p">{</span><span class="n">variable</span><span class="p">}</span><span class="n">⟩</span>
-<span class="w">                       </span><span class="n">⟨@var</span><span class="p">{</span><span class="n">query</span><span class="w"> </span><span class="n">pattern</span><span class="p">}</span><span class="n">⟩</span><span class="p">)</span>
-</pre></div>
+```rkt
+(accumulation-function ⟨@var{variable}⟩
+                       ⟨@var{query pattern}⟩)
+```
 
 
 where `accumulation-function` can be things like `sum`,
@@ -489,13 +538,14 @@ What is the purpose of the
 `add-assertion!`?  Hint: Recall the definition of the infinite stream of
 ones in 3.5.2: `(define ones (cons-stream 1 ones))`.
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">add-assertion!</span><span class="w"> </span><span class="n">assertion</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="n">store-assertion-in-index</span><span class="w"> </span><span class="n">assertion</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">set!</span><span class="w"> </span><span class="n">THE-ASSERTIONS</span>
-<span class="w">        </span><span class="p">(</span><span class="n">cons-stream</span><span class="w"> </span><span class="n">assertion</span><span class="w"> </span>
-<span class="w">                     </span><span class="n">THE-ASSERTIONS</span><span class="p">))</span>
-<span class="w">  </span><span class="o">&#39;</span><span class="ss">ok</span><span class="p">)</span>
-</pre></div>
+```rkt
+(define (add-assertion! assertion)
+  (store-assertion-in-index assertion)
+  (set! THE-ASSERTIONS
+        (cons-stream assertion 
+                     THE-ASSERTIONS))
+  'ok)
+```
 
 ##### Solution
 
@@ -506,24 +556,25 @@ Louis Reasoner wonders why the
 implemented using explicit `delay` operations, rather than being defined
 as follows:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">simple-query</span><span class="w"> </span>
-<span class="w">         </span><span class="n">query-pattern</span><span class="w"> </span><span class="n">frame-stream</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="n">stream-flatmap</span>
-<span class="w">   </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
-<span class="w">     </span><span class="p">(</span><span class="nb">stream-append</span>
-<span class="w">      </span><span class="p">(</span><span class="n">find-assertions</span><span class="w"> </span><span class="n">query-pattern</span><span class="w"> </span><span class="n">frame</span><span class="p">)</span>
-<span class="w">      </span><span class="p">(</span><span class="n">apply-rules</span><span class="w"> </span><span class="n">query-pattern</span><span class="w"> </span><span class="n">frame</span><span class="p">)))</span>
-<span class="w">   </span><span class="n">frame-stream</span><span class="p">))</span>
+```rkt
+(define (simple-query 
+         query-pattern frame-stream)
+  (stream-flatmap
+   (lambda (frame)
+     (stream-append
+      (find-assertions query-pattern frame)
+      (apply-rules query-pattern frame)))
+   frame-stream))
 
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="nb">disjoin</span><span class="w"> </span><span class="n">disjuncts</span><span class="w"> </span><span class="n">frame-stream</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">empty-disjunction?</span><span class="w"> </span><span class="n">disjuncts</span><span class="p">)</span>
-<span class="w">      </span><span class="n">the-empty-stream</span>
-<span class="w">      </span><span class="p">(</span><span class="n">interleave</span>
-<span class="w">       </span><span class="p">(</span><span class="n">qeval</span><span class="w"> </span><span class="p">(</span><span class="n">first-disjunct</span><span class="w"> </span><span class="n">disjuncts</span><span class="p">)</span>
-<span class="w">              </span><span class="n">frame-stream</span><span class="p">)</span>
-<span class="w">       </span><span class="p">(</span><span class="nb">disjoin</span><span class="w"> </span><span class="p">(</span><span class="n">rest-disjuncts</span><span class="w"> </span><span class="n">disjuncts</span><span class="p">)</span>
-<span class="w">                </span><span class="n">frame-stream</span><span class="p">))))</span>
-</pre></div>
+(define (disjoin disjuncts frame-stream)
+  (if (empty-disjunction? disjuncts)
+      the-empty-stream
+      (interleave
+       (qeval (first-disjunct disjuncts)
+              frame-stream)
+       (disjoin (rest-disjuncts disjuncts)
+                frame-stream))))
+```
 
 Can you give examples of queries where these simpler definitions would lead to
 undesirable behavior?
@@ -544,13 +595,14 @@ use `interleave` in 3.5.3?)
 Why does `flatten-stream`
 use `delay` explicitly?  What would be wrong with defining it as follows:
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">flatten-stream</span><span class="w"> </span><span class="k">stream</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">stream-null?</span><span class="w"> </span><span class="k">stream</span><span class="p">)</span>
-<span class="w">      </span><span class="n">the-empty-stream</span>
-<span class="w">      </span><span class="p">(</span><span class="n">interleave</span><span class="w"> </span><span class="p">(</span><span class="n">stream-car</span><span class="w"> </span><span class="k">stream</span><span class="p">)</span>
-<span class="w">                  </span><span class="p">(</span><span class="n">flatten-stream</span><span class="w"> </span>
-<span class="w">                   </span><span class="p">(</span><span class="n">stream-cdr</span><span class="w"> </span><span class="k">stream</span><span class="p">)))))</span>
-</pre></div>
+```rkt
+(define (flatten-stream stream)
+  (if (stream-null? stream)
+      the-empty-stream
+      (interleave (stream-car stream)
+                  (flatten-stream 
+                   (stream-cdr stream)))))
+```
 
 ##### Solution
 
@@ -564,14 +616,15 @@ a singleton stream, so no interleaving is needed when combining these streams.
 
 **1.** Fill in the missing expressions in Alyssa's program.
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">simple-stream-flatmap</span><span class="w"> </span><span class="n">proc</span><span class="w"> </span><span class="n">s</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="n">simple-flatten</span><span class="w"> </span><span class="p">(</span><span class="nb">stream-map</span><span class="w"> </span><span class="n">proc</span><span class="w"> </span><span class="n">s</span><span class="p">)))</span>
+```rkt
+(define (simple-stream-flatmap proc s)
+  (simple-flatten (stream-map proc s)))
 
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">simple-flatten</span><span class="w"> </span><span class="k">stream</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="nb">stream-map</span><span class="w"> </span><span class="n">⟨??⟩</span>
-<span class="w">              </span><span class="p">(</span><span class="nb">stream-filter</span><span class="w"> </span><span class="n">⟨??⟩</span><span class="w"> </span>
-<span class="w">                             </span><span class="k">stream</span><span class="p">)))</span>
-</pre></div>
+(define (simple-flatten stream)
+  (stream-map ⟨??⟩
+              (stream-filter ⟨??⟩ 
+                             stream)))
+```
 
 **2.** Does the query system's behavior change if we change it in this way?
 
@@ -586,29 +639,33 @@ a new special form called `unique`.  `Unique` should succeed if there
 is precisely one item in the data base satisfying a specified query.  For
 example,
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">unique</span><span class="w"> </span><span class="p">(</span><span class="n">job</span><span class="w"> </span><span class="n">?x</span><span class="w"> </span><span class="p">(</span><span class="n">computer</span><span class="w"> </span><span class="n">wizard</span><span class="p">)))</span>
-</pre></div>
+```rkt
+(unique (job ?x (computer wizard)))
+```
 
 
 should print the one-item stream
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">unique</span><span class="w"> </span><span class="p">(</span><span class="n">job</span><span class="w"> </span><span class="p">(</span><span class="n">Bitdiddle</span><span class="w"> </span><span class="n">Ben</span><span class="p">)</span>
-<span class="w">             </span><span class="p">(</span><span class="n">computer</span><span class="w"> </span><span class="n">wizard</span><span class="p">)))</span>
-</pre></div>
+```rkt
+(unique (job (Bitdiddle Ben)
+             (computer wizard)))
+```
 
 
 since Ben is the only computer wizard, and
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">unique</span><span class="w"> </span><span class="p">(</span><span class="n">job</span><span class="w"> </span><span class="n">?x</span><span class="w"> </span><span class="p">(</span><span class="n">computer</span><span class="w"> </span><span class="n">programmer</span><span class="p">)))</span>
-</pre></div>
+```rkt
+(unique (job ?x (computer programmer)))
+```
 
 
 should print the empty stream, since there is more than one computer
 programmer.  Moreover,
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">and</span><span class="w"> </span><span class="p">(</span><span class="n">job</span><span class="w"> </span><span class="n">?x</span><span class="w"> </span><span class="n">?j</span><span class="p">)</span><span class="w"> </span>
-<span class="w">     </span><span class="p">(</span><span class="n">unique</span><span class="w"> </span><span class="p">(</span><span class="n">job</span><span class="w"> </span><span class="n">?anyone</span><span class="w"> </span><span class="n">?j</span><span class="p">)))</span>
-</pre></div>
+```rkt
+(and (job ?x ?j) 
+     (unique (job ?anyone ?j)))
+```
 
 
 should list all the jobs that are filled by only one person, and the people who
@@ -620,8 +677,9 @@ procedure that handles this special form, and the second is to make
 `qeval` does its dispatching in a data-directed way.  If your procedure is
 called `uniquely-asserted`, all you need to do is
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">put</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">unique</span><span class="w"> </span><span class="o">&#39;</span><span class="ss">qeval</span><span class="w"> </span><span class="n">uniquely-asserted</span><span class="p">)</span>
-</pre></div>
+```rkt
+(put 'unique 'qeval uniquely-asserted)
+```
 
 
 and `qeval` will dispatch to this procedure for every query whose
@@ -699,14 +757,19 @@ evaluator in 4.1, we saw how to use local environments to avoid
 name conflicts between the parameters of procedures.  For example, in
 evaluating
 
-<div class="codehilite"><pre><span></span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">square</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span>
-<span class="w">  </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">x</span><span class="p">))</span>
 
-<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">sum-of-squares</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="p">(</span><span class="n">square</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">square</span><span class="w"> </span><span class="n">y</span><span class="p">)))</span>
 
-<span class="p">(</span><span class="n">sum-of-squares</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span>
-</pre></div>
+```rkt
+(define (square x) 
+  (* x x))
+
+(define (sum-of-squares x y)
+  (+ (square x) (square y)))
+
+(sum-of-squares 3 4)
+```
+
+
 
 
 there is no confusion between the `x` in `square` and the `x` in

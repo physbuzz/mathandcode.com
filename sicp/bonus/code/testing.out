@@ -1,6 +1,0 @@
-
-Error (exit code 1):
-src/bonus/code/testing.rkt:165:3: tagged-list?: unbound identifier
-  in: tagged-list?
-  location...:
-   src/bonus/code/testing.rkt:165:3
