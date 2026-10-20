@@ -1,0 +1,19 @@
+---
+layout: page
+title: Tags
+permalink: /tags/
+description: mathandcode posts grouped by topic.
+---
+
+{% for tag in site.tag_list %}
+<section class="tag-section" id="{{ tag.slug }}">
+  <h2>{{ tag.name }}</h2>
+  <ul class="dense-post-list">
+    {% for post in tag.posts %}
+    <li>
+      <time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%B %-d, %Y" }}</time>&mdash;<a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endfor %}
