@@ -3,7 +3,6 @@ layout: post
 title:  "Rolling Disk Constraint"
 date:   2014-10-02 00:00:01 -0800
 permalink: /disk/
-description: "The disk is described by lateral position $(x,y)$ and Euler angles $(\\theta,\\phi,\\psi)$ (the dynamic variables),\nand constants of radius $r$ and mass per unit area $\\lambda$. The Lagrangian (calculated through Mathematica) is:"
 ---
 
 The disk is described by lateral position $(x,y)$ and Euler angles $(\theta,\phi,\psi)$ (the dynamic variables),

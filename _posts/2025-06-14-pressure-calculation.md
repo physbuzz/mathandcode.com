@@ -2,7 +2,6 @@
 layout: post
 title:  "Finding the pressure by counting the magnitude of impacts on a wall"
 date:   2025-06-14 00:00:01 -0800
-description: "Suppose you have a container full of a classical ideal gas. To measure the pressure of the gas, you look at the total impulse applied to the wall during a time period $\\delta t$ and divide the total impulse by $\\delta t\\times A$ to get the average force per unit area, ie the pressure. "
 ---
 
 Directory
@@ -16,6 +15,7 @@ Directory
 
 ---
 
+<span id="section0"></span>
 Suppose you have a container full of a classical ideal gas. To measure the pressure of the gas, you look at the total impulse applied to the wall during a time period $\delta t$ and divide the total impulse by $\delta t\times A$ to get the average force per unit area, ie the pressure. 
 
 This is a common exercise in computational physics classrooms, but the results are often quite noisy. For example, here is a 

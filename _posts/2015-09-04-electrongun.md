@@ -4,7 +4,6 @@ title:  "Simulation of How to Build an Electron Gun"
 date:   2015-09-04 12:00:00
 tags: Physics Technical 
 permalink: /egun/
-description: "The following post provides a basic electron gun simulation and\nguides you through the various components. \nThe simulation assumes \n*cylindrical symmetry* about the central vertical axis. That means that\nif you draw a horizontal line, you've really drawn a solid disk, and if\nyou draw a vertical line, you've really drawn a hollow cylinder."
 ---
 
 The following post provides a basic electron gun simulation and

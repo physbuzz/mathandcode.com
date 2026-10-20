@@ -3,7 +3,6 @@ layout: post
 title: Nonlinear Resonance
 date:   2014-10-10 00:00:01 -0800
 permalink: /nonlinearosc/
-description: "This program demonstrates the properties of nonlinear resonance\nin the following equation, following an excerpt from Landau and Lifshitz's Mechanics."
 ---
 
 

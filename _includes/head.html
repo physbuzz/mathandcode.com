@@ -2,8 +2,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% if page.title %}{{ page.title | escape }} | {% endif %}{{ site.title | escape }}</title>
-  {% if page.description %}
-  <meta name="description" content="{{ page.description | strip_html | strip_newlines | truncate: 160 | escape }}">
+  {% assign description = page.description %}
+  {% if description == nil and page.layout != 'sicp' %}
+  {% assign description = page.excerpt %}
+  {% endif %}
+  {% assign description = description | default: '' | strip_html | strip_newlines | strip %}
+  {% if description != blank %}
+  <meta name="description" content="{{ description | truncate: 160 | escape }}">
   {% endif %}
   <link rel="canonical" href="{{ page.url | replace: 'index.html', '' | prepend: site.baseurl | prepend: site.url | escape }}">
   <link rel="icon" type="image/x-icon" href="{{ '/favicon.ico?v=5' | relative_url | escape }}">

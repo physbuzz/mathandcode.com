@@ -2,10 +2,7 @@
 layout: post
 title:  "Gaussian Integral Notes (Scalar Field Theory Part 1)"
 date:   2026-05-18 00:00:01 -0800
-description: "This is a set of notes moving towards the simplest statistical or quantum field theory of all: the free scalar field. In part 1, I cover some of the gory details about the multivariate Gaussian integral and multivariate Gaussian probability distribution. I don't specialize to a specific form of covariance matrix, and I try to include as many neat facts as I know. This is the reference I wish I read or wrote way back in 2017 when I first learned all this stuff."
 ---
-
-# Gaussian Integral Notes (Scalar Field Theory Part 1)
 
 This is a set of notes moving towards the simplest statistical or quantum field theory of all: the free scalar field. In part 1, I cover some of the gory details about the multivariate Gaussian integral and multivariate Gaussian probability distribution. I don't specialize to a specific form of covariance matrix, and I try to include as many neat facts as I know. This is the reference I wish I read or wrote way back in 2017 when I first learned all this stuff.
 
@@ -21,29 +18,9 @@ This is discussed in the way I've learned about it in my physics coursework, so 
 
 Wick's theorem is not discussed in as much detail as it deserves, and I do not apply it to perturbation theory here.
 
-## Directory <a name="directory"></a>
+@toc
 
-- [1. The Partition Function](#section1)
-- [2. Expectation Values](#section2)
-	- [Bringing the Expectation Inside the Exponent](#section2a)
-	- [Ward and Schwinger-Dyson  ](#section2b)
-- [3. Marginalizing and Conditioning to Zero](#section3)
-	- [Marginalizing](#section3a)
-	- [Conditioning](#section3b)
-- [4. Conditioning on an Affine-Linear Constraint](#section4)
-	- [Conditioned Expectation Values via Integration](#section4a)
-	- [Conditioned Expectation Values via Projection](#section4b)
-	- [An Example of Conditioning: Fixed Total Mass](#section4c)
-- [5. As an Integral over Shells](#section5)
-- [6. Sampling from a Multivariate Gaussian](#section6)
-	- [Sampling given the Covariance Matrix](#section6a)
-	- [Sampling given the Hessian](#section6b)
-	- [One-Dimensional Gaussian Field Examples](#section6c)
-- [Appendix: Extra derivations and Practice Problems](#appendix)
-	- [Schur Complements](#appendix-a)
-	- [Fresnel Integral Derivation](#appendix-b)
-	
-## 1. The Partition Function <a name="section1"></a>
+## 1. The Partition Function
 For a positive definite and symmetric linear operator $A$ in $d$ dimensions, 
 
 $$\int_{\mathbb{R}^d} \mathrm{d}^dx \exp(-\frac{1}{2}x^T A x)=\left(\operatorname{det} \frac{A}{2\pi}\right)^{-1/2}.$$
@@ -58,7 +35,7 @@ Z(J)&=\int_{\mathbb{R}^d} \mathrm{d}^dx \exp\left(-\frac{1}{2}x^T A x+J^T x\righ
 
 The matrix $A$ is the inverse covariance matrix (proved later). It is also called the Hessian matrix because it often arises in physical settings from a Taylor expansion.
 
-## 2. Expectation Values <a name="section2"></a>
+## 2. Expectation Values
 
 Suppose we care about expectation values of the field value $x_i$ evaluated at some source term $J=h.$ We find the mean $\mu:$
 
@@ -104,7 +81,7 @@ If we're feeling crazy we can let the mean be nonzero. The sum is taken over all
 $$\langle \prod_{k=1}^n x_{i_k}\rangle = \sum_{\substack{\text{partial Wick}\\ \text{ pairings}}}\prod_{a,b}\Sigma_{i_a i_b}
 \prod_{c}\mu_{i_c}$$
 
-### Bringing the Expectation Inside the Exponent <a name="section2a"></a>
+### Bringing the Expectation Inside the Exponent
 
 For a distribution $P(x)\propto \exp(-\frac{1}{2}x^T A x+h^T x),$ we of course have 
 
@@ -124,7 +101,7 @@ where $\kappa_n$ is the $n$th cumulant of the random variable $y$ (mean, varianc
 
 Note that if $y$ is not a Gaussian random variable then the situation is much more complicated and $\kappa_n(y)$ will not truncate, nor be simple to calculate! This complexity includes the situation where $y$ depends in a nonlinear way on the Gaussian random variables $x.$ 
 
-### Ward and Schwinger-Dyson  <a name="section2b"></a>
+### Ward and Schwinger-Dyson
 
 The Schwinger-Dyson equation can be derived from the fact that, for a reasonably well-behaved function $F:$
 
@@ -159,7 +136,7 @@ F \partial_i v_i\rangle+\langle v_i\partial_i F\rangle=\langle
 
 Why doesn't this blow us away? Because it can be derived by simply applying the Schwinger-Dyson equation to $F'=v_i F.$ But the interpretation is important, and in quantum field theory it's also important when $v_i$ is a symmetry of the system. There the action $S=\frac{1}{2}x^T A x-h^T x$ and for a symmetry we may have $\partial_i v_i=0$ and $v_i \partial_i S=0.$ Our Ward identity is then $\langle v_i \partial_i F\rangle =0.$
 
-## 3. Marginalizing and Conditioning to Zero <a name="section3"></a>
+## 3. Marginalizing and Conditioning to Zero
 
 As a reminder, if we have a continuous joint probability distribution $P(x,y)$, marginalizing the variable $y$ gives a distribution
 
@@ -169,7 +146,7 @@ while conditioning on the variable $y$ gives
 
 $$P(x|y)=\frac{P(x,y)}{\int \mathrm{d}x P(x,y)}.$$
 
-### Marginalizing <a name="section3a"></a>
+### Marginalizing 
 
 For marginalizing on a variable $x_i$ in a multivariate Gaussian, performing the integral $\textrm{d}x_i$ explicitly is a bit tedious (though it's just completing the square in the exponent). The key is that marginalizing doesn't change expectation values. So $\Sigma_{jk}$ is unchanged, except at row and column $i.$ We conclude that marginalizing deletes rows and columns of the covariance matrix.
 
@@ -186,7 +163,7 @@ h_{\mathrm{marg}}&=h_u-A_{uv}A_{vv}^{-1}h_v\end{align*}$$</div>
 
 $A_{\mathrm{marg}}$ is called the Schur complement of the block $A_{vv}$ in $A.$ The Schur complement is discussed in the appendix as a problem set. I find it a bit funny that the expression for $h_{\mathrm{marg}}$ takes a bit of work, even though the mean $\mu_u$ is unchanged!
 
-### Conditioning <a name="section3b"></a>
+### Conditioning 
 
 If a multivariate Gaussian is given in terms of the Hessian, then conditioning on $x_i=0$ for some $i$ is trivial, because this simply deletes the relevant rows and columns from the Hessian. 
 
@@ -201,7 +178,7 @@ Then conditioning gives:
 <div>$$\begin{align*}\Sigma_{\mathrm{cond}}&=\Sigma_{uu}-\Sigma_{uv}\Sigma_{vv}^{-1}\Sigma_{uv}^T\\
 \mu_{\mathrm{cond}}&=\mu_u-\Sigma_{uv}\Sigma_{vv}^{-1}\mu_v\end{align*}$$</div>
 
-## 4. Conditioning on an Affine-Linear Constraint. <a name="section4"></a>
+## 4. Conditioning on an Affine-Linear Constraint. 
 
 Conditioning on a general linear constraint $a\cdot x=b$ shifts the mean and reduces the rank of the covariance matrix by one, so the Hessian and covariance matrices are no longer cleanly inverses of each other. Working through the formulas for this now will help us later in finding an algorithm to sample from a conditioned Gaussian. The PDF of a conditioned Gaussian is given by
 
@@ -209,7 +186,7 @@ $$P(x)\propto \delta(a^Tx-b) \exp\left(-\frac{1}{2}(x-\mu)^T \Sigma^{-1}(x-\mu)\
 
 If we find $\langle x_i\rangle$ and $\langle x_i x_j\rangle_c,$ we know everything there is to know about the constrained distribution. We'll do this two ways, first by integration, and second by thinking about how to project the vector $x$ into the relevant hyperplane.
 
-### Conditioned Expectation Values via Integration <a name="section4a"></a>
+### Conditioned Expectation Values via Integration 
 
 The trick here is to write $\delta(x)=\int \frac{dk}{2\pi}e^{ikx},$ then do the integral $\textrm{d}^d x,$ then do the integral $\textrm{d}k.$ It is useful to shift the integral to $x'=x-\mu$ and $c=b-a^T \mu.$ Also, let $Z_0(J)$ be the value of the partition function without the delta function prefactor. We find...
 
@@ -248,7 +225,7 @@ and
 
 $$\langle x_i\rangle =\left( \mu+\frac{b-a^T\mu}{a^T\Sigma a}\Sigma a \right)_i$$
 
-### Conditioned Expectation Values via Projection <a name="section4b"></a>
+### Conditioned Expectation Values via Projection 
 
 If we don't like evaluating integrals, there is a more procedural way to think about finding the conditioned expectation value. The idea is to sample $x$ from the full Gaussian (so $x\sim \mathcal{N}(\mu,\Sigma)$) and then do an affine projection to the plane $a^Tx=b.$ We call this operator $\operatorname{Proj},$ and we consider only projections with $\operatorname{Proj}(x)=x$ for points which satisfy $a^T x=b.$ Then we naturally have an equality of probability distributions $P(\operatorname{Proj}(x)\|a^Tx=b)=P(x\|a^Tx=b).$ We can go one step further: if this projection has the magical property that 
 
@@ -315,7 +292,7 @@ and covariance
 $$\Sigma'=\Sigma-\Sigma L^T(L\Sigma L^T)^{-1} L \Sigma.$$
 
 
-### An Example of Conditioning: Fixed Total Mass <a name="section4c"></a>
+### An Example of Conditioning: Fixed Total Mass 
 
 Suppose each variable $x_i$ represents the total mass in some fixed volume labeled by $i,$ and we're modeling the distribution of masses as a multivariate Gaussian. We might have used the grand canonical ensemble, so the total mass isn't fixed. After the fact, we recover the conservation of mass by conditioning to the hyperplane $\sum_i x_i=M.$ Applying this constraint $\mathbf{1}^Tx=M,$ we find our new mean
   
@@ -331,7 +308,7 @@ $$\Sigma'_{ij}=\sigma^2\left(\delta_{ij}-\frac{1}{N}\right)$$
 
 The diagonal terms become smaller, and the off-diagonal terms become negative! Conditioning on total mass gives an anticorrelation between cells $x_i.$
 
-## 5. As an Integral over Shells <a name="section5"></a>
+## 5. As an Integral over Shells 
 
 Surfaces of equiprobability are given by $E=\frac{1}{2}x^T A x.$ We can write $Z=\int \mathrm{d}E\Omega(E)e^{-E},$ where $\Omega(E)$ is the density of states with energy $E:$
 
@@ -353,9 +330,9 @@ This tells us a few things:
 These facts tell us that the relative width of $E$ about its maximum goes like $\sqrt{1/d},$ which is why you hear people saying that a high dimensional Gaussian is "concentrated in a thin spherical shell." In my opinion this should be taken with a grain of salt, but that's what people mean.
 
 
-## 6. Sampling from a multivariate Gaussian <a name="section6"></a>
+## 6. Sampling from a multivariate Gaussian 
 
-### Sampling given the Covariance Matrix <a name="section6a"></a>
+### Sampling given the Covariance Matrix 
 
 In Mathematica, we can just use the `MultinormalDistribution[mean,cov]` command to construct the distribution we want. But of course if we're good computational physicists, we want to understand the algorithms behind this function.
 
@@ -415,7 +392,7 @@ Out[]:= {8.82426, 2.81141}
 {9.04719, 2.70776}
 ```
 
-### Sampling given the Hessian <a name="section6b"></a>
+### Sampling given the Hessian 
 Given $P(x)\propto \exp(-\frac{1}{2}x^TAx),$ we can again do the Cholesky decomposition $A=L L^T.$ If $\nu$ is again our random sample vector, then we just have to do a linear solve $L^Tx=\nu$ to get our sample $x.$
 
 Using the testing code of the previous section as a base shows similar performance for our case.
@@ -438,7 +415,7 @@ AbsoluteTiming[sampleHessian = Module[{solver, ll},
 Out[]:= {9.30596, 2.60695}
 ```
 
-### One-Dimensional Gaussian Field Examples <a name="section6c"></a>
+### One-Dimensional Gaussian Field Examples 
 
 We have all of these fancy tools, and so I can't help myself from throwing them all at the problem at once. Let's allow for arbitrary linear constraints $Lx=b$ (allowing for both of these to be empty `l=b={}`). Our energy function will be the discrete second derivative with a mass term 
 $$E=\sum_i (-x_i (x_{i+1}+x_{i-1}-2x_i)/\Delta x^2 + m^2 x_i^2),$$
@@ -543,9 +520,9 @@ gaussianField1Dfaster[npts_, m_, k_, l_ : {}, b_ : {}] :=
 ```
 
 
-# Appendix: Extra derivations and Practice Problems <a name="appendix"></a>
+# Appendix: Extra derivations and Practice Problems 
 
-### Schur Complements <a name="appendix-a"></a>
+### Schur Complements 
 
 **Question:** Given a matrix which can be decomposed into block matrices $M=\begin{bmatrix}A & B\\ C & D\end{bmatrix},$ find the block-wise entries of $M^{-1}.$ Organize your answer such that the matrix $M/D=A-B D^{-1}C$ is used. What is $M/D$ called? (Assume everything that needs to be invertible is invertible).
 
@@ -634,7 +611,7 @@ Therefore:
 
 $$\mu'=\mu+\Sigma L^T(L\Sigma L^T)^{-1}(b-L\mu)$$
 
-### Fresnel Integral Derivation <a name="appendix-b"></a>
+### Fresnel Integral Derivation 
 
 **Question:** Calculate the Fresnel integral $\int_{-\infty}^\infty \exp\left(\pm i a\frac12 x^2\right)\mathrm{d}x$ where $a\gt 0.$
 

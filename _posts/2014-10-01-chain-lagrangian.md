@@ -3,7 +3,6 @@ layout: post
 title:  "Massive Chain Lagrangian"
 date:   2014-10-01 00:00:01 -0800
 permalink: /chain/
-description: "Conclusion: A massive chain's end in this initial configuration\nfalls faster than a ball dropped from the same height!"
 ---
 
 <img src="{{ site.baseurl }}/img/bungee.png"></img>

@@ -2,7 +2,6 @@
 layout: post
 title:  "Wirtinger Derivative Approach to Complex Analysis"
 date:   2025-06-12 00:00:01 -0800
-description: "In this article I take the point of view of introducing complex analysis by starting with the definitions of the derivative and the Jacobian, and rephrasing what we already know about these things in terms of complex numbers. This approach has two benefits:"
 ---
 
 Directory

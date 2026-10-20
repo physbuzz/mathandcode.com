@@ -1,7 +1,6 @@
 ---
 layout: page
 title: Twitch Stream Archive + Info
-description: "Hey! I stream over at <a href=\"https://twitch.tv/physbuzz\">twitch.tv/physbuzz</a>. Here's a page with all of my uploaded work."
 ---
 
 Hey! I stream over at <a href="https://twitch.tv/physbuzz">twitch.tv/physbuzz</a>. Here's a page with all of my uploaded work.
