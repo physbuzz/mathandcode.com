@@ -22,8 +22,9 @@ There are a bunch of different solid shapes here. One is made only of triangles,
 
 That’s a theorem, but believe it or not, some mathematicians don’t care much about theorems. A theorem is an endpoint. Where do you go after you prove “there are only five Platonic solids”? You can start aimlessly counting the number of faces and edges of a dodecahedron -- that’s twelve faces, thirty edges, and twenty vertices. But that’s another fact, another statement, without context or meaning. The things that really make mathematicians excited are the general, open frameworks that create hundreds of questions. One such framework is called [group theory](https://en.wikipedia.org/wiki/Group_theory).
 
-What is Group Theory?
-===
+@toc
+
+## What is Group Theory?
 
 A group is defined as any list of “objects” or “actions” that satisfy three, special demands, called the “group axioms”. They are:
 
@@ -41,8 +42,7 @@ It turns out that there are [only three interesting finite rotation groups in 3D
 The icosahedron rotation is the largest, at sixty elements. This explains why so many sculptures exist surrounding it: It's 
 the largest and most intricate possible rotational symmetry that any three dimensional object can posess.
 
-Why have I not heard of Group Theory before?
-===
+## Why have I not heard of Group Theory before?
 
 If this material is so interesting and intuitive, why is it not taught in high school? Well, group theory forms part of the foundations of one subject known as *abstract algebra*. If you were to go for a college degree in mathematics, two of the toughest subjects you studied would be abstract algebra and real analysis. This makes it quite easy to drop two books on someone’s desk and call it an undergraduate math degree. I’m not being facetious!
 

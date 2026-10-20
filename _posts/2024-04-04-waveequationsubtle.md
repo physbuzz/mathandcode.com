@@ -36,6 +36,8 @@ This was a bit of a shock to me, I thought that the phase of the reflected wave 
 
 (Note: I haven't performed this experiment with real slinkies yet, but I did go rifling through various closets to try to find a slinky. I also ran a few simulations confirming things, but that's not as much fun as having real pictures to show you!)
 
+@toc
+
 ## How the Wave Equation Comes About
 
 Why is equation 1 the correct equation? Or, phrased differently, why do we have a partial derivative that hits the function $T(x)$ but not the function $\mu(x)$? Well, I have to think of it from an energy perspective. The energy of our system is as follows:

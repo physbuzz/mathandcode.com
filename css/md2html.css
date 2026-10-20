@@ -18,28 +18,6 @@
   line-height: 1;
 }
 
-.post-content h1#directory,
-.post-content h2#directory {
-  margin: 1rem 0 0.5rem;
-  font-size: 1.8rem;
-  line-height: 1;
-}
-
-.post-content h1#directory + ul,
-.post-content h2#directory + ul {
-  margin: 0;
-  padding-left: 20px;
-  font-size: 0.9rem;
-  line-height: 1;
-}
-
-.post-content h1#directory + ul li,
-.post-content h2#directory + ul li,
-.post-content h1#directory + ul ul,
-.post-content h2#directory + ul ul {
-  margin-bottom: 2px;
-}
-
 .toc-list {
   margin: 0;
   padding-left: 20px;

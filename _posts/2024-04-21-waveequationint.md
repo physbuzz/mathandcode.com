@@ -30,6 +30,8 @@ philast=phi
 phi=phinew
 ```
 
+@toc
+
 ## A simulator for the simplest wave equation
 For optics, we often want to simulate the partial differential equation (PDE):
 
@@ -250,7 +252,7 @@ I didn't find many references on the wave equation around a black hole, but here
 
 Rotating black holes can also be described with slight modifications. The relevant relativistic wave equation is $\partial_\mu(\sqrt{-g} g^{\mu\nu}\partial_{\nu}\phi)=0$.
 
-# Appendix: How did I really derive these equations of motion?
+## Appendix: How did I really derive these equations of motion?
 
 Like always, it was using a Lagrangian / variational calculus and throwing everything against the wall until something stuck.
 
@@ -336,7 +338,7 @@ So this is the method that I'm using for the "ground truth", which could be conv
 **Fun Idea:** I think that the equation describing Chladni pattern waves on a thin steel plate is $\mu\ddot{\phi}=D(\nabla^2)^2\phi$. So, what's the relativistically invariant version of that equation? Once you figure that out it begs the question, what do Chladni patterns around a black hole look like?
 
 
-# Bonus: Rotating black hole EOM
+## Bonus: Rotating black hole EOM
 *Warning:* I haven't implemented this in real code / a real simulation.
 
 Note that Dempsey 2017 works through a rotating black hole, so there's probably some discussion of the numerical algorithms there. The essential form of the equations is identical to water waves near a vortex (eg a bathtub drain).
@@ -437,7 +439,7 @@ G^{tx}_{i-1,j}+\\Delta x \\dot{\\phi}_{i+1,j} G^{tx}_{i,j}-\\Delta x \\dot{\\phi
  *)
 ```
 
-# Bonus bonus: explicitly finding G for the Kerr metric
+## Bonus bonus: explicitly finding G for the Kerr metric
 Note: this is NOT double and triple checked! This is just the work I plan on using when I revisit this in the future.
 
 Mathematica code gets us almost all the way there:

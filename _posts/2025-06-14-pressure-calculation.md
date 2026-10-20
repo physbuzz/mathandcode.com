@@ -4,18 +4,8 @@ title:  "Finding the pressure by counting the magnitude of impacts on a wall"
 date:   2025-06-14 00:00:01 -0800
 ---
 
-Directory
-===
-- [Finding the pressure by counting the magnitude of impacts on a wall](#section0)
-- [Impulse of a single particle](#section1)
-- [Impulse of many particles](#section2)
-- [Sampling Algorith](#section3)
-- [Plotting the pressure in MD simulation](#section4)
-- [Appendix: the PDF of an observable](#section5)
+@toc
 
----
-
-<span id="section0"></span>
 Suppose you have a container full of a classical ideal gas. To measure the pressure of the gas, you look at the total impulse applied to the wall during a time period $\delta t$ and divide the total impulse by $\delta t\times A$ to get the average force per unit area, ie the pressure. 
 
 This is a common exercise in computational physics classrooms, but the results are often quite noisy. For example, here is a 
@@ -30,7 +20,7 @@ $$I(t)=\int_0^t F(t')\mathrm{d}t'$$
 
 as a random process.
 
-### Impulse of a single particle <a name="section1"></a>
+## Impulse of a single particle
 
 
 To solve this problem we start by noting the partition function for a single particle in a box of volume $V$ is 
@@ -68,7 +58,7 @@ $$P(I_x)=\mu \rho(I_x)+(1-\mu)\delta(I_x)$$
 
 So for our single particle case, we could sample the impulse on the wall during a timestep $\Delta t$ as follows: First sample a random number $0\leq \xi\leq 1.$  If $\xi\leq \mu,$ then we can sample $I_x$ from the distribution $\rho.$ Else, we choose $I_x=0.$ 
 
-### Impulse of many particles <a name="section2"></a>
+## Impulse of many particles
 
 
 If we were clever, we could see immediately that the limit where we take $N$ to infinity while keeping $N/V$ constant gives rise to a compound Poisson process. But let's brute force it! 
@@ -121,7 +111,7 @@ which is surely a statement that we could have arrived at if we thought more car
 
 Alternatively, if the expected number of particles in the timestep $\Delta t$ is very large, then $\rho^{(*n)}(I_{\textrm{tot}})$ is very nearly normally distributed with a mean and variance that we can calculate from our single variable collision function.
 
-### Sampling Algorithm <a name="section3"></a>
+## Sampling Algorithm
 
 
 Wow it works
@@ -150,7 +140,7 @@ ListLinePlot[samplePath]
 
 ![](/img/posts/impulseOverTime.svg)
 
-### Plotting the pressure in MD simulations <a name="section4"></a>
+## Plotting the pressure in MD simulations
 
 
 One way that you will get the graph of this is if you've ever measured the pressure in a molecular dynamics simulation. You count the total momentum transferred to a wall segment and average over the length of time. Your result may be noisier than you might expect, especially if the area of your patch of wall is small, or you average over too small of a time period. 
@@ -170,7 +160,7 @@ Plot[Evaluate[Table[measuredPressure[t, m], {m, {5, 25, 50}}]], {t, 0,
 ![](/img/posts/pressureMeasurement.svg)
 
 
-### Appendix: the PDF of an observable <a name="section5"></a>
+## Appendix: the PDF of an observable
 
 
 Suppose that we have some configurations labeled by $\Gamma$ with PDF $\rho(\Gamma).$ Suppose we have an observable $A(\Gamma).$ We will show that the PDF of $A$ is 

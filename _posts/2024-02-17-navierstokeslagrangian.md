@@ -6,28 +6,9 @@ comments: true
 ---
 
 
-Directory
-===
+@toc
 
-- [0. Introduction](#section0)
-- [1. The SPH Lagrangian](#section1)
-- [2. The Navier-Stokes Lagrangian](#section2)
-- [3. Going from SPH to a Lagrangian density](#section3)
-    - [3.1 The kinetic term](#section3-1)
-    - [3.2 The interaction term](#section3-2)
-- [4. Varying the action](#section4)
-    - [4.1 A noninteracting Lagrangian](#section4-1)
-    - [4.2 Varying the NS Lagrangian](#section4-2)
-- [5. More general Lagrangians](#section5)
-- [6. Where to go from here?](#section6)
-- [Appendix](#appendix)
-    - [A1. Vector calculus definitions and the material derivative ](#A1)
-    - [A2. Determinant derivative identities](#A2)
-    - [A3. Side comment about the integral in section 3.2](#A3)
-
-
-
-# 0. Intro and Summary <a name="section0"></a>
+## 0. Intro and Summary
 In this article, I derive the Navier-Stokes equations from the equations of smoothed particle hydrodynamics (SPH). I phrase everything in terms of Lagrangian densities and I definitely don't pull any punches when it comes to the multivariable calculus involved. Many important identities are put in the appendix, but you might also want to refer to a vector calculus textbook. For a reference on the continuum physics, chapter 13 of Goldstein's Classical Mechanics textbook is quite good, but it doesn't go far enough for fluid and solid mechanics. 
 
 I start with the SPH Lagrangian $L_{SPH}(\dot{r},r)$, use this to derive a Lagrangian for compressible fluid dynamics $\mathcal{L}_{NS}(\dot{r}^\kappa,\frac{\partial r^\kappa}{\partial a^\nu},a)$ where $\vec{r}(\vec{a})$ is the dynamical field, and then show that this gives the Navier-Stokes equations with zero viscosity (and mass per unit volume $\mu$):
@@ -41,7 +22,7 @@ Doing this derivation has several benefits and cool features:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/GQ0K_FFV7hY?si=mTHExKxMSBAjuzl3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-# 1. The SPH Lagrangian <a name="section1"></a>
+## 1. The SPH Lagrangian
 SPH is often written out in terms of pressures and densities, which feels complicated when you're trying to think purely in terms of kinematics and conserved quantities. Instead, the key ingredients of SPH are the smoothing function $W(\vec{r})=W(\vec{r},h)$ and the potential function per unit mass $U(\rho)$. A clear account of the many choices for $W$ is given in chapter 3 of the book "Smoothed Particle Hydrodynamics: A Meshfree Method" by Liu and Liu. The potential function $U(\rho)$ is not usually discussed, but it gives rise to an equation of state $p=\rho^2 U'(\rho)$, and some of the considerations are discussed in section 4.4.7 of Liu and Liu. Regardless, once we've chosen $W$ and $U$ we can write down the SPH Lagrangian:
 
 $$L_{SPH}(\dot{r}_i,r_i)=\sum_i m_i\left(\frac{1}{2}\dot{r}_i^2-U(\sum_j m_j W(r_i-r_j))\right) \tag{1.1}$$
@@ -60,7 +41,7 @@ $$
 
 where we also have to introduce shorthand $\rho_i=\sum_j m_j W(r_i-r_j)$ and $p_i=\rho_i^2 U'(\rho_i)$. 
 
-# 2. The Navier-Stokes Lagrangian <a name="section2"></a>
+## 2. The Navier-Stokes Lagrangian
 SPH is great, but what would be really great is to have a dictionary for going back and forth between the SPH formulation and the Navier-Stokes (NS) equations. Let's outline the end result before diving into all of the math.
 
 I find that the correct Lagrangian density is, for dynamical field $\vec{r}(\vec{a},t)$:
@@ -79,13 +60,13 @@ $$\frac{\partial v}{\partial t}+(v\cdot \nabla)v=-\frac{1}{\rho}\nabla p$$
 
 where the density is defined as $\rho=\mu(a)\big\| \frac{\partial r}{\partial a}\big\|^{-1}$ and the pressure is defined as $p=\rho^2 U'(\rho)$.
 
-# 3. Going from SPH to a Lagrangian Density <a name="section3"></a>
+## 3. Going from SPH to a Lagrangian Density
 
 The goal is to start at the equation for the SPH Lagrangian (equation 1.1), and wind up at the NS Lagrangian (equation 2.1). The basic prescription used here is to treat every chunk of mass $m_i$ as an infinitesimal chunk $\mu(a) d^da$. Essentially: $\sum_i m_i\mapsto \int d^d a \mu(a)$.
 
 It's useful to note that $a$ can have different units than $r$, and so this gives us an extra sanity check in our calculations. Note that $\mu$ has units of $[\text{mass}]/[\text{a}]^d$, while density should have units of $[\text{mass}]/[\text{r}]^d$, so we would be able to argue based on units alone that density should be written as $\rho=\mu(a)\big\| \frac{\partial r}{\partial a}\big\|^{-1}$. We'll come up with a better argument for this in section 3.2, but it's a nice start.
 
-## 3.1. The Kinetic Term <a name="section3-1"></a>
+### 3.1. The Kinetic Term
 There's not too much to be said about this: 
 
 $$\sum_i m_i \dot{r}_i^2 \mapsto \int d^d a \mu(a) \dot{r}(a,t)^2$$
@@ -104,7 +85,7 @@ $$\frac{D\vec{v}}{Dt}=-\nabla V$$
 
 This is a good exercise, because even if we get lost in the vector calculus, we know that what's going on behind the scene with equation 3.1 is just Newton's law with noninteracting particles!
 
-## 3.2. The interaction term <a name="section3-2"></a>
+### 3.2. The interaction term
 
 The interaction term causes more problems. We do the same prescription $\sum_i m_i\mapsto \int d^d a \mu(a)$, but now we have to do this replacement with two sums:
 
@@ -145,11 +126,11 @@ So, that's all we need. We've found how to take the continuum limit of the kinet
 
 $$\mathcal{L}_{NS}(\dot{r}^\kappa,\frac{\partial r^\kappa}{\partial a^\nu},a)=\frac{1}{2}\mu(a)\dot{r}^2-\mu(a)U\left(\mu(a)\Bigg| \frac{\partial r}{\partial a}\Bigg|^{-1}\right) \tag{2.1}$$
 
-# 4. Varying the Action <a name="section4"></a>
+## 4. Varying the Action
 
 Getting to the equations of motion is a bit of a chore. I'll start with the example of a noninteracting Lagrangian density and then move on to the fluid version.
 
-## 4.1 A Noninteracting Lagrangian <a name="section4-1"></a>
+### 4.1 A Noninteracting Lagrangian
 
 As a warmup, let's find the equations of motion for the Lagrangian found in 3.1. We can interpret it as a bunch of noninteracting parcels of fluid in an external potential.
 
@@ -172,7 +153,7 @@ $$\frac{\partial v}{\partial t}+(v\cdot \nabla)v=-\nabla V(r)$$
 
 So that's great, the lefthand side is the convective part of the Navier-Stokes equation, and the righthand side is the "body force" part. All that's left is to do the pressure part in the full Lagrangian.
 
-## 4.2 Varying the NS Lagrangian <a name="section4-2"></a>
+### 4.2 Varying the NS Lagrangian
 Starting with the following:
 
 $$\mathcal{L}_{NS}(\dot{r}^\kappa,\frac{\partial r^\kappa}{\partial a^\nu},a)=\frac{1}{2}\mu(a)\dot{r}^2-\mu(a)U\left(\mu(a)\Bigg| \frac{\partial r}{\partial a}\Bigg|^{-1}\right)$$
@@ -216,7 +197,7 @@ $$\dot{v}+(v\cdot\nabla)v=-\frac{1}{\rho}\nabla p$$
 
 Even then, to turn this into a numerical scheme and totally do away with the coordinates $a$, we're missing a bit of information because we can no longer calculate the density using the Jacobian determinant $\Big\|\frac{\partial r}{\partial a}\Big\|$. Instead we would have to introduce $\rho(r,t)$ as another dynamical variable and you would have to derive the continuity equation by considering $\dot{\rho}(r,t)=\frac{\partial}{\partial t}(\mu(a(r))\Big\|\frac{\partial r}{\partial a}\Big\|^{-1})$.
 
-# 5. More general Lagrangians <a name="section5"></a>
+## 5. More general Lagrangians
 We can ask ourselves if equation 2.1 for $\mathcal{L}_{NS}$ was the most general continuum Lagrangian we could have written down. In fact it is not, we could have written:
 
 $$\mathcal{L}_H(\dot{r}^\kappa,\frac{\partial r^\kappa}{\partial a^\nu},a)=\frac{1}{2}\mu(a)\dot{r}^2-\mu(a)A\left(F\right)$$
@@ -228,7 +209,7 @@ Upon an active rotation of the coordinate system $r$, $F$ will change as
 $$R^{\kappa}_{\gamma} F^{\gamma}_{\nu} =[R F]^{\kappa}_{\nu}$$
 
  To ensure that $A(F)$ is invariant under rotations, we had better enforce that $A$ only depends on $F^T F$. If our material is isotropic, then we'd better be able to change our reference coordinate system $a$ at will, so $A$ should only depend on the eigenvalues of $F^TF$, which are $\lambda_1^2,\ldots,\lambda_d^2$. And finally, if we permute the axes of our reference coordinate system $a$ our Lagrangian should also be unchanged. For example, for $d=3$, we conclude that $A(F)$ can only depend on the three invariants $I_1=\lambda_1^2+\lambda_2^2+\lambda_3^2$, $I_2 = \lambda_1^2\lambda_2^2 +\lambda_2^2\lambda_3^2+\lambda_3^2\lambda_1^2$, and $I_3=\lambda_1^2\lambda_2^2\lambda_3^2$. The function $A$ is known as the strain energy density function, and in fact this argument derives the entire theory of [hyperelasticity](https://en.wikipedia.org/wiki/Hyperelastic_material)! If we only use $I_3$ then we get back our theory of compressible fluid dynamics, and we can expect $I_1$ and $I_2$ to give us terms relating to other elastic deformations.
-# 6. Where to go from here? <a name="section6"></a>
+## 6. Where to go from here?
 
 - Find the equations of motion for hyperelastic systems, possibly for some special cases of $A$ found in engineering textbooks. In the case of fluids it was useful to define the intermediate variable $\rho=\mu(a)/\sqrt{I_3}$, are there analogous intermediate variables for $I_1$, $I_2$? 
 - We have $I_1=\text{Tr}(F^T F)$, while other invariants could be computed from traces of powers of $F^T F$ by [Newton's identities](https://en.wikipedia.org/wiki/Newton%27s_identities). What implications does this have for the equations of motion? 
@@ -240,9 +221,9 @@ $$R^{\kappa}_{\gamma} F^{\gamma}_{\nu} =[R F]^{\kappa}_{\nu}$$
 - What does numerical integration in terms of the field $r(a,t)$ look like? Particle simulations tend to behave well with basic schemes like symplectic Euler ($\approx$ leapfrog $\approx$ Verlet) and I'd hazard a guess that simulations of a discretized $r(a,t)$ will behave well except that the evaluation of the Jacobian determinant will blow up numerically.
 
 
-# Appendix <a name="appendix"></a>
+## Appendix
 
-## A1. Vector Calculus Definitions and the Material Derivative <a name="A1"></a>
+### A1. Vector Calculus Definitions and the Material Derivative
 
 To start with, I'm working in $d$ dimensions and in Euclidean space. I use greek letters out of habit and use the Einstein summation convention, where each upper index is contracted with a lower index. Everything in these notes is nonrelativistic. I write the vector dot product $\vec{r}\cdot\vec{v}$ as $r^\mu v_{\mu}$. The metric is the identity matrix, so upper and lower indices don't make a difference, and instead act as a consistency check! We should almost always be contracting an upper index with a lower index.
 
@@ -272,7 +253,7 @@ $$\frac{Dv}{Dt}=\frac{\partial v}{\partial t}+(v\cdot\nabla) v$$
 
 Oftentimes this is taken to be the definition of the material derivative, but note that in these notes A1 is a theorem instead of a definition.
 
-## A2. Determinant derivative identities. <a name="A2"></a>
+### A2. Determinant derivative identities.
 To get to Navier-Stokes, I had to make use of two identities involving the derivative of a determinant. I'm a big fan of expanding out formulas for the determinant in all their gory details. One way to write out those formulas is using the Levi-Civita symbol $$|A|=A^{i_1}_{1}\cdots A^{i_d}_{d}\varepsilon_{i_1\cdots i_d}$$, but an object called the generalized Kronecker delta symbol is a much better way to go:
 
 $$\begin{align*}
@@ -323,7 +304,7 @@ $$\frac{\partial }{\partial \frac{\partial r^\kappa}{\partial a^\gamma}}\Bigg|\f
 
 This is a consequence of [Jacobi's Formula](https://en.wikipedia.org/wiki/Jacobi%27s_formula), and the Wikipedia page discusses its derivation in detail. If we proceeded by expanding out using the generalized kronecker delta, we would end up reproducing the Wikipedia's proof via matrix computation. The matrix $\frac{\partial a^\gamma}{\partial r^\kappa}$ which is the inverse of $\frac{\partial r^\kappa}{\partial a^\gamma}$ comes about from recognizing the formula for the matrix of cofactors (where for a matrix $A$ with matrix of cofactors $C$, $A C^T=\|A\|I$ with $I$ the identity matrix). 
 
-## A3. Side comment about the integral in section 3.2 <a name="A3"></a>
+### A3. Side comment about the integral in section 3.2
 In section 3.2, we had to approximate the following integral:
 
 $$\begin{align*}
@@ -341,6 +322,6 @@ $$\sum_{n=0}^\infty \int d^d b b^{\alpha_1}\cdots b^{\alpha_n} T_{\alpha_1\cdots
 which can be evaluated exactly using Wick's theorem / Isserlis' theorem. This isn't just writing horrible expressions for the sake of it, you do integrals like this all the time in quantum field theory! We evaluated the $O(1)$ integral. But other integrals would give us corrections which are of order $h^2$. This might be a fun side project: start with an SPH system and simulate it, and then carefully consider whether your system is reproducing the results of the Navier-Stokes equations, or if it's describing a different continuum theory which includes some term $O(h^2)$. 
 
 
-# Corrections
+## Corrections
 
 Correction 02/26/2024: fixed some stray $\mu$'s where they shouldn't be.

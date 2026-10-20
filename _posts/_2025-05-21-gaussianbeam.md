@@ -4,6 +4,8 @@ title:  "Gaussian Beams in 2D for Wave Tank Simulations"
 date:   2025-05-21 01:00:01 -0800
 ---
 
+@toc
+
 ## Why use Gaussian Beams
 I've been making a lot of wave tank simulations lately, and oftentimes I want to think about a well-collimated beam. The thing with waves is that they really want to spread out. In every day life we know that a laser pointer seems to trace out a perfect line, but when we go to a wave tank simulation and try to make a beam, the simulation can look more like we chucked a rock into a pond--no beams or rays to speak of.
 

@@ -27,11 +27,11 @@ $$\int_{\mathbb{R}^d} \mathrm{d}^dx \exp(-\frac{1}{2}x^T A x)=\left(\operatornam
 
 Furthermore, we often want a vector J called a source term, where we write:
 
-<div>$$\begin{align*}
+$$\begin{align*}
 Z(J)&=\int_{\mathbb{R}^d} \mathrm{d}^dx \exp\left(-\frac{1}{2}x^T A x+J^T x\right)\\
 &=\int_{\mathbb{R}^d} \mathrm{d}^dx \exp\left(-\frac{1}{2}(x-A^{-1} J )^T A (x-A^{-1} J ) + \frac{1}{2}J^T A^{-1} J\right)\\
 &= \left(\operatorname{det} \frac{A}{2\pi}\right)^{-\frac{1}{2}} \exp\left(\frac{1}{2}J^T A^{-1} J\right)
-\end{align*}$$</div>
+\end{align*}$$
 
 The matrix $A$ is the inverse covariance matrix (proved later). It is also called the Hessian matrix because it often arises in physical settings from a Taylor expansion.
 
@@ -39,29 +39,29 @@ The matrix $A$ is the inverse covariance matrix (proved later). It is also calle
 
 Suppose we care about expectation values of the field value $x_i$ evaluated at some source term $J=h.$ We find the mean $\mu:$
 
-<div>$$\begin{align*}\langle x_i\rangle &= \frac{1}{Z(h)}\frac{\partial}{\partial J_i} Z(J)\big|_{J=h}\\
+$$\begin{align*}\langle x_i\rangle &= \frac{1}{Z(h)}\frac{\partial}{\partial J_i} Z(J)\big|_{J=h}\\
 &= (A^{-1} h)_{i} \\
 &\equiv \mu_i
-\end{align*}$$</div>
+\end{align*}$$
 
 For the two point correlation function, we find
 
-<div>$$\begin{align*}\langle x_i x_j\rangle &= \frac{1}{Z(h)}\frac{\partial}{\partial J_i}\frac{\partial}{\partial J_j} Z(J)\big|_{J=h}\\
+$$\begin{align*}\langle x_i x_j\rangle &= \frac{1}{Z(h)}\frac{\partial}{\partial J_i}\frac{\partial}{\partial J_j} Z(J)\big|_{J=h}\\
 &= (A^{-1})_{ij}+(A^{-1}h)_i(A^{-1}h)_j\\
 &= (\Sigma + \mu \mu^T)_{ij},
-\end{align*}$$</div>
+\end{align*}$$
 
 where $\Sigma=A^{-1}.$ A very neat trick is that if we then want to calculate the connected correlation function
 
 $$\langle x_i x_j\rangle_c\equiv \langle x_i x_j\rangle -\langle x_i\rangle\langle x_j\rangle,$$
 
-we can simply compute <span>$\frac{\partial}{\partial J_ i}\frac{\partial}{\partial J  _ j} \log(Z(J))\big| _ {J=h},$</span> giving the covariance matrix $\Sigma:$ 
+we can simply compute $\frac{\partial}{\partial J_ i}\frac{\partial}{\partial J  _ j} \log(Z(J))\big| _ {J=h},$ giving the covariance matrix $\Sigma:$
 
-<div>$$\begin{align*}
+$$\begin{align*}
 \langle x_i x_j\rangle_c &=\frac{\partial}{\partial J_i}\frac{\partial}{\partial J_j} \log(Z(J))\Big|_{J=h}\\
 &=(A^{-1})_{ij}\\
 &\equiv \Sigma_{ij}
-\end{align*}$$</div>
+\end{align*}$$
 
 So our important result is that any distribution proportional to $\exp\left(-x^T A x/2 + h^T x\right)$ has covariance and mean given by:
 
@@ -118,7 +118,7 @@ This can be used to derive Wick's theorem.
 
 Another identity is the Ward identity. The Ward identity won't blow us away here, it's equivalent to the Schwinger-Dyson equation for our case, but it's conceptually different. Suppose we care about $\langle F\rangle,$ and we redefine our fields $y= x+\varepsilon v(x).$ The Jacobian transforms as $\mathrm{d}^d y=(\det \partial y/\partial x)\mathrm{d}^d x$. $\partial y_i/\partial x_j=\delta_{ij} +\varepsilon \partial v_i/\partial x_j,$ and to first order $\det(I+\varepsilon M)=1+\varepsilon \operatorname{tr} M.$ I adopt the repeated index summation convention and expand the whole thing in gory detail:
 
-<div>$$
+$$
 \begin{align*}
 &\int \mathrm{d}^dx
 F(x)\exp\left(-\frac{1}{2}x^T A x+h^T x\right)\\
@@ -126,7 +126,7 @@ F(x)\exp\left(-\frac{1}{2}x^T A x+h^T x\right)\\
 &=\int\mathrm{d}^dy(1-\varepsilon\partial_i v_i)(F(y)-\varepsilon v_j\partial_jF)\exp\left(-\frac{1}{2}y^TAy+h^Ty\right)\cdots \\
 &\quad\cdot\left(1+\varepsilon (y^TAv-h^Tv)\right)\\
 &=\int\mathrm{d}^dy(F+\varepsilon(-F \partial_i v_i-v_j\partial_j F+(Ay-h)^T v F))\exp\left(-\frac{1}{2}y^TAy+h^Ty\right)
-\end{align*}$$</div>
+\end{align*}$$
 
 The term proportional to epsilon must vanish, so for any reasonable vector field $v$ and observable $F,$
 
@@ -146,7 +146,7 @@ while conditioning on the variable $y$ gives
 
 $$P(x|y)=\frac{P(x,y)}{\int \mathrm{d}x P(x,y)}.$$
 
-### Marginalizing 
+### Marginalizing
 
 For marginalizing on a variable $x_i$ in a multivariate Gaussian, performing the integral $\textrm{d}x_i$ explicitly is a bit tedious (though it's just completing the square in the exponent). The key is that marginalizing doesn't change expectation values. So $\Sigma_{jk}$ is unchanged, except at row and column $i.$ We conclude that marginalizing deletes rows and columns of the covariance matrix.
 
@@ -158,12 +158,12 @@ h=\begin{bmatrix}h_u\\ h_v\end{bmatrix}.$$
 
 Upon performing the Gaussian integrals (completing the square in the exponent), we find a new marginalized Hessian and source:
 
-<div>$$\begin{align*}A_{\mathrm{marg}}&=A_{uu}-A_{uv}A_{vv}^{-1}A_{uv}^T\\
-h_{\mathrm{marg}}&=h_u-A_{uv}A_{vv}^{-1}h_v\end{align*}$$</div>
+$$\begin{align*}A_{\mathrm{marg}}&=A_{uu}-A_{uv}A_{vv}^{-1}A_{uv}^T\\
+h_{\mathrm{marg}}&=h_u-A_{uv}A_{vv}^{-1}h_v\end{align*}$$
 
 $A_{\mathrm{marg}}$ is called the Schur complement of the block $A_{vv}$ in $A.$ The Schur complement is discussed in the appendix as a problem set. I find it a bit funny that the expression for $h_{\mathrm{marg}}$ takes a bit of work, even though the mean $\mu_u$ is unchanged!
 
-### Conditioning 
+### Conditioning
 
 If a multivariate Gaussian is given in terms of the Hessian, then conditioning on $x_i=0$ for some $i$ is trivial, because this simply deletes the relevant rows and columns from the Hessian. 
 
@@ -175,10 +175,10 @@ $$x=\begin{bmatrix} u\\ v\end{bmatrix},\quad \Sigma=\begin{bmatrix}\Sigma_{uu}&\
 
 Then conditioning gives:
 
-<div>$$\begin{align*}\Sigma_{\mathrm{cond}}&=\Sigma_{uu}-\Sigma_{uv}\Sigma_{vv}^{-1}\Sigma_{uv}^T\\
-\mu_{\mathrm{cond}}&=\mu_u-\Sigma_{uv}\Sigma_{vv}^{-1}\mu_v\end{align*}$$</div>
+$$\begin{align*}\Sigma_{\mathrm{cond}}&=\Sigma_{uu}-\Sigma_{uv}\Sigma_{vv}^{-1}\Sigma_{uv}^T\\
+\mu_{\mathrm{cond}}&=\mu_u-\Sigma_{uv}\Sigma_{vv}^{-1}\mu_v\end{align*}$$
 
-## 4. Conditioning on an Affine-Linear Constraint. 
+## 4. Conditioning on an Affine-Linear Constraint.
 
 Conditioning on a general linear constraint $a\cdot x=b$ shifts the mean and reduces the rank of the covariance matrix by one, so the Hessian and covariance matrices are no longer cleanly inverses of each other. Working through the formulas for this now will help us later in finding an algorithm to sample from a conditioned Gaussian. The PDF of a conditioned Gaussian is given by
 
@@ -186,27 +186,27 @@ $$P(x)\propto \delta(a^Tx-b) \exp\left(-\frac{1}{2}(x-\mu)^T \Sigma^{-1}(x-\mu)\
 
 If we find $\langle x_i\rangle$ and $\langle x_i x_j\rangle_c,$ we know everything there is to know about the constrained distribution. We'll do this two ways, first by integration, and second by thinking about how to project the vector $x$ into the relevant hyperplane.
 
-### Conditioned Expectation Values via Integration 
+### Conditioned Expectation Values via Integration
 
 The trick here is to write $\delta(x)=\int \frac{dk}{2\pi}e^{ikx},$ then do the integral $\textrm{d}^d x,$ then do the integral $\textrm{d}k.$ It is useful to shift the integral to $x'=x-\mu$ and $c=b-a^T \mu.$ Also, let $Z_0(J)$ be the value of the partition function without the delta function prefactor. We find...
 
-<div>$$\begin{align*}
+$$\begin{align*}
 Z(J)&=\int \mathrm{d}^d x\delta(a^T x-b)\exp\left(-\frac{1}{2}(x-\mu)^T A (x-\mu)+J^T x\right)\\
 &=e^{J^T \mu}\int \mathrm{d}^d x' \delta(a^T x'-c)\exp\left(-\frac{1}{2}x'^T A x'+J^T x'\right)\\
 &=e^{J^T \mu}\int \frac{\mathrm{d}k\mathrm{d}^d x'}{2\pi}e^{-ikc}\exp\left(-\frac{1}{2}x'^T A x'+(J+ik a)^T x'\right)
-\end{align*}$$</div>
+\end{align*}$$
 
 Completing the square in the exponent gives
 
-<div>$$\begin{align*}
+$$\begin{align*}
 &-\frac{1}{2}x'^T A x'+(J+ik a)^T x'\\
 =&-\frac{1}{2}(x'-A^{-1}(J+ika))^T A (x'-A^{-1}(J+ika))\\
 &+\frac{1}{2}(J+ika)^T A^{-1}(J+ika)
-\end{align*}$$</div>
+\end{align*}$$
 
 Completing the integral $\mathrm{d}^dx$ just gives a factor of $Z_0(0)$, and we can take the factor of $\exp(J^T\mu+\frac{1}{2}J^T A^{-1}J)$ as well to get $Z_0(J)$. Let's also stop writing $A^{-1}$ and start writing $\Sigma$ instead. Then:
 
-<div>$$\begin{align*}
+$$\begin{align*}
 Z(J)&=Z_0(J)\int \frac{\mathrm{d}k}{2\pi}\exp\left(-\frac{1}{2}k^2 a^T \Sigma a+ik(a^T \Sigma J-c)\right)\\
 &\propto Z_0(J)\exp\left(-\frac{1}{2}\frac{(a^T\Sigma J-c)^2}{a^T \Sigma a}\right)\\
 &\propto\exp\left(\frac{1}{2} J^T
@@ -215,7 +215,7 @@ Z(J)&=Z_0(J)\int \frac{\mathrm{d}k}{2\pi}\exp\left(-\frac{1}{2}k^2 a^T \Sigma a+
 \right)J+J^T\left(
 \mu+\frac{b-a^T\mu}{a^T\Sigma a}\Sigma a
 \right)\right)
-\end{align*}$$</div>
+\end{align*}$$
 
 by factoring out all J dependence in the exponent and completing the square. We can read off that
 
@@ -225,7 +225,7 @@ and
 
 $$\langle x_i\rangle =\left( \mu+\frac{b-a^T\mu}{a^T\Sigma a}\Sigma a \right)_i$$
 
-### Conditioned Expectation Values via Projection 
+### Conditioned Expectation Values via Projection
 
 If we don't like evaluating integrals, there is a more procedural way to think about finding the conditioned expectation value. The idea is to sample $x$ from the full Gaussian (so $x\sim \mathcal{N}(\mu,\Sigma)$) and then do an affine projection to the plane $a^Tx=b.$ We call this operator $\operatorname{Proj},$ and we consider only projections with $\operatorname{Proj}(x)=x$ for points which satisfy $a^T x=b.$ Then we naturally have an equality of probability distributions $P(\operatorname{Proj}(x)\|a^Tx=b)=P(x\|a^Tx=b).$ We can go one step further: if this projection has the magical property that 
 
@@ -259,21 +259,21 @@ Note that $\hat{P}\mu=\hat{P}x_0,$ so we can equally well write our projection a
 
 Suppose $x$ is sampled from the full normal distribution, $x\sim N(\mu,\Sigma).$ We find that the scalar $a^T x$ and the vector $\hat{P}(x-\mu)$ have zero covariance. Adopting the repeated index summation convention:
 
-<div>$$\begin{align*}
+$$\begin{align*}
 &\langle (\hat{P}(x-\mu))(a^Tx-a^T\mu)\rangle_i\\
 =&\langle (\hat{P}\Delta x)a^T \Delta x\rangle_i\\
 =&\hat{P}_{ij}a_k \langle \Delta x_j \Delta x_k\rangle\\
 =&(\hat{P}\Sigma a)_i\\
 =&0.
-\end{align*}$$</div>
+\end{align*}$$
 
 For a Gaussian, this implies $a^Tx$ and $\hat{P}(x-\mu)$ are independent. By our argument at the beginning of the chapter, this means that conditioning on $a^T x=b$ leaves the distribution of $\hat{P}(x-\mu)$ unchanged! Since our new point is $x_{\textrm{cond}}=x_0+\hat{P}(x-\mu),$ we can read off the mean of $x_{\textrm{cond}}$ as $x_0,$ and the covariance matrix as:
 
-<div>$$\begin{align*}\Sigma'&=\langle (y-x_0) (y-x_0)^T\rangle\\
+$$\begin{align*}\Sigma'&=\langle (y-x_0) (y-x_0)^T\rangle\\
 &= \hat{P}\langle\Delta x \Delta x^T\rangle \hat{P}^T\\
 &=\hat{P}\Sigma\hat{P}^T\\
 &=\Sigma-\frac{\Sigma a a^T\Sigma}{a^T\Sigma a}
-\end{align*}$$</div>
+\end{align*}$$
 
 Again, the key to this procedure was that the independence of $a^Tx$ and $\operatorname{Proj}(x)$ allowed us to write
 
@@ -292,7 +292,7 @@ and covariance
 $$\Sigma'=\Sigma-\Sigma L^T(L\Sigma L^T)^{-1} L \Sigma.$$
 
 
-### An Example of Conditioning: Fixed Total Mass 
+### An Example of Conditioning: Fixed Total Mass
 
 Suppose each variable $x_i$ represents the total mass in some fixed volume labeled by $i,$ and we're modeling the distribution of masses as a multivariate Gaussian. We might have used the grand canonical ensemble, so the total mass isn't fixed. After the fact, we recover the conservation of mass by conditioning to the hyperplane $\sum_i x_i=M.$ Applying this constraint $\mathbf{1}^Tx=M,$ we find our new mean
   
@@ -308,14 +308,14 @@ $$\Sigma'_{ij}=\sigma^2\left(\delta_{ij}-\frac{1}{N}\right)$$
 
 The diagonal terms become smaller, and the off-diagonal terms become negative! Conditioning on total mass gives an anticorrelation between cells $x_i.$
 
-## 5. As an Integral over Shells 
+## 5. As an Integral over Shells
 
 Surfaces of equiprobability are given by $E=\frac{1}{2}x^T A x.$ We can write $Z=\int \mathrm{d}E\Omega(E)e^{-E},$ where $\Omega(E)$ is the density of states with energy $E:$
 
-<div>$$\begin{align*}
+$$\begin{align*}
 \Omega(E)&=\int d^d x\delta(E-\frac{1}{2}x^T A x)\\
 &=\frac{(2\pi)^{d/2}}{\Gamma(d/2)\sqrt{\det A}}E^{d/2-1}.
-\end{align*}$$</div>
+\end{align*}$$
 
 When we want to write partition functions as an integral of $\int \mathrm{d}E\exp(S(E)-E)$ where $S$ is the entropy (defined up to a constant), we have:
 
@@ -330,9 +330,9 @@ This tells us a few things:
 These facts tell us that the relative width of $E$ about its maximum goes like $\sqrt{1/d},$ which is why you hear people saying that a high dimensional Gaussian is "concentrated in a thin spherical shell." In my opinion this should be taken with a grain of salt, but that's what people mean.
 
 
-## 6. Sampling from a multivariate Gaussian 
+## 6. Sampling from a multivariate Gaussian
 
-### Sampling given the Covariance Matrix 
+### Sampling given the Covariance Matrix
 
 In Mathematica, we can just use the `MultinormalDistribution[mean,cov]` command to construct the distribution we want. But of course if we're good computational physicists, we want to understand the algorithms behind this function.
 
@@ -340,9 +340,9 @@ The most obvious brute way to do this is to find the eigenvalues $\lambda_i$ and
 
 Equivalently, we can write $\Sigma=PDP^{-1}$ where $P$ is an orthonormal matrix, whose columns are the eigenvectors $\xi^i.$ Then $\nu$ is a column vector with $\langle \nu \nu^T\rangle=I.$ Our random sample is $x=\mu+P\sqrt{D}\nu$ and has the correct covariance structure:
 
-<div>$$\begin{align*}
+$$\begin{align*}
 \langle (x-\mu) (x-\mu)^T\rangle &= P\sqrt{D}\langle \nu \nu^T\rangle\sqrt{D}P^{-1}\\
-&=PDP^{-1}\\&=\Sigma\end{align*}$$</div>
+&=PDP^{-1}\\&=\Sigma\end{align*}$$
 
 Notice that in the above derivation, the important thing was that $(P\sqrt{D})(P\sqrt{D})^T=\Sigma$. We can do a similar trick for any matrix $L$ with $LL^T=\Sigma,$ which is conveniently done by Cholesky decomposition methods. 
 
@@ -392,7 +392,7 @@ Out[]:= {8.82426, 2.81141}
 {9.04719, 2.70776}
 ```
 
-### Sampling given the Hessian 
+### Sampling given the Hessian
 Given $P(x)\propto \exp(-\frac{1}{2}x^TAx),$ we can again do the Cholesky decomposition $A=L L^T.$ If $\nu$ is again our random sample vector, then we just have to do a linear solve $L^Tx=\nu$ to get our sample $x.$
 
 Using the testing code of the previous section as a base shows similar performance for our case.
@@ -415,7 +415,7 @@ AbsoluteTiming[sampleHessian = Module[{solver, ll},
 Out[]:= {9.30596, 2.60695}
 ```
 
-### One-Dimensional Gaussian Field Examples 
+### One-Dimensional Gaussian Field Examples
 
 We have all of these fancy tools, and so I can't help myself from throwing them all at the problem at once. Let's allow for arbitrary linear constraints $Lx=b$ (allowing for both of these to be empty `l=b={}`). Our energy function will be the discrete second derivative with a mass term 
 $$E=\sum_i (-x_i (x_{i+1}+x_{i-1}-2x_i)/\Delta x^2 + m^2 x_i^2),$$
@@ -520,9 +520,9 @@ gaussianField1Dfaster[npts_, m_, k_, l_ : {}, b_ : {}] :=
 ```
 
 
-# Appendix: Extra derivations and Practice Problems 
+## Appendix: Extra derivations and Practice Problems
 
-### Schur Complements 
+### Schur Complements
 
 **Question:** Given a matrix which can be decomposed into block matrices $M=\begin{bmatrix}A & B\\ C & D\end{bmatrix},$ find the block-wise entries of $M^{-1}.$ Organize your answer such that the matrix $M/D=A-B D^{-1}C$ is used. What is $M/D$ called? (Assume everything that needs to be invertible is invertible).
 
@@ -530,7 +530,7 @@ gaussianField1Dfaster[npts_, m_, k_, l_ : {}, b_ : {}] :=
 
 **Answer:** For Gaussian elimination, to get a block diagonal matrix first hit $\begin{bmatrix}A&B\\ C&D\end{bmatrix}$ with $\begin{bmatrix}I&0\\ -D^{-1}C&I\end{bmatrix}$ from the right and $\begin{bmatrix}I&-BD^{-1}\\ 0&I\end{bmatrix}$ from the left. This gives...
 
-<div>$$\begin{align*}
+$$\begin{align*}
 M &=\begin{bmatrix}I&BD^{-1}\\ 0&I\end{bmatrix}  
 \begin{bmatrix}S&0\\ 0&D\end{bmatrix}  
 \begin{bmatrix}I&0\\ D^{-1}C&I\end{bmatrix} \\[6pt] 
@@ -541,7 +541,7 @@ M^{-1}&=
 &=\begin{bmatrix} (M/D)^{-1} & -(M/D)^{-1}BD^{-1}\\   
 -D^{-1}C(M/D)^{-1} & D^{-1}+D^{-1}C(M/D)^{-1}BD^{-1}  
 \end{bmatrix}
-\end{align*}$$</div>
+\end{align*}$$
 
 **Question:** Prove the Woodbury identity. That is, given matrices of commensurate dimension and given that the inverses exist where needed, show:
 
@@ -551,14 +551,14 @@ $$(A+B DC)^{-1}=A^{-1}-A^{-1}B(D^{-1}+CA^{-1}B)^{-1}CA^{-1}$$
 
 **Answer:** Consider the matrix $M=\begin{bmatrix}A & B\\ C & D\end{bmatrix}.$ The formula for the Schur complement $M/D =A-B D^{-1}C$ gives 
 
-<div>$$
+$$
 \begin{align*}
 M^{-1}&=\begin{bmatrix} (M/D)^{-1} & -(M/D)^{-1}BD^{-1}\\   
 -D^{-1}C(M/D)^{-1} & D^{-1}+D^{-1}C(M/D)^{-1}BD^{-1}  
 \end{bmatrix}\\[6pt]
 &=\begin{bmatrix} A^{-1}+A^{-1}B(M/A)^{-1}CA^{-1} & -A^{-1}B(M/A)^{-1} \\   
 -(M/A)^{-1}CA^{-1} &   (M/A)^{-1} 
-\end{bmatrix}\end{align*}$$</div>
+\end{bmatrix}\end{align*}$$
 
 The top left entry gives the identity
 
@@ -578,40 +578,40 @@ $$(A+B DC)^{-1}=A^{-1}-A^{-1}B(D^{-1}+CA^{-1}B)^{-1}CA^{-1}$$
 
 **Answer:** Expanding in the exponent gives:
 
-<div>$$\begin{align*}Z_\kappa=\exp\left(-\frac{1}{2}x^T(A+\kappa L^T L)x+(\mu^T A+\kappa b^T L)x +\mathrm{const.}\right)\end{align*}$$</div>
+$$\begin{align*}Z_\kappa=\exp\left(-\frac{1}{2}x^T(A+\kappa L^T L)x+(\mu^T A+\kappa b^T L)x +\mathrm{const.}\right)\end{align*}$$
 
 The Woodbury identity gives: 
 
-<div>$$\begin{align*}\Sigma_\kappa
+$$\begin{align*}\Sigma_\kappa
 &=(A+\kappa L^TL)^{-1}\\  
 &=\Sigma-\Sigma L^T(\kappa^{-1}I+L\Sigma L^T)^{-1}L\Sigma \\
 \Sigma'&= \Sigma-\Sigma L^T(L\Sigma L^T)^{-1}L\Sigma  \tag{$\kappa\to\infty$}
-\end{align*}$$</div>
+\end{align*}$$
 
 The mean is $\Sigma' h',$ giving:
 
-<div>$$\begin{align*}
+$$\begin{align*}
 \mu_{\kappa}&=(A+\kappa L^TL)^{-1}(A\mu+\kappa L^Tb)\\
 &=(A+\kappa L^TL)^{-1}\left((A+\kappa L^TL)\mu+\kappa L^T(b-L\mu)\right)\\
 &=\mu+(A\kappa^{-1}+L^TL)^{-1}L^T(b-L\mu)
-\end{align*}$$</div>
+\end{align*}$$
 
 This limit always gives me trouble. $(A\kappa^{-1}+L^TL)^{-1}$ is singular as $\kappa\to \infty$ but acting on $L^T$ projects this singular part out.  We can first apply Woodbury, then factor things out and get a miraculous cancellation:
 
-<div>$$\begin{align*}
+$$\begin{align*}
 &(A\kappa^{-1}+L^TL)^{-1}L^T\\
 &=\kappa\Sigma L^T-\kappa^2\Sigma L^T(I+\kappa L\Sigma L^T)^{-1}L\Sigma L^T\\
 &=\kappa\Sigma L^T(I-\kappa(I+\kappa L\Sigma L^T)^{-1}L\Sigma L^T)\\
 &=\kappa\Sigma L^T(I+\kappa L\Sigma L^T)^{-1}((I+\kappa L\Sigma L^T)-\kappa L\Sigma L^T)\\
 &=\kappa\Sigma L^T(I+\kappa L\Sigma L^T)^{-1}\\
 &\to \Sigma L^T (L\Sigma L^T)^{-1}
-\end{align*}$$</div>
+\end{align*}$$
 
 Therefore:
 
 $$\mu'=\mu+\Sigma L^T(L\Sigma L^T)^{-1}(b-L\mu)$$
 
-### Fresnel Integral Derivation 
+### Fresnel Integral Derivation
 
 **Question:** Calculate the Fresnel integral $\int_{-\infty}^\infty \exp\left(\pm i a\frac12 x^2\right)\mathrm{d}x$ where $a\gt 0.$
 
@@ -631,13 +631,13 @@ $$0=\int_{0}^R e^{ia x^2/2}\mathrm{d}x+\int_0^\theta\exp(\frac{ia}{2}R^2e^{2i\va
 
 For the "+" sign in the exponent, if we take $\theta=\pi/4$ then the third integral is just the Gaussian integral $\int \exp(-ay^2/2)\mathrm{d}y$ times a phase. So it remains to bound the middle term as $R$ goes to infinity. We find (using the hint $\sin\theta \ge 2\theta/\pi$):
 
-<div>$$\begin{align*}
+$$\begin{align*}
 &\left|\int_0^\theta\exp(\frac{ia}{2}R^2e^{2i\varphi})Ri e^{i\varphi} \mathrm{d}\varphi\right| \\
 &\leq \int_0^\theta R\left| \exp(-\frac{a}{2} R^2\sin(2\varphi)) \right|\mathrm{d}\varphi\\
 &\leq \int_0^\theta R\left| \exp(-2a R^2 \varphi/\pi) \right|\mathrm{d}\varphi\\
 &\leq \int_0^\infty R\left| \exp(-2a R^2 \varphi/\pi) \right|\mathrm{d}\varphi\\
 &= \frac{\pi}{2aR}
-\end{align*}$$</div>
+\end{align*}$$
 
 This vanishes as $R\to\infty,$ therefore
 
