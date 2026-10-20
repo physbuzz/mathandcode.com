@@ -8,3 +8,4 @@ archive
 .unison*
 .bundle
 *.swp
+**/.md2html-cache/build-*.json

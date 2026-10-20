@@ -8,6 +8,7 @@
   --line: #e1e4e8;
   --accent: #990000;
   --accent-strong: #660000;
+  --brand-highlight: #cc0000;
   --link: #107896;
   --link-hover: #ff4136;
   --code-bg: #f6f8fa;
@@ -43,6 +44,7 @@
     --line: #4a5055;
     --accent: #e08282;
     --accent-strong: #b85656;
+    --brand-highlight: #f19977;
     --link: #89d4e8;
     --link-hover: #f19977;
     --code-bg: #111314;
@@ -67,6 +69,7 @@ html:has(#reader-theme-light:checked) {
   --line: #e1e4e8;
   --accent: #990000;
   --accent-strong: #660000;
+  --brand-highlight: #cc0000;
   --link: #107896;
   --link-hover: #ff4136;
   --code-bg: #f6f8fa;
@@ -90,6 +93,7 @@ html:has(#reader-theme-dark:checked) {
   --line: #4a5055;
   --accent: #e08282;
   --accent-strong: #b85656;
+  --brand-highlight: #f19977;
   --link: #89d4e8;
   --link-hover: #f19977;
   --code-bg: #111314;
@@ -192,19 +196,24 @@ a:hover {
   align-items: baseline;
   min-width: 0;
   color: var(--ink);
-  font-family: var(--ui-font);
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 20pt;
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1.2;
   text-decoration: none;
+  transition: color 0.2s ease-out;
 }
 
-.site-brand:hover {
-  color: var(--accent);
+.site-brand:hover,
+.site-brand:focus-visible {
+  color: var(--brand-highlight);
 }
 
 .brand-dot {
-  color: var(--accent);
+  background: linear-gradient(to right, var(--brand-highlight), var(--accent));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
 .site-main {
