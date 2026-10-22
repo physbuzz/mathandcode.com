@@ -1,0 +1,1127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="Two plain-text panes with OpenAI streaming dictation. One file, no dependencies.">
+<title>Voice Notes</title>
+<!-- Favicon: user-supplied microphone SVG, embedded to keep this a single HTML file. -->
+<link rel="icon" type="image/svg+xml" sizes="any" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMyAzMyIgd2lkdGg9IjMzIiBoZWlnaHQ9IjMzIj4KICA8Y2lyY2xlIGN4PSIxNi41IiBjeT0iMTUuNSIgcj0iMTUiIGZpbGw9IiNmOGY4ZjgiLz4KICA8ZyBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwZjkiIHN0cm9rZS13aWR0aD0iMS43NiI+CiAgICA8cGF0aCBkPSJNOC42NiAxMi41NCB2MS45NiBhNy44NCA3Ljg0IDAgMCAwIDE1LjY4IDAgdi0xLjk2IiBzdHJva2UtbGluZWNhcD0iYnV0dCIgc3Ryb2tlLWRhc2hhcnJheT0iNC4xMTYgMS45NiIvPgogICAgPHBhdGggZD0iTTE2LjUgMjIuMzQgdjMuOTIgTTEyLjU4IDI2LjI2IGg3Ljg0IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KICA8L2c+CiAgPHJlY3QgeD0iMTMuMDciIHk9IjQuMjEiIHdpZHRoPSI2Ljg2IiBoZWlnaHQ9IjEzLjcyIiByeD0iMy40MyIgZmlsbD0iIzAwMDAwMCIvPgogIDxnIGZpbGw9IiMwMDAwMDAiPjxjaXJjbGUgY3g9IjguNjYiIGN5PSIxMi41NCIgcj0iMS4zIi8+PGNpcmNsZSBjeD0iMjQuMzQiIGN5PSIxMi41NCIgcj0iMS4zIi8+PGNpcmNsZSBjeD0iMTIuNTgiIGN5PSIyNi4yNiIgcj0iMS4zIi8+PGNpcmNsZSBjeD0iMjAuNDIiIGN5PSIyNi4yNiIgcj0iMS4zIi8+PC9nPgo8L3N2Zz4=">
+<style>
+:root {
+  color-scheme: dark;
+  --bg: #1e1e1e; --panel: #232323; --bar: #191919; --field: #292929;
+  --text: #dddcd9; --muted: #aaa6af; --line: #3a383d;
+  --editor-max-width: 1600px;
+  --accent: #b8a0ed; --accent-bg: #332b45; --danger: #f09b9b; --good: #a4cdb2;
+}
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f8f7f5; --panel: #fffefd; --bar: #f0eeeb; --field: #ffffff;
+  --text: #29272d; --muted: #65616e; --line: #d9d5dd;
+  --accent: #7251b5; --accent-bg: #ebe4f7; --danger: #a73636; --good: #38724c;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { height: 100%; margin: 0; }
+body {
+  background: var(--bg); color: var(--text);
+  font: 14px/1.5 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  display: flex; flex-direction: column;
+  min-width: 300px; height: 100dvh;
+}
+button, select, input, textarea { font: inherit; }
+button, select {
+  color: var(--text); background: var(--field); border: 1px solid var(--line);
+  border-radius: 6px; min-height: 36px; padding: 6px 11px;
+}
+button { cursor: pointer; }
+button:hover:not(:disabled) { border-color: var(--accent); }
+button:disabled, select:disabled { opacity: .5; cursor: default; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+header {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  padding: 12px 18px; border-bottom: 1px solid var(--line); background: var(--bar);
+}
+h1 { font-size: 15px; font-weight: 650; margin: 0 8px 0 0; white-space: nowrap; }
+.controls { display: flex; align-items: center; gap: 8px; }
+#record { background: var(--accent-bg); border-color: var(--accent); min-width: 106px; }
+#record[data-recording="true"] { color: var(--danger); border-color: var(--danger); }
+#settingsButton { margin-left: auto; }
+#statusArea {
+  display: flex; align-items: center; gap: 9px; flex: 1; min-width: 220px;
+  color: var(--muted); font-size: 12px;
+}
+#statusDot { width: 7px; height: 7px; background: var(--muted); border-radius: 50%; flex-shrink: 0; }
+body[data-phase="recording"] #statusDot { background: var(--danger); }
+#status { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#elapsed { font-variant-numeric: tabular-nums; min-width: 35px; }
+.meter { width: 42px; height: 8px; border-radius: 4px; background: var(--line); overflow: hidden; flex-shrink: 0; }
+#meterFill { display: block; width: 100%; height: 100%; background: var(--accent); transform: scaleX(0); transform-origin: left; }
+#received { white-space: nowrap; color: var(--good); }
+#notice {
+  margin: 0; padding: 9px 18px; border-bottom: 1px solid var(--line);
+  color: var(--muted); font-size: 12px; overflow-wrap: anywhere;
+}
+#notice[data-error="true"] { color: var(--danger); }
+main { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); flex: 1; min-height: 0; }
+.pane { min-width: 0; min-height: 0; display: flex; flex-direction: column; background: var(--panel); }
+.pane + .pane { border-left: 1px solid var(--line); }
+.paneHeader {
+  display: flex; align-items: center; justify-content: space-between; padding: 10px 20px;
+  border-top: 2px solid transparent; color: var(--muted); font-size: 12px;
+}
+.pane[data-active="true"] .paneHeader { border-top-color: var(--accent); }
+.paneHeader label { font-weight: 600; color: var(--text); }
+.paneHint { color: var(--accent); }
+.paneHeader { width: 100%; max-width: var(--editor-max-width); align-self: center; gap: 8px; min-height: 50px; flex-shrink: 0; }
+.paneTools { display: flex; align-items: center; gap: 10px; }
+#toggleRight { display: inline-flex; align-items: center; gap: 4px; min-height: 28px; padding: 3px 7px; font-size: 12px; }
+#toggleRight svg { width: 14px; height: 14px; flex-shrink: 0; }
+main[data-right-collapsed="true"] { grid-template-columns: minmax(0, 1fr) 44px; }
+main[data-right-collapsed="true"] #pane0 {
+  --editor-max-width: 1100px;
+}
+main[data-right-collapsed="true"] #pane1 .paneHeader {
+  flex-direction: column-reverse; justify-content: flex-end; padding: 8px 4px; gap: 12px; min-height: 0;
+}
+main[data-right-collapsed="true"] #label1 { writing-mode: vertical-rl; }
+main[data-right-collapsed="true"] #hint1,
+main[data-right-collapsed="true"] #toggleRightText { display: none; }
+main[data-right-collapsed="true"] #toggleRight svg { transform: rotate(180deg); }
+.editor {
+  display: block; flex: 1; min-height: 0; width: 100%; max-width: var(--editor-max-width); align-self: center; resize: none; border: 0; border-radius: 0;
+  outline: none; padding: 10px 22px 28px; background: transparent; color: var(--text);
+  font: 16px/1.75 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  tab-size: 4; caret-color: var(--accent); overscroll-behavior: contain;
+}
+.editor:focus-visible { outline: none; }
+.editor::placeholder { color: var(--muted); opacity: .7; }
+footer {
+  display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  background: var(--bar); border-top: 1px solid var(--line);
+  padding: 8px 18px; color: var(--muted); font-size: 11px;
+}
+kbd { font: inherit; color: var(--text); }
+dialog {
+  width: min(480px, calc(100vw - 32px)); max-height: calc(100dvh - 40px);
+  padding: 24px; border: 1px solid var(--line); border-radius: 10px;
+  background: var(--panel); color: var(--text);
+}
+dialog::backdrop { background: #0009; }
+dialog h2 { margin: 0 0 18px; font-size: 18px; font-weight: 600; }
+.setting { display: flex; flex-direction: column; gap: 6px; margin: 0 0 18px; }
+.setting label { font-weight: 600; }
+.setting input, .setting textarea {
+  width: 100%; padding: 9px 10px; color: var(--text); background: var(--field);
+  border: 1px solid var(--line); border-radius: 6px;
+}
+.setting textarea { resize: vertical; min-height: 72px; max-height: 200px; }
+.setting small, .help { color: var(--muted); font-size: 12px; }
+.help { margin: 0 0 18px; }
+a { color: var(--accent); }
+.dialogActions { display: flex; justify-content: flex-end; }
+.keyActions { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.keyActions small { flex: 1; }
+#clearKey { min-height: 30px; white-space: nowrap; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+@media (max-width: 760px) {
+  header { gap: 10px; padding: 10px 12px; }
+  #statusArea { order: 5; flex-basis: 100%; }
+  .paneHeader { padding: 8px 12px; }
+  .editor { padding: 8px 12px 20px; font-size: 16px; }
+}
+@media (max-width: 540px) {
+  main { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) minmax(0, 1fr); }
+  main[data-right-collapsed="true"] { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) 44px; }
+  main[data-right-collapsed="true"] #pane1 .paneHeader { flex-direction: row; justify-content: space-between; padding: 6px 12px; gap: 8px; }
+  main[data-right-collapsed="true"] #label1 { writing-mode: horizontal-tb; }
+  main[data-right-collapsed="true"] #toggleRightText { display: inline; }
+  #toggleRight svg { transform: rotate(90deg); }
+  main[data-right-collapsed="true"] #toggleRight svg { transform: rotate(270deg); }
+  .pane + .pane { border-left: 0; border-top: 1px solid var(--line); }
+  header { gap: 6px; }
+  h1 { flex: 1; }
+  #settingsButton { margin-left: 0; }
+  .controls { order: 4; width: 100%; }
+  #mode { flex: 1; }
+  footer { font-size: 10px; padding: 7px 12px; }
+}
+</style>
+</head>
+<body data-phase="idle">
+<header>
+  <h1>Voice Notes</h1>
+  <div class="controls">
+    <button id="record" type="button" title="Start or stop dictation (Ctrl+Shift+Space)" aria-keyshortcuts="Control+Shift+Space Meta+Shift+Space">● Record</button>
+    <label class="sr-only" for="mode">Dictation mode</label>
+    <select id="mode">
+      <option value="live">Live streaming</option>
+      <option value="upload">Record &amp; upload</option>
+    </select>
+    <button id="discard" type="button" hidden title="Discard the pending audio recording">Discard audio</button>
+  </div>
+  <div id="statusArea">
+    <span id="statusDot" aria-hidden="true"></span>
+    <span id="status" role="status">Ready · Left pane</span>
+    <span id="elapsed" hidden>00:00</span>
+    <span id="meter" class="meter" role="meter" aria-label="Microphone input level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" hidden><span id="meterFill"></span></span>
+    <span id="received"></span>
+  </div>
+  <button id="settingsButton" type="button" aria-haspopup="dialog">Settings</button>
+</header>
+<p id="notice" role="status" hidden></p>
+<main id="workspace" data-right-collapsed="false">
+  <section class="pane" id="pane0" data-active="true" aria-labelledby="label0">
+    <div class="paneHeader"><label id="label0" for="left">Left</label><span class="paneHint" id="hint0">Next dictation</span></div>
+    <textarea id="left" class="editor" spellcheck="true" aria-label="Left text pane" placeholder="Click anywhere. Then record." autocapitalize="sentences"></textarea>
+  </section>
+  <section class="pane" id="pane1" data-active="false" aria-labelledby="label1">
+    <div class="paneHeader">
+      <label id="label1" for="right">Right</label>
+      <div class="paneTools">
+        <span class="paneHint" id="hint1"></span>
+        <button id="toggleRight" type="button" aria-expanded="true" aria-controls="right" aria-label="Shrink right pane" title="Shrink right pane. Its text is kept.">
+          <span id="toggleRightText">Shrink</span>
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+    <textarea id="right" class="editor" spellcheck="true" aria-label="Right text pane" placeholder="A second space to write or compare." autocapitalize="sentences"></textarea>
+  </section>
+</main>
+<footer>
+  <span><kbd id="shortcut">Ctrl + Shift + Space</kbd> to record / stop</span>
+  <span id="storageStatus" title="Both panes are saved automatically in this browser.">Local recovery on</span>
+</footer>
+<dialog id="settings" aria-labelledby="settingsTitle">
+  <form method="dialog" id="settingsForm">
+    <h2 id="settingsTitle">Settings</h2>
+    <div class="setting">
+      <label for="apiKey">OpenAI API key</label>
+      <input id="apiKey" type="password" placeholder="sk-…" autocomplete="off" autocapitalize="none" spellcheck="false">
+      <div class="keyActions">
+        <small id="keyStorageStatus" role="status">No key saved.</small>
+        <button id="clearKey" type="button">Clear key</button>
+      </div>
+      <small>The key is saved unencrypted in this browser, not uploaded anywhere except OpenAI when making requests.<br>
+        <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener noreferrer">Get an API key</a> · API billing is separate from ChatGPT.</small>
+    </div>
+    <div class="setting">
+      <label>Microphone</label>
+      <div class="keyActions">
+        <small id="micState" role="status">Not opened yet.</small>
+        <button id="switchMic" type="button" title="Release the current microphone; the next recording will request a device again">Change microphone</button>
+      </div>
+      <small>After stopping, the microphone remains authorized but muted so the next recording starts without another picker. Change microphone releases it; the next Record asks the browser for a device again (the browser decides whether to show a picker).</small>
+    </div>
+    <div class="setting">
+      <label for="theme">Appearance</label>
+      <select id="theme">
+        <option value="system">Follow system</option>
+        <option value="dark">Dark</option>
+        <option value="light">Light</option>
+      </select>
+    </div>
+    <div class="setting">
+      <label for="contextHint">Transcription hint <small>(optional)</small></label>
+      <textarea id="contextHint" rows="2" maxlength="1000" placeholder="Names, acronyms, or context that will help recognition."></textarea>
+      <small>This hint is sent with your audio. The contents of your text panes are not.</small>
+    </div>
+    <p class="help">Live streaming shows text as you speak. Record &amp; upload sends the recording when you stop. Clicking elsewhere keeps dictation at its starting point. Editing the live dictated text stops that recording.</p>
+    <p class="help">Text, appearance, and the API key are saved in this browser. Audio stays in memory until sent directly to OpenAI. Live audio is sent while recording; upload mode waits for Stop. Stop before closing to receive the final words.</p>
+    <div class="dialogActions"><button type="submit">Done</button></div>
+  </form>
+</dialog>
+<noscript>This app needs JavaScript for dictation and local text recovery.</noscript>
+<script>
+'use strict';
+/*
+  Voice Notes — standalone, dependency-free browser app.
+  API contract checked 2026-10-19:
+  https://developers.openai.com/api/docs/guides/realtime-transcription
+  https://developers.openai.com/api/docs/guides/voice-webrtc
+  https://developers.openai.com/api/docs/guides/speech-to-text
+  A personal bring-your-own-key tool: no embedded key, backend, analytics, or CDN.
+*/
+/* Pure textarea helpers. All offsets are UTF-16, matching selectionStart/End. */
+const DictationCore = (() => {
+  function validRange(range, length) {
+    return range && Number.isInteger(range.start) && Number.isInteger(range.end) &&
+      range.start >= 0 && range.start <= range.end && range.end <= length;
+  }
+
+  function minimalSplice(oldValue, newValue) {
+    let start = 0;
+    while (start < oldValue.length && start < newValue.length &&
+      oldValue[start] === newValue[start]) start++;
+    let end = oldValue.length;
+    let newEnd = newValue.length;
+    while (end > start && newEnd > start && oldValue[end - 1] === newValue[newEnd - 1]) {
+      end--;
+      newEnd--;
+    }
+    return {
+      start, end, text: newValue.slice(start, newEnd),
+      delta: newValue.length - oldValue.length,
+      changed: oldValue !== newValue,
+      uncertain: false,
+      oldLength: oldValue.length, newLength: newValue.length
+    };
+  }
+
+  function editAt(oldValue, newValue, start, end) {
+    if (!validRange({ start, end }, oldValue.length)) return null;
+    const insertedLength = newValue.length - oldValue.length + end - start;
+    if (insertedLength < 0 || start + insertedLength > newValue.length ||
+      oldValue.slice(0, start) !== newValue.slice(0, start) ||
+      oldValue.slice(end) !== newValue.slice(start + insertedLength)) return null;
+    return {
+      start, end, text: newValue.slice(start, start + insertedLength),
+      delta: newValue.length - oldValue.length,
+      changed: oldValue !== newValue,
+      uncertain: false,
+      oldLength: oldValue.length, newLength: newValue.length
+    };
+  }
+
+  // before is captured synchronously in beforeinput, before the browser edits.
+  // Prefix/suffix diff alone cannot locate an insertion in e.g. "aaaa".
+  function inferEdit(oldValue, newValue, before = {}) {
+    const fallback = minimalSplice(oldValue, newValue);
+    if (!fallback.changed) return fallback;
+    const { start, end, inputType = "" } = before;
+    if (!validRange({ start, end }, oldValue.length)) {
+      return { ...fallback, uncertain: true };
+    }
+    const inserts = new Set([
+      "insertText", "insertLineBreak", "insertParagraph", "insertFromPaste",
+      "insertFromPasteAsQuotation", "insertFromYank"
+    ]);
+    if (inserts.has(inputType)) {
+      const exact = editAt(oldValue, newValue, start, end);
+      if (exact) return exact;
+    }
+    if (inputType.startsWith("delete")) {
+      if (start < end) {
+        const exact = editAt(oldValue, newValue, start, end);
+        if (exact && exact.text === "") return exact;
+      } else {
+        const removedLength = oldValue.length - newValue.length;
+        if (removedLength > 0) {
+          let exact = null;
+          if (inputType.endsWith("Backward")) {
+            exact = editAt(oldValue, newValue, start - removedLength, start);
+          } else if (inputType.endsWith("Forward")) {
+            exact = editAt(oldValue, newValue, start, start + removedLength);
+          }
+          if (exact && exact.text === "") return exact;
+        }
+      }
+    }
+    // Undo, IME replacement, spell correction, drag/drop and missing/stale
+    // beforeinput snapshots may edit a range other than the visible selection.
+    // Keep the user's edit, but do not guess where to resume live dictation.
+    return { ...fallback, uncertain: true };
+  }
+
+  // Rebase only the tracked dictation destination, never the visible selection.
+  // A null range instructs the caller to cancel this recording generation.
+  function rebaseRange(range, edit) {
+    if (!validRange(range, edit.oldLength)) {
+      return { range: null, overlap: false, uncertain: true, reason: "invalid-range" };
+    }
+    if (!edit.changed) return { range: { ...range }, overlap: false, uncertain: false };
+    if (edit.uncertain) {
+      return { range: null, overlap: false, uncertain: true, reason: "uncertain-edit" };
+    }
+    // An intentional whole-pane replacement wins even over an anchor at 0/end.
+    if (edit.oldLength > 0 && edit.start === 0 && edit.end === edit.oldLength) {
+      return { range: null, overlap: true, uncertain: false, reason: "replace-all" };
+    }
+    if (edit.end <= range.start) {
+      return {
+        range: { start: range.start + edit.delta, end: range.end + edit.delta },
+        overlap: false, uncertain: false
+      };
+    }
+    if (edit.start >= range.end) {
+      return { range: { ...range }, overlap: false, uncertain: false };
+    }
+    return { range: null, overlap: true, uncertain: false, reason: "overlap" };
+  }
+
+  // Minimize a known programmatic replacement so a completed transcript that
+  // changes one word does not needlessly move selections throughout the pane.
+  function replacementEdit(value, range, replacement) {
+    if (!validRange(range, value.length)) throw new RangeError("Invalid replacement range");
+    const edit = minimalSplice(value.slice(range.start, range.end), replacement);
+    return {
+      ...edit, start: edit.start + range.start, end: edit.end + range.start,
+      oldLength: value.length, newLength: value.length + edit.delta
+    };
+  }
+
+  function mapSelection(selection, edit) {
+    if (!validRange(selection, edit.oldLength)) throw new RangeError("Invalid selection");
+    const direction = selection.direction || "none";
+    if (!edit.changed) return { start: selection.start, end: selection.end, direction };
+    const insertedEnd = edit.start + edit.text.length;
+    if (selection.start === selection.end) {
+      let point = selection.start;
+      if (point >= edit.end) point += edit.delta;
+      else if (point >= edit.start) point = insertedEnd;
+      return { start: point, end: point, direction: "none" };
+    }
+    const mapStart = point => {
+      if (point < edit.start) return point;
+      if (point >= edit.end) return point + edit.delta;
+      return edit.start;
+    };
+    const mapEnd = point => {
+      if (point <= edit.start) return point;
+      if (point >= edit.end) return point + edit.delta;
+      return insertedEnd;
+    };
+    const start = mapStart(selection.start);
+    const end = mapEnd(selection.end);
+    return { start, end, direction: start === end ? "none" : direction };
+  }
+
+  return Object.freeze({ inferEdit, rebaseRange, minimalSplice, replacementEdit, mapSelection });
+})();
+
+
+const $ = id => document.getElementById(id);
+const API = 'https://api.openai.com/v1';
+const STORAGE_KEY = 'voice-notes-v1';
+const API_KEY_STORAGE_KEY = 'voice-notes-api-key-v1';
+const LIVE_MODEL = 'gpt-live-transcribe';
+const FILE_MODEL = 'gpt-transcribe';
+const MAX_UPLOAD = 25_000_000;
+const panes = ['left', 'right'].map(id => ({
+  el: $(id), value: '', before: null, composing: false,
+  history: { undo: [], redo: [], kind: '', at: 0 }
+}));
+let activePane = 0;
+let current = null;
+// Hold one muted stream for this tab so Firefox does not reopen its microphone
+// chooser on every Record. This is in-memory only and is released on pagehide.
+let microphoneStream = null;
+let sessionNumber = 0;
+let apiKey = '';
+let preferences = { theme: 'system', mode: 'live', hint: '', rightCollapsed: false };
+const systemTheme = matchMedia('(prefers-color-scheme: light)');
+
+function notify(message = '', error = false) {
+  $('notice').textContent = message;
+  $('notice').hidden = !message;
+  $('notice').dataset.error = String(error);
+}
+function save() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      left: panes[0].el.value, right: panes[1].el.value,
+      activePane, preferences
+    }));
+    $('storageStatus').textContent = 'Saved in this browser';
+    $('storageStatus').title = 'Both panes are saved automatically in this browser.';
+  } catch {
+    $('storageStatus').textContent = 'Local recovery unavailable';
+    $('storageStatus').title = 'This browser blocked local storage or it is full. Keep a copy of any text you need.';
+  }
+}
+function persistApiKey() {
+  apiKey = $('apiKey').value.trim();
+  try {
+    if (apiKey) localStorage.setItem(API_KEY_STORAGE_KEY, apiKey);
+    else localStorage.removeItem(API_KEY_STORAGE_KEY);
+    $('keyStorageStatus').textContent = apiKey ? 'Saved in browser storage.' : 'No key saved.';
+  } catch {
+    $('keyStorageStatus').textContent = apiKey
+      ? 'Storage blocked; key will only last until this tab closes.'
+      : 'Could not clear browser storage; clear the page’s site data manually.';
+  }
+  $('clearKey').disabled = !apiKey;
+}
+function applyTheme() {
+  const light = preferences.theme === 'light' || (preferences.theme === 'system' && systemTheme.matches);
+  document.documentElement.dataset.theme = light ? 'light' : 'dark';
+}
+// The same two textarea elements stay mounted. Shrinking never clears text,
+// changes the storage schema, or destroys the right pane's undo history.
+function applyPaneLayout() {
+  const collapsed = preferences.rightCollapsed;
+  if (collapsed && activePane === 1) activePane = 0;
+  $('workspace').dataset.rightCollapsed = String(collapsed);
+  panes[1].el.hidden = collapsed;
+  $('toggleRight').setAttribute('aria-expanded', String(!collapsed));
+  $('toggleRight').setAttribute('aria-label', collapsed ? 'Expand right pane' : 'Shrink right pane');
+  $('toggleRightText').textContent = collapsed ? 'Expand' : 'Shrink';
+}
+function renderUI() {
+  const phase = current ? current.phase : 'idle';
+  document.body.dataset.phase = phase;
+  $('record').dataset.recording = String(phase === 'recording');
+  $('record').textContent = phase === 'idle' ? '● Record' :
+    phase === 'recording' ? '■ Stop' :
+    phase === 'upload-failed' ? 'Retry upload' : 'Cancel';
+  $('mode').disabled = !!current;
+  // Keep an in-use dictation destination visible, including pending uploads.
+  $('toggleRight').disabled = !!current && current.pane === 1;
+  $('toggleRight').title = $('toggleRight').disabled
+    ? 'Finish or cancel dictation into Right before shrinking it.'
+    : preferences.rightCollapsed ? 'Expand right pane. Its text is kept.' : 'Shrink right pane. Its text is kept.';
+  $('settingsButton').disabled = !!current && phase !== 'upload-failed';
+  $('discard').hidden = phase !== 'upload-failed';
+  $('elapsed').hidden = !current || !current.startedAt;
+  $('meter').hidden = phase !== 'recording';
+  const destination = current ? current.pane : activePane;
+  const name = destination === 0 ? 'Left' : 'Right';
+  const descriptions = {
+    idle: 'Ready', connecting: 'Connecting microphone…', recording: current && current.mode === 'live' ? 'Listening' : 'Recording locally',
+    finishing: 'Finishing transcript…', uploading: 'Uploading and transcribing…', 'upload-failed': 'Upload failed · retry available'
+  };
+  $('status').textContent = descriptions[phase] + ' · ' + name + ' pane';
+  for (let i = 0; i < panes.length; i++) {
+    $('pane' + i).dataset.active = String(i === destination);
+    $('hint' + i).textContent = i !== destination ? '' : current ? 'Dictation anchored here' : 'Next dictation';
+  }
+  if (!current) {
+    $('received').textContent = '';
+    $('meterFill').style.transform = 'scaleX(0)';
+    $('meter').setAttribute('aria-valuenow', '0');
+  }
+}
+function snapshot(pane) {
+  return {
+    value: pane.el.value, start: pane.el.selectionStart,
+    end: pane.el.selectionEnd, direction: pane.el.selectionDirection
+  };
+}
+function remember(pane, previous, kind) {
+  const h = pane.history;
+  const now = Date.now();
+  const group = h.kind === kind && (kind.startsWith('voice:') ||
+    (previous.start === previous.end && now - h.at < 700));
+  if (!group) {
+    h.undo.push(previous);
+    if (h.undo.length > 100) h.undo.shift();
+  }
+  h.redo.length = 0;
+  h.kind = kind;
+  h.at = now;
+}
+function undoRedo(index, redo) {
+  const pane = panes[index], h = pane.history;
+  const from = redo ? h.redo : h.undo;
+  if (!from.length) return;
+  if (current && current.pane === index) cancelCurrent('Dictation stopped for undo or redo.');
+  (redo ? h.undo : h.redo).push(snapshot(pane));
+  const state = from.pop();
+  pane.el.value = state.value;
+  pane.el.setSelectionRange(state.start, state.end, state.direction);
+  pane.value = state.value;
+  pane.before = null;
+  h.kind = '';
+  save();
+}
+function spacing(left, right) {
+  if (!left || !right || /\s$/.test(left) || /^\s/.test(right)) return '';
+  if (/[(\[{"“‘\/\-]$/.test(left) || /^[.,!?;:)\]}"”’\/\-]/.test(right)) return '';
+  // Avoid introducing English word spacing into common CJK script boundaries.
+  if (/[\u3000-\u9fff\uac00-\ud7af]$/.test(left) || /^[\u3000-\u9fff\uac00-\ud7af]/.test(right)) return '';
+  return ' ';
+}
+function orderedItems(s) {
+  const result = [], visited = new Set();
+  function add(item) {
+    if (!item || visited.has(item.id)) return;
+    visited.add(item.id);
+    add(s.items.get(item.previous));
+    result.push(item);
+  }
+  for (const item of s.items.values()) add(item);
+  return result;
+}
+function itemFor(s, id) {
+  if (!s.items.has(id)) s.items.set(id, { id, text: '', done: false, committed: false, previous: undefined });
+  return s.items.get(id);
+}
+function renderTranscript(s) {
+  if (current !== s) return;
+  const pane = panes[s.pane];
+  if (pane.composing) return;
+  const raw = orderedItems(s).map(item => item.text).filter(Boolean)
+    .reduce((text, next) => text + spacing(text, next) + next, '').trim();
+  if (!raw && !s.hasText) return; // A silent recording must not erase a selection.
+  const oldRange = { ...s.range };
+  const value = pane.el.value;
+  const replacement = raw
+    ? spacing(value.slice(0, oldRange.start), raw) + raw + spacing(raw, value.slice(oldRange.end))
+    : s.originalSelection;
+  const edit = DictationCore.replacementEdit(value, oldRange, replacement);
+  const initialSelection = !s.hasText && !!raw &&
+    pane.el.selectionStart === oldRange.start && pane.el.selectionEnd === oldRange.end;
+  if (edit.changed) {
+    const before = snapshot(pane);
+    remember(pane, before, 'voice:' + s.id);
+    const atEnd = before.start === oldRange.end && before.end === oldRange.end;
+    const mapped = DictationCore.mapSelection(before, edit);
+    const scrollTop = pane.el.scrollTop, scrollLeft = pane.el.scrollLeft;
+    const followingBottom = document.activeElement === pane.el && atEnd &&
+      pane.el.scrollHeight - pane.el.clientHeight - scrollTop < 45;
+    pane.el.setRangeText(edit.text, edit.start, edit.end, 'preserve');
+    const newEnd = oldRange.start + replacement.length;
+    if (atEnd || initialSelection) pane.el.setSelectionRange(newEnd, newEnd);
+    else pane.el.setSelectionRange(mapped.start, mapped.end, mapped.direction);
+    pane.el.scrollTop = followingBottom ? pane.el.scrollHeight : scrollTop;
+    pane.el.scrollLeft = scrollLeft;
+    pane.value = pane.el.value;
+    pane.before = null;
+    save();
+  } else if (initialSelection) {
+    // Replacing a selection with identical spoken text still consumes the selection.
+    pane.el.setSelectionRange(oldRange.end, oldRange.end);
+  }
+  s.range = { start: oldRange.start, end: oldRange.start + replacement.length };
+  s.hasText = !!raw;
+}
+
+function timer(s, callback, ms) {
+  const id = setTimeout(() => {
+    s.timers.delete(id);
+    if (current === s) callback();
+  }, ms);
+  s.timers.add(id);
+  return id;
+}
+function updateMicrophoneState() {
+  const ready = !!microphoneStream && microphoneStream.getAudioTracks().some(t => t.readyState === 'live');
+  $('micState').textContent = ready
+    ? (current && current.phase === 'recording' ? 'Recording from microphone.' : 'Microphone ready (muted).')
+    : 'No microphone held. Record to choose one.';
+  $('switchMic').disabled = !ready || (!!current && current.phase !== 'upload-failed');
+}
+function releaseMicrophone() {
+  const stream = microphoneStream;
+  microphoneStream = null;
+  if (stream) for (const track of stream.getTracks()) {
+    track.onended = null;
+    track.stop();
+  }
+  updateMicrophoneState();
+}
+function stopMicrophone(s) {
+  // Stopping a MediaStreamTrack drops the browser's chosen device; Firefox may
+  // display the device chooser again. Keep it alive but SILENT until next Record.
+  if (s.stream) for (const track of s.stream.getAudioTracks()) track.enabled = false;
+  if (s.meterTimer) clearInterval(s.meterTimer);
+  s.meterTimer = null;
+  if (s.audioContext) s.audioContext.close().catch(() => {});
+  s.audioContext = null;
+  $('meterFill').style.transform = 'scaleX(0)';
+  updateMicrophoneState();
+}
+function release(s) {
+  for (const id of s.timers) clearTimeout(id);
+  s.timers.clear();
+  s.controller.abort();
+  if (s.recorder && s.recorder.state !== 'inactive') {
+    s.recorder.onstop = null;
+    s.recorder.ondataavailable = null;
+    try { s.recorder.stop(); } catch {}
+  }
+  stopMicrophone(s);
+  if (s.dc) { try { s.dc.close(); } catch {} }
+  if (s.pc) { try { s.pc.close(); } catch {} }
+  s.chunks = [];
+  s.blob = null;
+}
+function finish(s, message = '', error = false) {
+  if (current !== s) return;
+  current = null; // Invalidate first: cleanup and late API events cannot write text.
+  release(s);
+  panes[s.pane].history.kind = '';
+  save();
+  renderUI();
+  updateMicrophoneState();
+  notify(message, error);
+}
+function cancelCurrent(message = 'Recording cancelled. Any text already inserted is kept.') {
+  if (current) finish(current, message);
+}
+function errorMessage(error) {
+  if (error && error.name === 'NotAllowedError') return 'Microphone access was denied. Allow this page to use your microphone, then try again.';
+  if (error && error.name === 'NotFoundError') return 'No microphone was found. Connect or enable a microphone, then try again.';
+  if (error && error.name === 'NotReadableError') return 'The microphone could not be opened. Check the device or whether another app is using it.';
+  if (error instanceof TypeError) return 'Could not connect to OpenAI. Check your connection. If this browser blocks requests from a local file, open the file through localhost or HTTPS.';
+  let message = error && error.message ? error.message : String(error);
+  if (apiKey) message = message.split(apiKey).join('[API key]');
+  return message;
+}
+async function request(s, path, body, contentType, key, timeout = 30000) {
+  const deadline = timer(s, () => s.controller.abort(new Error('The OpenAI request timed out. Please try again.')), timeout);
+  try {
+    const headers = { Authorization: 'Bearer ' + key };
+    if (contentType) headers['Content-Type'] = contentType;
+    const response = await fetch(API + path, {
+      method: 'POST', headers, body, signal: s.controller.signal,
+      credentials: 'omit', referrerPolicy: 'no-referrer'
+    });
+    const text = await response.text();
+    if (!response.ok) {
+      let message = 'OpenAI returned HTTP ' + response.status + '.';
+      try { message = JSON.parse(text).error.message || message; } catch {}
+      throw new Error(message);
+    }
+    return text;
+  } catch (error) {
+    throw s.controller.signal.aborted && s.controller.signal.reason instanceof Error
+      ? s.controller.signal.reason : error;
+  } finally {
+    clearTimeout(deadline);
+    s.timers.delete(deadline);
+  }
+}
+function startMeter(s) {
+  let analyser = null, samples = null;
+  try {
+    if (s.audioContext) {
+      analyser = s.audioContext.createAnalyser();
+      analyser.fftSize = 512;
+      const source = s.audioContext.createMediaStreamSource(s.stream);
+      source.connect(analyser); // No connection to speakers: no feedback.
+      s.source = source;
+      samples = new Float32Array(analyser.fftSize);
+    }
+  } catch { analyser = null; }
+  s.meterTimer = setInterval(() => {
+    if (current !== s) return;
+    const now = Date.now();
+    if (s.startedAt) {
+      const seconds = Math.floor(((s.stoppedAt || now) - s.startedAt) / 1000);
+      $('elapsed').textContent = String(Math.floor(seconds / 60)).padStart(2, '0') + ':' + String(seconds % 60).padStart(2, '0');
+    }
+    let rms = 0;
+    if (analyser && samples) {
+      analyser.getFloatTimeDomainData(samples);
+      rms = Math.sqrt(samples.reduce((sum, value) => sum + value * value, 0) / samples.length);
+      const level = Math.min(1, Math.sqrt(rms) * 2.8);
+      $('meterFill').style.transform = 'scaleX(' + level + ')';
+      $('meter').setAttribute('aria-valuenow', String(Math.round(level * 100)));
+    }
+    if (s.lastTextAt) {
+      const ago = Math.floor((now - s.lastTextAt) / 1000);
+      $('received').textContent = ago < 2 ? 'Text received' : 'Text ' + ago + 's ago';
+    }
+    if (s.phase !== 'recording' || s.mode !== 'live') return;
+    if (rms > 0.012) { s.lastSoundAt = now; s.chunkHeard = true; }
+    const age = now - s.lastCommitAt;
+    // Commit at a pause; cap each turn at 30 seconds during continuous speech.
+    // This affects finalization, not the arrival of live transcript deltas.
+    if (!s.commits.length && (age >= 30000 || (age >= 1500 && s.chunkHeard && now - s.lastSoundAt > 1000))) commit(s);
+  }, 100);
+}
+function beginRecording(s) {
+  if (current !== s || s.phase !== 'connecting') return;
+  clearTimeout(s.setupTimer);
+  s.timers.delete(s.setupTimer);
+  for (const track of s.stream.getAudioTracks()) track.enabled = true;
+  s.startedAt = Date.now();
+  s.lastCommitAt = s.startedAt;
+  s.lastSoundAt = s.startedAt;
+  s.phase = 'recording';
+  startMeter(s);
+  renderUI();
+  updateMicrophoneState();
+}
+function commit(s, final = false) {
+  if (current !== s || !s.dc || s.dc.readyState !== 'open') return;
+  const id = 'commit-' + s.id + '-' + (++s.commitNumber);
+  s.commits.push(id);
+  s.lastCommitAt = Date.now();
+  s.chunkHeard = false;
+  if (final) s.finalCommitSent = true;
+  try { s.dc.send(JSON.stringify({ type: 'input_audio_buffer.commit', event_id: id })); }
+  catch (error) { finish(s, errorMessage(error) + ' Any partial transcript is kept.', true); }
+  timer(s, () => {
+    if (s.phase === 'recording' && s.commits.includes(id)) {
+      finish(s, 'OpenAI stopped acknowledging audio. Any transcript received so far is kept. Please record again.', true);
+    }
+  }, 15000);
+}
+function maybeFinish(s) {
+  if (current !== s || s.phase !== 'finishing' || !s.finalCommitSent || s.commits.length || panes[s.pane].composing) return;
+  if ([...s.items.values()].some(item => !item.done)) return;
+  finish(s, s.hasText ? '' : 'No speech was transcribed.');
+}
+function handleRealtimeEvent(s, event) {
+  if (current !== s || !event || typeof event.type !== 'string') return;
+  if (event.event_id) {
+    if (s.seenEvents.has(event.event_id)) return;
+    s.seenEvents.add(event.event_id);
+  }
+  if (event.type === 'input_audio_buffer.committed') {
+    const item = itemFor(s, event.item_id);
+    if (item.committed) return;
+    s.commits.shift();
+    item.committed = true;
+    item.previous = event.previous_item_id;
+    renderTranscript(s);
+    maybeFinish(s);
+  } else if (event.type === 'conversation.item.input_audio_transcription.delta') {
+    const item = itemFor(s, event.item_id);
+    if (!item.done && typeof event.delta === 'string') {
+      item.text += event.delta;
+      s.lastTextAt = Date.now();
+      renderTranscript(s);
+    }
+  } else if (event.type === 'conversation.item.input_audio_transcription.completed') {
+    const item = itemFor(s, event.item_id);
+    if (item.done) return;
+    if (typeof event.transcript !== 'string') {
+      finish(s, 'OpenAI returned an incomplete transcript event. Any partial text is kept.', true);
+      return;
+    }
+    item.text = event.transcript;
+    item.done = true;
+    if (item.text) s.lastTextAt = Date.now();
+    renderTranscript(s);
+    maybeFinish(s);
+  } else if (event.type === 'conversation.item.input_audio_transcription.failed') {
+    finish(s, (event.error && event.error.message || 'Transcription failed.') + ' Any partial text is kept.', true);
+  } else if (event.type === 'error') {
+    const detail = event.error || {};
+    const description = (detail.code || '') + ' ' + (detail.message || '');
+    if (/commit.*(?:empty|small)|buffer.*too small|buffer.*empty/i.test(description)) {
+      const index = detail.event_id ? s.commits.indexOf(detail.event_id) : 0;
+      if (index >= 0) s.commits.splice(index, 1);
+      maybeFinish(s);
+    } else {
+      finish(s, errorMessage(new Error(detail.message || 'OpenAI reported a streaming error.')) + ' Any partial text is kept.', true);
+    }
+  }
+}
+async function connectRealtime(s) {
+  const transcription = { model: LIVE_MODEL, delay: 'low' };
+  if (s.hint) transcription.prompt = s.hint;
+  const tokenBody = JSON.stringify({
+    session: { type: 'transcription', audio: { input: { transcription, turn_detection: null } } }
+  });
+  const token = JSON.parse(await request(s, '/realtime/client_secrets', tokenBody, 'application/json', apiKey));
+  if (current !== s) return;
+  if (!token.value) throw new Error('OpenAI did not return a temporary streaming credential.');
+  const pc = s.pc = new RTCPeerConnection();
+  pc.addTrack(s.stream.getAudioTracks()[0], s.stream);
+  const dc = s.dc = pc.createDataChannel('oai-events');
+  dc.onmessage = message => {
+    try { handleRealtimeEvent(s, JSON.parse(message.data)); }
+    catch (error) { if (current === s) finish(s, 'Could not process the streaming response. Any inserted text is kept.', true); }
+  };
+  dc.onopen = () => beginRecording(s);
+  dc.onclose = () => { if (current === s) finish(s, 'The streaming connection closed. Any inserted text is kept; the last words may be incomplete.', true); };
+  dc.onerror = () => { if (current === s) finish(s, 'The streaming connection failed. Any inserted text is kept.', true); };
+  pc.onconnectionstatechange = () => {
+    if (current === s && pc.connectionState === 'failed') finish(s, 'The microphone connection failed. Check your connection and try again.', true);
+    else if (current === s && pc.connectionState === 'disconnected') {
+      timer(s, () => { if (pc.connectionState === 'disconnected') finish(s, 'The streaming connection was interrupted. Any inserted text is kept.', true); }, 6000);
+    }
+  };
+  const offer = await pc.createOffer();
+  if (current !== s) return;
+  await pc.setLocalDescription(offer);
+  if (current !== s) return;
+  const answer = await request(s, '/realtime/calls', offer.sdp, 'application/sdp', token.value);
+  if (current !== s) return;
+  await pc.setRemoteDescription({ type: 'answer', sdp: answer });
+}
+function fileExtension(mime) {
+  if (mime.includes('webm')) return 'webm';
+  if (mime.includes('ogg')) return 'ogg';
+  if (mime.includes('mp4')) return 'mp4';
+  if (mime.includes('wav')) return 'wav';
+  return null;
+}
+function beginUploadRecording(s) {
+  if (typeof MediaRecorder === 'undefined') throw new Error('This browser cannot record an audio file. Try Live streaming instead.');
+  const mime = ['audio/webm;codecs=opus', 'audio/mp4', 'audio/ogg;codecs=opus']
+    .find(type => MediaRecorder.isTypeSupported(type));
+  if (!mime) throw new Error('This browser does not offer a supported recording format. Try Live streaming instead.');
+  const recorder = s.recorder = new MediaRecorder(s.stream, { mimeType: mime, audioBitsPerSecond: 64000 });
+  recorder.ondataavailable = event => {
+    if (current !== s || !event.data.size) return;
+    s.chunks.push(event.data);
+    s.byteCount += event.data.size;
+    if (s.byteCount >= 24_000_000 && s.phase === 'recording') {
+      notify('The recording reached the upload size limit and has been stopped.');
+      stopRecording(s);
+    }
+  };
+  recorder.onerror = () => finish(s, 'The browser could not finish recording audio. Any existing text is kept.', true);
+  recorder.onstop = () => {
+    if (current !== s) return;
+    stopMicrophone(s);
+    const mimeType = recorder.mimeType || mime;
+    s.blob = new Blob(s.chunks, { type: mimeType });
+    s.chunks = [];
+    s.extension = fileExtension(mimeType);
+    if (!s.blob.size) { finish(s, 'The recording was empty. Please try again.'); return; }
+    if (s.blob.size > MAX_UPLOAD) { finish(s, 'This recording exceeded OpenAI’s 25 MB limit. Use a shorter recording or Live streaming.', true); return; }
+    if (!s.extension) { finish(s, 'The browser returned an unsupported audio format. Try Live streaming.', true); return; }
+    void uploadRecording(s);
+  };
+  beginRecording(s);
+  recorder.start(1000);
+}
+async function uploadRecording(s) {
+  if (current !== s || !s.blob) return;
+  s.phase = 'uploading';
+  s.controller = new AbortController();
+  renderUI();
+  notify();
+  const form = new FormData();
+  form.set('file', s.blob, 'dictation.' + s.extension);
+  form.set('model', FILE_MODEL);
+  form.set('response_format', 'json');
+  if (s.hint) form.set('prompt', s.hint);
+  try {
+    const result = JSON.parse(await request(s, '/audio/transcriptions', form, null, apiKey, 180000));
+    if (current !== s) return;
+    if (typeof result.text !== 'string') throw new Error('OpenAI returned a response without a transcript.');
+    const item = itemFor(s, 'recording');
+    item.text = result.text;
+    item.done = true;
+    s.phase = 'finishing';
+    s.finalCommitSent = true;
+    renderTranscript(s);
+    renderUI();
+    maybeFinish(s); // Preserve a completed result until an in-progress IME composition ends.
+  } catch (error) {
+    if (current !== s) return;
+    s.phase = 'upload-failed'; // Retain the same Blob and anchor for a deliberate retry.
+    renderUI();
+    notify(errorMessage(error) + ' The recording is still in this tab. Retry upload, change the key in Settings, or discard the audio.', true);
+  }
+}
+async function startRecording() {
+  if (current) return;
+  apiKey = $('apiKey').value.trim();
+  if (!apiKey) {
+    notify('Add your OpenAI API key in Settings, then press Record.');
+    $('settings').showModal();
+    $('apiKey').focus();
+    return;
+  }
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    notify('Microphone access is unavailable here. Open this HTML file directly, or serve it from localhost or HTTPS.', true);
+    return;
+  }
+  if (preferences.mode === 'live' && typeof RTCPeerConnection === 'undefined') {
+    notify('This browser cannot use WebRTC. Try Record & upload.', true);
+    return;
+  }
+  const pane = panes[activePane], selection = snapshot(pane);
+  const s = {
+    id: ++sessionNumber, pane: activePane, phase: 'connecting', mode: preferences.mode,
+    range: { start: selection.start, end: selection.end },
+    originalSelection: pane.el.value.slice(selection.start, selection.end),
+    hasText: false, hint: preferences.hint.trim(),
+    controller: new AbortController(), timers: new Set(), items: new Map(),
+    seenEvents: new Set(), commits: [], commitNumber: 0, chunks: [], byteCount: 0,
+    finalCommitSent: false, chunkHeard: false
+  };
+  current = s;
+  notify();
+  $('received').textContent = '';
+  $('elapsed').textContent = '00:00';
+  renderUI();
+  s.setupTimer = timer(s, () => finish(s, 'Microphone or connection setup timed out. Check permissions and try again.', true), 45000);
+  try {
+    // Resume within the button's user gesture, before awaiting microphone permission.
+    try {
+      const Context = window.AudioContext || window.webkitAudioContext;
+      if (Context) { s.audioContext = new Context(); void s.audioContext.resume().catch(() => {}); }
+    } catch {}
+    // Reuse a still-live, muted track instead of requesting a new device on
+    // every take. The browser can only grant an actual device the first time.
+    let stream = microphoneStream;
+    if (!stream || !stream.getAudioTracks().some(t => t.readyState === 'live')) {
+      releaseMicrophone();
+      stream = await navigator.mediaDevices.getUserMedia({
+        audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true }, video: false
+      });
+      if (current !== s) { for (const track of stream.getTracks()) track.stop(); return; }
+      microphoneStream = stream;
+      for (const track of stream.getAudioTracks()) {
+        track.onended = () => {
+          if (microphoneStream === stream) microphoneStream = null;
+          if (current && current.stream === stream &&
+              (current.phase === 'recording' || current.phase === 'connecting')) {
+            finish(current, 'The microphone was disconnected or its permission was revoked. Any text already inserted is kept.', true);
+          }
+          updateMicrophoneState();
+        };
+      }
+    }
+    if (current !== s) return;
+    s.stream = stream;
+    for (const track of stream.getAudioTracks()) track.enabled = false; // No audio until Listening.
+    updateMicrophoneState();
+    if (s.mode === 'live') await connectRealtime(s);
+    else beginUploadRecording(s);
+  } catch (error) {
+    if (current === s) finish(s, errorMessage(error), true);
+  }
+}
+function stopRecording(s) {
+  if (current !== s || s.phase !== 'recording') return;
+  s.stoppedAt = Date.now();
+  s.phase = 'finishing';
+  renderUI();
+  if (s.mode === 'upload') {
+    // MediaRecorder emits its final dataavailable before onstop.
+    try { s.recorder.stop(); } catch (error) { finish(s, errorMessage(error), true); }
+    stopMicrophone(s);
+    return;
+  }
+  stopMicrophone(s);
+  // RTP audio and control events use separate channels. Allow in-flight audio
+  // to drain before commit; keep the data channel open until final results.
+  timer(s, () => commit(s, true), 400);
+  timer(s, () => finish(s, 'Final transcription timed out. The text received so far is kept; the last words may be incomplete.', true), 20000);
+}
+function toggleRecording() {
+  if ($('settings').open) return;
+  if (!current) void startRecording();
+  else if (current.phase === 'recording') stopRecording(current);
+  else if (current.phase === 'upload-failed') void uploadRecording(current);
+  else cancelCurrent();
+}
+
+for (let index = 0; index < panes.length; index++) {
+  const pane = panes[index];
+  pane.el.addEventListener('focus', () => { activePane = index; renderUI(); });
+  pane.el.addEventListener('pointerdown', () => { pane.history.kind = ''; });
+  pane.el.addEventListener('beforeinput', event => {
+    if (event.inputType === 'historyUndo' || event.inputType === 'historyRedo') {
+      if (event.cancelable) {
+        event.preventDefault();
+        undoRedo(index, event.inputType === 'historyRedo');
+        return;
+      }
+    }
+    pane.before = { ...snapshot(pane), inputType: event.inputType };
+  });
+  pane.el.addEventListener('input', event => {
+    const before = pane.before || { value: pane.value, start: 0, end: 0, direction: 'none', inputType: '' };
+    const inputType = before.inputType || event.inputType || '';
+    if (before.value !== pane.el.value) {
+      remember(pane, before, 'typing:' + inputType);
+      if (current && current.pane === index) {
+        const edit = DictationCore.inferEdit(before.value, pane.el.value, before);
+        const rebased = DictationCore.rebaseRange(current.range, edit);
+        if (!rebased.range) cancelCurrent('Dictation stopped because you edited its live text or made an edit whose position could not be tracked. Your edit is kept.');
+        else current.range = rebased.range;
+      }
+    }
+    pane.value = pane.el.value;
+    pane.before = null;
+    save();
+  });
+  pane.el.addEventListener('compositionstart', () => { pane.composing = true; });
+  pane.el.addEventListener('compositionend', () => {
+    pane.composing = false;
+    if (current && current.pane === index) { const s = current; renderTranscript(s); maybeFinish(s); }
+  });
+  pane.el.addEventListener('keydown', event => {
+    if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End', 'PageUp', 'PageDown'].includes(event.key) ||
+      ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'a')) pane.history.kind = '';
+    if (!(event.ctrlKey || event.metaKey) || event.altKey || event.isComposing) return;
+    const key = event.key.toLowerCase();
+    if (key === 'z' || key === 'y') {
+      event.preventDefault();
+      undoRedo(index, key === 'y' || event.shiftKey);
+    }
+  });
+}
+$('record').addEventListener('pointerdown', event => {
+  if (event.pointerType === 'mouse') event.preventDefault(); // Preserve editor focus and selection.
+});
+$('record').addEventListener('click', toggleRecording);
+$('toggleRight').addEventListener('click', () => {
+  if (current && current.pane === 1) return;
+  const moveFocus = !preferences.rightCollapsed && activePane === 1;
+  preferences.rightCollapsed = !preferences.rightCollapsed;
+  applyPaneLayout();
+  if (moveFocus) panes[0].el.focus({ preventScroll: true });
+  renderUI();
+  save();
+});
+$('discard').addEventListener('click', () => cancelCurrent('Recorded audio discarded.'));
+$('mode').addEventListener('change', () => { preferences.mode = $('mode').value; save(); });
+$('settingsButton').addEventListener('click', () => { updateMicrophoneState(); $('settings').showModal(); });
+$('switchMic').addEventListener('click', () => {
+  if (current && current.phase !== 'upload-failed') return;
+  releaseMicrophone();
+  $('micState').textContent = 'Released. Choose a device on the next Record.';
+});
+$('apiKey').addEventListener('input', persistApiKey);
+$('clearKey').addEventListener('click', () => { $('apiKey').value = ''; persistApiKey(); $('apiKey').focus(); });
+$('theme').addEventListener('change', () => { preferences.theme = $('theme').value; applyTheme(); save(); });
+$('contextHint').addEventListener('input', () => { preferences.hint = $('contextHint').value; save(); });
+document.addEventListener('keydown', event => {
+  if (event.code === 'Space' && event.shiftKey && (event.ctrlKey || event.metaKey) && !event.altKey && !event.isComposing) {
+    event.preventDefault();
+    if (!event.repeat) toggleRecording();
+  }
+});
+if (systemTheme.addEventListener) systemTheme.addEventListener('change', applyTheme);
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') save(); });
+window.addEventListener('pagehide', () => {
+  save();
+  if (current) { const s = current; current = null; release(s); }
+  releaseMicrophone();
+});
+window.addEventListener('pageshow', renderUI);
+
+try {
+  const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  panes[0].el.value = typeof saved.left === 'string' ? saved.left : '';
+  panes[1].el.value = typeof saved.right === 'string' ? saved.right : '';
+  activePane = saved.activePane === 1 ? 1 : 0;
+  const stored = saved.preferences || {};
+  if (['system', 'dark', 'light'].includes(stored.theme)) preferences.theme = stored.theme;
+  if (['live', 'upload'].includes(stored.mode)) preferences.mode = stored.mode;
+  if (typeof stored.hint === 'string') preferences.hint = stored.hint.slice(0, 1000);
+  if (typeof stored.rightCollapsed === 'boolean') preferences.rightCollapsed = stored.rightCollapsed;
+} catch {
+  $('storageStatus').textContent = 'Could not restore local text';
+}
+try {
+  apiKey = (localStorage.getItem(API_KEY_STORAGE_KEY) || '').trim();
+  $('apiKey').value = apiKey;
+  $('keyStorageStatus').textContent = apiKey ? 'Saved in browser storage.' : 'No key saved.';
+} catch {
+  $('keyStorageStatus').textContent = 'Browser storage unavailable; key will only last until this tab closes.';
+}
+$('clearKey').disabled = !apiKey;
+for (const pane of panes) {
+  pane.value = pane.el.value;
+  pane.el.setSelectionRange(pane.value.length, pane.value.length);
+}
+$('mode').value = preferences.mode;
+$('theme').value = preferences.theme;
+$('contextHint').value = preferences.hint;
+if (/Mac|iPhone|iPad/.test(navigator.platform || '')) {
+  $('shortcut').textContent = '⌘ + Shift + Space';
+  $('record').title = 'Start or stop dictation (⌘+Shift+Space)';
+}
+applyTheme();
+applyPaneLayout();
+renderUI();
+updateMicrophoneState();
+</script>
+</body>
+</html>
