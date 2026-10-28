@@ -1,5 +1,5 @@
 ---
-layout: sicp
+layout: book
 render_with_liquid: false
 title: Scientifically Useful Polynomial Algorithms
 ---

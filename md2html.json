@@ -21,5 +21,6 @@
     "readme.md",
     "makefile"
   ],
-  "css": []
+  "css": [],
+  "feed": false
 }

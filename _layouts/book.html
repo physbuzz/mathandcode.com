@@ -1,10 +1,10 @@
 ---
 layout: default
 ---
-<article class="sicp-article">
+<article class="book-article">
   {% unless page.show_title == false %}
   <header class="page-header">
-    <h1>{{ page.title }}</h1>
+    <h1>{{ page.title | escape }}</h1>
   </header>
   {% endunless %}
 {{ content }}

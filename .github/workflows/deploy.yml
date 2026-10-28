@@ -27,14 +27,14 @@ jobs:
           node-version: '22.23.3'
           package-manager-cache: false
 
-      - name: Install md2html v1.0.2
+      - name: Install md2html v1.0.3
         working-directory: ${{ runner.temp }}
         run: |
-          release=https://github.com/physbuzz/md2html/releases/download/v1.0.2
-          curl --fail --location "$release/md2html-1.0.2-linux-x86_64" -o md2html-1.0.2-linux-x86_64
+          release=https://github.com/physbuzz/md2html/releases/download/v1.0.3
+          curl --fail --location "$release/md2html-1.0.3-linux-x86_64" -o md2html-1.0.3-linux-x86_64
           curl --fail --location "$release/SHA256SUMS" -o SHA256SUMS
           sha256sum --check SHA256SUMS
-          install -Dm755 md2html-1.0.2-linux-x86_64 "$HOME/.local/bin/md2html"
+          install -Dm755 md2html-1.0.3-linux-x86_64 "$HOME/.local/bin/md2html"
           echo "$HOME/.local/bin" >> "$GITHUB_PATH"
 
       - name: Build website

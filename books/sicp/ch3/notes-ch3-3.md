@@ -1,5 +1,5 @@
 ---
-layout: sicp
+layout: book
 render_with_liquid: false
 title: SICP Chapter 3.3
 ---
@@ -638,7 +638,7 @@ done
  - p-list vs a-list
  - In the context of the end of chapter 3-3, constraint solvers: First order predicate and expert systems.
 
- - Note on one of the problems: Given the implementation of `append!`, I had to intialize a supposedly empty list to a dummy pair `(list dummy '())`. Specifically I was referring to the line `(define tracker (list 'first-element))` in my solution to [exercise 17](https://physbuzz.github.io/sicp/ch3/notes-ch3-3.html#exercise-317)
+ - Note on one of the problems: Given the implementation of `append!`, I had to intialize a supposedly empty list to a dummy pair `(list dummy '())`. Specifically I was referring to the line `(define tracker (list 'first-element))` in my solution to [exercise 17](#exercise-317)
  - [Common lisp quick reference](http://clqr.boundp.org/)
 
 ### Exercises

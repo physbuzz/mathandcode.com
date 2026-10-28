@@ -4,7 +4,7 @@
   <meta name="color-scheme" content="light dark">
   <title>{% if page.title %}{{ page.title | escape }} | {% endif %}{{ site.title | escape }}</title>
   {% assign description = page.description %}
-  {% if description == nil and page.layout != 'sicp' %}
+  {% if description == nil and page.layout != 'book' %}
   {% assign description = page.excerpt %}
   {% endif %}
   {% assign description = description | default: '' | strip_html | strip_newlines | strip %}
@@ -14,10 +14,9 @@
   <link rel="canonical" href="{{ page.url | replace: 'index.html', '' | prepend: site.baseurl | prepend: site.url | escape }}">
   <link rel="icon" type="image/x-icon" href="{{ '/favicon.ico?v=5' | relative_url | escape }}">
   <link rel="icon" href="{{ '/favicon.svg' | relative_url | escape }}" type="image/svg+xml">
-  <link rel="alternate" type="application/atom+xml" title="{{ site.title | escape }}" href="{{ '/feed.xml' | absolute_url | escape }}">
   <script src="{{ '/js/site.js' | relative_url | escape }}"></script>
   <link rel="stylesheet" href="{{ '/css/main.css' | relative_url | escape }}">
-  {% unless page.layout == 'sicp' %}
+  {% unless page.layout == 'book' %}
   <link rel="stylesheet" href="{{ '/css/articles.css' | relative_url | escape }}">
   {% endunless %}
   {% for font in md2html.font_preloads %}
@@ -31,9 +30,13 @@
   <link rel="stylesheet" href="{{ stylesheet | escape }}">
   {% endfor %}
   {% if md2html.math_css %}<style>{{ md2html.math_css }}</style>{% endif %}
+  {% if page.layout == 'book' %}
+  <link rel="stylesheet" href="{{ '/css/book-widgets.css' | relative_url | escape }}">
+  <link rel="stylesheet" href="{{ '/css/highlight.css' | relative_url | escape }}">
+  {% endif %}
   <link rel="stylesheet" href="{{ '/css/md2html.css' | relative_url | escape }}">
-  {% if page.layout == 'sicp' %}
-  <link rel="stylesheet" href="{{ '/css/sicp.css' | relative_url | escape }}">
+  {% if page.layout == 'book' %}
+  <link rel="stylesheet" href="{{ '/css/books.css' | relative_url | escape }}">
   {% endif %}
   {% for stylesheet in md2html.inline_stylesheets %}<style>{{ stylesheet }}</style>{% endfor %}
   {% for stylesheet in md2html.stylesheets %}

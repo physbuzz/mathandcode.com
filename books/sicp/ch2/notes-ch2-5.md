@@ -1,5 +1,5 @@
 ---
-layout: sicp
+layout: book
 render_with_liquid: false
 title: SICP Chapter 2.5
 ---
@@ -29,7 +29,7 @@ TODO: Skip 86
 ### Meeting 05-04-2025
 https://sarabander.github.io/sicp/html/2_002e5.xhtml#g_t2_002e5
 
-- [https://www.youtube.com/watch?v=kc9HwsxE1OY](The Unreasonable Effectiveness of Multiple Dispatch) and [the slides to the talk](https://www.juliaopt.org/meetings/santiago2019/slides/stefan_karpinski.pdf)
+- [The Unreasonable Effectiveness of Multiple Dispatch](https://www.youtube.com/watch?v=kc9HwsxE1OY) and [the slides to the talk](https://www.juliaopt.org/meetings/santiago2019/slides/stefan_karpinski.pdf)
 - Take a look at this [curriculum document](https://cs.brown.edu/~sk/Publications/Papers/Published/fffk-htdp-vs-sicp-journal/paper.pdf)
 
 #### Relevant Wiki Pages:

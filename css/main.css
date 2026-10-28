@@ -412,12 +412,12 @@ li > ol {
 }
 
 .page > :first-child,
-.sicp-article > :first-child {
+.book-article > :first-child {
   margin-top: 0;
 }
 
 .post-content img,
-.sicp-article img,
+.book-article img,
 .page img {
   max-width: 100% !important;
   height: auto;

@@ -1,5 +1,5 @@
 ---
-layout: sicp
+layout: book
 render_with_liquid: false
 title: The Abstract Algebra of Chapter 2.5
 ---
