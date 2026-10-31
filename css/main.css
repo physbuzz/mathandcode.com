@@ -1,6 +1,6 @@
 :root {
   --bg: #fff;
-  --bg-image: url("../img/homepage-background.png");
+  --bg-image: url("../img/homepage-light.svg");
   --surface: #fff;
   --surface-alt: #f6f8fa;
   --ink: #111;
@@ -36,7 +36,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #111416;
-    --bg-image: none;
+    --bg-image: url("../img/homepage-dark.svg");
     --surface: #202224;
     --surface-alt: #171a1c;
     --ink: #eee8dc;
@@ -61,7 +61,7 @@
 html[data-theme="light"],
 html:has(#reader-theme-light:checked) {
   --bg: #fff;
-  --bg-image: url("../img/homepage-background.png");
+  --bg-image: url("../img/homepage-light.svg");
   --surface: #fff;
   --surface-alt: #f6f8fa;
   --ink: #111;
@@ -85,7 +85,7 @@ html:has(#reader-theme-light:checked) {
 html[data-theme="dark"],
 html:has(#reader-theme-dark:checked) {
   --bg: #111416;
-  --bg-image: none;
+  --bg-image: url("../img/homepage-dark.svg");
   --surface: #202224;
   --surface-alt: #171a1c;
   --ink: #eee8dc;

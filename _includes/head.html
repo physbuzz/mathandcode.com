@@ -14,6 +14,8 @@
   <link rel="canonical" href="{{ page.url | replace: 'index.html', '' | prepend: site.baseurl | prepend: site.url | escape }}">
   <link rel="icon" type="image/x-icon" href="{{ '/favicon.ico?v=5' | relative_url | escape }}">
   <link rel="icon" href="{{ '/favicon.svg' | relative_url | escape }}" type="image/svg+xml">
+  <link rel="preload" href="{{ '/img/homepage-light.svg' | relative_url | escape }}" as="image" type="image/svg+xml">
+  <link rel="preload" href="{{ '/img/homepage-dark.svg' | relative_url | escape }}" as="image" type="image/svg+xml">
   <script src="{{ '/js/site.js' | relative_url | escape }}"></script>
   <link rel="stylesheet" href="{{ '/css/main.css' | relative_url | escape }}">
   {% unless page.layout == 'book' %}
