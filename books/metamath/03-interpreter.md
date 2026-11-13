@@ -2,10 +2,9 @@
 layout: book
 render_with_liquid: false
 show_title: false
-title: 03 Writing a Metamath Interpreter (Megill ch4)
+title: 3. Writing a Metamath Interpreter
 ---
 
-<h1 id="03-interpreter" style="border-bottom: none;">03 Writing a Metamath Interpreter (Megill ch4)</h1>
 
 <nav class="nav">
     <span class="activenav"><a href="02-sicp-logic.html">← Previous</a></span>
@@ -13,9 +12,20 @@ title: 03 Writing a Metamath Interpreter (Megill ch4)
     <span class="activenav"><a href="04-propmm.html">Next →</a></span>
 </nav>
 
-[Read in html](book/index.html#the-metamath-language) &nbsp;|&nbsp; [Read in pdf](book/metamath.pdf#page=129)
+<h1 id="03-interpreter" style="border-bottom: none;">3. Writing a Metamath Interpreter</h1>
 
-# Stuff I Learned from Writing an Interpreter
+Since it's such a simple language, I decided that the best way to understand things is to write an interpreter myself.
+Depending on how much coding experience you have, this may or may not be the best organization for you. 
+The best reference for this is, no surprise, Megill ch 4. Oh right, even if you don't write an interpreter yourself,
+the quiz questions at the bottom of the page might be useful!
+Links: [Chapter html](book/index.html#the-metamath-language), [pdf on metamath.org](https://us.metamath.org/downloads/metamath.pdf#page=129).
+
+
+
+<div class="table-of-contents"><h2>Directory</h2><ul class="toc-list"><li><a href="#introduction">Introduction</a></li><li><a href="#misc-stuff-i-was-confused-about-scratchwork-todo">Misc stuff I was confused about (SCRATCHWORK / TODO):</a></li><li><a href="#pass-1">Pass 1</a><ul class="toc-list"><li><a href="#writing-the-parser">Writing the parser</a></li><li><a href="#writing-the-proof-checker">Writing the proof checker</a></li></ul></li><li><a href="#future-work">Future work</a></li><li><a href="#suggested-questions">suggested questions</a><ul class="toc-list"><li><a href="#question">Question</a><ul class="toc-list"><li><a href="#answer">Answer</a></li></ul></li><li><a href="#question-2">Question</a><ul class="toc-list"><li><a href="#answer-2">Answer</a></li></ul></li><li><a href="#question-3">Question</a><ul class="toc-list"><li><a href="#answer-3">Answer</a></li></ul></li><li><a href="#question-4">Question</a><ul class="toc-list"><li><a href="#answer-4">Answer</a></li></ul></li><li><a href="#question-5">Question</a><ul class="toc-list"><li><a href="#answer-5">Answer</a></li></ul></li><li><a href="#question-6">Question</a><ul class="toc-list"><li><a href="#answer-6">Answer</a></li></ul></li><li><a href="#question-7">Question</a><ul class="toc-list"><li><a href="#answer-7">Answer</a></li></ul></li><li><a href="#question-8">Question</a><ul class="toc-list"><li><a href="#answer-8">Answer</a></li></ul></li><li><a href="#question-9">Question</a><ul class="toc-list"><li><a href="#answer-9">Answer</a></li></ul></li><li><a href="#question-10">Question</a><ul class="toc-list"><li><a href="#answer-10">Answer</a></li></ul></li><li><a href="#question-11">Question</a><ul class="toc-list"><li><a href="#answer-11">Answer</a></li></ul></li><li><a href="#question-12">Question</a><ul class="toc-list"><li><a href="#answer-12">Answer</a></li></ul></li></ul></li></ul></div>
+
+
+## Introduction
 
 On the first pass, I ignored disjoint variables and compressed proofs. The 
 first task is to fill in the proof database, and second to actually check

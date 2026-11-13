@@ -2,10 +2,8 @@
 layout: book
 render_with_liquid: false
 show_title: false
-title: 00 Rant about Mathematical Proof (cf. Megill ch1)
+title: 0. Rant about Mathematical Proof
 ---
-
-<h1 id="00-rant" style="border-bottom: none;">00 Rant about Mathematical Proof (cf. Megill ch1)</h1>
 
 <nav class="nav">
     <span class="inactivenav" aria-disabled="true">← Previous</span>
@@ -13,14 +11,11 @@ title: 00 Rant about Mathematical Proof (cf. Megill ch1)
     <span class="activenav"><a href="01-megillch2.html">Next →</a></span>
 </nav>
 
-[Read in html](book/index.html#introduction) &nbsp;|&nbsp; [Read in pdf](book/metamath.pdf#page=19)
+<h1 id="00-rant" style="border-bottom: none;">0. Rant about Mathematical Proof</h1>
+
+
 
 <!-- TODO: Renumber the footnotes in order -->
-
-
-
-<div class="table-of-contents"><h2>Directory</h2><ul class="toc-list"><li><a href="#my-version-of-megills-rant">My version of Megill's Rant</a><ul class="toc-list"><li><a href="#thirteen-years-later">Thirteen years later...</a></li></ul></li><li><a href="#where-to-go-from-here">Where to go from here?</a></li></ul></div>
-
 
 (Written Nov 13, 2026)
 
@@ -33,6 +28,18 @@ Keep in mind as far as formal verification goes, I'm a novice. And in fact with 
 many things in the computer science department, I'm an ignoramus and I plan on remaining that 
 way! So don't take my statements as authoritative, they're an account of a novice's
 confusion and where he's ended up after 13 years of letting thoughts stew.
+
+I highly recommend the section in Norm Megill's book referenced above. It's about 8 pages so it's light reading.
+Personally, I would annotate it and translate it into my own language, something like "You eagerly set out to program [...]" 
+becoming "You loudly shout 'screw this, I'll code it myself,' and [...]" but perhaps it's best that I don't.
+Read the [html version](book/index.html#a-non-mathematician's-quest-for-truth), or [pdf version on metamath.org](https://us.metamath.org/downloads/metamath.pdf#page=23).
+
+
+
+<div class="table-of-contents"><h2>Directory</h2><ul class="toc-list"><li><a href="#troubled-about-math">Troubled about Math</a></li><li><a href="#an-undergraduates-quest-for-truth">An Undergraduate's Quest for Truth</a><ul class="toc-list"><li><a href="#thirteen-years-later">Thirteen years later...</a></li></ul></li><li><a href="#where-to-go-from-here">Where to go from here?</a></li></ul></div>
+
+
+## Troubled about Math
 
 In 2014-2017, I mostly hung around the math and physics departments at UCSD. By the time
 I reached the grad level coursework it was clear that physics stuck more, but 
@@ -58,7 +65,8 @@ get on with our lives and publish good research!"
 
 Fine. But then surely *someone* has got down to the foundation, right?
 
-## My version of Megill's Rant
+## An Undergraduate's Quest for Truth
+
 In 2013, I had just started seriously studying math. So, absorbing the lessons
 of Cantor from Velleman's book "How to Prove It", then on to real analysis from Rudin's book
 and point set topology from osmosis. I also jumped into the deep end with the 2013 Coursera 

@@ -2,10 +2,9 @@
 layout: book
 render_with_liquid: false
 show_title: false
-title: 04 Studying Propositional Calculus with Metamath
+title: 4. Studying Propositional Calculus with Metamath
 ---
 
-<h1 id="04-propmm" style="border-bottom: none;">04 Studying Propositional Calculus with Metamath</h1>
 
 <nav class="nav">
     <span class="activenav"><a href="03-interpreter.html">← Previous</a></span>
@@ -13,21 +12,20 @@ title: 04 Studying Propositional Calculus with Metamath
     <span class="activenav"><a href="05-predicate-calculus.html">Next →</a></span>
 </nav>
 
-[Read in html](book/index.html#abstract-mathematics-revealed) &nbsp;|&nbsp; [Read in pdf](book/metamath.pdf#page=77)
+<h1 id="04-propmm" style="border-bottom: none;">4. Studying Propositional Calculus with Metamath</h1>
 
----
+Links: [Chapter html](book/index.html#abstract-mathematics-revealed), [pdf on metamath.org](https://us.metamath.org/downloads/metamath.pdf#page=77).
 
-> [!WARNING]
-> These notes have a lot of AI-suggested problems in them that have not yet
-> been reviewed. I put a warning at the start of each section that has not been human-reviewed.
-> I tend to rewrite all the AI stuff I read.
-
+> [!NOTE]
+> These notes have some AI-suggested problems in them that have not yet
+> been reviewed.
 
 
-<div class="table-of-contents"><h2>Directory</h2><ul class="toc-list"><li><a href="#4-studying-propositional-calculus-with-metamath">4 Studying Propositional Calculus with Metamath</a><ul class="toc-list"><li><a href="#40-important-logic-notations-and-citations">4.0 Important Logic Notations and Citations</a><ul class="toc-list"><li><a href="#401-hilbert-type-inference-rules">4.0.1 Hilbert-type inference rules</a></li><li><a href="#402-inference-rules-for-us">4.0.2 Inference rules for us</a></li></ul></li><li><a href="#41-propositional-calculus-in-setmm">4.1 Propositional calculus in <code>set.mm</code></a><ul class="toc-list"><li><a href="#411-implication-first-proofs-and-useful-derived-rules">4.1.1 Implication: first proofs and useful derived rules</a><ul class="toc-list"><li><a href="#hints-and-my-answers">Hints and my answers</a></li></ul></li><li><a href="#412-more-advanced-implications">4.1.2 More advanced implications</a><ul class="toc-list"><li><a href="#hints-and-my-answers-2">Hints and my answers</a></li></ul></li><li><a href="#413-more-propositional-calculus">4.1.3 More propositional calculus</a><ul class="toc-list"><li><a href="#hints-and-my-answers-3">Hints and my answers</a></li></ul></li><li><a href="#414-negation-and-classical-propositional-calculus">4.1.4 Negation and classical propositional calculus</a><ul class="toc-list"><li><a href="#hints-and-my-answers-4">Hints and my answers</a></li></ul></li><li><a href="#415-double-negation-and-classical-proof-rules">4.1.5 Double negation and classical proof rules</a><ul class="toc-list"><li><a href="#hints-and-my-answers-5">Hints and my answers</a></li></ul></li><li><a href="#416-the-other-connectives-which-were-skipping">4.1.6 The other connectives, which we're skipping</a></li><li><a href="#417-carew-merediths-sole-axiom-for-propositional-calculus">4.1.7 Carew Meredith's sole axiom for propositional calculus</a><ul class="toc-list"><li><a href="#a-first-lemma">A first lemma</a></li><li><a href="#recovering-three-familiar-statements">Recovering three familiar statements</a></li><li><a href="#hints-and-my-answers-6">Hints and my answers</a></li></ul></li><li><a href="#418-notes-and-reflections-and-todo-on-these-exercises">4.1.8 Notes and reflections and TODO on these exercises.</a><ul class="toc-list"><li><a href="#todo-on-proof-transformations">TODO on proof transformations</a></li><li><a href="#thoughts-on-inference-deduction-closed">Thoughts on inference, deduction, closed</a></li></ul></li></ul></li><li><a href="#42-other-proof-databases">4.2 Other proof databases</a><ul class="toc-list"><li><a href="#421-isetmm-takeaways">4.2.1 <code>iset.mm</code> takeaways</a></li><li><a href="#422-quantum-logic-qlmm">4.2.2 Quantum Logic <code>ql.mm</code></a><ul class="toc-list"><li><a href="#hints-and-my-answers-7">Hints and my answers</a></li></ul></li><li><a href="#423-higher-order-logic-holmm">4.2.3 Higher Order Logic <code>hol.mm</code></a><ul class="toc-list"><li><a href="#hints-and-my-answers-8">Hints and my answers</a></li></ul></li></ul></li></ul></li></ul></div>
+
+<div class="table-of-contents"><h2>Directory</h2><ul class="toc-list"><li><a href="#introduction">Introduction</a></li><li><a href="#40-important-logic-notations-and-citations">4.0 Important Logic Notations and Citations</a><ul class="toc-list"><li><a href="#401-hilbert-type-inference-rules">4.0.1 Hilbert-type inference rules</a></li><li><a href="#402-inference-rules-for-us">4.0.2 Inference rules for us</a></li></ul></li><li><a href="#41-propositional-calculus-in-setmm">4.1 Propositional calculus in <code>set.mm</code></a><ul class="toc-list"><li><a href="#411-implication-first-proofs-and-useful-derived-rules">4.1.1 Implication: first proofs and useful derived rules</a><ul class="toc-list"><li><a href="#hints-and-my-answers">Hints and my answers</a></li></ul></li><li><a href="#412-more-advanced-implications">4.1.2 More advanced implications</a><ul class="toc-list"><li><a href="#hints-and-my-answers-2">Hints and my answers</a></li></ul></li><li><a href="#413-more-propositional-calculus">4.1.3 More propositional calculus</a><ul class="toc-list"><li><a href="#hints-and-my-answers-3">Hints and my answers</a></li></ul></li><li><a href="#414-negation-and-classical-propositional-calculus">4.1.4 Negation and classical propositional calculus</a><ul class="toc-list"><li><a href="#hints-and-my-answers-4">Hints and my answers</a></li></ul></li><li><a href="#415-double-negation-and-classical-proof-rules">4.1.5 Double negation and classical proof rules</a><ul class="toc-list"><li><a href="#hints-and-my-answers-5">Hints and my answers</a></li></ul></li><li><a href="#416-the-other-connectives-which-were-skipping">4.1.6 The other connectives, which we're skipping</a></li><li><a href="#417-carew-merediths-sole-axiom-for-propositional-calculus">4.1.7 Carew Meredith's sole axiom for propositional calculus</a><ul class="toc-list"><li><a href="#a-first-lemma">A first lemma</a></li><li><a href="#recovering-three-familiar-statements">Recovering three familiar statements</a></li><li><a href="#hints-and-my-answers-6">Hints and my answers</a></li></ul></li><li><a href="#418-notes-and-reflections-and-todo-on-these-exercises">4.1.8 Notes and reflections and TODO on these exercises.</a><ul class="toc-list"><li><a href="#todo-on-proof-transformations">TODO on proof transformations</a></li><li><a href="#thoughts-on-inference-deduction-closed">Thoughts on inference, deduction, closed</a></li></ul></li></ul></li><li><a href="#42-other-proof-databases">4.2 Other proof databases</a><ul class="toc-list"><li><a href="#421-isetmm-takeaways">4.2.1 <code>iset.mm</code> takeaways</a></li><li><a href="#422-quantum-logic-qlmm">4.2.2 Quantum Logic <code>ql.mm</code></a><ul class="toc-list"><li><a href="#hints-and-my-answers-7">Hints and my answers</a></li></ul></li><li><a href="#423-higher-order-logic-holmm">4.2.3 Higher Order Logic <code>hol.mm</code></a><ul class="toc-list"><li><a href="#hints-and-my-answers-8">Hints and my answers</a></li></ul></li></ul></li></ul></div>
 
 
-# 4 Studying Propositional Calculus with Metamath
+## Introduction
 
 Now that we're set on the intricacies of Metamath, sans 
 disjoint variables and compressed proofs, I want to familiarize myself with classical logic
