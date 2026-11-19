@@ -13,169 +13,1446 @@ title: 5. Variables, Binding, and Predicate Calculus
 
 <h1 id="05-predicate-calculus" style="border-bottom: none;">5. Variables, Binding, and Predicate Calculus</h1>
 
-Links: [Chapter html](book/index.html#3.2.2-predicate-calculus), [pdf on metamath.org](https://us.metamath.org/downloads/metamath.pdf#page=82). All that work and we've only gone 5 pages forwards in the pdf, lol.
-
-> [!CAUTION]
-> This document is completely AI-generated and has not been reviewed. 
+Links: [Chapter html](book/index.html#3.2.2-predicate-calculus), [pdf on metamath.org](https://us.metamath.org/downloads/metamath.pdf#page=82). All that work and we've only gone 5 pages forwards in the pdf!
 
 
 
-<div class="table-of-contents"><h2>Directory</h2><ul class="toc-list"><li><a href="#introduction">Introduction</a></li><li><a href="#50-important-notations-terminology-and-citations">5.0 Important Notations, Terminology, and Citations</a><ul class="toc-list"><li><a href="#501-variables-in-which-language">5.0.1 Variables in which language?</a></li><li><a href="#502-free-occurrences-bound-occurrences-and-capture">5.0.2 Free occurrences, bound occurrences, and capture</a></li><li><a href="#503-tarski-and-the-distinct-variable-approach">5.0.3 Tarski and the distinct-variable approach</a></li><li><a href="#504-what-d-asks-the-checker-to-do">5.0.4 What <code>$d</code> asks the checker to do</a></li></ul></li><li><a href="#51-building-predicate-calculus-ourselves">5.1 Building Predicate Calculus Ourselves</a><ul class="toc-list"><li><a href="#511-our-starting-tools">5.1.1 Our starting tools</a></li><li><a href="#512-five-constructions">5.1.2 Five constructions</a><ul class="toc-list"><li><a href="#hints">Hints</a></li></ul></li><li><a href="#513-checking-substitutions">5.1.3 Checking substitutions</a></li><li><a href="#514-equality-two-more-axioms-three-more-constructions">5.1.4 Equality: two more axioms, three more constructions</a><ul class="toc-list"><li><a href="#hints-2">Hints</a></li></ul></li></ul></li><li><a href="#52-working-inside-setmm">5.2 Working Inside <code>set.mm</code></a><ul class="toc-list"><li><a href="#521-a-brief-guide-to-the-connectives">5.2.1 A brief guide to the connectives</a></li><li><a href="#522-useful-interfaces-and-the-machinery-we-are-passing-over">5.2.2 Useful interfaces and the machinery we are passing over</a></li><li><a href="#523-reconstructing-existing-proofs">5.2.3 Reconstructing existing proofs</a><ul class="toc-list"><li><a href="#hints-3">Hints</a></li></ul></li><li><a href="#524-a-concrete-bound-variable-change">5.2.4 A concrete bound-variable change</a><ul class="toc-list"><li><a href="#hints-4">Hints</a></li></ul></li><li><a href="#525-a-small-visit-to-peanomm">5.2.5 A Small Visit to <code>peano.mm</code></a><ul class="toc-list"><li><a href="#5251-a-separate-language-and-its-axioms">5.2.5.1 A separate language and its axioms</a></li><li><a href="#5252-supplied-logical-and-equality-tools">5.2.5.2 Supplied logical and equality tools</a></li><li><a href="#5253-two-preparatory-arithmetic-proofs">5.2.5.3 Two preparatory arithmetic proofs</a><ul class="toc-list"><li><a href="#hints-5">Hints</a></li></ul></li><li><a href="#5254-the-base-case-and-ordinary-successor-step">5.2.5.4 The base case and ordinary successor step</a><ul class="toc-list"><li><a href="#hints-6">Hints</a></li></ul></li><li><a href="#5255-the-quantified-premises-and-induction-application">5.2.5.5 The quantified premises and induction application</a><ul class="toc-list"><li><a href="#hints-7">Hints</a></li></ul></li><li><a href="#5256-specializing-the-result-without-capture">5.2.5.6 Specializing the result without capture</a><ul class="toc-list"><li><a href="#hints-8">Hints</a></li></ul></li></ul></li></ul></li><li><a href="#53-notes-reflections-and-todo">5.3 Notes, Reflections, and TODO</a></li><li><a href="#54-quiz-questions">5.4 Quiz Questions</a><ul class="toc-list"><li><a href="#question-1">Question 1</a><ul class="toc-list"><li><a href="#answer-sketch">Answer sketch</a></li></ul></li><li><a href="#question-2">Question 2</a><ul class="toc-list"><li><a href="#answer-sketch-2">Answer sketch</a></li></ul></li><li><a href="#question-3">Question 3</a><ul class="toc-list"><li><a href="#answer-sketch-3">Answer sketch</a></li></ul></li><li><a href="#question-4">Question 4</a><ul class="toc-list"><li><a href="#answer-sketch-4">Answer sketch</a></li></ul></li><li><a href="#question-5">Question 5</a><ul class="toc-list"><li><a href="#answer-sketch-5">Answer sketch</a></li></ul></li><li><a href="#question-6">Question 6</a><ul class="toc-list"><li><a href="#answer-sketch-6">Answer sketch</a></li></ul></li><li><a href="#question-7">Question 7</a><ul class="toc-list"><li><a href="#answer-sketch-7">Answer sketch</a></li></ul></li><li><a href="#question-8">Question 8</a><ul class="toc-list"><li><a href="#answer-sketch-8">Answer sketch</a></li></ul></li></ul></li></ul></div>
+
+<div class="table-of-contents"><h2>Directory</h2><ul class="toc-list"><li><a href="#introduction">Introduction.</a></li><li><a href="#50-arithmetic-with-and-without-quantifiers">5.0 Arithmetic With and Without Quantifiers</a><ul class="toc-list"><li><a href="#501-common-arithmetic-axioms">5.0.1 Common arithmetic axioms</a></li><li><a href="#502-common-arithmetic-theorems">5.0.2 Common arithmetic theorems</a></li><li><a href="#503-induction-without-quantifiers">5.0.3 Induction without quantifiers</a></li><li><a href="#504-induction-with-quantifiers">5.0.4 Induction with quantifiers</a><ul class="toc-list"><li><a href="#5041-alternate-considerations-to-writing-the-induction-scheme">5.0.4.1 Alternate considerations to writing the induction scheme</a></li></ul></li><li><a href="#505-reading-skolem-1923">5.0.5 Reading Skolem 1923</a></li></ul></li><li><a href="#51-building-predicate-calculus-ourselves">5.1 Building Predicate Calculus Ourselves</a><ul class="toc-list"><li><a href="#511-our-starting-tools">5.1.1 Our starting tools</a></li><li><a href="#512-five-constructions">5.1.2 Five constructions</a></li><li><a href="#513-checking-substitutions">5.1.3 Checking substitutions</a></li><li><a href="#514-equality-two-more-axioms-three-more-constructions">5.1.4 Equality: two more axioms, three more constructions</a></li></ul></li><li><a href="#52-working-inside-setmm">5.2 Working Inside <code>set.mm</code></a><ul class="toc-list"><li><a href="#521-a-brief-guide-to-the-connectives">5.2.1 A brief guide to the connectives</a></li><li><a href="#522-useful-interfaces-and-the-machinery-we-are-passing-over">5.2.2 Useful interfaces and the machinery we are passing over</a></li><li><a href="#523-reconstructing-existing-proofs">5.2.3 Reconstructing existing proofs</a></li><li><a href="#524-a-concrete-bound-variable-change">5.2.4 A concrete bound-variable change</a></li></ul></li></ul></div>
 
 
-## Introduction
 
-Okay, now for the disjoint variables. In chapter 4 I wanted to get a feel for
-classical logic by actually proving things in Metamath. Here I want to do the
-same thing with quantifiers, while finally dealing with the variable restrictions
-that I could mostly ignore in the propositional exercises. There is some new
-terminology to learn, but the plan is to keep bringing it back to particular
-strings, particular substitutions, and particular proofs.
+## Introduction.
 
-One question from chapter 4 is especially useful here: how do we change a
-formula deep inside another formula? With quantifiers this becomes a very
-concrete question. If I've proved an implication or an equivalence, what theorem
-lets me put a universal quantifier around it? And if I want to change the name
-of a bound variable, what actually authorizes that change? I want to get far
-enough that these are proof steps I can carry out.
+(I should emphasize to logicians reading
+this section that we're coming at the issue from the perspective of Metamath tinkerers
+with total disregard for mathematics, we just want to express fun concepts and we don't
+care how we twist Metamath to get there. So I hope that explains some of the weird perspective
+from time to time. I do try to bend over backwards to cite stuff and follow conventions of
+the literature though.)
 
-Section 5.1 continues our own implication-and-negation development with a small
-quantifier toolkit. Section 5.2 introduces the richer interfaces in `set.mm`
-and practices reconstructing proofs there, followed by a separate Peano excursion.
+Before getting to predicate calculus, we should spend a bit of time
+seeing how far we can get "without quantifiers." This question and related
+ones such as "why do we need quantifiers?" takes us quite deep into metamathematics
+and the debates of the early 1900's. I wasn't even trying to get there, I was just
+confused, and certain I'd turn the corner and be hit with "aha! So *that's* why we need
+quantifiers."
 
-## 5.0 Important Notations, Terminology, and Citations
+We run into a problem immediately: what do we even mean, concretely, by "with quantifiers" or
+"without quantifiers"?
 
-### 5.0.1 Variables in which language?
+The quantifier axioms in `set.mm` use
+disjoint variable restrictions, so maybe the right framing is
+whether or not `$d` is allowed? Nope, [MPE appendix 7](https://us.metamath.org/mpeuni/mmset.html#subsys) 
+describes how to drop some of the axioms from `set.mm` such that we have predicate logic with no
+disjoint variable restrictions (though the appendix does state that we have to build other 
+machinery to take its place).
 
-There is an easy way to get confused before we've even started: the word
-"variable" is doing several jobs. In an ordinary first-order formula, a variable
-can occur as an argument of a predicate or be bound by a quantifier. In a
-textbook's discussion of those formulas, a metavariable can stand for a whole
-formula. Metamath then has its own declared variables and type hypotheses. I
-want to keep track of which of these we're discussing, instead of relying on
-the typography to tell us.
+From what I can gather, at this point in a truly obstinate Metamath-first approach, 
+we don't have the tools or terminology to motivate quantifiers for any other reason than
+"we \[mathematicians\] often phrase proofs in them" or "the ZFC axioms have quantifiers in them."
+If we're given an obfuscated Metamath database with the variables all renamed, we can't easily
+determine whether it "uses quantifiers" or not, unless we do archaeological work or 
+match the axioms directly to a publication. I really dislike this kind of
+history-first, human-sociology-first statement, but I think it's the best we've got.
 
-**Source 1.** The [Metamath book](https://us.metamath.org/downloads/metamath.pdf),
-especially §1.4.5, "Metamath and First-Order Logic," and §4.2.4, "The `$d`
-Statement." The latter starts on printed page 120. The important point for our
-purposes is that the verifier does not have a primitive free-variable or
-bound-variable test. Its substitution mechanism and `$d` conditions are used
-by an axiom system to control the substitutions that are permitted.
+Reasons to include quantifiers, appeal to emotion:
 
-For example, `ph` has type `wff` in our familiar database, while `x` has type
-`setvar` in the predicate-calculus portion of `set.mm`. Both are Metamath
-variables. An instance of `ph` may be a large formula containing several
-`setvar` variables; an instance of `x` must satisfy its own syntax hypothesis.
-The declaration `vx $f setvar x $.` belongs to the syntax machinery. It is not
-itself a quantified assertion about a mathematical set.
+- Axioms and statements containing variables are already a sort of "for all" statement. 
+However, we find we can't include "not for all" statements.
+- We also might want to have a $\forall$ statement in an assumption, which can't be done
+with the tools we have so far. (Here I just mean that, in our databases, a statement like 
+`mp.min $e |- P $.` doesn't mean "hypothesize that for all P, turnstile P," rather it can
+be satisfied by any one `wff P` and `|- P`.)
+- We might want nested $\forall$ statements.
 
-This also explains why a condition involving `x` and `ph` can make sense. We are
-restricting which replacements for two Metamath variables can be used together.
-The [Proof Explorer's discussion of axioms, schemes, and distinct
-metavariables](https://us.metamath.org/mpeuni/mmset.html#distinct) is useful to
-read alongside the book here.
+Essentially, we have a notion of $\forall$ at the top level of a statement, 
+but we can't do anything where we have to bring $\forall$ inside the statement. 
+TODO: I'm still reading Frege's Begriffsschrift, I believe this is the motivation given in there.
 
-### 5.0.2 Free occurrences, bound occurrences, and capture
+Finer points of quantifiers, appeal to Platonic ideals which we don't yet have the tools
+to prove/discuss:
 
-**Source 2.** Harper's [Practical Foundations for Programming
-Languages](https://www.cs.cmu.edu/~rwh/pfpl/), Chapter 1. His treatment of abstract
-syntax and binding gives us terminology for talking about these problems
-outside a particular Metamath database. The sustained reading of Harper is
-going in the separate O5.5 notebook; here I just want enough vocabulary to
-describe the examples in front of us.
+- [Hilbert and Bernays' first epsilon theorem](https://plato.stanford.edu/entries/epsilon-calculus/) 
+states that in certain very general cases, theorems whose proofs involve quantifiers can be rewritten 
+as proofs not involving quantifiers. However, it is not general enough for me to easily make a statement
+like, "all theorems in any Metamath database of such-and-such form can be rewritten so as to not rely
+on the quantifier axioms," because "any Metamath database" is too broad of a thing for me to constrain. 
+The proof of the theorem *does* rely on an algorithm to transform proofs, so it's very constructive and 
+concrete and could be a fun project. But it doesn't give us strong no-go theorems of the form "this new
+system you're writing down contains no new theorems" because it's so easy to write axioms in Metamath
+which land outside its purview.
+- The ideas of [Primitive Recursive Arithmetic](https://en.wikipedia.org/wiki/Primitive_recursive_arithmetic) 
+were developed by Skolem in 1923 with the explicit goal of being quantifier-free. (Skolem's work was later
+made more precise and expanded upon, so we can't say that the full formal system is in that 1923 paper.)
+- Quantifiers [can be viewed as](https://ncatlab.org/nlab/show/hyperdoctrine) left- and right- adjoints to 
+substitution.
+This is far outside the realm where I can comment, but it tells me that if we were in a different universe
+where we chose a different foundation than Metamath, we might have quantifiers beautifully fall out of our 
+theory right about now. So we're not saying quantifiers aren't special, merely that there is nothing 
+special to motivate them in our notes right now. 
 
-Consider the familiar formula
+Okay, I tried to quarantine all of the things that I cannot concretely formalize into the above writing.
+There's lots of tantalizing stuff, but let's try to illustrate things concretely with examples now.  
 
-$$x=y\ \to\ \forall x\,(x=y).$$
+## 5.0 Arithmetic With and Without Quantifiers
 
-The occurrence of `x` on the left is free, while the occurrence of `x` inside
-the quantified equality is bound. The quantifier does not reach back across
-the implication. This is why it is useful to talk about *occurrences*: one
-written variable name can have different roles in different parts of a formula.
+This section contains no exercises. We're going to start with the theorems 
+developed in the last chapter; so we have all of propositional logic at our
+disposal, and all of the useful theorems and lemmas we want.
 
-A substitution can change these roles if we're careless. For example, consider
-replacing the free `x` in
+And I really mean we have all of propositional logic. In the file
+[`code-04/prop.mm`](code-04/prop.mm), which 
+is lines 1 through 12192 of `set.mm`, we have 1542 proofs of propositional logic. Basically, we can use 
+$\rightarrow,$ $\leftrightarrow,$ $\land,$ $\lor,$ and $\neg$ to our heart's content.
+Though I don't use them, it also contains nand, xor, and probably other stuff, I wasn't picky.
 
-$$\forall y\,(x=y)$$
+### 5.0.1 Common arithmetic axioms
 
-by `y`. Simply changing the printed letter gives
+We next can imagine developing arithmetic. For starters, we define numbers of typecode `num`:
 
-$$\forall y\,(y=y).$$
 
-The newly inserted occurrence is now inside the scope of the `y` quantifier.
-This is the sort of phenomenon called variable capture. A treatment of
-capture-avoiding substitution must say how it handles this situation; in a
-named-variable presentation, renaming a bound variable is one way to make the
-required room.
 
-Two expressions that differ only by a suitable change of bound-variable names
-are called alpha-equivalent in the usual binding terminology. I'll use that
-name when discussing the syntax. For the actual predicate-calculus exercises,
-we will prove particular logical equivalences using named `set.mm` theorems.
-Those are concrete things to check, and they give us something to compare with
-the general discussion in Harper.
+```mm
+$c num = + * 0 S $.
+$v t u v w $.
+nt $f num t $.  nu $f num u $.  nv $f num v $.  nw $f num w $.
+weq $a wff t = u $.
+n0 $a num 0 $.
+nS $a num S t $.
+nadd $a num ( t + u ) $.
+nmul $a num ( t * u ) $.
+```
 
-### 5.0.3 Tarski and the distinct-variable approach
 
-**Source 3.** The Proof Explorer's [history of distinct
-variables](https://us.metamath.org/mpeuni/mmset.html#distinct). It credits Tarski
-with stating the approach in 1951, with proofs published in 1965. The historical
-point I want to remember is the possibility of organizing predicate calculus
-around comparatively elementary distinct-variable restrictions, while deriving
-the more elaborate behavior within the system.
 
-The comment on [`ax-5`](https://us.metamath.org/mpeuni/ax-5.html) gives a direct
-connection to Tarski's system. It asserts
+For axioms, there's no need to develop this all ourselves,
+the best source for the axioms of arithmetic that I found was Peters 2022,
+["Gödel’s Theorem Without Tears,"](https://www.ps.uni-saarland.de/~peters/bachelor/resources/thesis.edited.pdf#page=33) definition 4.16 p.23.
+I think most of these axioms are simple enough that you could define them yourself
+given only incidental exposure to the idea of starting with $0$ and applying a successor function $S.$ 
+The only odd
+axiom out is $\texttt{zos},$ which is indeed specific to Robinson's arithmetic[^1] and which
+we do not go into detail on.
 
-$$\vdash\bigl(\varphi\to\forall x\,\varphi\bigr),$$
+[^1]: $\texttt{zos}$ is axiom CD in Peters' notation, which I think refers to 
+"case distinction." I renamed the axioms because I found I could never remember stuff like
+$\texttt{ax-AZ}$ in proofs.
 
-with the condition that `x` does not occur in the substituted formula. In
-Metamath source, that restriction is written `$d x ph $.`. This is a good
-historical example to keep attached to an actual axiom we will use, instead of
-remembering only that Tarski did something clever with variables.
+$$
+\begin{array}{cl}
+\texttt{eq-refl} & t = t \\
+\texttt{eq-sym} & t = u \to u = t \\
+\texttt{eq-tr} & t = u \to u = v \to t = v \\
+\texttt{eq-s} & t = u \to S t = S u \\
+\texttt{eq-add} & t = u \to v = w \to t + v = u + w \\
+\texttt{eq-mul} & t = u \to v = w \to t \cdot v = u \cdot w \\
+\texttt{add-0l} & 0 + t = t \\
+\texttt{add-sl} & (S t) + u = S(t + u) \\
+\texttt{mul-0l} & 0 \cdot t = 0 \\
+\texttt{mul-sl} & (S t) \cdot u = u + t \cdot u \\
+\texttt{zns} & 0 \ne S t \\
+\texttt{zos} & t = 0 \lor (\exists u.\; t = S u) \\
+\texttt{s-inj} & S t = S u \to t = u \\
+\end{array}
+$$
 
-There is a tradeoff to notice: making the verifier's primitive operation small
-does not make every familiar logical manipulation a primitive operation.
-Changing bound variables, specializing a quantified formula, or transporting
-an equivalence still needs the relevant assertions and their proofs. That is
-the machinery we will borrow and practice using in this chapter.
+The names of these axioms correspond to the names in 
+`arith-common.mm`, embedded below:
 
-### 5.0.4 What `$d` asks the checker to do
 
-The exact rule in §4.2.4 of the [book](https://us.metamath.org/downloads/metamath.pdf)
-has two parts. When applying an assertion with a required disjoint pair, the
-two replacement expressions must have no Metamath variables in common. Also,
-every pair consisting of one variable from each replacement must be covered
-by the active disjoint conditions in the proof. The second part is how the
-restriction is inherited.
 
-For a small example, suppose an assertion requires `$d ph ps $.`, and consider
-the replacements `ph` by `x = y` and `ps` by `z = w`. The variables occurring
-in the two replacements are disjoint as written. The proof still needs the
-cross-pairs `x,z`, `x,w`, `y,z`, and `y,w`. It does not acquire a requirement
-that `x` and `y` be distinct from each other from this particular `$d` pair.
-We're checking pairs across the two replacements.
+<div class="code-box"><details class="collapsible-code"><summary class="code-summary"><span><a href="code-05/arith-common.mm">arith-common.mm</a></span><span class="expand-hint">(click to expand)</span></summary><div class="codehilite" data-language="metamath"><pre><code><span class="cp">$[</span><span class="w"> </span><span class="s">prop.mm</span><span class="w"> </span><span class="cp">$]</span>
 
-If instead both replacements contain `y`, there is an immediate conflict.
-Declaring extra pairs cannot repair that overlap. On the other hand, identical
-replacements containing only constants do not conflict with this particular
-test, because they contain no variables. Their syntax hypotheses still have
-to be satisfied, of course. These are checks on substitution data, so we can
-practice them before making a large predicate-calculus proof.
+<span class="k">$c</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">*</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="k">$.</span>
+<span class="k">$v</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="k">$.</span>
+<span class="nl">nt</span><span class="w"> </span><span class="k">$f</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">$.</span><span class="w">  </span><span class="nl">nu</span><span class="w"> </span><span class="k">$f</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="k">$.</span><span class="w">  </span><span class="nl">nv</span><span class="w"> </span><span class="k">$f</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="k">$.</span><span class="w">  </span><span class="nl">nw</span><span class="w"> </span><span class="k">$f</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="k">$.</span>
+<span class="nl">weq</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">wff</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="k">$.</span>
+<span class="nl">n0</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="k">$.</span>
+<span class="nl">nS</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">$.</span>
+<span class="nl">nadd</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+<span class="nl">nmul</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">*</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
 
-The [discussion attached to `19.21v`](https://us.metamath.org/mpeuni/19.21v.html)
-also gives a useful terminology distinction: "does not occur" is stronger
-than "is not free in." For instance, `x` is not free in `A. x x = x`, but it
-certainly occurs there. That formula therefore cannot be used as the
-replacement for `ph` in a direct application of `ax-5` with `x` as the bound
-variable. There are other theorems for less restrictive situations.
+<span class="cm">$( Peters' label, meaning, our label. $)</span>
+<span class="cm">$( ER, equality reflexivity, eq-refl $)</span>
+<span class="nl">eq-refl</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">$.</span>
+<span class="cm">$( ES, equality symmetry, eq-sym $)</span>
+<span class="nl">eq-sym</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+<span class="cm">$( ET, equality transitivity, eq-tr $)</span>
+<span class="nl">eq-tr</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+<span class="cm">$( CS, congruence of successor, eq-s $)</span>
+<span class="nl">eq-s</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+<span class="cm">$( CA, congruence of addition, eq-add $)</span>
+<span class="nl">eq-add</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+<span class="cm">$( CM, congruence of multiplication, eq-mul $)</span>
+<span class="nl">eq-mul</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">*</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">*</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+<span class="cm">$( AZ, add zero from the left, add-0l $)</span>
+<span class="nl">add-0l</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">$.</span>
+<span class="cm">$( AR, addition recursion from the left, add-sl $)</span>
+<span class="nl">add-sl</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+<span class="cm">$( MZ, multiplication by zero from the left, mul-0l $)</span>
+<span class="nl">mul-0l</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="n">*</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="k">$.</span>
+<span class="cm">$( MR, multiplication recursion from the left, mul-sl $)</span>
+<span class="nl">mul-sl</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">*</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">*</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+<span class="cm">$( ZS, zero is not a successor, zns $)</span>
+<span class="nl">zns</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">-.</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">$.</span>
+<span class="cm">$( CD, case distinction, zos. Inactive: this is the axiom we set aside.</span>
+<span class="cm">${</span>
+<span class="cm">  $d u t $.</span>
+<span class="cm">  zos $a |- ( t = 0 \/ E. u t = S u ) $.</span>
+<span class="cm">$}</span>
+<span class="cm">$)</span>
+<span class="cm">$( SI, successor injectivity, s-inj $)</span>
+<span class="nl">s-inj</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="cm">$( Strange arabic glyphs $)</span>
+<span class="k">$c</span><span class="w"> </span><span class="n">1</span><span class="w"> </span><span class="n">2</span><span class="w"> </span><span class="n">3</span><span class="w"> </span><span class="n">4</span><span class="w"> </span><span class="n">5</span><span class="w"> </span><span class="n">6</span><span class="w"> </span><span class="k">$.</span>
+<span class="nl">n1</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="n">1</span><span class="w"> </span><span class="k">$.</span><span class="w"> </span><span class="nl">df-1</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">1</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="k">$.</span>
+<span class="nl">n2</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="n">2</span><span class="w"> </span><span class="k">$.</span><span class="w"> </span><span class="nl">df-2</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">2</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="n">1</span><span class="w"> </span><span class="k">$.</span>
+<span class="nl">n3</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="n">3</span><span class="w"> </span><span class="k">$.</span><span class="w"> </span><span class="nl">df-3</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">3</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="n">2</span><span class="w"> </span><span class="k">$.</span>
+<span class="nl">n4</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="n">4</span><span class="w"> </span><span class="k">$.</span><span class="w"> </span><span class="nl">df-4</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">4</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="n">3</span><span class="w"> </span><span class="k">$.</span>
+<span class="nl">n5</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="n">5</span><span class="w"> </span><span class="k">$.</span><span class="w"> </span><span class="nl">df-5</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">5</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="n">4</span><span class="w"> </span><span class="k">$.</span>
+<span class="nl">n6</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="n">6</span><span class="w"> </span><span class="k">$.</span><span class="w"> </span><span class="nl">df-6</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">6</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="n">5</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="cm">$( Equality: symmetry and transitivity. $)</span>
+
+<span class="p">${</span>
+<span class="w">  </span><span class="nl">eqcomi.1</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="cm">$( Equality is symmetric; inference form of eq-sym</span>
+<span class="cm">     set.mm analogue: https://us.metamath.org/mpeuni/eqcomi.html $)</span>
+<span class="w">  </span><span class="nl">eqcomi</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">    </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">eqcomi.1</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">eq-sym</span><span class="w"> </span><span class="nl">ax-mp</span><span class="w"> </span><span class="k">$.</span>
+<span class="p">$}</span>
+
+<span class="cm">$( Equality is symmetric, as a biconditional.</span>
+<span class="cm">   set.mm analogue: https://us.metamath.org/mpeuni/eqcom.html $)</span>
+<span class="nl">eqcom</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">&lt;-&gt;</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">  </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">eq-sym</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">eq-sym</span><span class="w"> </span><span class="nl">impbii</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="p">${</span>
+<span class="w">  </span><span class="nl">eqcomd.1</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="cm">$( Deduction form of eq-sym</span>
+<span class="cm">     set.mm analogue: https://us.metamath.org/mpeuni/eqcomd.html $)</span>
+<span class="w">  </span><span class="nl">eqcomd</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">    </span><span class="nl">wph</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">eqcomd.1</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">eq-sym</span><span class="w"> </span><span class="nl">syl</span><span class="w"> </span><span class="k">$.</span>
+<span class="p">$}</span>
+
+<span class="p">${</span>
+<span class="w">  </span><span class="nl">eqtri.1</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="nl">eqtri.2</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="cm">$( Chain two equalities; inference form of eq-tr</span>
+<span class="cm">     set.mm analogue: https://us.metamath.org/mpeuni/eqtri.html $)</span>
+<span class="w">  </span><span class="nl">eqtri</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">    </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">eqtri.1</span><span class="w"> </span><span class="nl">eqtri.2</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">eq-tr</span><span class="w"> </span><span class="nl">mp2</span><span class="w"> </span><span class="k">$.</span>
+<span class="p">$}</span>
+
+<span class="p">${</span>
+<span class="w">  </span><span class="nl">eqtr3i.1</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="nl">eqtr3i.2</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="cm">$( Two terms equal to a common left side are equal.</span>
+<span class="cm">     set.mm analogue: https://us.metamath.org/mpeuni/eqtr3i.html $)</span>
+<span class="w">  </span><span class="nl">eqtr3i</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">    </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">eqtr3i.1</span><span class="w"> </span><span class="nl">eqcomi</span><span class="w"> </span><span class="nl">eqtr3i.2</span><span class="w"> </span><span class="nl">eqtri</span><span class="w"> </span><span class="k">$.</span>
+<span class="p">$}</span>
+
+<span class="p">${</span>
+<span class="w">  </span><span class="nl">eqtr4i.1</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="nl">eqtr4i.2</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="cm">$( Two terms equal to a common right side are equal.</span>
+<span class="cm">     set.mm analogue: https://us.metamath.org/mpeuni/eqtr4i.html $)</span>
+<span class="w">  </span><span class="nl">eqtr4i</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">    </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">eqtr4i.1</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">eqtr4i.2</span><span class="w"> </span><span class="nl">eqcomi</span><span class="w"> </span><span class="nl">eqtri</span><span class="w"> </span><span class="k">$.</span>
+<span class="p">$}</span>
+
+<span class="p">${</span>
+<span class="w">  </span><span class="nl">3eqtri.1</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="nl">3eqtri.2</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="nl">3eqtri.3</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="cm">$( Chain three equalities.</span>
+<span class="cm">     set.mm analogue: https://us.metamath.org/mpeuni/3eqtri.html $)</span>
+<span class="w">  </span><span class="nl">3eqtri</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">    </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nw</span><span class="w"> </span><span class="nl">3eqtri.1</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nw</span><span class="w"> </span><span class="nl">3eqtri.2</span><span class="w"> </span><span class="nl">3eqtri.3</span><span class="w"> </span><span class="nl">eqtri</span><span class="w"> </span><span class="nl">eqtri</span><span class="w"> </span><span class="k">$.</span>
+<span class="p">$}</span>
+
+<span class="p">${</span>
+<span class="w">  </span><span class="nl">eqtrd.1</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="nl">eqtrd.2</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="cm">$( Deduction form of eq-tr</span>
+<span class="cm">     set.mm analogue: https://us.metamath.org/mpeuni/eqtrd.html $)</span>
+<span class="w">  </span><span class="nl">eqtrd</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">    </span><span class="nl">wph</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">eqtrd.2</span><span class="w"> </span><span class="nl">wph</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wi</span>
+<span class="w">    </span><span class="nl">eqtrd.1</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">eq-tr</span><span class="w"> </span><span class="nl">syl</span><span class="w"> </span><span class="nl">mpd</span><span class="w"> </span><span class="k">$.</span>
+<span class="p">$}</span>
+
+<span class="cm">$( Equality: replacing either side of an equation. $)</span>
+
+<span class="cm">$( Replace the left side of an equation.</span>
+<span class="cm">   set.mm analogue: https://us.metamath.org/mpeuni/eqeq1.html $)</span>
+<span class="nl">eqeq1</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">&lt;-&gt;</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">  </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wi</span><span class="w"> </span><span class="nl">nt</span>
+<span class="w">  </span><span class="nl">nu</span><span class="w"> </span><span class="nl">eq-sym</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">eq-tr</span><span class="w"> </span><span class="nl">syl</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">eq-tr</span><span class="w"> </span><span class="nl">impbid</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="cm">$( Replace the right side of an equation.</span>
+<span class="cm">   set.mm analogue: https://us.metamath.org/mpeuni/eqeq2.html $)</span>
+<span class="nl">eqeq2</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">&lt;-&gt;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">  </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">eq-tr</span>
+<span class="w">  </span><span class="nl">com12</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wi</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">eq-sym</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nt</span>
+<span class="w">  </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">eq-tr</span><span class="w"> </span><span class="nl">com12</span><span class="w"> </span><span class="nl">syl</span><span class="w"> </span><span class="nl">impbid</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="p">${</span>
+<span class="w">  </span><span class="nl">eqeq12i.1</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="nl">eqeq12i.2</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="cm">$( Replace both sides of an equation.</span>
+<span class="cm">     set.mm analogue: https://us.metamath.org/mpeuni/eqeq12i.html $)</span>
+<span class="w">  </span><span class="nl">eqeq12i</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">&lt;-&gt;</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">    </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nw</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wb</span><span class="w"> </span><span class="nl">eqeq12i.1</span><span class="w"> </span><span class="nl">nt</span>
+<span class="w">    </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">eqeq1</span><span class="w"> </span><span class="nl">ax-mp</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nw</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nw</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wb</span><span class="w"> </span><span class="nl">eqeq12i.2</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nw</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">eqeq2</span>
+<span class="w">    </span><span class="nl">ax-mp</span><span class="w"> </span><span class="nl">bitri</span><span class="w"> </span><span class="k">$.</span>
+<span class="p">$}</span>
+
+<span class="p">${</span>
+<span class="w">  </span><span class="nl">eqeq12d.1</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="nl">eqeq12d.2</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="cm">$( Replace both sides of an equation, under a common antecedent.</span>
+<span class="cm">     set.mm analogue: https://us.metamath.org/mpeuni/eqeq12d.html $)</span>
+<span class="w">  </span><span class="nl">eqeq12d</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">&lt;-&gt;</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">    </span><span class="nl">wph</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nw</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wph</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wb</span>
+<span class="w">    </span><span class="nl">eqeq12d.1</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">eqeq1</span><span class="w"> </span><span class="nl">syl</span><span class="w"> </span><span class="nl">wph</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nw</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nw</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wb</span><span class="w"> </span><span class="nl">eqeq12d.2</span>
+<span class="w">    </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nw</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">eqeq2</span><span class="w"> </span><span class="nl">syl</span><span class="w"> </span><span class="nl">bitrd</span><span class="w"> </span><span class="k">$.</span>
+<span class="p">$}</span>
+
+<span class="cm">$( Congruence for S, + and *. set.mm states these once for a general</span>
+<span class="cm">   operation F (oveq1, oveq2, oveq12 and their i/d forms);</span>
+<span class="cm">   we have fixed operations, so add/mul replace ov in the labels. $)</span>
+
+<span class="p">${</span>
+<span class="w">  </span><span class="nl">suceqi.1</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="cm">$( Inference form of eq-s</span>
+<span class="cm">     cf. set.mm: https://us.metamath.org/mpeuni/suceq.html $)</span>
+<span class="w">  </span><span class="nl">suceqi</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">    </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">suceqi.1</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">eq-s</span><span class="w"> </span><span class="nl">ax-mp</span><span class="w"> </span><span class="k">$.</span>
+<span class="p">$}</span>
+
+<span class="p">${</span>
+<span class="w">  </span><span class="nl">suceqd.1</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="cm">$( Deduction form of eq-s</span>
+<span class="cm">     set.mm analogue: https://us.metamath.org/mpeuni/suceqd.html $)</span>
+<span class="w">  </span><span class="nl">suceqd</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">    </span><span class="nl">wph</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">suceqd.1</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">eq-s</span><span class="w"> </span><span class="nl">syl</span><span class="w"> </span><span class="k">$.</span>
+<span class="p">$}</span>
+
+<span class="cm">$( Rewrite the left argument of +</span>
+<span class="cm">   cf. set.mm: https://us.metamath.org/mpeuni/oveq1.html $)</span>
+<span class="nl">addeq1</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">  </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">eq-refl</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">eq-add</span>
+<span class="w">  </span><span class="nl">mpi</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="cm">$( Rewrite the right argument of +</span>
+<span class="cm">   cf. set.mm: https://us.metamath.org/mpeuni/oveq2.html $)</span>
+<span class="nl">addeq2</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">  </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wi</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">eq-refl</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span>
+<span class="w">  </span><span class="nl">eq-add</span><span class="w"> </span><span class="nl">ax-mp</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="cm">$( Rewrite the left argument of *</span>
+<span class="cm">   cf. set.mm: https://us.metamath.org/mpeuni/oveq1.html $)</span>
+<span class="nl">muleq1</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">*</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">*</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">  </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">eq-refl</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">eq-mul</span>
+<span class="w">  </span><span class="nl">mpi</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="cm">$( Rewrite the right argument of *</span>
+<span class="cm">   cf. set.mm: https://us.metamath.org/mpeuni/oveq2.html $)</span>
+<span class="nl">muleq2</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">*</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">*</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">  </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wi</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">eq-refl</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span>
+<span class="w">  </span><span class="nl">eq-mul</span><span class="w"> </span><span class="nl">ax-mp</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="p">${</span>
+<span class="w">  </span><span class="nl">addeq1i.1</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="cm">$( Inference form of addeq1</span>
+<span class="cm">     cf. set.mm: https://us.metamath.org/mpeuni/oveq1i.html $)</span>
+<span class="w">  </span><span class="nl">addeq1i</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">    </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">addeq1i.1</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">addeq1</span><span class="w"> </span><span class="nl">ax-mp</span><span class="w"> </span><span class="k">$.</span>
+<span class="p">$}</span>
+
+<span class="p">${</span>
+<span class="w">  </span><span class="nl">addeq1d.1</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="cm">$( Deduction form of addeq1</span>
+<span class="cm">     cf. set.mm: https://us.metamath.org/mpeuni/oveq1d.html $)</span>
+<span class="w">  </span><span class="nl">addeq1d</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">    </span><span class="nl">wph</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">addeq1d.1</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">addeq1</span><span class="w"> </span><span class="nl">syl</span><span class="w"> </span><span class="k">$.</span>
+<span class="p">$}</span>
+
+<span class="p">${</span>
+<span class="w">  </span><span class="nl">addeq2i.1</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="cm">$( Inference form of addeq2</span>
+<span class="cm">     cf. set.mm: https://us.metamath.org/mpeuni/oveq2i.html $)</span>
+<span class="w">  </span><span class="nl">addeq2i</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">    </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">addeq2i.1</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">addeq2</span><span class="w"> </span><span class="nl">ax-mp</span><span class="w"> </span><span class="k">$.</span>
+<span class="p">$}</span>
+
+<span class="p">${</span>
+<span class="w">  </span><span class="nl">addeq2d.1</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="cm">$( Deduction form of addeq2</span>
+<span class="cm">     cf. set.mm: https://us.metamath.org/mpeuni/oveq2d.html $)</span>
+<span class="w">  </span><span class="nl">addeq2d</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">    </span><span class="nl">wph</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">addeq2d.1</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">addeq2</span><span class="w"> </span><span class="nl">syl</span><span class="w"> </span><span class="k">$.</span>
+<span class="p">$}</span>
+
+<span class="p">${</span>
+<span class="w">  </span><span class="nl">muleq1i.1</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="cm">$( Inference form of muleq1</span>
+<span class="cm">     cf. set.mm: https://us.metamath.org/mpeuni/oveq1i.html $)</span>
+<span class="w">  </span><span class="nl">muleq1i</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">*</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">*</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">    </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">muleq1i.1</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">muleq1</span><span class="w"> </span><span class="nl">ax-mp</span><span class="w"> </span><span class="k">$.</span>
+<span class="p">$}</span>
+
+<span class="p">${</span>
+<span class="w">  </span><span class="nl">muleq1d.1</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="cm">$( Deduction form of muleq1</span>
+<span class="cm">     cf. set.mm: https://us.metamath.org/mpeuni/oveq1d.html $)</span>
+<span class="w">  </span><span class="nl">muleq1d</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">*</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">*</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">    </span><span class="nl">wph</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">muleq1d.1</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">muleq1</span><span class="w"> </span><span class="nl">syl</span><span class="w"> </span><span class="k">$.</span>
+<span class="p">$}</span>
+
+<span class="p">${</span>
+<span class="w">  </span><span class="nl">muleq2i.1</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="cm">$( Inference form of muleq2</span>
+<span class="cm">     cf. set.mm: https://us.metamath.org/mpeuni/oveq2i.html $)</span>
+<span class="w">  </span><span class="nl">muleq2i</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">*</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">*</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">    </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">muleq2i.1</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">muleq2</span><span class="w"> </span><span class="nl">ax-mp</span><span class="w"> </span><span class="k">$.</span>
+<span class="p">$}</span>
+
+<span class="p">${</span>
+<span class="w">  </span><span class="nl">muleq2d.1</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="cm">$( Deduction form of muleq2</span>
+<span class="cm">     cf. set.mm: https://us.metamath.org/mpeuni/oveq2d.html $)</span>
+<span class="w">  </span><span class="nl">muleq2d</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">*</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">*</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">    </span><span class="nl">wph</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">muleq2d.1</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">muleq2</span><span class="w"> </span><span class="nl">syl</span><span class="w"> </span><span class="k">$.</span>
+<span class="p">$}</span>
+
+<span class="p">${</span>
+<span class="w">  </span><span class="nl">addeq12i.1</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="nl">addeq12i.2</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="cm">$( Rewrite both arguments of +; inference form of eq-add</span>
+<span class="cm">     cf. set.mm: https://us.metamath.org/mpeuni/oveq12i.html $)</span>
+<span class="w">  </span><span class="nl">addeq12i</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">    </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nw</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nw</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">addeq12i.1</span><span class="w"> </span><span class="nl">addeq12i.2</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span>
+<span class="w">    </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nw</span><span class="w"> </span><span class="nl">eq-add</span><span class="w"> </span><span class="nl">mp2</span><span class="w"> </span><span class="k">$.</span>
+<span class="p">$}</span>
+
+<span class="p">${</span>
+<span class="w">  </span><span class="nl">addeq12d.1</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="nl">addeq12d.2</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="cm">$( Rewrite both arguments of +, under a common antecedent.</span>
+<span class="cm">     cf. set.mm: https://us.metamath.org/mpeuni/oveq12d.html $)</span>
+<span class="w">  </span><span class="nl">addeq12d</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">    </span><span class="nl">wph</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nw</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">wph</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">addeq12d.1</span><span class="w"> </span><span class="nl">addeq1d</span><span class="w"> </span><span class="nl">wph</span><span class="w"> </span><span class="nl">nv</span>
+<span class="w">    </span><span class="nl">nw</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">addeq12d.2</span><span class="w"> </span><span class="nl">addeq2d</span><span class="w"> </span><span class="nl">eqtrd</span><span class="w"> </span><span class="k">$.</span>
+<span class="p">$}</span>
+
+<span class="p">${</span>
+<span class="w">  </span><span class="nl">muleq12i.1</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="nl">muleq12i.2</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="cm">$( Rewrite both arguments of *; inference form of eq-mul</span>
+<span class="cm">     cf. set.mm: https://us.metamath.org/mpeuni/oveq12i.html $)</span>
+<span class="w">  </span><span class="nl">muleq12i</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">*</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">*</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">    </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nw</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nw</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">muleq12i.1</span><span class="w"> </span><span class="nl">muleq12i.2</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span>
+<span class="w">    </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nw</span><span class="w"> </span><span class="nl">eq-mul</span><span class="w"> </span><span class="nl">mp2</span><span class="w"> </span><span class="k">$.</span>
+<span class="p">$}</span>
+
+<span class="p">${</span>
+<span class="w">  </span><span class="nl">muleq12d.1</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="nl">muleq12d.2</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="cm">$( Rewrite both arguments of *, under a common antecedent.</span>
+<span class="cm">     cf. set.mm: https://us.metamath.org/mpeuni/oveq12d.html $)</span>
+<span class="w">  </span><span class="nl">muleq12d</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">*</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">*</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">    </span><span class="nl">wph</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nw</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">wph</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">muleq12d.1</span><span class="w"> </span><span class="nl">muleq1d</span><span class="w"> </span><span class="nl">wph</span><span class="w"> </span><span class="nl">nv</span>
+<span class="w">    </span><span class="nl">nw</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">muleq12d.2</span><span class="w"> </span><span class="nl">muleq2d</span><span class="w"> </span><span class="nl">eqtrd</span><span class="w"> </span><span class="k">$.</span>
+<span class="p">$}</span>
+
+<span class="cm">$( Successor: zero, injectivity, and distinguishing numerals. $)</span>
+
+<span class="cm">$( A successor is not zero; zns with the sides exchanged.</span>
+<span class="cm">   set.mm analogue: https://us.metamath.org/mpeuni/nsuceq0.html $)</span>
+<span class="nl">nsuceq0</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">-.</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">  </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">zns</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">eq-sym</span><span class="w"> </span><span class="nl">mto</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="cm">$( Successor preserves and reflects equality.</span>
+<span class="cm">   set.mm analogue: https://us.metamath.org/mpeuni/suc11reg.html $)</span>
+<span class="nl">suc11reg</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">&lt;-&gt;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">  </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">s-inj</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">eq-s</span><span class="w"> </span><span class="nl">impbii</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="p">${</span>
+<span class="w">  </span><span class="nl">eqnetri.1</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="nl">eqnetri.2</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">-.</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="cm">$( Carry a disequation along an equation.</span>
+<span class="cm">     set.mm analogue: https://us.metamath.org/mpeuni/eqnetri.html $)</span>
+<span class="w">  </span><span class="nl">eqnetri</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">-.</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">    </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">eqnetri.2</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wi</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span>
+<span class="w">    </span><span class="nl">eqnetri.1</span><span class="w"> </span><span class="nl">eqcomi</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nv</span><span class="w"> </span><span class="nl">eq-tr</span><span class="w"> </span><span class="nl">ax-mp</span><span class="w"> </span><span class="nl">mto</span><span class="w"> </span><span class="k">$.</span>
+<span class="p">$}</span>
+
+<span class="cm">$( Numerals.  Each numeral is defined as the successor of the previous</span>
+<span class="cm">   one.  Addition and multiplication recurse on the left argument</span>
+<span class="cm">   (add-sl, mul-sl), so a sum or product is computed by unfolding the</span>
+<span class="cm">   left numeral's definition and using one with a smaller left argument. $)</span>
+
+
+
+<span class="cm">$( One is not zero.</span>
+<span class="cm">   cf. set.mm: https://us.metamath.org/mpeuni/ax-1ne0.html $)</span>
+<span class="nl">1ne0</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">-.</span><span class="w"> </span><span class="n">1</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">  </span><span class="nl">n1</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">df-1</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nsuceq0</span><span class="w"> </span><span class="nl">eqnetri</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="cm">$( Two is not one: by s-inj, one would equal zero.</span>
+<span class="cm">   cf. set.mm: https://us.metamath.org/mpeuni/1ne2.html $)</span>
+<span class="nl">2ne1</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">-.</span><span class="w"> </span><span class="n">2</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">1</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">  </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">1ne0</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">nS</span>
+<span class="w">  </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">df-2</span><span class="w"> </span><span class="nl">df-1</span><span class="w"> </span><span class="nl">eqeq12i</span><span class="w"> </span><span class="nl">biimpi</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">s-inj</span><span class="w"> </span><span class="nl">syl</span><span class="w"> </span><span class="nl">mto</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="cm">$( Zero plus zero; an instance of add-0l</span>
+<span class="cm">   set.mm analogue: https://us.metamath.org/mpeuni/00id.html $)</span>
+<span class="nl">00id</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">  </span><span class="nl">n0</span><span class="w"> </span><span class="nl">add-0l</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="cm">$( If t is the successor of u and ( u + 0 ) = u, then ( t + 0 ) = t.</span>
+<span class="cm">   Used once per numeral below; the general law addrid needs induction. $)</span>
+<span class="p">${</span>
+<span class="w">  </span><span class="nl">successor-lemma.1</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="nl">successor-lemma.2</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="nl">successor-lemma</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">    </span><span class="nl">nt</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n0</span>
+<span class="w">    </span><span class="nl">successor-lemma.1</span><span class="w"> </span><span class="nl">addeq1i</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">add-sl</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">successor-lemma.2</span><span class="w"> </span><span class="nl">suceqi</span>
+<span class="w">    </span><span class="nl">3eqtri</span><span class="w"> </span><span class="nl">successor-lemma.1</span><span class="w"> </span><span class="nl">eqtr4i</span><span class="w"> </span><span class="k">$.</span>
+<span class="p">$}</span>
+
+<span class="cm">$( 1 + 0 = 1</span>
+<span class="cm">   set.mm analogue: https://us.metamath.org/mpeuni/1p0e1.html $)</span>
+<span class="nl">1p0e1</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">1</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">1</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">  </span><span class="nl">n1</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">df-1</span><span class="w"> </span><span class="nl">00id</span><span class="w"> </span><span class="nl">successor-lemma</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="cm">$( 2 + 0 = 2. Hmm, it's starting to look strangely like induction, huh? $)</span>
+<span class="nl">2p0e2</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">2</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">2</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">  </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">df-2</span><span class="w"> </span><span class="nl">1p0e1</span><span class="w"> </span><span class="nl">successor-lemma</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="cm">$( 3 + 0 = 3 $)</span>
+<span class="nl">3p0e3</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">3</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">3</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">  </span><span class="nl">n3</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">df-3</span><span class="w"> </span><span class="nl">2p0e2</span><span class="w"> </span><span class="nl">successor-lemma</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="cm">$( 1 + 1 = 2</span>
+<span class="cm">   set.mm analogue: https://us.metamath.org/mpeuni/1p1e2.html $)</span>
+<span class="nl">1p1e2</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">1</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">1</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">2</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">  </span><span class="nl">n1</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n1</span>
+<span class="w">  </span><span class="nl">df-1</span><span class="w"> </span><span class="nl">addeq1i</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">add-sl</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">add-0l</span><span class="w"> </span><span class="nl">suceqi</span><span class="w"> </span><span class="nl">3eqtri</span><span class="w"> </span><span class="nl">df-2</span><span class="w"> </span><span class="nl">eqtr4i</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="cm">$( 1 + 2 = 3</span>
+<span class="cm">   set.mm analogue: https://us.metamath.org/mpeuni/1p2e3.html $)</span>
+<span class="nl">1p2e3</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">1</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">2</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">3</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">  </span><span class="nl">n1</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n2</span>
+<span class="w">  </span><span class="nl">df-1</span><span class="w"> </span><span class="nl">addeq1i</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">add-sl</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">add-0l</span><span class="w"> </span><span class="nl">suceqi</span><span class="w"> </span><span class="nl">3eqtri</span><span class="w"> </span><span class="nl">df-3</span><span class="w"> </span><span class="nl">eqtr4i</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="cm">$( 2 + 2 = 4</span>
+<span class="cm">   set.mm analogue: https://us.metamath.org/mpeuni/2p2e4.html $)</span>
+<span class="nl">2p2e4</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">2</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">2</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">4</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">  </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n4</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n2</span>
+<span class="w">  </span><span class="nl">df-2</span><span class="w"> </span><span class="nl">addeq1i</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">add-sl</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">1p2e3</span><span class="w"> </span><span class="nl">suceqi</span><span class="w"> </span><span class="nl">3eqtri</span><span class="w"> </span><span class="nl">df-4</span><span class="w"> </span><span class="nl">eqtr4i</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="cm">$( 3 + 2 = 5</span>
+<span class="cm">   set.mm analogue: https://us.metamath.org/mpeuni/3p2e5.html $)</span>
+<span class="nl">3p2e5</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">3</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">2</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">5</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">  </span><span class="nl">n3</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n4</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n5</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n4</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n2</span>
+<span class="w">  </span><span class="nl">df-3</span><span class="w"> </span><span class="nl">addeq1i</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">add-sl</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n4</span><span class="w"> </span><span class="nl">2p2e4</span><span class="w"> </span><span class="nl">suceqi</span><span class="w"> </span><span class="nl">3eqtri</span><span class="w"> </span><span class="nl">df-5</span><span class="w"> </span><span class="nl">eqtr4i</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="cm">$( 1 + 3 = 4</span>
+<span class="cm">   set.mm analogue: https://us.metamath.org/mpeuni/1p3e4.html $)</span>
+<span class="nl">1p3e4</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">1</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">3</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">4</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">  </span><span class="nl">n1</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n4</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n3</span>
+<span class="w">  </span><span class="nl">df-1</span><span class="w"> </span><span class="nl">addeq1i</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">add-sl</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">add-0l</span><span class="w"> </span><span class="nl">suceqi</span><span class="w"> </span><span class="nl">3eqtri</span><span class="w"> </span><span class="nl">df-4</span><span class="w"> </span><span class="nl">eqtr4i</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="cm">$( 2 + 3 = 5</span>
+<span class="cm">   set.mm analogue: https://us.metamath.org/mpeuni/2p3e5.html $)</span>
+<span class="nl">2p3e5</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">2</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">3</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">5</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">  </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n4</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n5</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n4</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n3</span>
+<span class="w">  </span><span class="nl">df-2</span><span class="w"> </span><span class="nl">addeq1i</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">add-sl</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n4</span><span class="w"> </span><span class="nl">1p3e4</span><span class="w"> </span><span class="nl">suceqi</span><span class="w"> </span><span class="nl">3eqtri</span><span class="w"> </span><span class="nl">df-5</span><span class="w"> </span><span class="nl">eqtr4i</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="cm">$( 3 + 3 = 6</span>
+<span class="cm">   set.mm analogue: https://us.metamath.org/mpeuni/3p3e6.html $)</span>
+<span class="nl">3p3e6</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">3</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">3</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">6</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">  </span><span class="nl">n3</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n5</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n6</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n5</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n3</span>
+<span class="w">  </span><span class="nl">df-3</span><span class="w"> </span><span class="nl">addeq1i</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">add-sl</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n5</span><span class="w"> </span><span class="nl">2p3e5</span><span class="w"> </span><span class="nl">suceqi</span><span class="w"> </span><span class="nl">3eqtri</span><span class="w"> </span><span class="nl">df-6</span><span class="w"> </span><span class="nl">eqtr4i</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="cm">$( 1 + 4 = 5</span>
+<span class="cm">   set.mm analogue: https://us.metamath.org/mpeuni/1p4e5.html $)</span>
+<span class="nl">1p4e5</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">1</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">4</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">5</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">  </span><span class="nl">n1</span><span class="w"> </span><span class="nl">n4</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n4</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n5</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">n4</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n4</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">n4</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n4</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n4</span>
+<span class="w">  </span><span class="nl">df-1</span><span class="w"> </span><span class="nl">addeq1i</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">n4</span><span class="w"> </span><span class="nl">add-sl</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">n4</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n4</span><span class="w"> </span><span class="nl">n4</span><span class="w"> </span><span class="nl">add-0l</span><span class="w"> </span><span class="nl">suceqi</span><span class="w"> </span><span class="nl">3eqtri</span><span class="w"> </span><span class="nl">df-5</span><span class="w"> </span><span class="nl">eqtr4i</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="cm">$( 2 + 4 = 6</span>
+<span class="cm">   set.mm analogue: https://us.metamath.org/mpeuni/2p4e6.html $)</span>
+<span class="nl">2p4e6</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">2</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">4</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">6</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">  </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n4</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n5</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n6</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n4</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n4</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">n4</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n5</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n4</span>
+<span class="w">  </span><span class="nl">df-2</span><span class="w"> </span><span class="nl">addeq1i</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">n4</span><span class="w"> </span><span class="nl">add-sl</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">n4</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n5</span><span class="w"> </span><span class="nl">1p4e5</span><span class="w"> </span><span class="nl">suceqi</span><span class="w"> </span><span class="nl">3eqtri</span><span class="w"> </span><span class="nl">df-6</span><span class="w"> </span><span class="nl">eqtr4i</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="cm">$( A commutativity instance: both sides have the same value.  The general</span>
+<span class="cm">   law needs induction. $)</span>
+<span class="nl">3p2e2p3</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">3</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">2</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">2</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">3</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">  </span><span class="nl">n3</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n5</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">3p2e5</span><span class="w"> </span><span class="nl">2p3e5</span><span class="w"> </span><span class="nl">eqtr4i</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="cm">$( 1 * 2 = 2 $)</span>
+<span class="nl">1t2e2</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">1</span><span class="w"> </span><span class="n">*</span><span class="w"> </span><span class="n">2</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">2</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">  </span><span class="nl">n1</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n0</span>
+<span class="w">  </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">df-1</span><span class="w"> </span><span class="nl">muleq1i</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">mul-sl</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">mul-0l</span><span class="w"> </span><span class="nl">addeq2i</span>
+<span class="w">  </span><span class="nl">3eqtri</span><span class="w"> </span><span class="nl">2p0e2</span><span class="w"> </span><span class="nl">eqtri</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="cm">$( 2 * 2 = 4</span>
+<span class="cm">   set.mm analogue: https://us.metamath.org/mpeuni/2t2e4.html $)</span>
+<span class="nl">2t2e4</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">2</span><span class="w"> </span><span class="n">*</span><span class="w"> </span><span class="n">2</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">4</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">  </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n4</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n2</span>
+<span class="w">  </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">df-2</span><span class="w"> </span><span class="nl">muleq1i</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">mul-sl</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">1t2e2</span><span class="w"> </span><span class="nl">addeq2i</span>
+<span class="w">  </span><span class="nl">3eqtri</span><span class="w"> </span><span class="nl">2p2e4</span><span class="w"> </span><span class="nl">eqtri</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="cm">$( 3 * 2 = 6</span>
+<span class="cm">   set.mm analogue: https://us.metamath.org/mpeuni/3t2e6.html $)</span>
+<span class="nl">3t2e6</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">3</span><span class="w"> </span><span class="n">*</span><span class="w"> </span><span class="n">2</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">6</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">  </span><span class="nl">n3</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n4</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n6</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n4</span>
+<span class="w">  </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">df-3</span><span class="w"> </span><span class="nl">muleq1i</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">mul-sl</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">n4</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">2t2e4</span><span class="w"> </span><span class="nl">addeq2i</span>
+<span class="w">  </span><span class="nl">3eqtri</span><span class="w"> </span><span class="nl">2p4e6</span><span class="w"> </span><span class="nl">eqtri</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="cm">$( 1 * 3 = 3 $)</span>
+<span class="nl">1t3e3</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">1</span><span class="w"> </span><span class="n">*</span><span class="w"> </span><span class="n">3</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">3</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">  </span><span class="nl">n1</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">n0</span>
+<span class="w">  </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">df-1</span><span class="w"> </span><span class="nl">muleq1i</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">mul-sl</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">mul-0l</span><span class="w"> </span><span class="nl">addeq2i</span>
+<span class="w">  </span><span class="nl">3eqtri</span><span class="w"> </span><span class="nl">3p0e3</span><span class="w"> </span><span class="nl">eqtri</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="cm">$( 2 * 3 = 6</span>
+<span class="cm">   set.mm analogue: https://us.metamath.org/mpeuni/2t3e6.html $)</span>
+<span class="nl">2t3e6</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">2</span><span class="w"> </span><span class="n">*</span><span class="w"> </span><span class="n">3</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">6</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">  </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n6</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">n3</span>
+<span class="w">  </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">df-2</span><span class="w"> </span><span class="nl">muleq1i</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">mul-sl</span><span class="w"> </span><span class="nl">n1</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">1t3e3</span><span class="w"> </span><span class="nl">addeq2i</span>
+<span class="w">  </span><span class="nl">3eqtri</span><span class="w"> </span><span class="nl">3p3e6</span><span class="w"> </span><span class="nl">eqtri</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="cm">$( A commutativity instance for multiplication. $)</span>
+<span class="nl">2t3e3t2</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">2</span><span class="w"> </span><span class="n">*</span><span class="w"> </span><span class="n">3</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">3</span><span class="w"> </span><span class="n">*</span><span class="w"> </span><span class="n">2</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">  </span><span class="nl">n2</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">n6</span><span class="w"> </span><span class="nl">n3</span><span class="w"> </span><span class="nl">n2</span><span class="w"> </span><span class="nl">nmul</span><span class="w"> </span><span class="nl">2t3e6</span><span class="w"> </span><span class="nl">3t2e6</span><span class="w"> </span><span class="nl">eqtr4i</span><span class="w"> </span><span class="k">$.</span>
+</code></pre></div>
+</details></div>
+
+
+Define "System $A$" to be propositional logic plus all of our arithmetic axioms except axiom 
+$\texttt{zos}$ (which is read as "every number is Zero Or a Successor", as opposed to $\texttt{zns}$ which 
+is "Zero is Not a Successor"). 
+Then my understanding is: 
+
+- Robinson arithmetic is system $A$ plus predicate calculus plus $\texttt{zos}$.
+- Peano arithmetic is system $A$ plus predicate calculus plus induction.
+- Primitive-Recursive Arithmetic (PRA)[^2] is system $A$ plus a predicate-free induction axiom, 
+plus primitive-recursive functions[^3].
+
+[^2]: There are two different "Primitive Recursive Arithmetics" people talk about in modern terminology.
+Number one is "System $A$ + primitive-recursive functions + predicate-free induction." This can be 
+denoted $\text{PRA}_{\text{qf}}$
+and it's discussed in Feferman 1993 "What Rests on What? The Proof-Theoretic Analysis of Mathematics," pp. 7-8. 
+Many authors (most authors?) use PRA to refer to a system
+with predicate calculus (first order logic), but with induction restricted to quantifier-free formulas. This is 
+$\text{PRA}_{\text{fo}},$ "System $A$ + primitive-recursive functions + predicates + induction
+restricted to quantifier-free formulas." Both these systems are defined and compared in 
+Avigad 2002, "Ordinal Analysis Without Proofs."
+
+[^3]: There's not some big "set of primitive-recursive function axioms" to add to our database. 
+We just are only allowed to define functions satisfying (TODO insert specification). This could 
+be done with some machinery and a PRF-builder notation, or it could be enforced with a linter
+like `set.mm`, but if we use any we'll just define functions ourselves and be extra careful
+to follow the rules :)
+
+PRA has a long and storied history with lots of tantalizing stuff;
+Gödel and metamathematics and things. But our motivation is much more innocent: we have 
+some axioms for arithmetic, now let's see what we can and can't prove.
+
+Elementary note: In the last chapter, 
+we could construct terms like `wff ph -> -. ph` without issue. It's an
+issue if we construct the term `|- ph -> -. ph`. Similarly here, we'll construct terms like
+`num 0` and then `wff 1 = 0`, or rather `wff S 0 = 0`, but this is no issue for the same reason,
+whereas `|- 1 = 0` is a big, big issue! I only 
+bring it up because "oh no, I'm not constructing a contradiction am I?" goes through my head
+every time I type `$a`.
+
+### 5.0.2 Common arithmetic theorems
+
+We can imagine having a whole host of helper theorems like we built in  
+propositional logic, and that's exactly what we have in `arith-common.mm`.
+
+Let's walk through a few of the theorems. First, since we just introduced
+equality, we can work with a bunch of theorems involving that. In `set.mm`
+we care about equality of `class`es, but here we care about equality of `num`s.
+Here's `eqcomi`, `eqtri`, and `eqtr4i`. The links go to the analogous
+theorems in set.mm, of course, I'm just stealing the naming convention.
+
+
+$$
+\frac{\vdash t=u}{\vdash u=t}\quad\href{https://us.metamath.org/mpeuni/eqcomi.html}{\texttt{eqcomi}};\qquad
+\frac{\vdash t=u\quad \vdash u=v}{\vdash t=v}\quad\href{https://us.metamath.org/mpeuni/eqtri.html}{\texttt{eqtri}}
+$$
+$$
+\frac{\vdash t=u\quad\vdash v=u}{\vdash t=v}\quad\href{https://us.metamath.org/mpeuni/eqtr4i.html}{\texttt{eqtr4i}}
+$$
+
+Okay... let's walk through a proof of `|- ( 1 + 0 ) = 1`. This isn't given to us for free, we only have the axiom `|- ( 0 + t ) = t`.
+
+TODO: replace this, probably with a proof of the successor lemma.
+
+
+
+```
+MM-PA> show new_proof/lemmon
+24 df-1          $a |- 1 = S 0
+25 24 addeq1i    $p |- ( 1 + 0 ) = ( S 0 + 0 )
+28 add-sl        $a |- ( S 0 + 0 ) = S ( 0 + 0 )
+34 add-0l        $a |- ( 0 + 0 ) = 0
+35 34 suceqi     $p |- S ( 0 + 0 ) = S 0
+36 25,28,35 3eqtri  $p |- ( 1 + 0 ) = S 0
+37 df-1          $a |- 1 = S 0
+38 36,37 eqtr4i  $p |- ( 1 + 0 ) = 1
+```
+
+
+
+This is a bit difficult to parse. Working from the goal backwards, clearly the first thing to do is get rid of `1`. This is 
+accomplished at step 35. `( 0 + 0 ) = 0` is an axiom, and `3eqtri` chains three equalities, which are built at 
+steps 25, 28, 35.
+
+$$(1+0)=(S0+0)=S(0+0)=S0.$$
+
+And the only reason we don't add `S0=1` at the end of that chain is that we haven't defined a `4eqtri`.
+So the proof strategy for this is to first write out the chain of equalities you want to make, and then puzzle out
+how to build each one from the axioms.
+
+Ok, it's a bit weird how this doesn't follow immediately from the axiom though. What about $(2+0)=2$ and $(3+0)=3$? Well, we
+can figure out there's a common method to all these proofs. We define:
+
+$$
+\frac{\vdash t=Su\quad \vdash (u+0)=u}{\vdash(t+0)=t} \quad \texttt{successor-lemma}
+$$
+
+
+
+```mm
+${
+  successor-lemma.1 $e |- t = S u $.
+  successor-lemma.2 $e |- ( u + 0 ) = u $.
+  successor-lemma $p |- ( t + 0 ) = t $=
+    nt n0 nadd nu nS nt nt n0 nadd nu nS n0 nadd nu n0 nadd nS nu nS nt nu nS n0
+    successor-lemma.1 addeq1i nu n0 add-sl nu n0 nadd nu successor-lemma.2 suceqi 3eqtri
+    successor-lemma.1 eqtr4i $.
+$}
+1p0e1 $p |- ( 1 + 0 ) = 1 $=
+  n1 n0 df-1 00id successor-lemma $.
+2p0e2 $p |- ( 2 + 0 ) = 2 $=
+  n2 n1 df-2 1p0e1 successor-lemma $.
+3p0e3 $p |- ( 3 + 0 ) = 3 $=
+  n3 n2 df-3 2p0e2 successor-lemma $.
+```
+
+
+
+So now how do we write a theorem $(t+0)=t$? This is called [`addrid`](https://us.metamath.org/mpeuni/addrid.html) rather than `tp0et`.
+We just need to apply our successor-lemma t times, but try as we might, we can't seem to do it.
+
+
+
+```mm
+addrid $p |- ( t + 0 ) = t $= ? $.
+```
+
+
+
+Soon we convince ourselves, we can't prove it at all! Saying "we can't prove it" is a metatheorem,
+which we haven't built the skills for yet, but some comments from my novice perspective:
+
+Suppose we introduce some constant `num e`, 
+such that the axiom or theorem `|- -. ( e + 0 ) = e` is satisfied. Of course, `|- ( 0 + e ) = e` also
+holds, because that's an axiom of system $A$. If we can prove or argue that this system is consistent, 
+then it can only be the case that `|- ( t + 0 ) = t` cannot be proved by system $A.$ Of course, $e$
+isn't a natural number in any definition that mathematicians actually use, we've created a weird system
+consistent with our axioms.
+
+My impression is that proofs like this are not really out of place in the first few weeks of a good introduction
+to logic course at the advanced undergraduate level. We're shelving it because at present, it is a "human brain
+as a proof checker" topic, which we want to avoid.
+The fact remains that we cannot prove `addrid`, 
+yet for any finite $t$ we can construct a proof that $(t+0)=t.$ 
+What we're missing is induction.
+
+### 5.0.3 Induction without quantifiers
+
+Here we're surely forced to use quantifiers, right? Nope!
+
+Mathematical induction is usually phrased as the rule[^4][^5]
+
+[^4]: I omit the use of turnstiles
+because I'm not yet talking about a Metamath essential hypothesis with typecode `|-`.
+
+[^5]: Troelstra and van Dalen's 1988 *Constructivism in Mathematics: An Introduction*, p. 120, writes
+$A(0),\quad A(x)\to A(Sx)\quad\Rightarrow\quad A(t),$
+while Troelstra and Schwichtenberg's 2000 *Basic Proof Theory*, p. 128 writes
+$$\frac{\Gamma\vdash A(0)\qquad \Gamma\vdash A(x)\to A(Sx)}{\Gamma\vdash A(t)},
+\qquad x\notin\operatorname{FV}(\Gamma). $$
+Both formulations assume that $A$ is quantifier-free.
+
+$$\frac{\varphi(0)\quad \varphi(x)\to \varphi(Sx)}{\varphi(t)},$$
+
+where somehow we have to treat $\varphi(x)$ as a well-formed formula which is a function of $x.$ 
+This issue of treating $\varphi$ as a `wff` depending on a variable is the first place
+that I encountered the need for disjoint variables.
+
+Say our well-formed formula is $\varphi,$ which takes the value `t + 0 = t`.
+If we try to "replace $t$ with zero" in the usual Metamath sense, we'll just unify the
+whole expression for phi as `phi := 0 + 0 = 0`. Its status as a formula is lost, 
+and it will no longer be able to be unified with other expressions like our induction hypothesis,
+`( x + 0 ) = x -> ( S x + 0 ) = S x`. 
+
+How do we solve this? Let's start with a theorem that "substitutes in" zero for x and shows
+the formula holds:
+
+
+
+```mm
+$c var $.
+$v x y $.
+vx $f var x $. vy $f var y $.
+nx $a num x $. ny $a num y $.
+xzero $p |- ( x = 0 -> ( x + 0 ) = x ) $=
+  vx nx n0 weq vx nx n0 nadd n0 vx nx vx nx n0 weq vx nx n0 nadd n0 n0 nadd n0
+  vx nx n0 n0 addeq1 n0 n0 nadd n0 weq vx nx n0 weq n0 add-0l a1i eqtrd
+  vx nx n0 eq-sym eqtrd $.
+```
+
+
+
+Two notes:
+
+- It's not of much consequence yet, but the trick with defining `x` as a `var` makes it so that
+we can't substitute numbers. I'm purposefully restricting `xzero` so that it doesn't prove `1 = 0 -> ( 1 + 0 ) = 1`.
+- If we had developed our axioms from scratch, here is where
+we might find we missed a few axioms! For this to work, our axioms had to be powerful enough to allow for 
+interactions like this where we "substitute" the value just by applying axioms.
+
+In general, if we want to "substitute in" the `num t` for the `var x`, we should do the following:
+
+$$x=t\to (\varphi\leftrightarrow\psi)$$
+
+We could implement it in Metamath as follows (compare to [`vtocl`](https://us.metamath.org/mpeuni/vtocl.html)):
+
+
+
+```mm
+${ $( don't use this code, it's intentionally broken :) $)
+  vtonum.1 $e |- ( x = t -> ( ph <-> ps ) ) $.
+  vtonum.2 $e |- ph $.
+  vtonum $a |- ps $.
+$}
+```
+
+
+
+This looks good, but we can now prove `|- 1 = 0`. Why? Take `ph := x = x`, `t := 0`, `ps := x = 0`.
+We conclude `|- x = 0`. A second application of `vtonum` with `ph := x = 0`, `t := 1`, and `ps := 1 = 0` 
+concludes `|- 1 = 0`. Oops. This is a failure caused by $\psi$ still containing the variable $x$ after 
+we substituted for $x.$
+
+We can prove $1=0$ a different way. Put `ph := 0 = 0`, `t := x + 1`, and `ps := 1 = 0`.
+We conclude `|- 1 = 0`.
+This is a failure caused by trying to assign `x` a value that depends on `x`.[^8]
+
+[^8]: Technically this requires us to prove `-. x = x + 1`, which in our axioms and 
+[even in Robinson arithmetic](https://math.stackexchange.com/a/1066378) can't be done. 
+So this is unsound provided we want to work in an arithmetic where `-. x = x + 1`.
+
+One way to view these failures is that we're thinking of `vtonum` wrong. Rather than "substituting into a function",
+we really should think of it as *eliminating* a variable from a formula. All of our woes are solved by 
+requiring that $\psi$ and $t$ contain no instances of $x.$
+This is accomplished by using the `$d ... $.` statement.
+
+
+
+```mm
+${ 
+  $d x ps $. $d x t $.
+  vtonum.1 $e |- ( x = t -> ( ph <-> ps ) ) $.
+  vtonum.2 $e |- ph $.
+  vtonum $a |- ps $.
+$}
+```
+
+
+
+*Now*, we can begin to construct our induction axiom.
+We have a formula $\varphi$ which we think of as a function of `var x`. We have a base case,
+$\varphi(0)$ which I will call $\psi$. The conclusion of our rule, $\varphi(t)$ which can 
+be evaluated at any `num t`, I'll call $\tau.$ The naming and ordering of the 
+essential hypotheses is something we inherit from `set.mm` by the way, don't blame me 
+for it![^9]
+
+[^9]: An example of this is [nnind](https://us.metamath.org/mpeuni/nnind.html).
+
+
+
+```mm
+${
+  $d x ps $. $d x ta $. $d x t $.
+  ax-ind.at-zero $e |- ( x = 0 -> ( ph <-> ps ) ) $.
+  ...
+  ax-ind.at-num $e |- ( x = t ->  ( ph <-> ta ) ) $.
+  ax-ind.base $e |- ps $.
+  ...
+  ax-ind $a |- ta $.
+$}
+```
+
+
+
+Next our induction hypothesis. We don't want $\varphi(y)\to \varphi(y+1)$ to unify
+with some specific `num y`, so `y` has to be a var as well. 
+We evaluate at y (call the wff $\chi$), evaluate at y+1 (call the wff $\theta$), 
+and have our inductive hypothesis $(\chi\to\theta)$.
+
+
+
+```mm
+${
+  $d x ps $. $d x ta $. $d x t $. 
+  $d x ch $. $d x th $. 
+  $d x y $. $d y ph $.
+  ax-ind.at-zero $e |- ( x = 0 -> ( ph <-> ps ) ) $.
+  ax-ind.at-var $e |- ( x = y -> ( ph <-> ch ) ) $.
+  ax-ind.at-succvar $e |- ( x = S y -> ( ph <-> th ) ) $.
+  ax-ind.at-num $e |- ( x = t ->  ( ph <-> ta ) ) $.
+  ax-ind.base $e |- ps $.
+  ax-ind.step $e |- ( ch -> th ) $.
+  ax-ind $a |- ta $.
+$}
+```
+
+
+
+And there we have it, our axiom of induction!
+
+#### 5.0.3a Applying the quantifier-free induction
+
+To prove `addrid` we take `ph := ( x + 0 ) = x`. Evaluating it at $0,$ $y,$ $Sy$ and $t$
+gives the other four wffs:
+
+
+
+```
+ps := ( 0 + 0 ) = 0
+ch := ( y + 0 ) = y
+th := ( S y + 0 ) = S y
+ta := ( t + 0 ) = t
+```
+
+
+
+The six hypotheses we need to fill are:
+
+
+
+```
+|- ( x = 0 -> ( ( x + 0 ) = x <-> ( 0 + 0 ) = 0 ) )
+|- ( x = y -> ( ( x + 0 ) = x <-> ( y + 0 ) = y ) )
+|- ( x = S y -> ( ( x + 0 ) = x <-> ( S y + 0 ) = S y ) )
+|- ( x = t -> ( ( x + 0 ) = x <-> ( t + 0 ) = t ) )
+|- ( 0 + 0 ) = 0
+|- ( ( y + 0 ) = y -> ( S y + 0 ) = S y )
+```
+
+
+
+The first four are of the same form, so it suffices to show a lemma:
+
+
+
+```mm
+addrid-at $p |- ( t = u -> ( ( t + 0 ) = t <-> ( u + 0 ) = u ) ) $=
+  nt nu weq nt n0 nadd nu n0 nadd nt nu nt nu n0 addeq1 nt nu weq id eqeq12d $.
+```
+
+
+
+The base case is `00id`, which we used in the proof of `( 1 + 0 ) = 0` so that's easy.
+
+Finally, the inductive step is essentially the same as `successor-lemma` above.
+Combining all the steps give us our additive right identity, `addrid`:
+
+
+
+```mm
+addrid-step $p |- ( ( y + 0 ) = y -> ( S y + 0 ) = S y ) $=
+  vy ny n0 nadd vy ny weq vy ny nS n0 nadd vy ny n0 nadd nS vy ny nS
+  vy ny nS n0 nadd vy ny n0 nadd nS weq vy ny n0 nadd vy ny weq vy ny n0 add-sl a1i
+  vy ny n0 nadd vy ny weq vy ny n0 nadd vy ny vy ny n0 nadd vy ny weq id suceqd
+  eqtrd $.
+
+${
+  $d x t $. $d x y $.
+  addrid $p |- ( t + 0 ) = t $=
+    vx nx n0 nadd vx nx weq n0 n0 nadd n0 weq vy ny n0 nadd vy ny weq
+    vy ny nS n0 nadd vy ny nS weq nt n0 nadd nt weq nt vx vy
+    vx nx n0 addrid-at vx nx vy ny addrid-at vx nx vy ny nS addrid-at
+    vx nx nt addrid-at 00id vy addrid-step ax-ind $.
+$}
+```
+
+
+
+
+
+```
+MM> show proof addrid /lemmon /renumber
+1 addrid-at      $p |- ( x = 0 -> ( ( x + 0 ) = x <-> ( 0 + 0 ) = 0 ) )
+2 addrid-at      $p |- ( x = y -> ( ( x + 0 ) = x <-> ( y + 0 ) = y ) )
+3 addrid-at      $p |- ( x = S y -> ( ( x + 0 ) = x <-> ( S y + 0 ) = S y ) )
+4 addrid-at      $p |- ( x = t -> ( ( x + 0 ) = x <-> ( t + 0 ) = t ) )
+5 00id           $p |- ( 0 + 0 ) = 0
+6 addrid-step    $p |- ( ( y + 0 ) = y -> ( S y + 0 ) = S y )
+7 1,2,3,4,5,6 ax-ind  $a |- ( t + 0 ) = t
+```
+
+
+
+This proof is in `arith-qf.mm`:
+
+
+
+<div class="code-box"><details class="collapsible-code"><summary class="code-summary"><span><a href="code-05/arith-qf.mm">arith-qf.mm</a></span><span class="expand-hint">(click to expand)</span></summary><div class="codehilite" data-language="metamath"><pre><code><span class="cp">$[</span><span class="w"> </span><span class="s">arith-common.mm</span><span class="w"> </span><span class="cp">$]</span>
+
+<span class="k">$c</span><span class="w"> </span><span class="n">var</span><span class="w"> </span><span class="k">$.</span>
+<span class="k">$v</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="k">$.</span>
+<span class="nl">vx</span><span class="w"> </span><span class="k">$f</span><span class="w"> </span><span class="n">var</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="k">$.</span><span class="w">  </span><span class="nl">vy</span><span class="w"> </span><span class="k">$f</span><span class="w"> </span><span class="n">var</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="k">$.</span>
+<span class="nl">nx</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="k">$.</span><span class="w">  </span><span class="nl">ny</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="cm">$( Substituting 0 for x by applying axioms. $)</span>
+<span class="nl">xzero</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">  </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n0</span>
+<span class="w">  </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">addeq1</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">add-0l</span><span class="w"> </span><span class="nl">a1i</span><span class="w"> </span><span class="nl">eqtrd</span>
+<span class="w">  </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">eq-sym</span><span class="w"> </span><span class="nl">eqtrd</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="cm">$( Eliminate x from a formula by setting it to t $)</span>
+<span class="p">${</span>
+<span class="w">  </span><span class="k">$d</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="k">$.</span><span class="w"> </span><span class="k">$d</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="nl">vtonum.1</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">&lt;-&gt;</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="nl">vtonum.2</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="nl">vtonum</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="k">$.</span>
+<span class="p">$}</span>
+
+<span class="cm">$( Quantifier-free induction.  ph is the formula in x; ps, ch, th and ta</span>
+<span class="cm">   are ph at 0, y, S y and t $)</span>
+<span class="p">${</span>
+<span class="w">  </span><span class="k">$d</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="k">$.</span><span class="w"> </span><span class="k">$d</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">ta</span><span class="w"> </span><span class="k">$.</span><span class="w"> </span><span class="k">$d</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="k">$d</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">ch</span><span class="w"> </span><span class="k">$.</span><span class="w"> </span><span class="k">$d</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">th</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="k">$d</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="k">$.</span><span class="w"> </span><span class="k">$d</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="nl">ax-ind.at-zero</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">&lt;-&gt;</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="nl">ax-ind.at-var</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">&lt;-&gt;</span><span class="w"> </span><span class="n">ch</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="nl">ax-ind.at-succvar</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">&lt;-&gt;</span><span class="w"> </span><span class="n">th</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="nl">ax-ind.at-num</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">&lt;-&gt;</span><span class="w"> </span><span class="n">ta</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="nl">ax-ind.base</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="nl">ax-ind.step</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">ch</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">th</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="nl">ax-ind</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">ta</span><span class="w"> </span><span class="k">$.</span>
+<span class="p">$}</span>
+
+<span class="cm">$( The four at- hypotheses for addrid, all instances of this. $)</span>
+<span class="nl">addrid-at</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">&lt;-&gt;</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">  </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">addeq1</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">id</span><span class="w"> </span><span class="nl">eqeq12d</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="cm">$( The induction step for addrid; closed form of successor-lemma $)</span>
+<span class="nl">addrid-step</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">  </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">nS</span>
+<span class="w">  </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">add-sl</span><span class="w"> </span><span class="nl">a1i</span>
+<span class="w">  </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">id</span><span class="w"> </span><span class="nl">suceqd</span>
+<span class="w">  </span><span class="nl">eqtrd</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="cm">$( Zero is a right identity for addition.</span>
+<span class="cm">   set.mm analogue: https://us.metamath.org/mpeuni/addrid.html $)</span>
+<span class="p">${</span>
+<span class="w">  </span><span class="k">$d</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">$.</span><span class="w"> </span><span class="k">$d</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="nl">addrid</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">    </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">weq</span>
+<span class="w">    </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">vy</span>
+<span class="w">    </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">addrid-at</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">addrid-at</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">addrid-at</span>
+<span class="w">    </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">addrid-at</span><span class="w"> </span><span class="nl">00id</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">addrid-step</span><span class="w"> </span><span class="nl">ax-ind</span><span class="w"> </span><span class="k">$.</span>
+<span class="p">$}</span>
+</code></pre></div>
+</details></div>
+
+
+Okay, a fun way to spend a weekend or two might be to go extend proofs like this to all of Skolem's 1923 paper. 
+We have built most of the conceptual groundwork, and "primitive-recursive functions" I don't think require
+heavy machinery, they just tell us what kinds of functions we're going to define (introducing heavy machinery
+to lint or build PRFs is up to you, but strictly speaking there's no need).
+But for us, we're done, we've seen how we can apply induction.
+
+### 5.0.4 Induction with quantifiers
+
+Okay, now how do we introduce quantifiers? There's a few different
+ways to do this which I'll put in an appendix 5.0.4b.
+One difficulty of the system we introduced in 5.0.3 is described in 
+Jean van Heijenoort's preface to a translation of Skolem's 1923 paper, where
+it's mentioned that our version of PRA cannot easily phrase things like the twin prime
+conjecture, because the "existence" of a pair is difficult to phrase. It's 
+technically possible to state in our language without proving, but would
+require substantial partial results related to the conjecture.
+But in first-order logic it's easy to state.
+
+We're going to get all of our quantifier practice done in sections 
+5.1 and 5.2. So this section is going to be a bit brief, I'm just going to
+show you what works and assert that it works, without getting too in detail.
+
+
+For our induction axiom, we're going to use a single formula:
+
+$$\frac{}{\vdash (\varphi(0)\land\forall y\,(\varphi(y)\to\varphi(Sy)))\to\forall x\,\varphi(x)}$$
+
+This is basically the [`induction`](https://github.com/metamath/set.mm/blob/develop/peano.mm#L798) axiom of [peano.mm](https://github.com/metamath/set.mm/blob/develop/peano.mm).
+Our goal is to start from `arith-common.mm` and see what axioms we need to introduce.
+We'll definitely keep the same `var x` machinery. We introduce 
+A. for $\forall$ and E. for $\exists$. E. is defined in terms of A., so its 
+properties will be mostly elaborated on in lemmas and theorems.
+
+
+
+```mm
+$c A. E. $.
+wal $a wff A. x ph $.
+wex $a wff E. x ph $.
+df-ex $a |- ( E. x ph <-> -. A. x -. ph ) $.
+```
+
+
+
+The symbols, as discussed in Megill, are given meaning through Tarski's axioms:
+
+$$\frac{\vdash\varphi}{\vdash\forall x\varphi}\quad\href{https://us.metamath.org/mpeuni/ax-gen.html}{\texttt{ax-gen}}\qquad
+\frac{}{\vdash\forall x(\varphi\to\psi)\to(\forall x\varphi\to\forall x\psi)}\quad\href{https://us.metamath.org/mpeuni/ax-4.html}{\texttt{ax-4}}$$
+
+$$
+\frac{}{\vdash\varphi\to\forall x\varphi} \;(x\text{ not in }\varphi)\quad\href{https://us.metamath.org/mpeuni/ax-5.html}{\texttt{ax-5}}\qquad
+\frac{}{\vdash\exists x\,(x=t)}\;(x\text{ not in }t)\quad\href{https://us.metamath.org/mpeuni/ax6ev.html}{\texttt{ax-6}}
+$$
+
+
+
+```mm
+${
+  ax-gen.1 $e |- ph $.
+  ax-gen $a |- A. x ph $.
+$}
+ax-4 $a |- ( A. x ( ph -> ps ) -> ( A. x ph -> A. x ps ) ) $.
+${
+  $d x ph $.
+  ax-5 $a |- ( ph -> A. x ph ) $.
+$}
+${
+  $d x t $.
+  ax-6 $a |- E. x x = t $.
+$}
+```
+
+
+
+And our induction axioms copy peano.mm's axioms, but with a syntax more like `set.mm`. There
+are a whole bunch of ways we could write this btw.
+
+
+
+```mm
+${
+  $d x y $. $d y ph $.
+  ax-peano $a |- ( ( A. x ( x = 0 -> ph )
+      /\ A. y ( A. x ( x = y -> ph ) -> A. x ( x = S y -> ph ) ) ) -> A. x ph ) $.
+$}
+```
+
+
+
+And actually, that's enough!! We can define induction as before, but as a theorem now:
+
+
+
+```mm
+
+${
+  $d x ps $. $d x ch $. $d x th $. 
+  $d x ta $. $d x t $.
+  $d x y $. $d y ph $.
+  ind.at-zero $e |- ( x = 0 -> ( ph <-> ps ) ) $.
+  ind.at-var $e |- ( x = y -> ( ph <-> ch ) ) $.
+  ind.at-succvar $e |- ( x = S y -> ( ph <-> th ) ) $.
+  ind.at-num $e |- ( x = t -> ( ph <-> ta ) ) $.
+  ind.base $e |- ps $.
+  ind.step $e |- ( ch -> th ) $.
+  ind $p |- ta $= ? $.
+$}
+```
+
+
+
+The proof is the longest we encountered yet.
+
+
+
+```
+MM> show proof ind /lemmon /renumber
+ 1 ind.base      $e |- ps
+ 2 ind.at-zero   $e |- ( x = 0 -> ( ph <-> ps ) )
+ 3 2 biimprd     $p |- ( x = 0 -> ( ps -> ph ) )
+ 4 1,3 mpi       $p |- ( x = 0 -> ph )
+ 5 4 ax-gen      $a |- A. x ( x = 0 -> ph )
+ 6 eq-refl       $a |- y = y
+ 7 eqeq1         $p |- ( x = y -> ( x = y <-> y = y ) )
+ 8 ind.at-var    $e |- ( x = y -> ( ph <-> ch ) )
+ 9 7,8 imbi12d   $p |- ( x = y -> ( ( x = y -> ph ) <-> ( y = y -> ch ) ) )
+10 9 spcv        $p |- ( A. x ( x = y -> ph ) -> ( y = y -> ch ) )
+11 6,10 mpi      $p |- ( A. x ( x = y -> ph ) -> ch )
+12 ind.step      $e |- ( ch -> th )
+13 11,12 syl     $p |- ( A. x ( x = y -> ph ) -> th )
+14 ax-5          $a |- ( th -> A. x th )
+15 ind.at-succvar  $e |- ( x = S y -> ( ph <-> th ) )
+16 15 biimprd    $p |- ( x = S y -> ( th -> ph ) )
+17 16 com12      $p |- ( th -> ( x = S y -> ph ) )
+18 17 alimi      $p |- ( A. x th -> A. x ( x = S y -> ph ) )
+19 14,18 syl     $p |- ( th -> A. x ( x = S y -> ph ) )
+20 13,19 syl     $p |- ( A. x ( x = y -> ph ) -> A. x ( x = S y -> ph ) )
+21 20 ax-gen     $a |- A. y ( A. x ( x = y -> ph ) -> A. x ( x = S y -> ph ) )
+22 ax-peano      $a |- ( ( A. x ( x = 0 -> ph ) /\ A. y ( A. x ( x = y -> ph )
+                                     -> A. x ( x = S y -> ph ) ) ) -> A. x ph )
+23 5,21,22 mp2an  $p |- A. x ph
+24 ind.at-num    $e |- ( x = t -> ( ph <-> ta ) )
+25 24 spcv       $p |- ( A. x ph -> ta )
+26 23,25 ax-mp   $a |- ta
+```
+
+
+
+The key command here is to use `mp2an`, which allows us to get `|- ch` from `|- ( ( ph /\ ps ) -> ch )`
+when the antecedents hold. Compare it to `set.mm`'s proof of 
+[`nn0ind`](https://us.metamath.org/mpeuni/nn0ind.html).
+
+Okay, the whole source file is here:
+
+
+
+<div class="code-box"><details class="collapsible-code"><summary class="code-summary"><span><a href="code-05/arith-fo.mm">arith-fo.mm</a></span><span class="expand-hint">(click to expand)</span></summary><div class="codehilite" data-language="metamath"><pre><code><span class="cm">$( Arithmetic with first-order induction.  Includes arith-common.mm but</span>
+<span class="cm">   not arith-qf.mm: here vtonum and the induction rule are theorems. $)</span>
+<span class="cp">$[</span><span class="w"> </span><span class="s">arith-common.mm</span><span class="w"> </span><span class="cp">$]</span>
+
+<span class="cm">$( Variables, declared as in arith-qf.mm $)</span>
+<span class="k">$c</span><span class="w"> </span><span class="n">var</span><span class="w"> </span><span class="k">$.</span>
+<span class="k">$v</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="k">$.</span>
+<span class="nl">vx</span><span class="w"> </span><span class="k">$f</span><span class="w"> </span><span class="n">var</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="k">$.</span><span class="w">  </span><span class="nl">vy</span><span class="w"> </span><span class="k">$f</span><span class="w"> </span><span class="n">var</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="k">$.</span>
+<span class="nl">nx</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="k">$.</span><span class="w">  </span><span class="nl">ny</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="cm">$( Quantifiers $)</span>
+<span class="k">$c</span><span class="w"> </span><span class="n">A.</span><span class="w"> </span><span class="n">E.</span><span class="w"> </span><span class="k">$.</span>
+<span class="nl">wal</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">wff</span><span class="w"> </span><span class="n">A.</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="k">$.</span>
+<span class="nl">wex</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">wff</span><span class="w"> </span><span class="n">E.</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="cm">$( "Some x" is "not every x is not"</span>
+<span class="cm">   set.mm analogue: https://us.metamath.org/mpeuni/df-ex.html $)</span>
+<span class="nl">df-ex</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">E.</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">&lt;-&gt;</span><span class="w"> </span><span class="n">-.</span><span class="w"> </span><span class="n">A.</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">-.</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="cm">$( Generalization: what we prove about x, we prove for every x</span>
+<span class="cm">   set.mm analogue: https://us.metamath.org/mpeuni/ax-gen.html $)</span>
+<span class="p">${</span>
+<span class="w">  </span><span class="nl">ax-gen.1</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="nl">ax-gen</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">A.</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="k">$.</span>
+<span class="p">$}</span>
+
+<span class="cm">$( A. distributes over -&gt;</span>
+<span class="cm">   set.mm analogue: https://us.metamath.org/mpeuni/ax-4.html $)</span>
+<span class="nl">ax-4</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">A.</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">A.</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">A.</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="cm">$( Quantifying over a variable that does not occur does nothing</span>
+<span class="cm">   set.mm analogue: https://us.metamath.org/mpeuni/ax-5.html $)</span>
+<span class="p">${</span>
+<span class="w">  </span><span class="k">$d</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="nl">ax-5</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">A.</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+<span class="p">$}</span>
+
+<span class="cm">$( Every term is equal to something.  set.mm states this for variables</span>
+<span class="cm">   (ax-6), and for class terms it is a hypothesis A e. V</span>
+<span class="cm">   cf. set.mm: https://us.metamath.org/mpeuni/ax6ev.html $)</span>
+<span class="p">${</span>
+<span class="w">  </span><span class="k">$d</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="nl">ax-6</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">E.</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">$.</span>
+<span class="p">$}</span>
+
+<span class="cm">$( Inference form of ax-4</span>
+<span class="cm">   set.mm analogue: https://us.metamath.org/mpeuni/alimi.html $)</span>
+<span class="p">${</span>
+<span class="w">  </span><span class="nl">alimi.1</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="nl">alimi</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">A.</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">A.</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">    </span><span class="nl">wph</span><span class="w"> </span><span class="nl">wps</span><span class="w"> </span><span class="nl">wi</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">wal</span><span class="w"> </span><span class="nl">wph</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">wal</span><span class="w"> </span><span class="nl">wps</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">wal</span><span class="w"> </span><span class="nl">wi</span><span class="w"> </span><span class="nl">wph</span><span class="w"> </span><span class="nl">wps</span><span class="w"> </span><span class="nl">wi</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">alimi.1</span><span class="w"> </span><span class="nl">ax-gen</span><span class="w"> </span><span class="nl">wph</span>
+<span class="w">    </span><span class="nl">wps</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">ax-4</span><span class="w"> </span><span class="nl">ax-mp</span><span class="w"> </span><span class="k">$.</span>
+<span class="p">$}</span>
+
+<span class="p">${</span>
+<span class="w">  </span><span class="k">$d</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">$.</span><span class="w"> </span><span class="k">$d</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="cm">$( If every x equal to t satisfies ps, and x is not in ps, then ps.</span>
+<span class="cm">     This is where ax-6 is needed: otherwise nothing might equal t $)</span>
+<span class="w">  </span><span class="nl">spcvlem</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">A.</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">    </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wps</span><span class="w"> </span><span class="nl">wi</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">wal</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wn</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">wal</span><span class="w"> </span><span class="nl">wn</span><span class="w"> </span><span class="nl">wps</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">vx</span>
+<span class="w">    </span><span class="nl">wex</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wn</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">wal</span><span class="w"> </span><span class="nl">wn</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">ax-6</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">df-ex</span><span class="w"> </span><span class="nl">mpbi</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span>
+<span class="w">    </span><span class="nl">nt</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wps</span><span class="w"> </span><span class="nl">wi</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">wal</span><span class="w"> </span><span class="nl">wps</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wn</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">wal</span><span class="w"> </span><span class="nl">wps</span><span class="w"> </span><span class="nl">wn</span><span class="w"> </span><span class="nl">wps</span><span class="w"> </span><span class="nl">wn</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">wal</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span>
+<span class="w">    </span><span class="nl">nt</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wps</span><span class="w"> </span><span class="nl">wi</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">wal</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wn</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">wal</span><span class="w"> </span><span class="nl">wps</span><span class="w"> </span><span class="nl">wn</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">ax-5</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wps</span>
+<span class="w">    </span><span class="nl">wi</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">wal</span><span class="w"> </span><span class="nl">wps</span><span class="w"> </span><span class="nl">wn</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wn</span><span class="w"> </span><span class="nl">wi</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">wal</span><span class="w"> </span><span class="nl">wps</span><span class="w"> </span><span class="nl">wn</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">wal</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wn</span><span class="w"> </span><span class="nl">vx</span>
+<span class="w">    </span><span class="nl">wal</span><span class="w"> </span><span class="nl">wi</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wps</span><span class="w"> </span><span class="nl">wi</span><span class="w"> </span><span class="nl">wps</span><span class="w"> </span><span class="nl">wn</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wn</span><span class="w"> </span><span class="nl">wi</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wps</span>
+<span class="w">    </span><span class="nl">con3</span><span class="w"> </span><span class="nl">alimi</span><span class="w"> </span><span class="nl">wps</span><span class="w"> </span><span class="nl">wn</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wn</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">ax-4</span><span class="w"> </span><span class="nl">syl</span><span class="w"> </span><span class="nl">syl5</span><span class="w"> </span><span class="nl">con1d</span><span class="w"> </span><span class="nl">mpi</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="w">  </span><span class="nl">spcv.1</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">&lt;-&gt;</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="cm">$( Specialization at a term</span>
+<span class="cm">     cf. set.mm: https://us.metamath.org/mpeuni/spcv.html $)</span>
+<span class="w">  </span><span class="nl">spcv</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">A.</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">    </span><span class="nl">wph</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">wal</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wps</span><span class="w"> </span><span class="nl">wi</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">wal</span><span class="w"> </span><span class="nl">wps</span><span class="w"> </span><span class="nl">wph</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wps</span><span class="w"> </span><span class="nl">wi</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span>
+<span class="w">    </span><span class="nl">nt</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wph</span><span class="w"> </span><span class="nl">wps</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wph</span><span class="w"> </span><span class="nl">wps</span><span class="w"> </span><span class="nl">spcv.1</span><span class="w"> </span><span class="nl">biimpd</span><span class="w"> </span><span class="nl">com12</span><span class="w"> </span><span class="nl">alimi</span><span class="w"> </span><span class="nl">wps</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">vx</span>
+<span class="w">    </span><span class="nl">spcvlem</span><span class="w"> </span><span class="nl">syl</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="w">  </span><span class="nl">vtonum.2</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="cm">$( The rule we had to assume in arith-qf.mm, now a theorem</span>
+<span class="cm">     cf. set.mm: https://us.metamath.org/mpeuni/vtocl.html $)</span>
+<span class="w">  </span><span class="nl">vtonum</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">    </span><span class="nl">wph</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">wal</span><span class="w"> </span><span class="nl">wps</span><span class="w"> </span><span class="nl">wph</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">vtonum.2</span><span class="w"> </span><span class="nl">ax-gen</span><span class="w"> </span><span class="nl">wph</span><span class="w"> </span><span class="nl">wps</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">spcv.1</span><span class="w"> </span><span class="nl">spcv</span><span class="w"> </span><span class="nl">ax-mp</span><span class="w"> </span><span class="k">$.</span>
+<span class="p">$}</span>
+
+<span class="cm">$( Induction, one of Peano's axioms.  A. x ( x = t -&gt; ph ) says "ph holds</span>
+<span class="cm">   at t", so this reads: if ph holds at 0, and for every y ph at y implies</span>
+<span class="cm">   ph at S y, then ph holds for every x</span>
+<span class="cm">   cf. set.mm: https://us.metamath.org/mpeuni/peano5.html $)</span>
+<span class="p">${</span>
+<span class="w">  </span><span class="k">$d</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="k">$.</span><span class="w"> </span><span class="k">$d</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="nl">ax-peano</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">A.</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">)</span>
+<span class="w">      </span><span class="n">/\</span><span class="w"> </span><span class="n">A.</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">A.</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">A.</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">A.</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+<span class="p">$}</span>
+
+<span class="cm">$( The induction rule ax-ind of arith-qf.mm, with the same hypotheses</span>
+<span class="cm">   cf. set.mm: https://us.metamath.org/mpeuni/nn0ind.html $)</span>
+<span class="p">${</span>
+<span class="w">  </span><span class="k">$d</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="k">$.</span><span class="w"> </span><span class="k">$d</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">ch</span><span class="w"> </span><span class="k">$.</span><span class="w"> </span><span class="k">$d</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">th</span><span class="w"> </span><span class="k">$.</span><span class="w"> </span><span class="k">$d</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">ta</span><span class="w"> </span><span class="k">$.</span><span class="w"> </span><span class="k">$d</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="k">$d</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="k">$.</span><span class="w"> </span><span class="k">$d</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="nl">ind.at-zero</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">&lt;-&gt;</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="nl">ind.at-var</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">&lt;-&gt;</span><span class="w"> </span><span class="n">ch</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="nl">ind.at-succvar</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">&lt;-&gt;</span><span class="w"> </span><span class="n">th</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="nl">ind.at-num</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="n">&lt;-&gt;</span><span class="w"> </span><span class="n">ta</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="nl">ind.base</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="nl">ind.step</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">ch</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">th</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="nl">ind</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">ta</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">    </span><span class="nl">wph</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">wal</span><span class="w"> </span><span class="nl">wta</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wph</span><span class="w"> </span><span class="nl">wi</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">wal</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wph</span><span class="w"> </span><span class="nl">wi</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">wal</span><span class="w"> </span><span class="nl">vx</span>
+<span class="w">    </span><span class="nl">nx</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wph</span><span class="w"> </span><span class="nl">wi</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">wal</span><span class="w"> </span><span class="nl">wi</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">wal</span><span class="w"> </span><span class="nl">wph</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">wal</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wph</span><span class="w"> </span><span class="nl">wi</span><span class="w"> </span><span class="nl">vx</span>
+<span class="w">    </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wps</span><span class="w"> </span><span class="nl">wph</span><span class="w"> </span><span class="nl">ind.base</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wph</span><span class="w"> </span><span class="nl">wps</span><span class="w"> </span><span class="nl">ind.at-zero</span><span class="w"> </span><span class="nl">biimprd</span><span class="w"> </span><span class="nl">mpi</span><span class="w"> </span><span class="nl">ax-gen</span><span class="w"> </span><span class="nl">vx</span>
+<span class="w">    </span><span class="nl">nx</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wph</span><span class="w"> </span><span class="nl">wi</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">wal</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wph</span><span class="w"> </span><span class="nl">wi</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">wal</span><span class="w"> </span><span class="nl">wi</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">vy</span>
+<span class="w">    </span><span class="nl">nx</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wph</span><span class="w"> </span><span class="nl">wi</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">wal</span><span class="w"> </span><span class="nl">wth</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wph</span><span class="w"> </span><span class="nl">wi</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">wal</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">weq</span>
+<span class="w">    </span><span class="nl">wph</span><span class="w"> </span><span class="nl">wi</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">wal</span><span class="w"> </span><span class="nl">wch</span><span class="w"> </span><span class="nl">wth</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wph</span><span class="w"> </span><span class="nl">wi</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">wal</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wch</span><span class="w"> </span><span class="nl">vy</span>
+<span class="w">    </span><span class="nl">nx</span><span class="w"> </span><span class="nl">eq-refl</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wph</span><span class="w"> </span><span class="nl">wi</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wch</span><span class="w"> </span><span class="nl">wi</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">vy</span>
+<span class="w">    </span><span class="nl">nx</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wph</span><span class="w"> </span><span class="nl">wch</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">eqeq1</span>
+<span class="w">    </span><span class="nl">ind.at-var</span><span class="w"> </span><span class="nl">imbi12d</span><span class="w"> </span><span class="nl">spcv</span><span class="w"> </span><span class="nl">mpi</span><span class="w"> </span><span class="nl">ind.step</span><span class="w"> </span><span class="nl">syl</span><span class="w"> </span><span class="nl">wth</span><span class="w"> </span><span class="nl">wth</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">wal</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wph</span><span class="w"> </span><span class="nl">wi</span>
+<span class="w">    </span><span class="nl">vx</span><span class="w"> </span><span class="nl">wal</span><span class="w"> </span><span class="nl">wth</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">ax-5</span><span class="w"> </span><span class="nl">wth</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wph</span><span class="w"> </span><span class="nl">wi</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wth</span>
+<span class="w">    </span><span class="nl">wph</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wph</span><span class="w"> </span><span class="nl">wth</span><span class="w"> </span><span class="nl">ind.at-succvar</span><span class="w"> </span><span class="nl">biimprd</span><span class="w"> </span><span class="nl">com12</span><span class="w"> </span><span class="nl">alimi</span><span class="w"> </span><span class="nl">syl</span><span class="w"> </span><span class="nl">syl</span><span class="w"> </span><span class="nl">ax-gen</span><span class="w"> </span><span class="nl">wph</span>
+<span class="w">    </span><span class="nl">vx</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ax-peano</span><span class="w"> </span><span class="nl">mp2an</span><span class="w"> </span><span class="nl">wph</span><span class="w"> </span><span class="nl">wta</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">ind.at-num</span><span class="w"> </span><span class="nl">spcv</span><span class="w"> </span><span class="nl">ax-mp</span><span class="w"> </span><span class="k">$.</span>
+<span class="p">$}</span>
+
+<span class="cm">$( The four at- hypotheses for addrid, as in arith-qf.mm $)</span>
+<span class="nl">addrid-at</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">&lt;-&gt;</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">  </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">addeq1</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">nu</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">id</span><span class="w"> </span><span class="nl">eqeq12d</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="cm">$( The induction step for addrid, as in arith-qf.mm $)</span>
+<span class="nl">addrid-step</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">  </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">nS</span>
+<span class="w">  </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">add-sl</span><span class="w"> </span><span class="nl">a1i</span>
+<span class="w">  </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">id</span><span class="w"> </span><span class="nl">suceqd</span>
+<span class="w">  </span><span class="nl">eqtrd</span><span class="w"> </span><span class="k">$.</span>
+
+<span class="cm">$( Zero is a right identity for addition</span>
+<span class="cm">   set.mm analogue: https://us.metamath.org/mpeuni/addrid.html $)</span>
+<span class="p">${</span>
+<span class="w">  </span><span class="k">$d</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">$.</span><span class="w"> </span><span class="k">$d</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">  </span><span class="nl">addrid</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">$=</span>
+<span class="w">    </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">weq</span>
+<span class="w">    </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">nadd</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">vy</span>
+<span class="w">    </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">n0</span><span class="w"> </span><span class="nl">addrid-at</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">addrid-at</span><span class="w"> </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">ny</span><span class="w"> </span><span class="nl">nS</span><span class="w"> </span><span class="nl">addrid-at</span>
+<span class="w">    </span><span class="nl">vx</span><span class="w"> </span><span class="nl">nx</span><span class="w"> </span><span class="nl">nt</span><span class="w"> </span><span class="nl">addrid-at</span><span class="w"> </span><span class="nl">00id</span><span class="w"> </span><span class="nl">vy</span><span class="w"> </span><span class="nl">addrid-step</span><span class="w"> </span><span class="nl">ind</span><span class="w"> </span><span class="k">$.</span>
+<span class="p">$}</span>
+</code></pre></div>
+</details></div>
+
+
+#### 5.0.4.1 Alternate considerations to writing the induction scheme
+
+There were a few issues in figuring out what axioms to use for section 5.0.4. 
+We really want something that leads us to a beautiful illustration of how
+quantifiers fit together in a beautifully engineered system.
+
+Option 1 was to try to follow `set.mm`. Right, this is the approach, 
+"well we can do induction from inside MPE, let's just copy that!" 
+But actually, induction here, [`peano5`](https://us.metamath.org/mpeuni/peano5.html) depends 
+on the construction of the 
+natural numbers in terms of sets, and the ZFC axioms Extensionality, Separation,
+Empty Set, Pairing, Union.
+
+Option 2 would be to have as an axiom something that demonstrates the ability for
+quantifiers to be inside a formula, such as a deductive form of induction:
+
+$$\frac{\vdash(\psi\to \phi(0))\quad\vdash(\psi\to\forall(\phi(y)\to\phi(S y)))}{\vdash(\psi\to\forall\phi(x))}$$
+
+
+### 5.0.5 Reading Skolem 1923
+
+- Paper written in 1919 and published in 1923. I'm going to refer to it as Skolem 1923 though.
+
+- I notice that I don't have a good definition of free or bound variable anywhere yet... that should probably be in 5.0.
+
+- Paraphrased foreword comment: "in free-variable arithmetic, we can state and prove that there are infinitely many primes in the sense that $\forall x\exists\text{prime y}: x\lt y\leq x!+1.$ But that there exist infinitely many pairs of twin primes cannot (today) be stated by means of a free-variable formula." The book's preface to Skolem then says "the limitations of free-variable formulas are overcome, so far as possible [...]" which, in the version of PRA the author is talking about, does not 
+mean that it can be stated.
+
+- There are two different "Primitive Recursive Arithmetics" people talk about in modern terminology.
+Number one is "System $A$ + primitive-recursive functions + quantifier-free induction." This can be 
+denoted $\text{PRA}_{\text{qf}}.$ This is the system in which stating the twin prime conjecture 
+cannot be easily done, and it's discussed in Feferman 1993[^6]. On the other hand, many authors (most authors?) use PRA to refer to a system
+with predicate calculus, but with induction restricted to quantifier-free formulas. This is 
+$\text{PRA}_{\text{fo}},$ "System $A$ + primitive-recursive functions + predicates + induction
+restricted to quantifier-free formulas." Both these systems are defined and compared in Avigad 2002[^7].
+
+
+- In comparing to Metamath definitions, I wonder if Skolem would take issue with the metavariables
+of our system being able to range over an infinite domain. I think not. I think there's something
+buried in the writing here that an implicit leading "forall" outside the equation, which in our case
+is a metavariable with given typecode, can also be seen as a variable name or placeholder and
+not as "ranging over an infinite domain" at all.
+
+Skolem's development:
+
+`a + 1` is already defined for arbitrary `a`. Thus addition can be defined recursively:
+
+**Definition 1:** `a + ( b + 1 ) = ( a + b ) + 1`
+
+... I started reading this paper way too thoroughly, I'm going to read it while working on 
+arith.mm
+
 
 ## 5.1 Building Predicate Calculus Ourselves
 
-> [!WARNING]
-> AI-generated, not human-reviewed. Reference solutions have been checked by Metamath.
+Okay, so we now have some arguments for why the machinery that we're going to introduce
+is the way it is, and we have an idea of the types of issues we'd run into if we tried to
+keep coding without copying and pasting `set.mm` and Norm Megill's implementation of 
+Tarski's axioms.
+
+In this section, we assume to have every propositional calculus tool we built in chapter 4. 
+I will not, however, assume that we are working inside set.mm though you may prefer to 
+work there.
+
+In section 5.2, we'll switch to `set.mm` for good; I expect we'll stay there for the rest of these 
+notes.
 
 ### 5.1.1 Our starting tools
+
+> [!WARNING]
+> This section is AI-generated and has not been reviewed.
 
 Continue with the implication and negation exercises from 4.1.1–4.1.5.
 Nothing from the supplied-connective section is needed. The standalone
@@ -210,6 +1487,8 @@ which does not contain its variable. Its distinctness condition is essential:
 generalization alone does not give the unrestricted formula `ph -> A. x ph`.
 
 ### 5.1.2 Five constructions
+> [!WARNING]
+> This section is AI-generated and has not been reviewed.
 
 Prove these in order. The last combines implication lifting with distribution;
 there is no additional supplied predicate library.
@@ -257,6 +1536,8 @@ $}
 - `al2imi`: lift the hypothesis using `alimi`, treating `( ps -> ch )` as one formula. Compose with `ax-4` using `syl`.
 
 ### 5.1.3 Checking substitutions
+> [!WARNING]
+> This section is AI-generated and has not been reviewed.
 
 From the repository root:
 
@@ -291,6 +1572,8 @@ variable in common for arguments required to be disjoint. Both must report a
 reporting proof errors, so inspect the diagnostic.
 
 ### 5.1.4 Equality: two more axioms, three more constructions
+> [!WARNING]
+> This section is AI-generated and has not been reviewed.
 
 So far the quantifier only moves implications around. Tarski's system has two
 more axioms for a language whose only predicate is equality:
@@ -382,9 +1665,12 @@ This is where we stop building. Bound-variable change, the existential
 quantifier, and anything stated with `<->`, `/\`, or `\/` need a lot more
 groundwork, and `set.mm` has already done it. We continue there.
 
+
 ## 5.2 Working Inside `set.mm`
 
 ### 5.2.1 A brief guide to the connectives
+> [!WARNING]
+> This section is AI-generated and has not been reviewed.
 
 Here we use the full local `src/code/set.mm`. We can inspect the supporting
 proofs without reconstructing their entire dependency chain first. The
@@ -438,6 +1724,8 @@ identities such as commutativity have proofs in the library; we will use
 these interfaces without assigning those elementary proofs here.
 
 ### 5.2.2 Useful interfaces and the machinery we are passing over
+> [!WARNING]
+> This section is AI-generated and has not been reviewed.
 
 In these supplied interfaces, `...` abbreviates the existing proof. Syntax
 hypotheses use the declarations already present in `set.mm`; essential
@@ -513,6 +1801,8 @@ nonoccurrence condition `$d x ph $.`. The bound-variable rules below expose
 both kinds of interface. No set-theoretic reasoning is needed for our targets.
 
 ### 5.2.3 Reconstructing existing proofs
+> [!WARNING]
+> This section is AI-generated and has not been reviewed.
 
 Start at the repository root:
 
@@ -598,6 +1888,8 @@ these proofs at their original positions in a disposable full-database copy.
 This ensures they use earlier assertions and cannot invoke the target itself.
 
 ### 5.2.4 A concrete bound-variable change
+> [!WARNING]
+> This section is AI-generated and has not been reviewed.
 
 `rename-equality` is our own label, not an existing theorem to look up in
 `set.mm`. The generated extension loads the whole library and adds this target:
@@ -631,822 +1923,3 @@ Use `cbvalvw` with `ph := x = z` and `ps := y = z`. The earlier equality
 congruence theorem `equequ1` supplies its premise. The inherited conditions
 are exactly the three pairs `x,y`, `x,z`, and `y,z`, protecting the unchanged
 variable `z` from capture.
-
-### 5.2.5 A Small Visit to `peano.mm`
-
-#### 5.2.5.1 A separate language and its axioms
-
-Use `ai/predicate-calculus/peano-exercises.mm` in a separate Metamath session.
-It uses the actual syntax and selected axioms of [the local peano.mm](code/peano.mm),
-with all supporting derived rules included. The completed file is
-`ai/predicate-calculus/peano-reference.mm`. Its labels are independent of the
-predicate file, even where a familiar propositional name is reused.
-
-
-
-```sh
-metamath 'read "ai/predicate-calculus/peano-exercises.mm"'
-make -C ai/predicate-calculus verify
-```
-
-
-
-This language uses Polish notation: `= + 0 x x` means $0+x=x$,
-`implies phi psi` is implication, and `forall x phi` is universal
-quantification. A `var` can be made into a `term` with `tvar`; an arbitrary
-term cannot be substituted for a `var`. In particular, `pa_ax3` and `pa_ax4`
-have variable arguments. Getting a zero into their first argument requires
-a proved substitution step.
-
-These are all the declarations and primitive assertions used in this file.
-`bi1`, `bi2`, and `bi3` really are axioms in `peano.mm`; their status is
-different from the corresponding derived biconditional rules in 5.1.
-The displayed `induction` is also the source database's actual axiom.
-
-
-
-```metamath
-$c + 0 = BINOP BINPRED LOGBINOP QUANT S and forall iff implies not term var wff |- $.
-$v binop binpred ch chi logbinop ph phi ps psi quant s s0 s1 t t0 t1 ta th u v x y z $.
-ts $f term s $.
-tt $f term t $.
-tu $f term u $.
-ts0 $f term s0 $.
-ts1 $f term s1 $.
-tt0 $f term t0 $.
-tt1 $f term t1 $.
-varv $f var v $.
-varx $f var x $.
-vary $f var y $.
-varz $f var z $.
-binop_ $f BINOP binop $.
-logbinop_ $f LOGBINOP logbinop $.
-binpred_ $f BINPRED binpred $.
-quant_ $f QUANT quant $.
-wff_phi $f wff phi $.
-wff_psi $f wff psi $.
-wff-chi $f wff chi $.
-wph $f wff ph $.
-wps $f wff ps $.
-wch $f wff ch $.
-wth $f wff th $.
-wta $f wff ta $.
-```
-
-
-
-
-
-```metamath
-binop_plus $a BINOP + $.
-
-tvar $a term v $.
-
-tzero $a term 0 $.
-
-tsucc $a term S s $.
-
-tbinop $a term binop s t $.
-
-logbinopand $a LOGBINOP and $.
-
-logbinopimplies $a LOGBINOP implies $.
-
-logbinopiff $a LOGBINOP iff $.
-
-binpred_equals $a BINPRED = $.
-
-quant_all $a QUANT forall $.
-
-wff_atom $a wff binpred s t $.
-
-wff_not $a wff not psi $.
-
-wff_logbinop $a wff logbinop psi phi $.
-
-wff_quant $a wff quant v phi $.
-
-ax-1 $a |- implies phi implies psi phi $.
-
-ax-2 $a |- implies implies phi implies psi chi implies implies phi psi implies phi chi $.
-
-ax-3 $a |- implies implies not phi not psi implies psi phi $.
-
-${
-  ax-mp.h1 $e |- phi $.
-  ax-mp.h2 $e |- implies phi psi $.
-  ax-mp $a |- psi $.
-$}
-
-bi1 $a |- implies iff phi psi implies phi psi $.
-
-bi2 $a |- implies iff phi psi implies psi phi $.
-
-bi3 $a |- implies implies phi psi implies implies psi phi iff phi psi $.
-
-df-an $a |- iff and phi psi not implies phi not psi $.
-
-eq-refl $a |- = t t $.
-
-eq-sym $a |- implies = s t = t s $.
-
-eq-trans $a |- implies and = s t = t u = s u $.
-
-eq-congr $a |- implies and = s0 s1 = t0 t1 iff binpred s0 t0 binpred s1 t1 $.
-
-eq-suc $a |- implies = s t = S s S t $.
-
-eq-binop $a |- implies and = s0 s1 = t0 t1 = binop s0 t0 binop s1 t1 $.
-
-${
-  $d phi x $.
-  alpha_1.h1 $e |- implies phi iff psi chi $.
-  alpha_1 $a |- implies phi iff quant x psi quant x chi $.
-$}
-
-${
-  $d phi x $.
-  alpha_2.h1 $e |- implies phi chi $.
-  alpha_2 $a |- implies phi forall x chi $.
-$}
-
-${
-  $d t x $.
-  all_elim $a |- implies forall x phi forall x implies = x t phi $.
-$}
-
-${
-  $d chi x $.
-  $d t x $.
-  all_elim3.h1 $e |- implies = x t iff phi chi $.
-  all_elim3 $a |- implies forall x implies = x t phi chi $.
-$}
-
-pa_ax3 $a |- = x + x 0 $.
-
-pa_ax4 $a |- = S + x y + x S y $.
-
-${
-  $d phi x $.
-  $d x y $.
-  induction $a |- implies and forall y implies = y 0 phi forall x implies forall y implies = y x phi
-    forall y implies = y S x phi forall x forall y implies = y x phi $.
-$}
-```
-
-
-
-#### 5.2.5.2 Supplied logical and equality tools
-
-The next ledger supplies the implication machinery in this language.
-The proofs of the rules involving only implication and negation are
-translations of the local `set.mm` proofs. `wn` and `wi` are derived syntax
-bridges to `wff_not` and `wff_logbinop`; they introduce no new axioms.
-`jca` passes through `df-an` using `jc`, while `pair` applies the same
-conjunction introduction to two established assertions.
-
-<details>
-<summary>Supplied tools and their exact interfaces</summary>
-
-
-
-```metamath
-wn $p wff not ph $= ... $.
-
-wi $p wff implies ph ps $= ... $.
-
-${
-  a1i.h1 $e |- ph $.
-  a1i $p |- implies ps ph $= ... $.
-$}
-
-${
-  a2i.h1 $e |- implies ph implies ps ch $.
-  a2i $p |- implies implies ph ps implies ph ch $= ... $.
-$}
-
-${
-  mpd.h1 $e |- implies ph ps $.
-  mpd.h2 $e |- implies ph implies ps ch $.
-  mpd $p |- implies ph ch $= ... $.
-$}
-
-${
-  syl.h1 $e |- implies ph ps $.
-  syl.h2 $e |- implies ps ch $.
-  syl $p |- implies ph ch $= ... $.
-$}
-
-id $p |- implies ph ph $= ... $.
-
-idd $p |- implies ph implies ps ps $= ... $.
-
-${
-  a1d.h1 $e |- implies ph ps $.
-  a1d $p |- implies ph implies ch ps $= ... $.
-$}
-
-${
-  a2d.h1 $e |- implies ph implies ps implies ch th $.
-  a2d $p |- implies ph implies implies ps ch implies ps th $= ... $.
-$}
-
-${
-  sylcom.h1 $e |- implies ph implies ps ch $.
-  sylcom.h2 $e |- implies ps implies ch th $.
-  sylcom $p |- implies ph implies ps th $= ... $.
-$}
-
-${
-  syl5com.h1 $e |- implies ph ps $.
-  syl5com.h2 $e |- implies ch implies ps th $.
-  syl5com $p |- implies ph implies ch th $= ... $.
-$}
-
-${
-  com12.h1 $e |- implies ph implies ps ch $.
-  com12 $p |- implies ps implies ph ch $= ... $.
-$}
-
-${
-  syl5.h1 $e |- implies ph ps $.
-  syl5.h2 $e |- implies ch implies ps th $.
-  syl5 $p |- implies ch implies ph th $= ... $.
-$}
-
-${
-  syl6.h1 $e |- implies ph implies ps ch $.
-  syl6.h2 $e |- implies ch th $.
-  syl6 $p |- implies ph implies ps th $= ... $.
-$}
-
-${
-  syl2im.h1 $e |- implies ph ps $.
-  syl2im.h2 $e |- implies ch th $.
-  syl2im.h3 $e |- implies ps implies th ta $.
-  syl2im $p |- implies ph implies ch ta $= ... $.
-$}
-
-pm2.27 $p |- implies ph implies implies ph ps ps $= ... $.
-
-${
-  mpdd.h1 $e |- implies ph implies ps ch $.
-  mpdd.h2 $e |- implies ph implies ps implies ch th $.
-  mpdd $p |- implies ph implies ps th $= ... $.
-$}
-
-${
-  pm2.43i.h1 $e |- implies ph implies ph ps $.
-  pm2.43i $p |- implies ph ps $= ... $.
-$}
-
-${
-  imim2d.h1 $e |- implies ph implies ps ch $.
-  imim2d $p |- implies ph implies implies th ps implies th ch $= ... $.
-$}
-
-imim2 $p |- implies implies ph ps implies implies ch ph implies ch ps $= ... $.
-
-${
-  sylc.h1 $e |- implies ph ps $.
-  sylc.h2 $e |- implies ph ch $.
-  sylc.h3 $e |- implies ps implies ch th $.
-  sylc $p |- implies ph th $= ... $.
-$}
-
-${
-  syl6c.h1 $e |- implies ph implies ps ch $.
-  syl6c.h2 $e |- implies ph implies ps th $.
-  syl6c.h3 $e |- implies ch implies th ta $.
-  syl6c $p |- implies ph implies ps ta $= ... $.
-$}
-
-${
-  syldd.h1 $e |- implies ph implies ps implies ch th $.
-  syldd.h2 $e |- implies ph implies ps implies th ta $.
-  syldd $p |- implies ph implies ps implies ch ta $= ... $.
-$}
-
-${
-  syl5d.h1 $e |- implies ph implies ps ch $.
-  syl5d.h2 $e |- implies ph implies th implies ch ta $.
-  syl5d $p |- implies ph implies th implies ps ta $= ... $.
-$}
-
-${
-  imim12d.h1 $e |- implies ph implies ps ch $.
-  imim12d.h2 $e |- implies ph implies th ta $.
-  imim12d $p |- implies ph implies implies ch th implies ps ta $= ... $.
-$}
-
-${
-  imim1d.h1 $e |- implies ph implies ps ch $.
-  imim1d $p |- implies ph implies implies ch th implies ps th $= ... $.
-$}
-
-con4 $p |- implies implies not ph not ps implies ps ph $= ... $.
-
-${
-  con4d.h1 $e |- implies ph implies not ps not ch $.
-  con4d $p |- implies ph implies ch ps $= ... $.
-$}
-
-${
-  mt4d.h1 $e |- implies ph ps $.
-  mt4d.h2 $e |- implies ph implies not ch not ps $.
-  mt4d $p |- implies ph ch $= ... $.
-$}
-
-${
-  pm2.21d.h1 $e |- implies ph not ps $.
-  pm2.21d $p |- implies ph implies ps ch $= ... $.
-$}
-
-pm2.21 $p |- implies not ph implies ph ps $= ... $.
-
-${
-  jarli.h1 $e |- implies implies ph ps ch $.
-  jarli $p |- implies not ph ch $= ... $.
-$}
-
-${
-  pm2.18d.h1 $e |- implies ph implies not ps ps $.
-  pm2.18d $p |- implies ph ps $= ... $.
-$}
-
-pm2.18 $p |- implies implies not ph ph ph $= ... $.
-
-notnotr $p |- implies not not ph ph $= ... $.
-
-${
-  con2d.h1 $e |- implies ph implies ps not ch $.
-  con2d $p |- implies ph implies ch not ps $= ... $.
-$}
-
-pm3.2im $p |- implies ph implies ps not implies ph not ps $= ... $.
-
-${
-  jc.h1 $e |- implies ph ps $.
-  jc.h2 $e |- implies ph ch $.
-  jc $p |- implies ph not implies ps not ch $= ... $.
-$}
-
-${
-  biimpd.h1 $e |- implies ph iff ps ch $.
-  biimpd $p |- implies ph implies ps ch $= ... $.
-$}
-
-${
-  biimprd.h1 $e |- implies ph iff ps ch $.
-  biimprd $p |- implies ph implies ch ps $= ... $.
-$}
-
-${
-  impbidd.h1 $e |- implies ph implies ps ch $.
-  impbidd.h2 $e |- implies ph implies ch ps $.
-  impbidd $p |- implies ph iff ps ch $= ... $.
-$}
-
-${
-  imbi1d.h1 $e |- implies ph iff ps ch $.
-  imbi1d $p |- implies ph iff implies ps th implies ch th $= ... $.
-$}
-
-${
-  jca.h1 $e |- implies ph ps $.
-  jca.h2 $e |- implies ph ch $.
-  jca $p |- implies ph and ps ch $= ... $.
-$}
-
-${
-  pair.h1 $e |- ph $.
-  pair.h2 $e |- ps $.
-  pair $p |- and ph ps $= ... $.
-$}
-```
-
-
-
-</details>
-
-The remaining general-purpose tools make the arithmetic steps short enough
-to inspect. `eq-trd` joins two equalities under an antecedent using `jca`
-and `eq-trans`. `gen` derives generalization from `alpha_2` with the closed
-true antecedent `= 0 0`, which is removed by modus ponens. `specialize`
-composes `all_elim` and `all_elim3`; `subst` first applies `gen`, then the
-same elimination steps. Both require an explicit proof of the equality
-transport formula and the displayed freshness conditions.
-
-
-
-```metamath
-${
-  eq-symi.h1 $e |- = s t $.
-  eq-symi $p |- = t s $= ... $.
-$}
-
-${
-  eq-trd.h1 $e |- implies ph = s t $.
-  eq-trd.h2 $e |- implies ph = t u $.
-  eq-trd $p |- implies ph = s u $= ... $.
-$}
-
-${
-  gen.h1 $e |- ph $.
-  gen $p |- forall x ph $= ... $.
-$}
-
-${
-  $d ch x $.
-  $d t x $.
-  specialize.h1 $e |- forall x ph $.
-  specialize.h2 $e |- implies = x t iff ph ch $.
-  specialize $p |- ch $= ... $.
-$}
-
-${
-  $d ch x $.
-  $d t x $.
-  subst.h1 $e |- ph $.
-  subst.h2 $e |- implies = x t iff ph ch $.
-  subst $p |- ch $= ... $.
-$}
-```
-
-
-
-#### 5.2.5.3 Two preparatory arithmetic proofs
-
-Prove the right-zero and successor equations with their equalities oriented
-in the usual computational direction:
-
-
-
-```metamath
-add-zero-right $p |- = + x 0 x $= ? $.
-```
-
-
-
-
-
-```metamath
-add-successor-right $p |- = + x S y S + x y $= ? $.
-```
-
-
-
-##### Hints
-
-- `add-zero-right`: Apply eq-symi to pa_ax3 with s := x and t := + x 0.
-- `add-successor-right`: Apply eq-symi to pa_ax4 with s := S + x y and t := + x S y.
-
-#### 5.2.5.4 The base case and ordinary successor step
-
-For the rest of this section, the prose abbreviates `= + 0 t t` by `P(t)`.
-This abbreviation adds no syntax to the database. All targets below are
-written out in full.
-
-The supplied `base-substitution` transports the formula `= x + x 0` across
-`= x 0`. Its checked proof uses `eq-binop` to transport the sum and
-`eq-congr` to transport the equality. Use it to instantiate `pa_ax3` at zero.
-
-
-
-```metamath
-base-substitution $p |- implies = x 0 iff = x + x 0 = 0 + 0 0 $= ... $.
-```
-
-
-
-
-
-```metamath
-zero-base $p |- = + 0 0 0 $= ? $.
-```
-
-
-
-The analogous supplied transport for `pa_ax4` uses a fresh `y` in its first
-argument. `rec-substitution` uses `eq-binop` twice, and `eq-suc` for the
-successor on the left. This is repetitive equality bookkeeping, so its
-proof is supplied. The subsequent specialization is an exercise.
-
-
-
-```metamath
-rec-substitution $p |- implies = y 0 iff = S + y x + y S x = S + 0 x + 0 S x $= ... $.
-```
-
-
-
-
-
-```metamath
-${
-  $d x y $.
-  zero-recursion $p |- = S + 0 x + 0 S x $= ? $.
-$}
-```
-
-
-
-The ordinary induction step now follows by reversing `zero-recursion`,
-transporting the induction hypothesis with `eq-suc`, and composing equalities:
-
-
-
-```metamath
-${
-  $d x y $.
-  zero-step $p |- implies = + 0 x x = + 0 S x S x $= ? $.
-$}
-```
-
-
-
-##### Hints
-
-- `zero-base`: Use subst on pa_ax3 and base-substitution with t := 0 and ch := = 0 + 0 0. Reverse the resulting equality using eq-symi.
-- `zero-recursion`: Use subst on pa_ax4 with its x := y, y := x, and on rec-substitution. In subst choose x := y, t := 0, ch := = S + 0 x + 0 S x; the freshness pair is x,y.
-- `zero-step`: Reverse zero-recursion with eq-symi, then add antecedent = + 0 x x with a1i. eq-suc gives the second branch; combine with eq-trd through S + 0 x.
-
-#### 5.2.5.5 The quantified premises and induction application
-
-The axiom uses the guarded formula
-`G(t) = forall y implies = y t = + 0 y y`.
-Its base premise is `G(0)`; its step premise is
-`forall x implies G(x) G(S x)`. It concludes `forall x G(x)`.
-Use `phi := = + 0 y y` in `induction`: its requirement `$d phi x $.`
-becomes `$d y x $.`, already required by the other condition. This explains
-why the displayed axiom uses a fresh induction variable instead of treating
-`P(S x)` as a primitive substitution notation.
-
-`guard-substitution` proves equality transport for `P`. Derive elimination
-of `G(t)` from it:
-
-
-
-```metamath
-guard-substitution $p |- implies = y t iff = + 0 y y = + 0 t t $= ... $.
-```
-
-
-
-
-
-```metamath
-${
-  $d t y $.
-  guard-elim $p |- implies forall y implies = y t = + 0 y y = + 0 t t $= ? $.
-$}
-```
-
-
-
-For the reverse implication, `guard-intro` extracts the reverse direction
-of the equivalence with `biimprd`, commutes the antecedents with `com12`,
-and quantifies `y` with `alpha_2`. The condition `$d y t $.` ensures the
-retained antecedent `P(t)` contains no `y`.
-
-
-
-```metamath
-${
-  $d t y $.
-  guard-intro $p |- implies = + 0 t t forall y implies = y t = + 0 y y $= ... $.
-$}
-```
-
-
-
-Now prepare exactly the two quantified premises, join them, and apply
-induction. Each stage is its own proof obligation:
-
-
-
-```metamath
-induction-base $p |- forall y implies = y 0 = + 0 y y $= ? $.
-```
-
-
-
-
-
-```metamath
-${
-  $d x y $.
-  induction-step $p |- implies forall y implies = y x = + 0 y y forall y implies = y S x = + 0 y y $=
-    ? $.
-$}
-```
-
-
-
-
-
-```metamath
-${
-  $d x y $.
-  induction-step-all $p |- forall x implies forall y implies = y x = + 0 y y forall y implies = y S x
-    = + 0 y y $= ? $.
-$}
-```
-
-
-
-
-
-```metamath
-${
-  $d x y $.
-  induction-result $p |- forall x forall y implies = y x = + 0 y y $= ? $.
-$}
-```
-
-
-
-##### Hints
-
-- `guard-elim`: Apply all_elim3 to guard-substitution with x := y, phi := = + 0 y y and chi := = + 0 t t. The restriction is $d y t $.
-- `induction-base`: Detach guard-intro at t := 0 using zero-base and ax-mp.
-- `induction-step`: Chain guard-elim at t := x, zero-step, and guard-intro at t := S x with syl.
-- `induction-step-all`: Apply gen to induction-step with its quantified variable x unchanged.
-- `induction-result`: Use pair to join induction-base and induction-step-all. Detach induction with phi := = + 0 y y, retaining its x and y.
-
-#### 5.2.5.6 Specializing the result without capture
-
-The induction result still has an outer quantifier. Use a fresh `z` for its
-bound name and specialize it to `x`. To justify this, transport the equality
-guard `= y z` to `= y x`, then lift that equivalence through implication
-and `forall y`. The generic rules `imbi1d` and `alpha_1` were supplied in
-5.2.5.1–5.2.5.2; the following concrete transport is an exercise.
-
-
-
-```metamath
-${
-  $d x y $.
-  $d y z $.
-  outer-substitution $p |- implies = z x iff forall y implies = y z = + 0 y y forall y implies = y x =
-    + 0 y y $= ? $.
-$}
-```
-
-
-
-
-
-```metamath
-${
-  $d x y $.
-  $d x z $.
-  $d y z $.
-  zero-left $p |- = + 0 x x $= ? $.
-$}
-```
-
-
-
-The distinctness conditions on `y` and `z` are internal conditions on the
-auxiliary variables in the last proof. Only `x` occurs in its conclusion,
-so a later application of `zero-left` does not acquire two additional
-mandatory variable arguments.
-
-##### Hints
-
-- `outer-substitution`: Under = z x, use jca with eq-refl at y (lifted by a1i) and id; eq-congr gives iff = y z = y x. Apply imbi1d with common consequent = + 0 y y, then alpha_1 over y. Both y,z and y,x are required.
-- `zero-left`: Use specialize on induction-result with x := z, plus outer-substitution; set the specializing variable to z and term to x. The result is forall y implies = y x = + 0 y y. Finish with guard-elim at t := x and ax-mp.
-
-
-## 5.3 Notes, Reflections, and TODO
-
-The main question I want to come back to is the one about changing a formula
-inside another formula. We now have examples where an implication or
-equivalence can be transported through a quantifier. I'd like to recognize
-when this is the right approach, instead of trying to manipulate a substring
-as though the verifier had a general rewrite command built into its logic.
-
-There is a related distinction between carrying out a proof step and proving
-something about a general proof transformation. In this chapter I can write a
-particular bound-variable change and have the checker accept it. In the later
-metamathematics chapter I want formulas, substitutions, and derivability to be
-mathematical objects we can quantify over. That will let us formulate a much
-wider claim precisely. For now, I can keep an explicit list of the claims I
-would eventually like to state.
-
-TODO: add personal notes after the exercises. Which `$d` failures were
-surprising? Which helper made an apparently complicated proof easy? Did it
-help to write the intended intermediate formula before asking the proof
-assistant to fill in the details? These should be observations from actually
-working the problems; there is no need to manufacture conclusions in advance.
-
-The separate O5.5 reading notebook can hold the longer work through Harper's
-first three chapters and Gaifman's notes. It should be useful to compare
-Harper's language with the operations we've just performed, while keeping a
-record of the parts that still need formalization.
-
-## 5.4 Quiz Questions
-
-These questions are meant to test the terminology and the mechanics that the
-proof exercises use. The answers below are short sketches to revise after
-working through the chapter.
-
-### Question 1
-
-In `( x = y -> A. x x = y )`, which occurrences of `x` and `y` are free, and which
-are bound? Why is it more precise to ask about occurrences than simply to
-classify each variable name as free or bound?
-
-#### Answer sketch
-
-The `x` in the left equality is free, and the `x` in the right equality is
-bound by `A. x`; the `x` written immediately after `A.` names the binder.
-Both equality occurrences of `y` are free. A single name can
-occur in different scopes; the binding depends on the occurrence's location.
-
-### Question 2
-
-An assertion requires `$d ph ps $.`. We replace `ph` by `x = y` and `ps` by
-`z = w`. Which inherited pairs are needed? Why isn't the fact that these are
-four differently written letters enough?
-
-#### Answer sketch
-
-The cross-pairs are `x,z`, `x,w`, `y,z`, and `y,w`. The checker needs the
-corresponding active restrictions. The distinct spellings by themselves do
-not record which later substitutions the assertion permits.
-
-### Question 3
-
-Explain why `$d x y $.` is different from `|- -. x = y`. Also explain why
-`$d x ph $.` is stronger than saying that `x` is not free in the formula.
-
-#### Answer sketch
-
-The first is a restriction on substitutions for Metamath variables; the second
-is a mathematical assertion of inequality. For the formula case, nonoccurrence
-excludes bound occurrences too. `A. x x = x` is a concrete example in which
-`x` occurs but is not free.
-
-### Question 4
-
-What is variable capture? Describe what goes wrong with the naive replacement
-of free `x` by `y` in `A. y x = y`, and explain the role that changing the bound
-name can play in avoiding it.
-
-#### Answer sketch
-
-The inserted `y` falls within the scope of the existing `A. y` binder and
-becomes bound. A suitable change to a fresh bound name can preserve the role
-of the inserted occurrence. The admissibility of the change must be handled
-by the chosen syntax rules or, in our exercises, by an appropriate theorem.
-
-### Question 5
-
-What is the historical connection between Tarski's work and Metamath's
-distinct-variable approach? Name the source used for the dates.
-
-#### Answer sketch
-
-The Proof Explorer's history credits Tarski with stating the approach in
-1951 and publishing proofs in 1965. The relevant idea is organizing an
-axiomatization using distinct-variable conditions rather than requiring the
-usual free-variable and proper-substitution machinery as primitive notions.
-
-### Question 6
-
-Compare `ax-gen` with `ax-5`. Why can't we simply turn the former into an
-unrestricted theorem `|- ( ph -> A. x ph )`?
-
-#### Answer sketch
-
-`ax-gen` takes an established assertion as a premise and universally quantifies
-it. The closed implication has a different logical claim. `ax-5` supplies that
-implication under a disjoint-variable restriction, and the `ax-gen` commentary
-explicitly warns that its unrestricted closed form need not hold.
-
-### Question 7
-
-Which tool would you look for if you had proved `ph <-> ps` and wanted
-`A. x ph <-> A. x ps`? What changes if you instead have `ph -> ps` and want
-`ph -> A. x ps`?
-
-#### Answer sketch
-
-The first is the pattern of `albii`. The second is the pattern of `alrimiv`,
-whose disjointness condition constrains `ph` and `x`. In the first case both
-sides are quantified; in the second the antecedent remains outside.
-
-### Question 8
-
-In the `rename-equality` exercise, why do we need to protect `z` as well as
-distinguish `x` and `y`? What would a general theorem about alpha-renaming say
-beyond this particular checked equivalence?
-
-#### Answer sketch
-
-Substituting the two equality formulas into `cbvalvw` produces the additional
-pairs `x,z` and `y,z`. A general theorem about a specified renaming procedure
-would quantify over represented expressions and the procedure's inputs or
-outputs. This exercise supplies one checked instance using an existing rule.

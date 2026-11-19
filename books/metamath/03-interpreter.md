@@ -16,13 +16,13 @@ title: 3. Writing a Metamath Interpreter
 
 Since it's such a simple language, I decided that the best way to understand things is to write an interpreter myself.
 Depending on how much coding experience you have, this may or may not be the best organization for you. 
-The best reference for this is, no surprise, Megill ch 4. Oh right, even if you don't write an interpreter yourself,
+The best reference for this is, no surprise, Megill ch 4. Even if you don't write an interpreter yourself,
 the quiz questions at the bottom of the page might be useful!
 Links: [Chapter html](book/index.html#the-metamath-language), [pdf on metamath.org](https://us.metamath.org/downloads/metamath.pdf#page=129).
 
 
 
-<div class="table-of-contents"><h2>Directory</h2><ul class="toc-list"><li><a href="#introduction">Introduction</a></li><li><a href="#misc-stuff-i-was-confused-about-scratchwork-todo">Misc stuff I was confused about (SCRATCHWORK / TODO):</a></li><li><a href="#pass-1">Pass 1</a><ul class="toc-list"><li><a href="#writing-the-parser">Writing the parser</a></li><li><a href="#writing-the-proof-checker">Writing the proof checker</a></li></ul></li><li><a href="#future-work">Future work</a></li><li><a href="#suggested-questions">suggested questions</a><ul class="toc-list"><li><a href="#question">Question</a><ul class="toc-list"><li><a href="#answer">Answer</a></li></ul></li><li><a href="#question-2">Question</a><ul class="toc-list"><li><a href="#answer-2">Answer</a></li></ul></li><li><a href="#question-3">Question</a><ul class="toc-list"><li><a href="#answer-3">Answer</a></li></ul></li><li><a href="#question-4">Question</a><ul class="toc-list"><li><a href="#answer-4">Answer</a></li></ul></li><li><a href="#question-5">Question</a><ul class="toc-list"><li><a href="#answer-5">Answer</a></li></ul></li><li><a href="#question-6">Question</a><ul class="toc-list"><li><a href="#answer-6">Answer</a></li></ul></li><li><a href="#question-7">Question</a><ul class="toc-list"><li><a href="#answer-7">Answer</a></li></ul></li><li><a href="#question-8">Question</a><ul class="toc-list"><li><a href="#answer-8">Answer</a></li></ul></li><li><a href="#question-9">Question</a><ul class="toc-list"><li><a href="#answer-9">Answer</a></li></ul></li><li><a href="#question-10">Question</a><ul class="toc-list"><li><a href="#answer-10">Answer</a></li></ul></li><li><a href="#question-11">Question</a><ul class="toc-list"><li><a href="#answer-11">Answer</a></li></ul></li><li><a href="#question-12">Question</a><ul class="toc-list"><li><a href="#answer-12">Answer</a></li></ul></li></ul></li></ul></div>
+<div class="table-of-contents"><h2>Directory</h2><ul class="toc-list"><li><a href="#introduction">Introduction</a></li><li><a href="#misc-stuff-i-was-confused-about-scratchwork-todo">Misc stuff I was confused about (SCRATCHWORK / TODO):</a></li><li><a href="#pass-1">Pass 1</a><ul class="toc-list"><li><a href="#writing-the-parser">Writing the parser</a></li><li><a href="#writing-the-proof-checker">Writing the proof checker</a></li></ul></li><li><a href="#future-work">Future work</a></li><li><a href="#quiz-questions">Quiz Questions</a> <div class="exercise-container">(<span class="exercise-list"><span><a href="#question-1">Question 1</a></span><span><a href="#question-2">Question 2</a></span><span><a href="#question-3">Question 3</a></span><span><a href="#question-4">Question 4</a></span><span><a href="#question-5">Question 5</a></span><span><a href="#question-6">Question 6</a></span><span><a href="#question-7">Question 7</a></span><span><a href="#question-8">Question 8</a></span><span><a href="#question-9">Question 9</a></span></span>)</div></li></ul></div>
 
 
 ## Introduction
@@ -232,9 +232,9 @@ disjoint variables.
 
 
 
-## suggested questions
+## Quiz Questions
 
-### Question
+### Question 1
 
 In Metamath, what is the difference between a math symbol and a statement label? Can a label have the same name as a
 math symbol? If a hypothesis is in a block, can we reuse the label of a hypothesis after its block has closed?
@@ -249,7 +249,7 @@ Labels must be unique throughout the database, even when the statements they lab
 Closing a block does not let us reuse its hypothesis labels. A label also can't share a name with any constant
 or variable.
 
-### Question
+### Question 2
 
 In Metamath, what does it mean for a math symbol to be active? Can symbols be declared again?
 
@@ -263,7 +263,7 @@ A variable is active from the point it's declared to the end of its block. Inact
 any statement, they must have a floating hypothesis associated with them defining the typecode, and the typecode of
 the variable may not change upon redeclaration.
 
-### Question
+### Question 3
 
 In the following database, which statements go inactive at the end of the block `$}`? 
 What are `pass`'s mandatory hypotheses, and what does applying it in a proof outside of the block do?
@@ -303,7 +303,7 @@ term foo
 
 This would satisfy the two mandatory hypotheses of `pass` without issue.
 
-### Question
+### Question 4
 
 In Metamath, can a variable have two active floating hypotheses? Can blocks shadow variables?
 
@@ -329,7 +329,7 @@ $}
 
 but this is not allowed. So scoping follows special semantics in Metamath that might not be familiar from other languages.
 
-### Question
+### Question 5
 
 How do we determing a Metamath assertion's mandatory variables, and mandatory hypotheses and their order? 
 
@@ -367,7 +367,7 @@ $}
 
 
 
-### Question
+### Question 6
 
 In the following Metamath database, what are the mandatory hypotheses of `rule`, in order? Give the
 hypotheses in the order they must be satisfied on the proof stack, from bottom to top.
@@ -403,7 +403,9 @@ wff y
 
 
 
-### Question
+(convention w/ stack growing downwards)
+
+### Question 7
 
 In Metamath, does an active essential hypothesis still become mandatory if it doesn't occur in a `$p`
 statement's proof? What about if it doesn't share any math symbols with an `$a` statement?
@@ -415,7 +417,7 @@ We still apply the same procedure when checking the proof, and such cases might 
 we still pop symbols off the proof stack and compare the symbols in the proof stack with the symbols in the 
 mandatory hypothesis for consistency.
 
-### Question
+### Question 8
 
 In Metamath, describe how the verifier processes the statement labels in a proof (ignoring disjoint variable restrictions).
 
@@ -439,10 +441,10 @@ we push the result of applying our replacement rule to the assertion's expressio
 
 The proof succeeds if every step is valid and the final stack contains only the theorem's expression.
 
-### Question
+### Question 9
 
 In Metamath, suppose we're in a database, in the middle of verifying a proof.
-We have the following database and proof stack: 
+We have the following database: 
 
 
 
@@ -458,7 +460,7 @@ $}
 
 
 
-The proof stack, from bottom to top:
+The proof stack looks like the following:
 
 
 
@@ -469,7 +471,7 @@ wff A
 
 
 
-Does applying `rule` to the stack below succeed; if so, what gets pushed? If not, what could we change
+Does applying `rule` to the stack succeed? If so, what gets pushed? If not, what could we change
 on the stack to make it succeed?
 
 #### Answer
@@ -479,71 +481,3 @@ That cannot be unified with `|- ( A -> B )` because both occurrences of `P` must
 
 If the second stack entry were `|- ( A -> A )`, the application would succeed. It would consume both entries and push
 `|- A`.
-
-### Question
-
-*Note:* This question was AI generated and has not been reviewed.
-
-In Metamath, is the following proof valid?
-
-
-
-```mm
-$c term ( ) $.
-$v x $.
-fx $f term x $.
-empty $a term $.
-wrap $a term ( x ) $.
-th $p term ( ) $= empty wrap $.
-```
-
-
-
-#### Answer
-
-Yes. `empty` has no mandatory hypotheses, so it pushes the one-symbol expression `term`. When applying `wrap`, we
-compare this with the floating hypothesis `term x`. The typecodes match, and there is nothing after the typecode, so
-`x` is replaced by the empty sequence.
-
-The result is `term ( )`, exactly what `th` claims. Metamath allows empty replacements. The expression on the stack is
-not empty; it is the replacement for `x` that is empty.
-
-### Question
-
-*Note:* This question was AI generated and has not been reviewed.
-
-In Metamath, is the following axiom declaration valid?
-
-
-
-```mm
-$c |- ( ) -> $.
-odd $a |- ( -> ) $.
-```
-
-
-
-#### Answer
-
-It is a legal axiom. Its expression starts with a declared constant, and all its math symbols are active. There are no
-variables requiring floating hypotheses. Metamath does not require a separate `wff` construction when declaring an
-axiom, and does not check that these symbols make sense as ordinary propositional logic.
-
-We decide which axioms to put in the database. The verifier checks applications of those axioms according to their
-mandatory hypotheses; it does not establish that our chosen axioms express the mathematics we intended.
-
-### Question
-
-*Note:* This question was AI generated and has not been reviewed.
-
-Suppose a Metamath proof passes its local stack and substitution checks but uses a theorem whose proof contains `?`;
-what has been established?
-
-#### Answer
-
-We have checked that the conclusion follows from the hypotheses and assertions used by this proof. We have not
-established it from the axioms and the theorem's hypotheses, because one of the assertions used still has an unfinished
-proof.
-
-To claim a complete proof, we also need complete proofs of the earlier theorems it uses, including their dependencies.
-A locally correct application of a theorem does not by itself verify that theorem's proof.

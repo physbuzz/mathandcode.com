@@ -18,7 +18,7 @@ Notes while reading Megill ch. 2. Links: [Chapter html](book/index.html#using-th
 
 
 
-<div class="table-of-contents"><h2>Directory</h2><ul class="toc-list"><li><a href="#a-few-things-to-know-and-memorize">A few things to know and memorize:</a></li><li><a href="#running-the-ch2-example">Running the ch2 example</a></li><li><a href="#working-through-the-proof-without-knowing-metamath">Working through the proof without knowing Metamath</a></li><li><a href="#23">2.3</a></li><li><a href="#quiz-questions">Quiz Questions</a><ul class="toc-list"><li><a href="#question-1">Question 1</a><ul class="toc-list"><li><a href="#answer">Answer</a></li></ul></li><li><a href="#question-2">Question 2</a><ul class="toc-list"><li><a href="#answer-2">Answer</a></li></ul></li><li><a href="#question-3">Question 3</a><ul class="toc-list"><li><a href="#answer-3">Answer</a></li></ul></li><li><a href="#question-4">Question 4</a><ul class="toc-list"><li><a href="#answer-4">Answer</a></li></ul></li><li><a href="#question-5">Question 5</a><ul class="toc-list"><li><a href="#answer-5">Answer</a></li></ul></li><li><a href="#question-6">Question 6</a><ul class="toc-list"><li><a href="#answer-6">Answer</a></li></ul></li><li><a href="#question-7">Question 7</a><ul class="toc-list"><li><a href="#answer-7">Answer</a></li></ul></li><li><a href="#question-8">Question 8</a><ul class="toc-list"><li><a href="#answer-8">Answer</a></li></ul></li><li><a href="#question-9">Question 9</a><ul class="toc-list"><li><a href="#answer-9">Answer</a></li></ul></li><li><a href="#question-10">Question 10</a><ul class="toc-list"><li><a href="#answer-10">Answer</a></li></ul></li><li><a href="#question-11">Question 11</a><ul class="toc-list"><li><a href="#answer-11">Answer</a></li></ul></li><li><a href="#question-12">Question 12</a><ul class="toc-list"><li><a href="#answer-12">Answer</a></li></ul></li><li><a href="#question-13">Question 13</a><ul class="toc-list"><li><a href="#answer-13">Answer</a></li></ul></li><li><a href="#question-14">Question 14</a><ul class="toc-list"><li><a href="#answer-14">Answer</a></li></ul></li><li><a href="#question-15">Question 15</a><ul class="toc-list"><li><a href="#hint">Hint</a></li><li><a href="#answer-15">Answer</a></li></ul></li><li><a href="#question-16">Question 16</a><ul class="toc-list"><li><a href="#answer-16">Answer</a></li></ul></li></ul></li></ul></div>
+<div class="table-of-contents"><h2>Directory</h2><ul class="toc-list"><li><a href="#a-few-things-to-know-and-memorize">A few things to know and memorize:</a></li><li><a href="#running-the-ch2-example">Running the ch2 example</a></li><li><a href="#working-through-the-proof-without-knowing-metamath">Working through the proof without knowing Metamath</a></li><li><a href="#23">2.3</a></li><li><a href="#quiz-questions">Quiz Questions</a> <div class="exercise-container">(<span class="exercise-list"><span><a href="#question-1">Question 1</a></span><span><a href="#question-2">Question 2</a></span><span><a href="#question-3">Question 3</a></span><span><a href="#question-4">Question 4</a></span><span><a href="#question-5">Question 5</a></span><span><a href="#question-6">Question 6</a></span><span><a href="#question-7">Question 7</a></span><span><a href="#question-8">Question 8</a></span><span><a href="#question-9">Question 9</a></span><span><a href="#question-10">Question 10</a></span><span><a href="#question-11">Question 11</a></span><span><a href="#question-12">Question 12</a></span><span><a href="#question-13">Question 13</a></span><span><a href="#question-14">Question 14</a></span><span><a href="#question-15">Question 15</a></span><span><a href="#question-16">Question 16</a></span><span><a href="#question-17">Question 17</a></span><span><a href="#question-18">Question 18</a></span></span>)</div></li></ul></div>
 
 
 ## A few things to know and memorize:
@@ -44,28 +44,28 @@ starting out when I've been unsure of what a statement's mhs are.
 
 
 <div class="code-box inline-source"><details class="collapsible-code"><summary class="code-summary"><span>mm source</span><span class="expand-hint">(click to expand)</span></summary><div class="codehilite" data-language="metamath"><pre><code><span class="cm">$( Declare the constant symbols we will use $)</span>
-<span class="w">    </span><span class="k">$c</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">term</span><span class="w"> </span><span class="n">wff</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="p">$.</span>
+<span class="w">    </span><span class="k">$c</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">term</span><span class="w"> </span><span class="n">wff</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="k">$.</span>
 <span class="cm">$( Declare the metavariables we will use $)</span>
-<span class="w">    </span><span class="k">$v</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="n">P</span><span class="w"> </span><span class="n">Q</span><span class="w"> </span><span class="p">$.</span>
+<span class="w">    </span><span class="k">$v</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="n">P</span><span class="w"> </span><span class="n">Q</span><span class="w"> </span><span class="k">$.</span>
 <span class="cm">$( Specify properties of the metavariables $)</span>
-<span class="w">    </span><span class="nl">tt</span><span class="w"> </span><span class="k">$f</span><span class="w"> </span><span class="n">term</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="p">$.</span>
-<span class="w">    </span><span class="nl">tr</span><span class="w"> </span><span class="k">$f</span><span class="w"> </span><span class="n">term</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="p">$.</span>
-<span class="w">    </span><span class="nl">ts</span><span class="w"> </span><span class="k">$f</span><span class="w"> </span><span class="n">term</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="p">$.</span>
-<span class="w">    </span><span class="nl">wp</span><span class="w"> </span><span class="k">$f</span><span class="w"> </span><span class="n">wff</span><span class="w"> </span><span class="n">P</span><span class="w"> </span><span class="p">$.</span>
-<span class="w">    </span><span class="nl">wq</span><span class="w"> </span><span class="k">$f</span><span class="w"> </span><span class="n">wff</span><span class="w"> </span><span class="n">Q</span><span class="w"> </span><span class="p">$.</span>
+<span class="w">    </span><span class="nl">tt</span><span class="w"> </span><span class="k">$f</span><span class="w"> </span><span class="n">term</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">    </span><span class="nl">tr</span><span class="w"> </span><span class="k">$f</span><span class="w"> </span><span class="n">term</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">    </span><span class="nl">ts</span><span class="w"> </span><span class="k">$f</span><span class="w"> </span><span class="n">term</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">    </span><span class="nl">wp</span><span class="w"> </span><span class="k">$f</span><span class="w"> </span><span class="n">wff</span><span class="w"> </span><span class="n">P</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">    </span><span class="nl">wq</span><span class="w"> </span><span class="k">$f</span><span class="w"> </span><span class="n">wff</span><span class="w"> </span><span class="n">Q</span><span class="w"> </span><span class="k">$.</span>
 <span class="cm">$( Define "term" and "wff" $)</span>
-<span class="w">    </span><span class="nl">tze</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">term</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="p">$.</span>
-<span class="w">    </span><span class="nl">tpl</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">term</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="p">$.</span>
-<span class="w">    </span><span class="nl">weq</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">wff</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="p">$.</span>
-<span class="w">    </span><span class="nl">wim</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">wff</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">P</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">Q</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="p">$.</span>
+<span class="w">    </span><span class="nl">tze</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">term</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">    </span><span class="nl">tpl</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">term</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">    </span><span class="nl">weq</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">wff</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">    </span><span class="nl">wim</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">wff</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">P</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">Q</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
 <span class="cm">$( State the axioms $)</span>
-<span class="w">    </span><span class="nl">a1</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="p">$.</span>
-<span class="w">    </span><span class="nl">a2</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="p">$.</span>
+<span class="w">    </span><span class="nl">a1</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">    </span><span class="nl">a2</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">+</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">$.</span>
 <span class="cm">$( Define the modus ponens inference rule $)</span>
 <span class="w">    </span><span class="p">${</span>
-<span class="w">        </span><span class="nl">min</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">P</span><span class="w"> </span><span class="p">$.</span>
-<span class="w">        </span><span class="nl">maj</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">P</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">Q</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="p">$.</span>
-<span class="w">        </span><span class="nl">mp</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">Q</span><span class="w"> </span><span class="p">$.</span>
+<span class="w">        </span><span class="nl">min</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">P</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">        </span><span class="nl">maj</span><span class="w"> </span><span class="k">$e</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">(</span><span class="w"> </span><span class="n">P</span><span class="w"> </span><span class="n">-&gt;</span><span class="w"> </span><span class="n">Q</span><span class="w"> </span><span class="n">)</span><span class="w"> </span><span class="k">$.</span>
+<span class="w">        </span><span class="nl">mp</span><span class="w"> </span><span class="k">$a</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">Q</span><span class="w"> </span><span class="k">$.</span>
 <span class="w">    </span><span class="p">$}</span>
 <span class="cm">$( Prove a theorem $)</span>
 <span class="w">    </span><span class="nl">th1</span><span class="w"> </span><span class="k">$p</span><span class="w"> </span><span class="n">|-</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">$=</span>
@@ -73,7 +73,7 @@ starting out when I've been unsure of what a statement's mhs are.
 <span class="w">        </span><span class="nl">tt</span><span class="w"> </span><span class="nl">tze</span><span class="w"> </span><span class="nl">tpl</span><span class="w"> </span><span class="nl">tt</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">tt</span><span class="w"> </span><span class="nl">tt</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">tt</span><span class="w"> </span><span class="nl">a2</span><span class="w"> </span><span class="nl">tt</span><span class="w"> </span><span class="nl">tze</span><span class="w"> </span><span class="nl">tpl</span>
 <span class="w">        </span><span class="nl">tt</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">tt</span><span class="w"> </span><span class="nl">tze</span><span class="w"> </span><span class="nl">tpl</span><span class="w"> </span><span class="nl">tt</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">tt</span><span class="w"> </span><span class="nl">tt</span><span class="w"> </span><span class="nl">weq</span><span class="w"> </span><span class="nl">wim</span><span class="w"> </span><span class="nl">tt</span><span class="w"> </span><span class="nl">a2</span>
 <span class="w">        </span><span class="nl">tt</span><span class="w"> </span><span class="nl">tze</span><span class="w"> </span><span class="nl">tpl</span><span class="w"> </span><span class="nl">tt</span><span class="w"> </span><span class="nl">tt</span><span class="w"> </span><span class="nl">a1</span><span class="w"> </span><span class="nl">mp</span><span class="w"> </span><span class="nl">mp</span>
-<span class="w">    </span><span class="p">$.</span>
+<span class="w">    </span><span class="k">$.</span>
 </code></pre></div>
 </details><div class="code-output"><span>Output:</span><pre>Metamath - Version 0.195 30-Dec-2020          Type HELP for help, EXIT to exit.
 MM&gt; read &quot;.md2html-cache/01-megillch2/mm-inline-f338a58087cd/mm.mm&quot;
@@ -177,6 +177,22 @@ Especially useful stuff in the interactive CLI:
 ## Quiz Questions
 
 ### Question 1
+In Metamath, what is a math symbol? What characters are allowed in a math symbol?
+
+#### Answer
+A math symbol refers specifically to a constant or variable. Math symbols are allowed to be any ascii symbols in the range 
+`!` all the way through `~`, with the exclusion of the `$` character. This is expressed in EBNF as 
+
+
+
+```
+_PRINTABLE-CHARACTER ::= [#x21-#x7e]
+MATH-SYMBOL ::= (_PRINTABLE-CHARACTER - '$')+
+```
+
+
+
+### Question 2
 
 In Metamath, what does a typecode refer to?
 
@@ -190,7 +206,7 @@ there is no complicated "type system", so this is really just a constant that is
 Note: For some reason, "typecode" isn't defined until chapter 4.1! But it's the correct term, so I'm using it from 
 the beginning.
 
-### Question 2
+### Question 3
 
 In Metamath, what does the statement `$c` mean and how is it used?
 
@@ -200,7 +216,7 @@ In Metamath, what does the statement `$c` mean and how is it used?
 the other primitive symbols you want to define like `(`, `)`, `|-`, `->`. The `$c` statement must be closed with a `$.`
 symbol. For example: `$c wff term ( ) |- -> $.`
 
-### Question 3
+### Question 4
 
 In Metamath, what does the statement `$v` mean and how is it used?
 
@@ -212,7 +228,7 @@ In Metamath, what does the statement `$v` mean and how is it used?
 Every variable used in an essential hypothesis or assertion must have an active floating hypothesis specifying its typecode.
 When applying an assertion, the proof must supply expressions satisfying its mandatory hypotheses.
 
-### Question 4
+### Question 5
 
 In Metamath, what does the statement `$e` mean and how is it used?
 
@@ -221,7 +237,7 @@ In Metamath, what does the statement `$e` mean and how is it used?
 `e` stands for essential hypothesis. It is also called a logical hypothesis. It must have a label, followed by `$e`, a
 typecode constant, and any number of math symbols, ending with `$.`, eg. `mytheorem $e |- ( P -> Q ) $.`
 
-### Question 5
+### Question 6
 
 In Metamath, what does the statement `$f` mean and how is it used?
 
@@ -230,7 +246,7 @@ In Metamath, what does the statement `$f` mean and how is it used?
 `f` stands for floating hypothesis. It is also called a variable-type hypothesis. It must have a label, followed by
 `$f`, a typecode constant, and a variable, ending with `$.`. eg. `tt $f term t $.`
 
-### Question 6
+### Question 7
 
 In Metamath, what does the statement `$a` mean and how is it used?
 
@@ -240,7 +256,7 @@ In Metamath, what does the statement `$a` mean and how is it used?
 a typecode constant, and zero or more math symbols, ending with `$.`. For example: `tze $a term 0 $.` This asserts that
 `0` is a term. Axiomatic assertions can express syntax rules as well as logical axioms and inference rules.
 
-### Question 7
+### Question 8
 
 In Metamath, what does the symbol `$p` mean, and how is it used?
 
@@ -254,7 +270,7 @@ For example, given the mandatory-hypothesis-free axiom `tze $a term 0 $.`, the s
 
 A proof can have a `?` in it, meaning the proof will not be checked and has unfinished steps.
 
-### Question 8
+### Question 9
 
 What are the differences and similarities between the Metamath statements `$a` and `$p`? Can they have mandatory
 hypotheses that must be satisfied before being used?
@@ -264,13 +280,13 @@ hypotheses that must be satisfied before being used?
 Similarities: `$a` and `$p` are both *assertions*. They are labeled statements followed by a typecode and any number of math
 *symbols*.
 
-The axiom statement `$a` must end with a `$.` after its math symbols. But the proof statement `$p` has its math symbols
+Differences: The axiom statement `$a` must end with a `$.` after its math symbols. But the proof statement `$p` has its math symbols
 followed by `$=` and then a sequence of labels, signifying the Metamath proof steps, followed by `$.` A Metamath proof
 may also contain a `?` signifying the proof is incomplete.
 
-Both kinds of assertion can have hypotheses that must be satisfied when the assertion is used.
+Both kinds of assertion can have mandatory hypotheses that must be satisfied when the assertion is used.
 
-### Question 9
+### Question 10
 
 What are the differences and similarities between the Metamath statements `$f` and `$e`? Can they have mandatory
 hypotheses that must be satisfied before being used?
@@ -290,7 +306,7 @@ logical premise, for example the "minor" hypothesis of modus ponens: `min $e |- 
 Neither statement has mandatory hypotheses of its own. When a hypothesis is used in a proof, its expression
 is pushed onto the proof stack unchanged.
 
-### Question 10
+### Question 11
 
 Recall the Metamath database of Megill ch2, which included statements such as...
 
@@ -318,7 +334,7 @@ It is also important that `tze` is not a hypothesis. When the mandatory hypothes
 floating hypothesis, this can end up giving us a replacement rule telling us what a given variable gets replaced by.
 This process--unification--makes no sense to apply to the constant `0`.
 
-### Question 11
+### Question 12
 
 In Metamath, consider the axiom `tpl $a term ( t + r ) $.`, how many mandatory hypotheses are required?
 How would you apply it in a proof?
@@ -350,26 +366,36 @@ tpl.vacuous $p term ( u + v ) $= tu tv tpl $.
 
 
 
-### Question 12 
+### Question 13 
 
-In Metamath, in the middle of a proof, an axiom is `a2 $a |- ( t + 0 ) = t $.`. The mandatory hypothesis of `a2` is
-`tt $f term t $.` and the term on the top of the proof stack is `term ( r + 0 )`. What is the resulting expression after
-applying `a2`?
+In Metamath, suppose we're in the middle of checking a proof and the term on top of the proof stack is `term ( r + 0 )`.
+What happens when we apply the axiom `a2 $a |- ( t + 0 ) = t $.` ?
 
-Assume conventions of `demo0.mm`, so things like `|-` and `term` and so on are constants.
+Note: Assume usual conventions, ie. we've declared `$v t $. $c |- ( ) = 0 $. $tt $f term t $.`
 
 #### Answer
 
-The result is `|- ( ( r + 0 ) + 0 ) = ( r + 0 )`.
+`term ( r + 0 )` is popped from the proof stack and the result pushed to the proof stack is `|- ( ( r + 0 ) + 0 ) = ( r + 0 )`.
 
 The statement on the proof stack `term ( r + 0 )` is unified with the mandatory hypothesis `term t` to find the
 replacement rule, by which we replace every variable `t` in the axiom's list of math symbols with the list of math
 symbols `( r + 0 )`.
 
-### Question 13
+### Question 14
 
-In Metamath, start with an empty proof stack and the following database. Trace the proof fragment `tt tze tpl tt weq`.
-What statement is left on the stack after applying the statements?
+In Metamath, what are other ways to say "list of math symbols"?
+
+#### Answer
+
+A list of math symbols is known as an expression.
+
+In `tpl $a term ( r + t ) $.` [appendix C.2.2](https://us.metamath.org/downloads/metamath.pdf#page=209) calls `term ( r + t )` a constant-prefixed expression, but both `term ( r + 0 )` and
+`( r + 0 )` can both be called expressions.
+
+### Question 15
+
+What blank in the Metamath database below causes the proof to check? That is, what does the 
+proof fragment `tt tze tpl tt weq` build?
 
 
 
@@ -381,13 +407,20 @@ tr $f term r $.
 tze $a term 0 $.
 tpl $a term ( t + r ) $.
 weq $a wff t = r $.
+mystery $p ____ $= tt tze tpl tt weq $.`
 ```
 
 
 
 #### Answer
 
-The proof fragment constructs `wff ( t + 0 ) = t` and pushes it to the proof stack.
+
+
+```mm
+mystery $p wff ( t + 0 ) = t $= tt tze tpl tt weq $.`
+```
+
+
 
 1. `tt` pushes `term t`.
 2. `tze` pushes `term 0`.
@@ -396,10 +429,9 @@ The proof fragment constructs `wff ( t + 0 ) = t` and pushes it to the proof sta
 4. `tt` pushes `term t`.
 5. `weq` consumes the two terms and pushes `wff ( t + 0 ) = t`.
 
-### Question 14 
+### Question 16 
 
-In the following Metamath database, how many mandatory hypotheses does `mp` have? How does this differ from the way we
-normally think about modus ponens in mathematics?
+In the following Metamath database, how many mandatory hypotheses does `mp` have?
 
 
 
@@ -425,10 +457,10 @@ proof stack to contain the following four entries, where the last statement is t
 
 
 ```text
-wff ( a b c )
-wff ( x y z )
-|- ( a b c )
-|- ( ( a b c ) -> ( x y z ) )
+wff Q
+wff P
+|- Q
+|- ( Q -> P )
 ```
 
 
@@ -436,13 +468,13 @@ wff ( x y z )
 Normally in mathematics we think of modus ponens as having two premises. And indeed we could imagine that just given the
 two entries off the top of the stack, we can infer what must replace the variables `P` and `Q`. But the Metamath
 verifier doesn't figure this kind of thing out for us (in other words: it doesn't have a complex unification algorithm),
-instead the floating hypotheses tell us exactly how things are parsed. First we unify `wff ( a b c )` with the mandatory
-hypothesis `$f wff P $.` to figure out that `P` should be replaced with `( a b c )`. Next, we unify `wff ( x y z )` with
-mandatory hypothesis `$f wff Q $.` to figure out that `Q` should be replaced with `( x y z )`. For the next two
+instead the floating hypotheses tell us exactly how things are parsed. First we unify `wff Q` with the mandatory
+hypothesis `$f wff P $.` to figure out that `P` should be replaced with `Q`. Next, we unify `wff P` with
+mandatory hypothesis `$f wff Q $.` to figure out that `Q` should be replaced with `P`. For the next two
 mandatory hypotheses `min` and `maj`, we simply have to check that their expressions, after substitution, match the
 corresponding proof-stack entries.
 
-### Question 15
+### Question 17
 
 Consider the axiom schemas
 
@@ -453,16 +485,14 @@ $$
 \end{gather*}
 $$
 
-Using these axioms and modus ponens, prove $t=t$ with a standard mathematical proof.
+Using these axioms and modus ponens, prove $t=t$ with a standard mathematical proof. Describe how you would write the proof in the Metamath proof assistant. 
 
-Next, describe how you would write the proof in the Metamath proof assistant, assuming the database defines all the
-terms (such as in `demo0.mm` of ch2). It might be worthwhile to open up the metamath proof assistant to go through the
-steps yourself from memory.
+Note: Assume the database defines all the terms such as in `demo0.mm` of ch2. You probably don't want
+to write it all out by hand, but going through in the metamath proof assistant might be worthwhile.
 
 #### Hint
 
-The second part of the question is section 2.4. It might be useful to open up the proof assistant and recreate the
-`demo0.mm` proof. In the metamath CLI, commands `prove th1`, `delete all`, and the command `show new_proof` with
+The second part of the question is section 2.4. In the metamath CLI, commands `prove th1`, `delete all`, and the command `show new_proof` with
 arguments `/lemmon` or `/all` can be useful. From there, you'll want to use the command `assign n label` to assign line
 `n` to proof step `label`. Finally, you can get it to a point where `improve all` can take over.
 
@@ -491,7 +521,7 @@ we'll just get `( $5 + 0 ) = $5` for example). Finally, if all logical steps are
 This is a brief explanation so this answer may be insufficient. If you get stuck reproducing the proof in the proof
 explorer, refer to [Megill ch2.4](book/index.html#2.4-your-first-proof) and follow the CLI usage.
 
-### Question 16
+### Question 18
 
 In the Metamath CLI, remember the ch2 example:
 

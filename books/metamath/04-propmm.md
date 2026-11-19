@@ -22,7 +22,7 @@ Links: [Chapter html](book/index.html#abstract-mathematics-revealed), [pdf on me
 
 
 
-<div class="table-of-contents"><h2>Directory</h2><ul class="toc-list"><li><a href="#introduction">Introduction</a></li><li><a href="#40-important-logic-notations-and-citations">4.0 Important Logic Notations and Citations</a><ul class="toc-list"><li><a href="#401-hilbert-type-inference-rules">4.0.1 Hilbert-type inference rules</a></li><li><a href="#402-inference-rules-for-us">4.0.2 Inference rules for us</a></li></ul></li><li><a href="#41-propositional-calculus-in-setmm">4.1 Propositional calculus in <code>set.mm</code></a><ul class="toc-list"><li><a href="#411-implication-first-proofs-and-useful-derived-rules">4.1.1 Implication: first proofs and useful derived rules</a><ul class="toc-list"><li><a href="#hints-and-my-answers">Hints and my answers</a></li></ul></li><li><a href="#412-more-advanced-implications">4.1.2 More advanced implications</a><ul class="toc-list"><li><a href="#hints-and-my-answers-2">Hints and my answers</a></li></ul></li><li><a href="#413-more-propositional-calculus">4.1.3 More propositional calculus</a><ul class="toc-list"><li><a href="#hints-and-my-answers-3">Hints and my answers</a></li></ul></li><li><a href="#414-negation-and-classical-propositional-calculus">4.1.4 Negation and classical propositional calculus</a><ul class="toc-list"><li><a href="#hints-and-my-answers-4">Hints and my answers</a></li></ul></li><li><a href="#415-double-negation-and-classical-proof-rules">4.1.5 Double negation and classical proof rules</a><ul class="toc-list"><li><a href="#hints-and-my-answers-5">Hints and my answers</a></li></ul></li><li><a href="#416-the-other-connectives-which-were-skipping">4.1.6 The other connectives, which we're skipping</a></li><li><a href="#417-carew-merediths-sole-axiom-for-propositional-calculus">4.1.7 Carew Meredith's sole axiom for propositional calculus</a><ul class="toc-list"><li><a href="#a-first-lemma">A first lemma</a></li><li><a href="#recovering-three-familiar-statements">Recovering three familiar statements</a></li><li><a href="#hints-and-my-answers-6">Hints and my answers</a></li></ul></li><li><a href="#418-notes-and-reflections-and-todo-on-these-exercises">4.1.8 Notes and reflections and TODO on these exercises.</a><ul class="toc-list"><li><a href="#todo-on-proof-transformations">TODO on proof transformations</a></li><li><a href="#thoughts-on-inference-deduction-closed">Thoughts on inference, deduction, closed</a></li></ul></li></ul></li><li><a href="#42-other-proof-databases">4.2 Other proof databases</a><ul class="toc-list"><li><a href="#421-isetmm-takeaways">4.2.1 <code>iset.mm</code> takeaways</a></li><li><a href="#422-quantum-logic-qlmm">4.2.2 Quantum Logic <code>ql.mm</code></a><ul class="toc-list"><li><a href="#hints-and-my-answers-7">Hints and my answers</a></li></ul></li><li><a href="#423-higher-order-logic-holmm">4.2.3 Higher Order Logic <code>hol.mm</code></a><ul class="toc-list"><li><a href="#hints-and-my-answers-8">Hints and my answers</a></li></ul></li></ul></li></ul></div>
+<div class="table-of-contents"><h2>Directory</h2><ul class="toc-list"><li><a href="#introduction">Introduction</a></li><li><a href="#40-important-logic-notations-and-citations">4.0 Important Logic Notations and Citations</a><ul class="toc-list"><li><a href="#401-hilbert-type-inference-rules">4.0.1 Hilbert-type inference rules</a></li><li><a href="#402-inference-rules-for-us">4.0.2 Inference rules for us</a></li></ul></li><li><a href="#41-propositional-calculus-in-setmm">4.1 Propositional calculus in <code>set.mm</code></a><ul class="toc-list"><li><a href="#411-implication-first-proofs-and-useful-derived-rules">4.1.1 Implication: first proofs and useful derived rules</a><ul class="toc-list"><li><a href="#hints-and-my-answers">Hints and my answers</a></li></ul></li><li><a href="#412-more-advanced-implications">4.1.2 More advanced implications</a><ul class="toc-list"><li><a href="#hints-and-my-answers-2">Hints and my answers</a></li></ul></li><li><a href="#413-more-propositional-calculus">4.1.3 More propositional calculus</a><ul class="toc-list"><li><a href="#hints-and-my-answers-3">Hints and my answers</a></li></ul></li><li><a href="#414-negation-and-classical-propositional-calculus">4.1.4 Negation and classical propositional calculus</a><ul class="toc-list"><li><a href="#hints-and-my-answers-4">Hints and my answers</a></li></ul></li><li><a href="#415-double-negation-and-classical-proof-rules">4.1.5 Double negation and classical proof rules</a><ul class="toc-list"><li><a href="#hints-and-my-answers-5">Hints and my answers</a></li></ul></li><li><a href="#416-the-other-connectives">4.1.6 The other connectives</a></li><li><a href="#417-notes-and-reflections-on-these-exercises">4.1.7 Notes and reflections on these exercises</a><ul class="toc-list"><li><a href="#thought-on-proof-transformations">Thought on proof transformations</a></li><li><a href="#thoughts-on-inference-deduction-closed">Thoughts on inference, deduction, closed</a></li></ul></li></ul></li><li><a href="#42-other-proof-databases">4.2 Other proof databases</a><ul class="toc-list"><li><a href="#421-isetmm-takeaways">4.2.1 <code>iset.mm</code> takeaways</a></li><li><a href="#422-quantum-logic-qlmm">4.2.2 Quantum Logic <code>ql.mm</code></a><ul class="toc-list"><li><a href="#hints-and-my-answers-6">Hints and my answers</a></li></ul></li><li><a href="#423-higher-order-logic-holmm">4.2.3 Higher Order Logic <code>hol.mm</code></a></li></ul></li><li><a href="#quiz-questions">Quiz Questions</a> <div class="exercise-container">(<span class="exercise-list"><span><a href="#question-1">Question 1</a></span><span><a href="#question-2">Question 2</a></span><span><a href="#question-3">Question 3</a></span><span><a href="#question-4">Question 4</a></span><span><a href="#question-5">Question 5</a></span><span><a href="#question-6">Question 6</a></span><span><a href="#question-7">Question 7</a></span><span><a href="#question-8">Question 8</a></span><span><a href="#question-9">Question 9</a></span><span><a href="#question-10">Question 10</a></span></span>)</div></li></ul></div>
 
 
 ## Introduction
@@ -117,7 +117,7 @@ also has the wonderful footnote:
 
 To repeat myself, Buss writes modus ponens as:
 
-$$\frac{A\qquad A\to B}{B}$$
+$$\frac{A\quad A\to B}{B}$$
 
 
 Okay, there's a little worry that I have here. Going by Gaifman's notes, interpreted liberally,
@@ -140,14 +140,15 @@ and style of proof shouldn't be said to be "Hilbert-style."
 ### 4.0.2 Inference rules for us
 
 For these notes, we'll write rules along with their typecode and label where possible.
-Two examples from set.mm are
-[`ax-mp`](https://us.metamath.org/mpeuni/ax-mp.html) and TODO (this sentence trails off)
+Two examples from `set.mm` are modus ponens
 
-$$\frac{\vdash \varphi\quad\vdash(\varphi\to \psi)}{\vdash \psi}\quad\texttt{ax-mp}$$
+$$\frac{\vdash \varphi\quad\vdash(\varphi\to \psi)}{\vdash \psi}
+\quad\href{https://us.metamath.org/mpeuni/ax-mp.html}{\texttt{ax-mp},}$$
 
-and the more complicated [`syl`](https://us.metamath.org/mpeuni/syl.html)
+and hypothetical syllogism
 
-$$\frac{\vdash(\psi\to \varphi)\qquad\vdash(\varphi\to \chi)}{\vdash(\psi\to \chi)}\quad\texttt{syl}.$$
+$$\frac{\vdash(\psi\to \varphi)\quad\vdash(\varphi\to \chi)}{\vdash(\psi\to \chi)}
+\quad\href{https://us.metamath.org/mpeuni/syl.html}{\texttt{syl}}.$$
 
 While `ax-mp` is an axiom, `syl` is (in Harper's terminology) a derived rule, or in our 
 terminology a theorem. It should be noted that
@@ -211,6 +212,12 @@ Also note, metamath proof assistant commands:
 - `assign n label`, `delete all`, `prove label`, `save new_proof`, `show new_proof/all/lemmon`, `improve all` should be familiar.
 - `save new_proof` and `write source` to save and modify your target file (eg. myset.mm)
 - `match step n` (or `match all`) is super useful to list available unifications.
+- `improve last /depth 1` attempts a more substantial proof search. Depth 2, 3, etc. quickly makes the search expensive.
+- `search` does a textual search of the proof database (TODO, check, reference ch5) `/comments` 
+- `show new_proof /unknown` or `/essential`
+- `let variable $32 = "A = B"` assigns something mid-expression to the expression you want.
+- `undo` and `redo`
+- In order to allow pressing the up arrow, try installing `rlwrap` and launching `rlwrap metamath set.mm`
 
 ### 4.1.1 Implication: first proofs and useful derived rules
 
@@ -330,7 +337,8 @@ Prove [`pm2.43i`](https://us.metamath.org/mpeuni/pm2.43i.html),
 [`sylcom`](https://us.metamath.org/mpeuni/sylcom.html), [`com12`](https://us.metamath.org/mpeuni/com12.html),
 [`pm2.27`](https://us.metamath.org/mpeuni/pm2.27.html), and [`imim2i`](https://us.metamath.org/mpeuni/imim2i.html).
 
-These start to get a little more interesting.
+These start to get a little more interesting. Note that "pm" stands for Principia Mathematica, so we're already 
+working through The Book :)
 
 
 
@@ -524,13 +532,10 @@ pm2.04 $p |- ( ( ph -> ( ps -> ch ) ) -> ( ps -> ( ph -> ch ) ) ) $=
 
 ### 4.1.4 Negation and classical propositional calculus
 
-> [!WARNING]
-> I got stuck here at pm2.21 and decided I didn't want to make a cheat sheet of logic terms
-> and get deep into the weeds. I might get back to it later as a way to practice proof assistants.
-> It's very fun but just not somewhere I want to spend time developing expertise. 
->
-> (So the hints and stuff, or that these are good problems, haven't been thoroughly checked!)
-
+> [!NOTE]
+> Here's where I started to hit a wall! Use the hints, ask questions, etc.
+> This is a step up in difficulty from introductory logic class, and it's a specialized
+> skillset that ... maybe we don't really want to become experts at. 
 
 Now we introduce `ax-3`, meaning we're in the realm of classical logic. Up until now, our theorems
 have been acceptable intuitionistic theorems. Prove the basic theorems
@@ -596,6 +601,32 @@ pm2.18 $p |- ( ( -. ph -> ph ) -> ph ) $= ? $.
 - For `pm2.24`, try commuting the two antecedents.
 - For `pm2.18`, use `pm2.43i` with `( -. ph -> ph )` as a single wff.
   The remaining goal fits `con4d`; keep that same shared antecedent as you work backwards.
+
+My answers:
+
+
+
+```mm
+con4i $p |- ( ps -> ph ) $=
+  wph wn wps wn wi wps wph wi con4i.1 wph wps ax-3 ax-mp $.
+con4d $p |- ( ph -> ( ch -> ps ) ) $=
+  wph wps wn wch wn wi wch wps wi con4d.1 wps wch ax-3 syl $.
+pm2.21i $p |- ( ph -> ps ) $=
+  wps wph wph wn wps wn pm2.21i.1 a1i con4i $.
+pm2.24ii $p |- ps $=
+  wph wps pm2.24ii.1 wph wps pm2.24ii.2 pm2.21i ax-mp $.
+pm2.21d $p |- ( ph -> ( ps -> ch ) ) $=
+  wph wch wps wph wps wn wch wn pm2.21d.1 a1d con4d $.
+pm2.21 $p |- ( -. ph -> ( ph -> ps ) ) $=
+  wph wn wph wps wph wn id pm2.21d $.
+pm2.24 $p |- ( ph -> ( -. ph -> ps ) ) $=
+  wph wn wph wps wph wps pm2.21 com12 $.
+pm2.18 $p |- ( ( -. ph -> ph ) -> ph ) $=
+  wph wn wph wi wph wph wn wph wi wph wph wn wph wi wph wn wph wph wn wph wi wn
+  wph wph wn wph wi wn pm2.21 a2i con4d pm2.43i $.
+```
+
+
 
 ### 4.1.5 Double negation and classical proof rules
 
@@ -669,20 +700,61 @@ peirce $p |- ( ( ( ph -> ps ) -> ph ) -> ph ) $= ? $.
 - For `mto`, use `ax-mp` with the negated hypothesis as its first premise.
   The other premise needs contraposition.
 - For `pm2.61i`, use `ax-mp` with an instance of `pm2.18` as its second premise.
-  For the remaining goal, try `syl`; one of the given hypotheses needs contraposition.
+  For the remaining goal, don't be thrown off by `-. ps -> ps`, with our hypotheses this can be shown. Try `syl`.
 - For `pm2.65i`, use `pm2.61i`, splitting on `ph`. One case is an identity;
   in the other, try `syl` with the two conflicting hypotheses, using contraposition on one.
 - For `peirce`, use `pm2.61i`, splitting on `ph`. One case is an axiom instance;
   for the other, try `syl` with explosion as its first premise.
 
-### 4.1.6 The other connectives, which we're skipping
+My answers. I found that it started to be fun again after I learned to use the 
+various `con` theorems.
 
-> [!WARNING]
-> This section was written by AI and hasn't been reviewed yet.
 
-Everything so far used only `->` and `-.`. Of course `set.mm` also has "if and
-only if", "and", and "or". Each one gets a syntax rule (`wb`, `wa`, `wo`) and
-one defining axiom:
+
+```mm
+notnotr $p |- ( -. -. ph -> ph ) $=
+  wph wn wn wph wn wph wi wph wph wn wph pm2.21 wph pm2.18 syl $.
+notnot $p |- ( ph -> -. -. ph ) $=
+  wph wn wn wph wph wn notnotr con4i $.
+con2i $p |- ( ps -> -. ph ) $=
+  wph wn wps wph wn wn wph wps wn wph notnotr con2i.a syl con4i $.
+con1i $p |- ( -. ps -> ph ) $=
+  wph wps wn wph wn wps wps wn wn con1i.1 wps notnot syl con4i $.
+con3i $p |- ( -. ps -> -. ph ) $=
+  wph wn wps wn wph wn wn wph wps wn wn wph notnotr wph wps wps wn wn con3i.a
+  wps notnot syl syl con4i $.
+mto $p |- -. ph $=
+  wps wn wph wn mto.1 wph wps mto.2 con3i ax-mp $.
+pm2.61i $p |- ps $=
+  wps wn wps wi wps wps wn wph wn wps wph wps pm2.61i.1 con3i pm2.61i.2 syl
+  wps pm2.18 ax-mp $.
+pm2.65i $p |- -. ph $=
+  wps wn wph wn wph wps pm2.65i.1 con3i wph wps wn pm2.65i.2 con3i pm2.61i $.
+peirce $p |- ( ( ( ph -> ps ) -> ph ) -> ph ) $=
+  wph wph wps wi wph wi wph wi wph wph wps wi wph wi ax-1 wph wn wph wps wi wph
+  wps wi wph wi wph wi wph wps pm2.21 wph wps wi wph pm2.27 syl pm2.61i $.
+```
+
+
+
+### 4.1.6 The other connectives
+
+From here, it's natural to introduce other connectives like `<->` for iff, `/\` for and, and
+`\/` for or. I'm not going to do practice problems for this, it would be an exercise in tedium, 
+but it's worthwhile to see the definitions using `df-*` notation.
+
+The pages are quite good, especially [`df-bi`](https://us.metamath.org/mpeuni/df-bi.html) 
+and [`wb`](https://us.metamath.org/mpeuni/wb.html)
+which explains the reason
+that we naturally want to pull in all of the machinery of these connectives:
+
+> On the other hand, definitions are often useful
+> to write shorter proofs, so in (i)set.mm we will generally not try to avoid
+> them.  This is why, for instance, some theorems which do not contain
+> disjunction in their statement are placed after the section on disjunction
+> because a shorter proof using disjunction is possible.
+
+The definitions are:
 
 
 
@@ -695,197 +767,75 @@ df-or $a |- ( ( ph \/ ps ) <-> ( -. ph -> ps ) ) $.
 
 
 
-`df-bi` looks awful because it has to define `<->` without being allowed to
-use `<->`. Read `-. ( A -> -. B )` as "A and B" and it says two things: the
-biconditional implies both directions, and both directions imply the
-biconditional. Once `<->` exists, `df-an` and `df-or` can be written the way
-you'd expect a definition to look.
-
-Note that these are `$a` statements. Metamath checks what follows from them
-exactly like it does for any other axiom. It does not check that they are
-honest definitions, that is, that they don't let us prove anything new about
-the symbols we already had. The Proof Explorer discusses this in
+These are axiom `$a` statements, and Metamath doesn't check that these are honest definitions (which
+should not allow us to prove any theorems we couldn't otherwise prove). cf.
 [Appendix 4, A Note on Definitions](https://us.metamath.org/mpeuni/mmset.html#definitions).
 
-I'm not going to build up the theory of these connectives. It is a lot of
-theorems, and it's more of the same skill we practiced in 4.1.1 to 4.1.5.
-Section 5.1 only needs implication and negation, and section 5.2 works inside
-the full `set.mm`, where all of this is already proved.
-
-The few rules worth recognizing by name when they show up later:
-[`biimpi`](https://us.metamath.org/mpeuni/biimpi.html) and
-[`biimpri`](https://us.metamath.org/mpeuni/biimpri.html) pull the two
-implications out of an equivalence, and
-[`impbii`](https://us.metamath.org/mpeuni/impbii.html) puts them back together.
-[`simpl`](https://us.metamath.org/mpeuni/simpl.html) and
-[`simpr`](https://us.metamath.org/mpeuni/simpr.html) take a conjunction apart,
-and [`jca`](https://us.metamath.org/mpeuni/jca.html) builds one.
-[`orc`](https://us.metamath.org/mpeuni/orc.html) and
-[`olc`](https://us.metamath.org/mpeuni/olc.html) introduce a disjunction, and
-[`jaoi`](https://us.metamath.org/mpeuni/jaoi.html) is proof by cases on one.
-
-### 4.1.7 Carew Meredith's sole axiom for propositional calculus
-
-> [!WARNING]
-> This section was generated by AI and hasn't been reviewed yet.
-
-Back to implication and negation. We started with three logical axioms and
-modus ponens. Could we replace those three axioms with just one?
-
-[Meredith's axiom](https://us.metamath.org/mpeuni/meredith.html) does this.
-It is a fairly intimidating string, but it uses the same formula syntax we
-already know how to parse:
-
-
-
-```metamath
-meredith $a |- ( ( ( ( ( ph -> ps ) -> ( -. ch -> -. th ) ) -> ch ) -> ta ) ->
-                ( ( ta -> ph ) -> ( th -> ph ) ) ) $.
-```
-
-
-
-Use [meredith.mm](code-04/meredith.mm) for these exercises. Its logical axioms
-are `meredith` and `ax-mp`; it also has the familiar syntax declarations. The
-supporting lemmas are supplied as `$p` statements. They eventually depend on
-`merlem1`, which is the first blank to fill in.
-
-We won't try to rediscover the whole development. That would be a very different
-exercise! The task here is to assemble some carefully chosen instances with
-modus ponens. The notation in the hints abbreviates formulas; it doesn't add
-new symbols to the database.
-
-#### A first lemma
-
-Prove [`merlem1`](https://us.metamath.org/mpeuni/merlem1.html):
-
-
-
-```metamath
-merlem1 $p |- ( ( ( ch -> ( -. ph -> ps ) ) -> ta ) -> ( ph -> ta ) ) $= ? $.
-```
-
-
-
-Here is a more guided hint than usual. Write `M(a,b,c,d,e)` for the Meredith
-axiom with those five formulas substituted for `ph`, `ps`, `ch`, `th`, and `ta`.
-For this paragraph, rename the variables of the target to `a,b,c,t`, and put
-
-
-
-```text
-N = (¬a → b)
-X = (¬t → ¬c)
-Z = ((t → ¬a) → (¬N → ¬a))
-```
-
-
-
-The three instances you need are
-
-
-
-```text
-M(¬a, b, X, ¬N, t)
-M(N, (¬X → ¬¬N), t, c, Z)
-M(t, ¬a, N, a, (c → N))
-```
-
-
-
-Start with `ax-mp` at the target, and work out which instance can supply the
-implication. The remaining goal needs one more use of modus ponens. Writing
-the three instances out is probably less painful than trying to hold them in
-your head.
-
-#### Recovering three familiar statements
-
-Once `merlem1` is filled in, the supplied proofs establish the remaining
-`merlem` lemmas. Use them to prove the following, in the order `luk-3`, `luk-2`,
-then `luk-1`:
-
-
-
-```metamath
-luk-3 $p |- ( ph -> ( -. ph -> ps ) ) $= ? $.
-
-luk-2 $p |- ( ( -. ph -> ph ) -> ph ) $= ? $.
-
-luk-1 $p |- ( ( ph -> ps ) -> ( ( ps -> ch ) -> ( ph -> ch ) ) ) $= ? $.
-```
-
-
-
-These are the [Łukasiewicz axioms](https://us.metamath.org/mpeuni/luk-1.html)
-used in this development. We recognize their statements as explosion, Clavius
-law, and a closed form of syllogism. Here they are theorems derived from
-Meredith's axiom, so borrowing their section 4.1 proofs would defeat the point.
-
-The useful supplied lemmas are:
-
-| Label | Formula, with variables renamed for readability |
-| --- | --- |
-| `merlem4` | `t → ((t → p) → (d → p))` |
-| `merlem5` | `(p → q) → (¬¬p → q)` |
-| `merlem11` | `(p → (p → q)) → (p → q)` |
-| `merlem13` | `(p → q) → (((s → (¬¬r → r)) → ¬¬p) → q)` |
-
-#### Hints and my answers
-
-- For `luk-3`, use `ax-mp` with an instance of `merlem1` as the implication.
-  Look for a way to make its antecedent an instance of `merlem11`.
-- For `luk-2`, use `ax-mp` with `merlem11` as the implication, treating
-  `( -. ph -> ph )` as a single wff. An instance of `meredith` supplies the
-  repeated-antecedent goal after another detachment.
-- For `luk-1`, the outer step is again `ax-mp`. One premise is an instance of
-  `meredith`; the other takes more detachment steps using `merlem13` and `meredith`.
-
-For the last two, these substitutions give a more detailed route if needed.
-Write `D(p,q)`, `F(p,d,t)`, `W(p,q)`, and `B(p,q,r,s)` for the four lemmas in
-the order `merlem5`, `merlem4`, `merlem11`, and `merlem13`.
-
-For `luk-2`, let
-
-
-
-```text
-N = (¬a → a)
-R = ((a → ¬N) → (¬¬a → ¬N))
-Q = (R → ¬a)
-```
-
-
-
-Combine `D(a,¬N)`, `F(¬a,Q,R)`, `W(Q,¬a)`, `M(a,¬N,¬a,N,¬a)`, and `W(N,a)`
-using modus ponens. Each formula you detach becomes an input to another step.
-
-For `luk-1`, let
-
-
-
-```text
-S = (a → b)
-T = ((b → c) → (a → c))
-U = (((c → c) → (¬¬¬a → ¬a)) → ¬¬a)
-V = (U → b)
-```
-
-
-
-Combine `M(c,c,¬¬a,a,b)`, `B(a,b,¬a,(c → c))`, `B(S,V,¬S,(T → a))`,
-and `M(T,a,¬¬S,S,V)`.
-
-The proof explorer continues by deriving our original axioms as
-[`ax1`](https://us.metamath.org/mpeuni/ax1.html),
-[`ax2`](https://us.metamath.org/mpeuni/ax2.html), and
-[`ax3`](https://us.metamath.org/mpeuni/ax3.html). In the other direction,
-`set.mm` proves Meredith's formula from its original axioms. That gives us
-the ingredients for translating proofs between the presentations.
-
-### 4.1.8 Notes and reflections and TODO on these exercises.
-
-
-#### TODO on proof transformations
+Some of the more useful theorems are given here:
+
+$$
+\begin{array}{ccc}
+\href{https://us.metamath.org/mpeuni/biimpi.html}{\texttt{biimpi}} &
+\href{https://us.metamath.org/mpeuni/biimpri.html}{\texttt{biimpri}} &
+\href{https://us.metamath.org/mpeuni/impbii.html}{\texttt{impbii}} \\[8pt]
+\displaystyle \frac{\vdash (\varphi\leftrightarrow \psi)}{\vdash (\varphi\to\psi)} &
+\displaystyle \frac{\vdash (\varphi\leftrightarrow \psi)}{\vdash (\psi \to\varphi)} &
+\displaystyle \frac{\vdash (\varphi\to \psi) \quad \vdash (\psi\to\varphi)}{\vdash (\varphi\leftrightarrow\psi)}
+\end{array}
+$$
+
+$$
+\begin{array}{ccc}
+\href{https://us.metamath.org/mpeuni/simpl.html}{\texttt{simpl}} &
+\href{https://us.metamath.org/mpeuni/simpr.html}{\texttt{simpr}} &
+\href{https://us.metamath.org/mpeuni/jca.html}{\texttt{jca}} \\[8pt]
+\displaystyle \frac{}{\vdash((\varphi\land\psi)\to\varphi)} &
+\displaystyle \frac{}{\vdash((\varphi\land\psi)\to\psi)} &
+\displaystyle \frac{\vdash(\varphi\to\psi)\quad\vdash(\varphi\to\chi)}
+                   {\vdash(\varphi\to(\psi\land\chi))}
+\end{array}
+$$
+
+$$
+\begin{array}{ccc}
+\href{https://us.metamath.org/mpeuni/orc.html}{\texttt{orc}} &
+\href{https://us.metamath.org/mpeuni/olc.html}{\texttt{olc}} &
+\href{https://us.metamath.org/mpeuni/jaoi.html}{\texttt{jaoi}} \\[8pt]
+\displaystyle \frac{}{\vdash(\varphi\to(\varphi\lor\psi))} &
+\displaystyle \frac{}{\vdash(\varphi\to(\psi\lor\varphi))} &
+\displaystyle \frac{\vdash(\varphi\to\psi)\quad\vdash(\chi\to\psi)}
+                   {\vdash((\varphi\lor\chi)\to\psi)}
+\end{array}
+$$
+
+One interesting thing this allows us to do is proof by cases. 
+
+Suppose we have $\vdash ((\varphi\land\psi)\lor(\varphi\land\chi)),$
+which we'll write as $D$ for short,
+and we want to prove $\vdash \varphi.$ First, in steps 2 and 3 we 
+show that each implication holds individually. Then, in step 4 
+we combine the cases to show $\vdash D\to\varphi.$ And finally we use 
+modus ponens to show $\vdash \varphi.$
+
+$$
+\begin{array}{rll}
+1. & \vdash D & \text{given} \\[4pt]
+2. & \vdash((\varphi\land\psi)\to\varphi) &
+\texttt{simpl} \\[4pt]
+3. & \vdash((\varphi\land\chi)\to\varphi) &
+\texttt{simpl} \\[4pt]
+4. & \vdash(D\to\varphi) &
+\texttt{jaoi}\;2,3 \\[4pt]
+5. & \vdash\varphi &
+\texttt{ax-mp}\;1,4
+\end{array}
+$$
+
+To remember the application of such theorems, we'll just rely on using a proof assistant (yamma, mmj2).
+
+### 4.1.7 Notes and reflections on these exercises
+
+#### Thought on proof transformations
 
 I got quite stuck on some proofs in 4.1 where I wanted to manipulate 
 symbols deep inside the formulas. For example, if we have something like this:
@@ -953,14 +903,11 @@ and there remains a bit of philosophical faith in the veracity of our meta-theor
 
 ## 4.2 Other proof databases
 
-> [!WARNING]
-> I'm not going into nearly as much detail with this section; I got burnt out on the
-> entry level logic stuff. So yeah, not spending as much time to do proofreading.
-
 ### 4.2.1 `iset.mm` takeaways
 
 
-The [intuitionistic database `iset.mm`](https://github.com/metamath/set.mm/blob/develop/iset.mm) develops theory with different axioms for defining negation
+The [intuitionistic database `iset.mm`](https://github.com/metamath/set.mm/blob/develop/iset.mm) 
+develops theory with different axioms for defining negation
 than in classical logic. These are
 [`ax-in1`](https://us.metamath.org/ileuni/ax-in1.html) and
 [`ax-in2`](https://us.metamath.org/ileuni/ax-in2.html):
@@ -1055,29 +1002,25 @@ id $p |- a = a $=
 
 ### 4.2.3 Higher Order Logic `hol.mm`
 
-> [!WARNING]
-> I haven't touched this section at all.
+The [higher-order logic database `hol.mm`](https://us.metamath.org/holuni/mmhol.html)
+contains statements of the form, "under assumption $R,$ we have $S,$" written as the Metamath expression:
+`|- R |= S`. 
+If two expressions $R$ and $T$ gave rise to $S,$ then we'd write 
+`|- ( R , T ) |= S`. 
 
-In section 4.1, an assumption was usually a separate `$e` statement. The
-[higher-order logic database `hol.mm`](https://github.com/metamath/set.mm/blob/develop/hol.mm)
-also has statements of the form
+It might seem like the $(R,T)$ syntax is a lot like conjunction, and `|=` is a lot like implication; but 
+note that we don't introduce an axiom that lets us nest `|=` statements! So we quickly diverge from the
+approach of `set.mm`. Instead if we want
+our host of implication-like theorems, we use `==>`. 
 
+Essential reading here is:
 
+- Farmer 2008 (rev. 2019), [The Seven Virtues of Simple Type Theory](https://imps.mcmaster.ca/doc/seven-virtues.pdf). https://doi.org/10.1016/j.jal.2007.11.001
+- A. Church 1940, A Formulation of the Simple Theory of Types. https://doi.org/10.2307/2266170
 
-```text
-|- R |= S
-```
-
-
-
-Read this as "under assumption `R`, we have `S`." The assumption is now part of
-the expression! `R` and `S` have type `term`, and `( S , T )` combines two
-assumptions. The `|=` symbol separates the context from the conclusion. It is
-another declared constant, not an instruction to the Metamath program.
-
-Here is enough of the language to try a first exercise in its own file. These
-are the context-combination and transitivity rules from `hol.mm`, together with
-the syntax they need.
+Here is enough of the language to try a first exercise, do `prove syl2anc` and `delete all`
+if you're so inclined. Later in the database, modus ponens `mpd` comes up as a theorem, rather than
+an axiom.
 
 
 
@@ -1106,85 +1049,285 @@ ${
   syl2anc.1 $e |- R |= S $.
   syl2anc.2 $e |- R |= T $.
   syl2anc.3 $e |- ( S , T ) |= A $.
-  syl2anc $p |- R |= A $= ? $.
+  syl2anc $p |- R |= A $=
+    tr ts tt kct ta tr ts tt syl2anc.1 syl2anc.2 ax-jca syl2anc.3 ax-syl $.
 $}
 ```
 
 
 
-Prove [`syl2anc`](https://us.metamath.org/holuni/syl2anc.html). Its first two
-hypotheses get us `S` and `T` in context `R`; its third knows how to get `A`
-from their combination. We still have to express that little argument as
-substitutions and proof steps.
-
-The next exercise needs more of the database. Use [hol.mm](code-04/hol.mm), which
-supplies the supporting theorems and leaves `syl2anc` and `mpd` blank. Some of the
-supplied proofs are compressed; you can use their statements without unpacking
-their proofs. For example, start with:
-
-
-
-```text
-read hol.mm
-prove syl2anc
-```
-
-
-
-Then try [`mpd`](https://us.metamath.org/holuni/mpd.html):
 
 
 
 ```metamath
+$( ... in the full database $)
 ${
   mp.1 $e |- T : bool $.
   mp.2 $e |- R |= S $.
   mp.3 $e |- R |= [ S ==> T ] $.
-  mpd $p |- R |= T $= ? $.
+  mpd $p |- R |= T $=
+    tr ts tt ts tt tan kbr ts tt kct tr ts ts tt tan kbr tr mp.2 ts tt tim
+    kbr ts tt tan kbr ts ke kbr tr mp.3 ts tt tim kbr ts tt tan kbr ts ke kbr
+    ke kbr tr ts tr mp.2 ax-cb1 ts tt ts tr mp.2 ax-cb2 mp.1 imval a1i mpbi
+    mpbir ts tt tan kbr ts tt kct ke kbr tr ts tr mp.2 ax-cb1 ts tt ts tr
+    mp.2 ax-cb2 mp.1 dfan2 a1i mpbi simprd $.
 $}
 ```
 
 
 
-There are two different kinds of type information here. `$f term T` says that
-`T` is a syntactic term. The hypothesis `|- T : bool` is an assertion *about*
-that term: it has Boolean type. On the proof explorer, `bool` is displayed as
-`∗`. Use `bool` in the source file.
+## Quiz Questions
 
-`[ S ==> T ]` is implication, while `[ S /\ T ]` is Boolean conjunction.
-The square brackets are part of the syntax. Context conjunction `( S , T )`
-and Boolean conjunction `[ S /\ T ]` look related, but they are different
-strings, so we need a theorem to pass between them.
+### Question 1
 
-The interesting bit is that modus ponens is a theorem here. Implication has
-been defined using equality and conjunction. One of the primitive rules,
-`ax-eqmp`, transports an assertion along an equality. The derived rules `mpbi`
-and `mpbir` do that with the bracket notation, in opposite directions.
+In our terminology tailored for Metamath, we write modus ponens as follows:
 
-These are the useful tools to inspect before starting:
+$$\frac{\vdash \varphi\quad\vdash(\varphi\to \psi)}{\vdash \psi}\quad\texttt{ax-mp}$$
 
-| Label | What to look for |
-| --- | --- |
-| `imval` | Relates `[ S ==> T ]` to `[ [ S /\ T ] = S ]`. |
-| `a1i` | Moves a theorem from the true context `T.` into a Boolean context `R`. |
-| `mpbi`, `mpbir` | Replace a term by an equal term inside a fixed context. |
-| `dfan2` | Relates `[ S /\ T ]` to `( S , T )`. |
-| `simprd` | Extracts the right member of a context conjunction. |
-| `ax-cb1`, `ax-cb2` | Extract Boolean type assertions about the context and conclusion. |
+What is this notation called? How does it differ from the usual logician or computer scientist notation?
 
-The names overlap with `set.mm`, but read their statements again. In particular,
-the hypotheses required by `a1i` are different. This is a good place to let the
-proof assistant show us exactly which strings are still missing.
+#### Answer
 
-#### Hints and my answers
+This is a notation for *inference rules.*
 
-- For `syl2anc`, use `ax-syl` with the third hypothesis as its second premise.
-- For `mpd`, use `simprd`. The remaining goal needs a context conjunction;
-  `dfan2` will let you work back to a Boolean conjunction.
-- A second hint for `mpd`: to obtain the Boolean conjunction from the hypothesis
-  `R |= S`, look at `mpbir`. Its equality premise comes from the implication
-  hypothesis and `imval`. Keep track of the context when using that theorem.
+In Metamath, in `set.mm`, the symbol $\vdash$ (or as its written in .mm files `|-`) is a typecode,
+and so the turnstile tells us what the typecodes of statements we unify with must be. 
+There are also two implicit premises here: $\texttt{wff }\varphi$ and $\texttt{wff }\psi,$
+which we must infer from the fact that $\varphi$ and $\psi$ are metavariables.
+
+Whatever I write about the use of turnstile in other fields, after 20 attempts and citations,
+still gets torn apart. So just just cf. [sequent calculus](https://en.wikipedia.org/wiki/Sequent#Rules) and
+[type theory](https://en.wikipedia.org/wiki/Typing_rule), where we might write things like
+
+$$\frac{\Gamma,\alpha\vdash\Sigma\quad\Gamma\vdash\alpha}{\Gamma\vdash\Sigma}$$
+
+or 
+
+$$\frac{\Gamma\vdash e:\tau\quad \tau\lt :\sigma}{\Gamma\vdash e:\sigma}$$
+
+respectively, and know that in a machine-checked implementation $\vdash$ and other symbols
+need not translate into actual string comparisons. Use notation and argue about it insofar as it's useful
+to you.
+
+### Question 2
+
+What does it mean to say that a formal system is Hilbert-type? Is it ok to say "Metamath is Hilbert-type?"
+
+#### Answer
+
+From [Gaifman's 2002 student notes](https://www.columbia.edu/~hg17/ViewMathLogic/view1-deductive-system.pdf):
+
+> A (Hilbert type) deductive system is a system consisting of a language and of (I) a set of
+> wffs called axioms, and (II) a set of inference rules. An inference rule consists of (i) a list
+> of wffs called the premises of the rule, (ii) a wff called the rule’s conclusion. 
+
+This definition seems to be overly broad when applied in the context of Metamath, since
+every Metamath assertion can be cast into the form of premises and conclusions, but we
+**don't** colloquially say "Metamath is a Hilbert-type system." Rather we say that 
+Metamath is Hilbert-inspired, while the logics that it represents in metamath databases
+may or may not be Hilbert-type.
+
+Note: It's unclear to me whether this is due to historical and social baggage around the term, 
+or if a widely-accepted strict definition of "Hilbert-type" exists and simply requires much more 
+metatheoretic machinery in order to write "$T$ is Hilbert-type" as a theorem inside a Metamath database.
+
+### Question 3
+
+What are modus ponens, modus tollens, and hypothetical syllogism?
+Write them as inference rules.
+
+#### Answer
+
+Modus ponens:
+
+$$\frac{\vdash\varphi\quad\vdash(\varphi\to\psi)}{\vdash\psi}
+\quad\texttt{ax-mp}$$
+
+Modus tollens:
+
+$$\frac{\vdash\neg\psi\quad\vdash(\varphi\to\psi)}{\vdash\neg\varphi}
+\quad\texttt{mto}$$
+
+Hypothetical syllogism:
+
+$$\frac{\vdash(\varphi\to\psi)\quad\vdash(\psi\to\chi)}
+{\vdash(\varphi\to\chi)}\quad\texttt{syl}$$
+
+In Metamath inside `set.mm`, `ax-mp` is an `$a` statement. `mto` and `syl` are `$p` statements.
+
+### Question 4
+
+What are the three axioms of propositional calculus used in
+`set.mm`?
+
+#### Answer
+
+Jan Łukasiewicz' P2 is:
+
+$$\begin{aligned}
+\texttt{ax-1}:&\quad\vdash(\varphi\to(\psi\to\varphi))\\
+\texttt{ax-2}:&\quad\vdash((\varphi\to(\psi\to\chi))\to
+  ((\varphi\to\psi)\to(\varphi\to\chi)))\\
+\texttt{ax-3}:&\quad\vdash((\neg\varphi\to\neg\psi)\to(\psi\to\varphi)).
+\end{aligned}$$
+
+cf. [Metamath book 3.2.1](book/index.html#3.2.1-propositional-calculus).
+
+They can be remembered as:
+
+- `ax-1` is simplification, or adding an unused assumption $\psi.$
+- `ax-2` is traditionally called Frege's axiom. It says we can distribute a shared antecedent.
+- `ax-3` is contraposition in closed form, though note the fact the $\neg$ 
+is on the LHS is significant. $(\varphi\to\psi)\to(\neg\psi\to\neg\varphi)$ is valid
+intuitionistically as well!
+
+### Question 5
+
+Metamath's `set.mm` has the convention of having 
+inference, deduction, and closed forms of a theorem. 
+Explain this convention and illustrate it using modus ponens.
+
+#### Answer
+
+An inference form has essential hypotheses:
+
+$$\frac{\vdash\varphi\quad\vdash(\varphi\to\psi)}{\vdash\psi}
+\quad\texttt{ax-mp}.$$
+
+A deduction form carries a shared antecedent:
+
+$$\frac{\vdash(\chi\to\varphi)\quad\vdash(\chi\to(\varphi\to\psi))}
+{\vdash(\chi\to\psi)}\quad\texttt{mpd}.$$
+
+A closed form has no essential hypotheses:
+
+$$\vdash(\varphi\to((\varphi\to\psi)\to\psi))\quad\texttt{pm2.27}.$$
+
+The suffixes `i` and `d` usually indicate inference and deduction forms, respectively. 
+cf. [the roof explorer's discussion](https://us.metamath.org/mpeuni/mmnatded.html) of the three forms.
+
+### Question 6
+
+What does it mean to discharge a hypothesis?
+How does Metamath's `set.mm` deal with not being able to easily discharge hypotheses?
+
+#### Answer
+
+Discharging a hypothesis means removing our dependence on it as an assumption.
+For example, we can imagine discharging the hypotheses of `ax-mp` to get `pm2.27`:
+
+$$
+\begin{array}{cc}
+\href{https://us.metamath.org/mpeuni/ax-mp.html}{\texttt{ax-mp}} &
+\href{https://us.metamath.org/mpeuni/pm2.27.html}{\texttt{pm2.27}} \\[8pt]
+\displaystyle \frac{\vdash\varphi\quad\vdash(\varphi\to\psi)}{\vdash\psi}
+&
+\displaystyle \frac{}{\vdash \varphi\to((\varphi\to\psi)\to\psi)}
+\end{array}
+$$
+
+For propositional calculus, there exists an algorithm to convert a proof of the 
+former into a proof of the latter, and this is a metatheorem known as the
+deduction theorem, which takes much more machinery to tackle.
+
+Normally, we avoid any application of the deduction theorem by directly applying 
+theorems in inference, deduction, or closed form. 
+Much later in `set.mm` there is machinery to apply a "weak deduction theorem." 
+See [converting deductions to theorems](https://us.metamath.org/mpeuni/mmdeduction.html#convert).
+
+### Question 7
+
+Are there theorems (theorem schemes) in classical propositional logic,
+which contain no negation, but are not true in intuitionistic logic? 
+If so, give an example.
+
+#### Answer
+
+
+Peirce's law is an example of such a theorem. 
+
+$$\vdash(((\varphi\to\psi)\to\varphi)\to\varphi).$$
+
+It says that if $\varphi$ follows from assuming $\varphi\to\psi,$
+then $\varphi$ holds, and it relies on the classical axiom for negation.
+See [`peirce`](https://us.metamath.org/mpeuni/peirce.html). In general,
+a formula doesn't need to contain negation to rely on negation axioms in its proof.
+
+### Question 8
+
+What is Clavius's law?
+
+#### Answer
+
+
+[Clavius's law](https://en.wikipedia.org/wiki/Consequentia_mirabilis) is
+
+> If we ought to philosophise, then we ought to philosophise; and if we ought not to philosophise, then we ought to philosophise (i.e. in order to justify this view); in any case, therefore, we ought to philosophise.
+
+This is usually written, in classical logic (theorem 2.18 of Principia Mathematica) as
+
+$$\vdash((\neg\varphi\to\varphi)\to\varphi)
+\quad\href{https://us.metamath.org/mpeuni/pm2.18.html}{\texttt{pm2.18}}.$$
+
+There's an interesting and very similar statement in intuitionistic logic, which does not 
+rely on reductio ad absurdum or the law of the excluded middle:
+
+$$\vdash((\varphi\to\neg\varphi)\to\neg\varphi)
+\quad\href{https://us.metamath.org/ileuni/ax-in1.html}{\texttt{ax-in1}}.$$
+
+### Question 9
+
+How does `set.mm` introduce conjunction, disjunction, and biconditional?
+
+#### Answer
+
+First we define axioms that say and, or, and biconditional are `wff`s with axioms 
+[`wa`](https://us.metamath.org/mpeuni/wa.html),
+[`wo`](https://us.metamath.org/mpeuni/wo.html),
+[`wb`](https://us.metamath.org/mpeuni/wb.html). Then, we give the axioms
+[`df-bi`](https://us.metamath.org/mpeuni/df-bi.html),
+[`df-an`](https://us.metamath.org/mpeuni/df-an.html), and
+[`df-or`](https://us.metamath.org/mpeuni/df-or.html), which determine how
+these connectives expand into implication and negation:
 
 
 
+```metamath
+df-bi $a |- -. ( ( ( ph <-> ps ) -> -. ( ( ph -> ps ) -> -. ( ps -> ph ) ) )
+              -> -. ( -. ( ( ph -> ps ) -> -. ( ps -> ph ) ) -> ( ph <-> ps ) ) ) $.
+df-an $a |- ( ( ph /\ ps ) <-> -. ( ph -> -. ps ) ) $.
+df-or $a |- ( ( ph \/ ps ) <-> ( -. ph -> ps ) ) $.
+```
+
+
+
+In general, new definitions won't guarantee conservativity (that we cannot prove anything in the
+new system that we couldn't in the old).
+Establishing conservativity requires a separate argument,
+See [Appendix 4, A Note on Definitions](https://us.metamath.org/mpeuni/mmset.html#definitions).
+
+### Question 10
+
+If you know a Metamath manipulation you want to make, but don't know the statement label,
+what are some options for finding it in the various proof assistants?
+
+#### Answer
+
+In the Metamath proof assistant:
+
+- You could use `match step n` to find assertions whose conclusions unify 
+with a given step.
+- If `match step n` gives you too many results, you could first substitute variables
+with `let variable $32 = "( ph -> ps )"` before trying match again with your more
+specific expression.
+- You can use `search` to find expressions in the given metamath database.
+- You can see if `improve all` fills in any blank steps.
+
+Yamma: 
+
+TODO
+
+mmj2:
+
+TODO
 
